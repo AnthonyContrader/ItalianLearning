@@ -67,7 +67,7 @@ public class ConnectionSingleton {
                 // eseguo la connessione al database
     			connection = (Connection) DriverManager.getConnection(url, username, password);
 
-            
+				
             } catch (Exception e) {
         
             }

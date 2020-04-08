@@ -35,7 +35,6 @@ public class LoginView extends AbstractView {
 		
 		request.put("username", username);
 		request.put("password", password);
-		
 		MainDispatcher.getInstance().callAction("Home", "doControl", request);
 	}
 
