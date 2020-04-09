@@ -108,7 +108,6 @@ public class UserDAO {
 					userToUpdate.setUsertype(userRead.getUsertype());
 				}
 
-				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 				preparedStatement.setString(1, userToUpdate.getUsername());
 				preparedStatement.setString(2, userToUpdate.getPassword());
