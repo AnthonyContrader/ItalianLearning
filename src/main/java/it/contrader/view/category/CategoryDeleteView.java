@@ -8,53 +8,52 @@ import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 import it.contrader.service.CategoryService;
 
-public class CategoryInsertView extends AbstractView{
-	
+
+public class CategoryDeleteView extends AbstractView{
 	private Request request;
-
-	private String title;
-	private String description;
-	private final String mode = "INSERT";
-	private CategoryService categoryService;
-
-	public CategoryInsertView() {
-		categoryService = new CategoryService();
-	}
 	
-	// mostra se l'inserimento e andato a buon fine
+	private int id;
+	private final String mode = "DELETE";
+	private CategoryService categoryService;
+	
+	public CategoryDeleteView (){
+		categoryService = new CategoryService();
+
+	}
+
 	@Override
 	public void showResults(Request request) {
 		if (request!=null) {
-			request = new Request();
-			System.out.println("Inserimento andato a buon fine.\n");
-			//ritorniamo alla vista principale della categoria
 			
+			Boolean result = (Boolean) request.get("result");
+			
+			if (result) {
+				System.out.println("Cancellazione andata a buon fine.\n");
+			}
+			else {
+				System.out.println("Si e' verificato un' errore.\n");
+			}
+			
+			request = new Request();
 			List<CategoryDTO> categoriesDTO = categoryService.getAll();
 			request.put("categories", categoriesDTO);
 			MainDispatcher.getInstance().callView("Category", request);
+
 		}
 	}
 
-	// chiede di inserire i dati per il nuovo inserimento
 	@Override
 	public void showOptions() {
-		System.out.println("Inserisci titolo della categoria:");
-		// prende il valore inserito da tastiera e lo salva nella variabile title
-		title = getInput();
-		System.out.println("Inserisci descrizione della categoria:");
-		description = getInput();
-
+		System.out.println("Inserisci id della categoria:");
+		id = Integer.parseInt(getInput());
 	}
 
-	// invia i dati al controller
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("title", title);
-		request.put("description", description);
+		request.put("id", id);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("Category", "doControl", request);
 	}
 	
-
 }

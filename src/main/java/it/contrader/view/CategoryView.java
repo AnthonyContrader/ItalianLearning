@@ -21,12 +21,13 @@ public class CategoryView extends AbstractView {
 	 */
 	@Override
 	public void showResults(Request request) {
+		
 		if (request != null) {
 			//stampo la testata
 			System.out.println("\n--------- Gestione Categorie ---------\n");
 			System.out.println("ID\tTitolo");
 			System.out.println("----------------------------------------\n");
-			
+																																																
 			@SuppressWarnings("unchecked")
 			//popolo una lista di tipo CategoryDTO
 			List<CategoryDTO> categories = (List<CategoryDTO>) request.get("categories");

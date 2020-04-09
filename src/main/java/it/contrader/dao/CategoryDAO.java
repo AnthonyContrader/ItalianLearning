@@ -18,7 +18,7 @@ public class CategoryDAO {
 	private final String QUERY_ALL = "SELECT * FROM category";
 	private final String QUERY_CREATE = "INSERT INTO category (title, description) VALUES (?,?)";
 	private final String QUERY_READ = "SELECT * FROM category WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE category SET title=?, description=?, WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE category SET title=?, description=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM category WHERE id=?";
 	
 		
@@ -70,18 +70,14 @@ public class CategoryDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ); //oggetto che prepara una query senza eseguirla
 			preparedStatement.setInt(1, categoryId); //ora settiamo i parametri della query
 			ResultSet resultSet = preparedStatement.executeQuery(); //eseguo la query
-			
-			// da testare
-			if (resultSet.next()) {
-				String title = resultSet.getString("title");
-				String description = resultSet.getString("description");
-				int id = resultSet.getInt("id");
-				Category category = new Category(id, title, description);
-				return category; // return termina qui la funzione in caso if positivo e non esegue return null
-			}
-			
-			return null;
 
+			resultSet.next();
+			String title = resultSet.getString("title");
+			String description = resultSet.getString("description");
+			int id = resultSet.getInt("id");
+			Category category = new Category(id, title, description);
+			return category;
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -98,6 +94,8 @@ public class CategoryDAO {
 		
 		// preleviamo dal database l'oggetto prima delle modifiche
 		Category categoryRead = read(categoryToUpdate.getId());
+		if (categoryRead == null)
+			return false;
 		
 		//controllo che gli oggetti siano diversi
 		//( categoryRead.equals(categoryToUpdate) == false )
