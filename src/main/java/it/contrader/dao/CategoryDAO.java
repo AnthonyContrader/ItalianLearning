@@ -6,13 +6,6 @@ import java.util.List;
 import it.contrader.main.ConnectionSingleton;
 import it.contrader.model.Category;
 
-/*
- * 	id int NOT NULL AUTO_INCREMENT,
-    title varchar(32) NOT NULL,
-    description varchar(512) DEFAULT NULL,
- */
-
-
 public class CategoryDAO {
 	
 	private final String QUERY_ALL = "SELECT * FROM category";
