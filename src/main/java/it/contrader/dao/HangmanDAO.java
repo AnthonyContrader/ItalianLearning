@@ -135,6 +135,7 @@ public class HangmanDAO {
 				preparedStatement.setString(3, hangmanToUpdate.getSentence()); //ora settiamo i parametri della query
 				preparedStatement.setInt(4, hangmanToUpdate.getScore()); //ora settiamo i parametri della query
 				preparedStatement.setInt(5, hangmanToUpdate.getIdCategory()); //ora settiamo i parametri della query
+				preparedStatement.setInt(6, hangmanToUpdate.getId()); //ora settiamo i parametri della query
 				
 				int check = preparedStatement.executeUpdate(); //eseguo la query di update (Aggiornamento) del database
 				// verifico che l'aggiornamento sia andato a buon fine

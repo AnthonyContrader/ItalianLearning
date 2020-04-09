@@ -6,7 +6,9 @@ public class HangmanDTO {
 	private String solution;
 	private String definition;
 	private String sentence;
+	private String category;
 	private Integer score;
+	@SuppressWarnings("unused")
 	private Integer idCategory;
 	
 	public HangmanDTO() {
@@ -20,6 +22,14 @@ public class HangmanDTO {
 		this.idCategory = idCategory;
 	}
 	
+	public HangmanDTO(String solution, String definition, String sentence, Integer score, String category) {
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.score = score;
+		this.category = category;
+	}
+	
 	public HangmanDTO(int id, String solution, String definition, String sentence, Integer score, Integer idCategory) {
 		this.id = id;
 		this.solution = solution;
@@ -27,6 +37,15 @@ public class HangmanDTO {
 		this.sentence = sentence;
 		this.score = score;
 		this.idCategory = idCategory;
+	}
+	
+	public HangmanDTO(int id, String solution, String definition, String sentence, Integer score, String category) {
+		this.id = id;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.score = score;
+		this.category = category;
 	}
 
 	public int getId() {
@@ -68,7 +87,11 @@ public class HangmanDTO {
 	public void setScore(Integer score) {
 		this.score = score;
 	}
-
+	
+	public String getCategory() {
+		return category;
+	}
+	
 	public Integer getIdCategory() {
 		return idCategory;
 	}
@@ -79,7 +102,8 @@ public class HangmanDTO {
 
 	@Override
 	public String toString() {
-		return id + "\t" + solution + "\t\t" + definition + "\t\t" + sentence + "\t\t" + score + "\t\t" + idCategory;
+		return id + "\t" + solution + "\t" + sentence + "\t\t" + score + "\t\t" + category;
 	}
+
 
 }

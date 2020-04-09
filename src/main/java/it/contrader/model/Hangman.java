@@ -1,12 +1,16 @@
 package it.contrader.model;
 
+import it.contrader.dao.CategoryDAO;
+
 public class Hangman {
 	private int id;
 	private String solution;
 	private String definition;
 	private String sentence;
+	private String category;
 	private Integer score;
 	private Integer idCategory;
+	private CategoryDAO categoryDAO;
 	
 	public Hangman() {
 	}
@@ -17,6 +21,8 @@ public class Hangman {
 		this.sentence = sentence;
 		this.score = score;
 		this.idCategory = idCategory;
+		categoryDAO = new CategoryDAO();
+		this.category = categoryDAO.read(idCategory).getTitle();
 	}
 	
 	public Hangman(int id, String solution, String definition, String sentence, Integer score, Integer idCategory) {
@@ -26,6 +32,8 @@ public class Hangman {
 		this.sentence = sentence;
 		this.score = score;
 		this.idCategory = idCategory;
+		categoryDAO = new CategoryDAO();
+		this.category = categoryDAO.read(idCategory).getTitle();
 	}
 
 	public int getId() {
@@ -74,6 +82,10 @@ public class Hangman {
 
 	public void setIdCategory(Integer idCategory) {
 		this.idCategory = idCategory;
+	}
+	
+	public String getCategory(Integer idCategory) {
+		return category; 
 	}
 
 	@Override

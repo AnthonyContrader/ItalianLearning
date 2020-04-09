@@ -9,7 +9,7 @@ public class HangmanConverter {
 
 	// converte Category Model in CategoryDTO
 		public HangmanDTO toDTO(Hangman hangman) {
-			HangmanDTO hangmanDTO = new HangmanDTO(hangman.getId(),hangman.getSolution(),hangman.getDefinition(),hangman.getSentence(), hangman.getScore(), hangman.getIdCategory());
+			HangmanDTO hangmanDTO = new HangmanDTO(hangman.getId(),hangman.getSolution(),hangman.getDefinition(),hangman.getSentence(), hangman.getScore(), hangman.getCategory(hangman.getIdCategory()));
 			return hangmanDTO;
 		}
 		

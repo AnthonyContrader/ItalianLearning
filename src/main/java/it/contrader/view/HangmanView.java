@@ -20,9 +20,9 @@ public class HangmanView extends AbstractView {
 	public void showResults(Request request) {
 		if (request != null) {
 			//stampo la testata
-			System.out.println("\n---------------------------------- Impiccato ----------------------------------\n");
-			System.out.println("ID\tSoluzione\tDefinizione\tSuggerimento\tPunteggio\tCategoria");
-			System.out.println("-------------------------------------------------------------------------------\n");
+			System.out.println("\n-------------------------------- Impiccato --------------------------------\n");
+			System.out.println("ID\tSoluzione\tSuggerimento\t\tPunteggio\tCategoria");
+			System.out.println("---------------------------------------------------------------------------\n");
 																																																
 			@SuppressWarnings("unchecked")
 			//popolo una lista di tipo CategoryDTO
