@@ -25,7 +25,7 @@ public class OrganizeSentenceView extends AbstractView {
 		if (request != null) {
 			//stampo la testata
 			System.out.println("\n---------------------- Riordina la frase --------------------------------\n");
-			System.out.println("ID\tSoluzione\tSuggerimento\t\tPunteggio\tCategoria");
+			System.out.println("ID\tSoluzione\tFrase Disordinata\t\tPunteggio\tCategoria");
 			System.out.println("---------------------------------------------------------------------------\n");
 																																																
 			@SuppressWarnings("unchecked")

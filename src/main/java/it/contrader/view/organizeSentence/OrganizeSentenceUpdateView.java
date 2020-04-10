@@ -59,7 +59,7 @@ public class OrganizeSentenceUpdateView extends AbstractView {
 			solution = getInput();
 			System.out.println("Inserisci la definizione del gioco:");
 			definition = getInput();
-			System.out.println("Inserisci il suggerimento del gioco:");
+			System.out.println("Inserisci la frase disordinata del gioco:");
 			sentence = getInput();
 			System.out.println("Inserisci il punteggio del gioco:");
 			score = getInput();

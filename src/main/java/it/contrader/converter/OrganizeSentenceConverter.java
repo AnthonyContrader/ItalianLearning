@@ -6,17 +6,24 @@ import java.util.List;
 
 import it.contrader.dto.OrganizeSentenceDTO;
 import it.contrader.model.OrganizeSentence;
-
+import it.contrader.dao.CategoryDAO;
 
 
 public class OrganizeSentenceConverter {
 	
+	private CategoryDAO categoryDAO;
 	// converte OrganizeSentence Model in OrganizeSentenceDTO
 	//int id, String solution, String sentence, Integer score, String definition,
 	//Integer idOrganizeSentence
+	public OrganizeSentenceConverter() {
+		
+		this.categoryDAO = new CategoryDAO();
+	}
 		public OrganizeSentenceDTO toDTO(OrganizeSentence organizeSentence) {
+			String categoryString = categoryDAO.read(organizeSentence.getIdCategory()).getTitle();
+			
 			OrganizeSentenceDTO organizeSentenceDTO = new OrganizeSentenceDTO(organizeSentence.getId(), organizeSentence.getSolution() ,organizeSentence.getSentence(),
-					organizeSentence.getScore(), organizeSentence.getDefinition(), organizeSentence.getIdCategory() );
+					organizeSentence.getScore(), organizeSentence.getDefinition(), organizeSentence.getIdCategory(), categoryString );
 			
 			return organizeSentenceDTO;
 		}
