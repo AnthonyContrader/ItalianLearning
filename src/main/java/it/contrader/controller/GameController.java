@@ -1,24 +1,18 @@
 package it.contrader.controller;
 
-import java.util.List;
-
-import it.contrader.dto.HangmanDTO;
 import it.contrader.main.MainDispatcher;
-import it.contrader.service.HangmanService;
 
 public class GameController implements Controller {
 	
-	private HangmanService hangmanService;
 	
 	public GameController() {
-		this.hangmanService = new HangmanService();
 	}
 
 	@Override
 	public void doControl(Request request) {
 		String mode = (String) request.get("mode");
 		String choice = (String) request.get("choice");
-		
+		request.put("mode", "GAMELIST");
 		switch (mode) {
 		
 			case "GAMELIST":
@@ -31,29 +25,27 @@ public class GameController implements Controller {
 				switch (choice.toUpperCase()) {
 				
 				case "C":
-					MainDispatcher.getInstance().callView("FindAWord", null);
+					MainDispatcher.getInstance().callAction("FindAWord", "doControl", request);
 					break;
 					
 				case "I":
-					List<HangmanDTO> hangmenDTO = hangmanService.getAll();
-					request.put("hangmen", hangmenDTO);
-					MainDispatcher.getInstance().callView("Hangman", request);
+					MainDispatcher.getInstance().callAction("Hangman", "doControl", request);
 					break;
 					
 				case "N":
-					MainDispatcher.getInstance().callView("GuessPicture", null);
+					MainDispatcher.getInstance().callAction("GuessPicture", "doControl", request);
 					break;
 					
 				case "Q":
-					MainDispatcher.getInstance().callView("Quiz", null);
+					MainDispatcher.getInstance().callAction("Quiz", "doControl", request);
 					break;
 					
 				case "R":
-					MainDispatcher.getInstance().callView("OrganizeSentence", null);
+					MainDispatcher.getInstance().callAction("OrganizeSentence", "doControl", request);
 					break;
 			
 				case "T":
-					MainDispatcher.getInstance().callView("FindAMistake", null);
+					MainDispatcher.getInstance().callAction("FindAMistake", "doControl", request);
 					break;
 					
 				case "B":

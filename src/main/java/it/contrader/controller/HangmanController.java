@@ -93,7 +93,7 @@ public class HangmanController implements Controller {
 			//Chiamo la vista HangmanUpdateView con il risultato nei parametri
 			MainDispatcher.getInstance().callView(sub_package + "HangmanUpdate", request);
 			break;
-		case "CATEGORYLIST":
+		case "GAMELIST":
 			List<HangmanDTO> hangmenDTO = hangmanService.getAll();
 			request.put("hangmen", hangmenDTO);
 			MainDispatcher.getInstance().callView("Hangman", request);
