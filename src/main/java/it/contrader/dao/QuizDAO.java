@@ -37,13 +37,17 @@ public class QuizDAO {
 				quizList.add(quiz);
 				}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		
 		}
 		return quizList;
 	    }
 	public boolean insert (Quiz quizToInsert) {
 		Connection connection = ConnectionSingleton.getInstance(); 
+		
+		if (quizToInsert.getScore() == null || quizToInsert.getScore()<1) {
+			quizToInsert.setScore (1);
+		}
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
@@ -57,7 +61,7 @@ public class QuizDAO {
 			return true;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 		
@@ -82,7 +86,7 @@ public class QuizDAO {
         return quiz;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	}
@@ -104,8 +108,7 @@ public class QuizDAO {
 			
 			try {
 				
-				
-				
+							
 				if (quizToUpdate.getSolution() == null || quizToUpdate.getSolution().equals("")) {
 					quizToUpdate.setSolution(quizRead.getSolution());
 				}
@@ -114,7 +117,7 @@ public class QuizDAO {
 					quizToUpdate.setDefinition(quizRead.getDefinition());
 				}
 				if (quizToUpdate.getScore() == null || quizToUpdate.getScore()<1 ) {
-					quizToUpdate.setScore(1);
+					quizToUpdate.setScore(quizRead.getScore());
 				}
 				if (quizToUpdate.getIdCategory() == null || quizToUpdate.getIdCategory()<1 ) {
 					quizToUpdate.setIdCategory(quizRead.getIdCategory());
@@ -126,8 +129,9 @@ public class QuizDAO {
 				preparedStatement.setString(1,quizToUpdate.getSolution());
 				preparedStatement.setString(2,quizToUpdate.getDefinition());
 				preparedStatement.setString(3, quizToUpdate.getSentence());
-			 	preparedStatement.setInt(3,quizToUpdate.getScore());
-				preparedStatement.setInt(4,quizToUpdate.getIdCategory());
+			 	preparedStatement.setInt(4,quizToUpdate.getScore());
+				preparedStatement.setInt(5,quizToUpdate.getIdCategory());
+				preparedStatement.setInt(6,quizToUpdate.getId());
 				int check = preparedStatement.executeUpdate();
 				
 				if (check > 0)
@@ -137,7 +141,7 @@ public class QuizDAO {
 				
 				
 			}catch(SQLException e){
-				e.printStackTrace();
+				//e.printStackTrace();
 				return false;
 			}
 			
@@ -162,7 +166,7 @@ public class QuizDAO {
 				return true;
 
 		}catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 		

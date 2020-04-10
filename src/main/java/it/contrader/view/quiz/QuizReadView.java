@@ -17,13 +17,27 @@ public class QuizReadView extends AbstractView {
 
 	@Override
 	public void showResults(Request request) {
+		
+		
+		
 		if (request != null) {
+		
 			QuizDTO quiz = (QuizDTO) request.get("quiz");
+			
+			
 			System.out.println(quiz);
-			MainDispatcher.getInstance().callView("Quiz", null);
 		}
 		
-	}
+			
+			else {
+				System.out.println("Elemento non trovato");
+		}
+			
+			MainDispatcher.getInstance().callView("Quiz", null);
+			}
+		
+		
+	
 
 	@Override
 	public void showOptions() {
