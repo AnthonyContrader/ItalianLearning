@@ -72,7 +72,6 @@ public class CategoryDAO {
 			return category;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
 			return null;
 		}
 	

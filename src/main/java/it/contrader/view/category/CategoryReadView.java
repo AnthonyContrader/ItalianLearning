@@ -20,8 +20,21 @@ public class CategoryReadView extends AbstractView{
 	@Override
 	public void showResults(Request request) {
 		if (request != null) {
+
 			CategoryDTO category = (CategoryDTO) request.get("category");
-			System.out.println(category);
+						
+			if (category != null) {
+				System.out.println("\n--------- Gestione Categorie ----------\n");
+				System.out.println("ID\tTitolo");
+				System.out.println(category);
+				System.out.println("---------------- Descrizione ------------\n");
+				System.out.println(category.getDescription());
+				System.out.println();
+			}
+			else {
+				System.out.println("Elemento non trovato");
+			}
+			
 			MainDispatcher.getInstance().callView("Category", null);
 		}
 	}

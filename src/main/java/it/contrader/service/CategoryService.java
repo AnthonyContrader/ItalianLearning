@@ -5,6 +5,7 @@ import java.util.List;
 import it.contrader.converter.CategoryConverter;
 import it.contrader.dao.CategoryDAO;
 import it.contrader.dto.CategoryDTO;
+import it.contrader.model.Category;
 
 
 public class CategoryService {
@@ -26,7 +27,11 @@ public class CategoryService {
 	
 	// Ottiene un'entita e la restituisce convertendola in DTO
 	public CategoryDTO read(int id) {
-		return categoryConverter.toDTO(categoryDAO.read(id));
+		Category c = categoryDAO.read(id);
+		if (c != null)
+			return categoryConverter.toDTO(c);
+		else
+			return null;
 	}
 	
 	// Converte un DTO in entita e lo passa al DAO per l'inserimento

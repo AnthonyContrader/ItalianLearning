@@ -40,6 +40,7 @@ public class CategoryController implements Controller {
 			 * il record con id equivalente alla variabile 'id' e salvarlo all'interno
 			 * dell'oggetto categoryDTO
 			 */
+			
 			CategoryDTO categoryDTO = categoryService.read(id);
 			//Mando il risultato alla vista
 			request.put("category", categoryDTO);
@@ -52,14 +53,14 @@ public class CategoryController implements Controller {
 			
 			/*
 			 *  Costruisco l'oggetto DTO categorytoinsert per mandarlo al service
-			 *  che proverà ad inserirlo tramite la funzione insert del DAO 
+			 *  che proverï¿½ ad inserirlo tramite la funzione insert del DAO 
 			 */
 			CategoryDTO categorytoinsert = new CategoryDTO(title, description);
 			result = categoryService.insert(categorytoinsert);
 			
 			//Definisco una nuova request per mandare il risultato alla view
 			request = new Request();
-			request.put("mode", mode); // controllare se è corretto rimandare la stessa mode
+			request.put("mode", mode); // controllare se ï¿½ corretto rimandare la stessa mode
 			request.put("result", result); // verificare se si necessita il risultato
 			//Chiamo la vista CategoryInsertView con il risultato nei parametri
 			MainDispatcher.getInstance().callView(sub_package + "CategoryInsert", request);
@@ -71,7 +72,7 @@ public class CategoryController implements Controller {
 			result = categoryService.delete(id);
 			//Definisco una nuova request per mandare il risultato alla view
 			request = new Request();
-			request.put("mode", mode); // controllare se è corretto rimandare la stessa mode
+			request.put("mode", mode); // controllare se ï¿½ corretto rimandare la stessa mode
 			request.put("result", result); // verificare se si necessita il risultato
 			//Chiamo la vista CategoryDeleteView con il risultato nei parametri
 			MainDispatcher.getInstance().callView(sub_package + "CategoryDelete", request);
@@ -83,7 +84,7 @@ public class CategoryController implements Controller {
 			CategoryDTO categorytoupdate = new CategoryDTO(id, title, description);
 			result = categoryService.update(categorytoupdate);
 			request = new Request();
-			request.put("mode", mode); // controllare se è corretto rimandare la stessa mode
+			request.put("mode", mode); // controllare se ï¿½ corretto rimandare la stessa mode
 			request.put("result", result); // verificare se si necessita il risultato
 			//Chiamo la vista CategoryUpdateView con il risultato nei parametri
 			MainDispatcher.getInstance().callView(sub_package + "CategoryUpdate", request);

@@ -42,11 +42,6 @@ public class CategoryUpdateView extends AbstractView{
 			MainDispatcher.getInstance().callView("Category", request);
 		}
 		
-		/*if (request!=null) {
-			System.out.println("Modifica andata a buon fine.\n");
-			MainDispatcher.getInstance().callView("Category", null);
-		}*/
-		
 	}
 
 	@Override

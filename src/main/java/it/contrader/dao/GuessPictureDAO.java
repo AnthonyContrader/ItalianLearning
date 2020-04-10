@@ -59,6 +59,10 @@ public class GuessPictureDAO {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE); //oggetto che prepara una query senza eseguirla
 			
+			if (guessPictureToInsert.getScore() == null || guessPictureToInsert.getScore() < 1 ) {
+				guessPictureToInsert.setScore(1);
+			}
+			
 			//ora settiamo i parametri della query
 			preparedStatement.setString(1, guessPictureToInsert.getSolution()); 
 			preparedStatement.setString(2, guessPictureToInsert.getImage());
@@ -127,7 +131,7 @@ public class GuessPictureDAO {
 				}
 				
 				if (guessPictureToUpdate.getScore() == null || guessPictureToUpdate.getScore() < 1 ) {
-					guessPictureToUpdate.setScore(1);
+					guessPictureToUpdate.setScore(guessPictureRead.getScore());
 				}
 				
 				if (guessPictureToUpdate.getIdCategory() == null || guessPictureToUpdate.getIdCategory() < 1 ) {

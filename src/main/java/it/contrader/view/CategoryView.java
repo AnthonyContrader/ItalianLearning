@@ -23,7 +23,7 @@ public class CategoryView extends AbstractView {
 	public void showResults(Request request) {
 		if (request != null) {
 			//stampo la testata
-			System.out.println("\n--------- Gestione Categorie ---------\n");
+			System.out.println("\n--------- Gestione Categorie ----------\n");
 			System.out.println("ID\tTitolo");
 			System.out.println("----------------------------------------\n");
 																																																
