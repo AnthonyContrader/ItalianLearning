@@ -19,8 +19,13 @@ public class HangmanReadView extends AbstractView{
 	public void showResults(Request request) {
 		if (request != null) {
 			HangmanDTO hangman = (HangmanDTO) request.get("hangman");
-			System.out.println(hangman);
-			MainDispatcher.getInstance().callView("Hangman", null);
+			if (hangman != null) {
+				System.out.println(hangman);
+				System.out.println(hangman.getDefinition());
+				MainDispatcher.getInstance().callView("Hangman", null);
+			}
+			else
+				System.out.println("Elemento non trovato");
 		}
 	}
 

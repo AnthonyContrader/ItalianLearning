@@ -5,6 +5,7 @@ import java.util.List;
 import it.contrader.converter.HangmanConverter;
 import it.contrader.dao.HangmanDAO;
 import it.contrader.dto.HangmanDTO;
+import it.contrader.model.Hangman;
 
 public class HangmanService {
 	
@@ -25,7 +26,11 @@ public class HangmanService {
 	
 	// Ottiene un'entita e la restituisce convertendola in DTO
 	public HangmanDTO read(int id) {
-		return hangmanConverter.toDTO(hangmanDAO.read(id));
+		Hangman h = hangmanDAO.read(id);
+		if (h != null)
+			return hangmanConverter.toDTO(h);
+		else
+			return null;
 	}
 	
 	// Converte un DTO in entita e lo passa al DAO per l'inserimento

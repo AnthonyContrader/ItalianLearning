@@ -2,14 +2,23 @@ package it.contrader.converter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import it.contrader.dao.CategoryDAO;
 import it.contrader.dto.HangmanDTO;
 import it.contrader.model.Hangman;
 
 public class HangmanConverter {
+	
+	private CategoryDAO categoryDAO;
+	
+	public HangmanConverter(){
+		this.categoryDAO = new CategoryDAO();
+	}
 
 	// converte Category Model in CategoryDTO
 		public HangmanDTO toDTO(Hangman hangman) {
-			HangmanDTO hangmanDTO = new HangmanDTO(hangman.getId(),hangman.getSolution(),hangman.getDefinition(),hangman.getSentence(), hangman.getScore(), hangman.getCategory(hangman.getIdCategory()));
+			String categoryString = categoryDAO.read(hangman.getIdCategory()).getTitle();
+			HangmanDTO hangmanDTO = new HangmanDTO(hangman.getId(),hangman.getSolution(),hangman.getDefinition(),hangman.getSentence(), hangman.getScore(), categoryString);
 			return hangmanDTO;
 		}
 		

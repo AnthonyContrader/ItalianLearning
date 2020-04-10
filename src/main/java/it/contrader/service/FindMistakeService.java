@@ -5,6 +5,7 @@ import java.util.List;
 import it.contrader.converter.FindMistakeConverter;
 import it.contrader.dao.FindMistakeDAO;
 import it.contrader.dto.FindMistakeDTO;
+import it.contrader.model.FindMistake;
 
 public class FindMistakeService {
 	
@@ -21,7 +22,11 @@ public class FindMistakeService {
 	}
 	
 	public FindMistakeDTO read(int id) {
-		return findMistakeConverter.toDTO(findMistakeDAO.read(id));
+		FindMistake f = findMistakeDAO.read(id);
+		if (f != null)
+			return findMistakeConverter.toDTO(f);
+		else
+			return null;
 	}
 	
 	public boolean insert(FindMistakeDTO dto) {

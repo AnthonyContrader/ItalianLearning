@@ -1,7 +1,5 @@
 package it.contrader.model;
 
-import it.contrader.dao.CategoryDAO;
-
 public class FindMistake {
 	private int id;
 	private String solution;
@@ -10,10 +8,8 @@ public class FindMistake {
 	private String optionA;
 	private String optionB;
 	private String optionC;
-	private String category;
 	private Integer score;
 	private Integer idCategory;
-	private CategoryDAO categoryDAO;
 	
 	public FindMistake() {
 		
@@ -29,8 +25,6 @@ public class FindMistake {
 		this.optionC = optionC;
 		this.score = score;
 		this.idCategory = idCategory;
-		categoryDAO = new CategoryDAO();
-		this.category = categoryDAO.read(idCategory).getTitle();
 	}
 	
 	public FindMistake(int id, String solution, String definition, String sentence, String optionA, String optionB,
@@ -44,8 +38,6 @@ public class FindMistake {
 		this.optionC = optionC;
 		this.score = score;
 		this.idCategory = idCategory;
-		categoryDAO = new CategoryDAO();
-		this.category = categoryDAO.read(idCategory).getTitle();
 	}
 
 	public int getId() {
@@ -104,14 +96,6 @@ public class FindMistake {
 		this.optionC = optionC;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public Integer getScore() {
 		return score;
 	}
@@ -128,9 +112,6 @@ public class FindMistake {
 		this.idCategory = idCategory;
 	}
 
-	public String getCategory(Integer idCategory) {
-		return category; 
-	}
 
 	@Override
 	public boolean equals(Object obj) {

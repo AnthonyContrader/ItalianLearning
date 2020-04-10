@@ -19,8 +19,13 @@ public class FindMistakeReadView extends AbstractView {
 	public void showResults(Request request) {
 		if (request != null) {
 			FindMistakeDTO findMistake = (FindMistakeDTO) request.get("findMistake");
-			System.out.println(findMistake);
-			MainDispatcher.getInstance().callView("FindMistake", null);
+			if (findMistake != null) {
+				System.out.println(findMistake);
+				System.out.println(findMistake.getDefinition());
+				MainDispatcher.getInstance().callView("FindMistake", null);
+			}
+			else
+				System.out.println("Elemento non trovato");
 		}
 	}
 

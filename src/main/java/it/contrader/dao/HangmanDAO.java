@@ -35,7 +35,7 @@ public class HangmanDAO {
 			}
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		
 		return hangmenList;
@@ -55,7 +55,7 @@ public class HangmanDAO {
 			return true;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 	}
@@ -80,7 +80,7 @@ public class HangmanDAO {
 			return hangman;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			return null;
 		}
 	
@@ -146,7 +146,7 @@ public class HangmanDAO {
 				
 				
 			}catch(SQLException e){
-				e.printStackTrace();
+//				e.printStackTrace();
 				return false;
 			}
 			
@@ -174,7 +174,7 @@ public class HangmanDAO {
 				return true;
 
 		}catch (SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 		

@@ -37,7 +37,7 @@ public class FindMistakeDAO {
 			}
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		
 		return findMistakeList;
@@ -60,7 +60,7 @@ public class FindMistakeDAO {
 			return true;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 	}
@@ -88,7 +88,7 @@ public class FindMistakeDAO {
 			return findMistake;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			return null;
 		}
 	
@@ -169,7 +169,7 @@ public class FindMistakeDAO {
 				
 				
 			}catch(SQLException e){
-				e.printStackTrace();
+//				e.printStackTrace();
 				return false;
 			}
 			
@@ -197,7 +197,7 @@ public class FindMistakeDAO {
 				return true;
 
 		}catch (SQLException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			return false;
 		}
 		
