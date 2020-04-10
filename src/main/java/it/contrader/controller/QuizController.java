@@ -1,11 +1,8 @@
 package it.contrader.controller;
 
 import java.util.List;
-
-import it.contrader.dto.HangmanDTO;
 import it.contrader.dto.QuizDTO;
 import it.contrader.main.MainDispatcher;
-import it.contrader.service.HangmanService;
 import it.contrader.service.QuizService;
 
 public class QuizController implements Controller {
@@ -58,6 +55,7 @@ private static String sub_package = "quiz.";
 			request.put("result", result); 
 			MainDispatcher.getInstance().callView(sub_package + "QuizInsert", request);
 			break;
+			
 		case "DELETE":
 			
 			id = Integer.parseInt(request.get("id").toString());
@@ -69,45 +67,51 @@ private static String sub_package = "quiz.";
 			request.put("result", result); 			
 			MainDispatcher.getInstance().callView(sub_package + "QuizDelete", request);
 			break;
+			
 		case "UPDATE":
+			
 			id = Integer.parseInt(request.get("id").toString());
 			solution = request.get("solution").toString();
 			definition = request.get("definition").toString();
-			sentence = request.get("sentence").toString();
 			score = Integer.parseInt(request.get("score").toString());
 			idCategory = Integer.parseInt(request.get("idCategory").toString());
-			HangmanDTO hangmantoupdate = new HangmanDTO(id, solution, definition, sentence, score, idCategory);
-			result = hangmanService.update(hangmantoupdate);
+			
+			QuizDTO quiztoupdate = new QuizDTO(id,idCategory,score, solution, definition);
+			result = quizService.update(quiztoupdate);
 			request = new Request();
-			request.put("mode", mode); // controllare se è corretto rimandare la stessa mode
-			request.put("result", result); // verificare se si necessita il risultato
-			//Chiamo la vista HangmanUpdateView con il risultato nei parametri
-			MainDispatcher.getInstance().callView(sub_package + "HangmanUpdate", request);
+			request.put("mode", mode);
+			request.put("result", result); 
+			
+			MainDispatcher.getInstance().callView(sub_package + "QuizUpdate", request);
 			break;
-		case "CATEGORYLIST":
-			List<HangmanDTO> hangmenDTO = hangmanService.getAll();
-			request.put("hangmen", hangmenDTO);
-			MainDispatcher.getInstance().callView("Hangman", request);
+			
+		case "GAMELIST":
+			
+			List<QuizDTO> quizsDTO = quizService.getAll();
+			request.put("quiz", quizsDTO);
+			MainDispatcher.getInstance().callView("Quiz", request);
 			break;
+			
 		case "GETCHOICE":
 			
-			//toUpperCase() mette in maiuscolo la scelta
+			
 			switch (choice.toUpperCase()) {
 			
 			case "L":
-				MainDispatcher.getInstance().callView(sub_package + "HangmanRead", null);
+				
+				MainDispatcher.getInstance().callView(sub_package + "QuizRead", null);
 				break;
 				
 			case "I":
-				MainDispatcher.getInstance().callView(sub_package + "HangmanInsert", null);
+				MainDispatcher.getInstance().callView(sub_package + "QuizInsert", null);
 				break;
 				
 			case "M":
-				MainDispatcher.getInstance().callView(sub_package + "HangmanUpdate", null);
+				MainDispatcher.getInstance().callView(sub_package + "QuizUpdate", null);
 				break;
 				
 			case "C":
-				MainDispatcher.getInstance().callView(sub_package + "HangmanDelete", null);
+				MainDispatcher.getInstance().callView(sub_package + "QuizDelete", null);
 				break;
 				
 			case "E":
@@ -129,4 +133,4 @@ private static String sub_package = "quiz.";
 		}
 	}
 	
-}
+
