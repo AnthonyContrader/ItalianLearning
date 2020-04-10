@@ -97,9 +97,9 @@ public class OrganizeSentenceController implements Controller {
 			//Chiamo la vista OrganizeSentenceUpdateView con il risultato nei parametri
 			MainDispatcher.getInstance().callView(sub_package + "OrganizeSentenceUpdate", request);
 			break;
-		case "CATEGORYLIST":
-			List<OrganizeSentenceDTO> hangmenDTO = organizeSentenceService.getAll();
-			request.put("hangmen", hangmenDTO);
+		case "GAMELIST":
+			List<OrganizeSentenceDTO> organizeSentencesDTO = organizeSentenceService.getAll();
+			request.put("organizeSentence", organizeSentencesDTO);
 			MainDispatcher.getInstance().callView("OrganizeSentence", request);
 			break;
 		case "GETCHOICE":
