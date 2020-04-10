@@ -14,7 +14,7 @@ private static String sub_package = "quiz.";
 	public QuizController() {
 		this.quizService = new QuizService();
 	}
-
+	@Override
 	public void doControl(Request request) {
 		
 		String mode = (String) request.get("mode");
@@ -24,6 +24,7 @@ private static String sub_package = "quiz.";
 		int id;
 		String solution;
 		String definition;
+		String sentence;
 		Integer score;
 		Integer idCategory;
 		boolean result;
@@ -42,6 +43,7 @@ private static String sub_package = "quiz.";
 		case "INSERT":
 			solution = request.get("solution").toString();
 			definition = request.get("definition").toString();
+			sentence = request.get("sentence").toString();
 			score = Integer.parseInt(request.get("score").toString());
 			idCategory = Integer.parseInt(request.get("idCategory").toString());
 						
@@ -73,6 +75,7 @@ private static String sub_package = "quiz.";
 			id = Integer.parseInt(request.get("id").toString());
 			solution = request.get("solution").toString();
 			definition = request.get("definition").toString();
+			sentence = request.get("sentence").toString();
 			score = Integer.parseInt(request.get("score").toString());
 			idCategory = Integer.parseInt(request.get("idCategory").toString());
 			

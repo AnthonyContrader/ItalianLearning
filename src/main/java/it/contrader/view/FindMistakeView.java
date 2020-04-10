@@ -3,44 +3,39 @@ package it.contrader.view;
 import java.util.List;
 
 import it.contrader.controller.Request;
-import it.contrader.dto.OrganizeSentenceDTO;
+import it.contrader.dto.FindMistakeDTO;
 import it.contrader.main.MainDispatcher;
 
-public class OrganizeSentenceView extends AbstractView {
+public class FindMistakeView extends AbstractView {
 	
 	private Request request;
 	
 	private String choice;
 	
-	public OrganizeSentenceView() {
-		
-	}
-	
-	
-	@Override
-	public void showResults(Request request) {
-		// TODO Auto-generated method stub
-		
-		if (request != null) {
-			//stampo la testata
-			System.out.println("\n---------------------- Riordina la frase --------------------------------\n");
-			System.out.println("ID\tSoluzione\tFrase Disordinata\t\tPunteggio\tCategoria");
-			System.out.println("---------------------------------------------------------------------------\n");
-																																																
-			@SuppressWarnings("unchecked")
-			//popolo una lista di tipo CategoryDTO
-			List<OrganizeSentenceDTO> organizeSentence = (List<OrganizeSentenceDTO>) request.get("organizeSentences");
-			//Itero la lista e stampo ogni elemento della lista
-			for (OrganizeSentenceDTO o: organizeSentence)
-				System.out.println(o);
-			System.out.println();
-		}
+	public FindMistakeView() {
 		
 	}
 
 	@Override
+	public void showResults(Request request) {
+		if (request != null) {
+			//stampo la testata
+			System.out.println("\n-------------------------------- Trova l'errore --------------------------------\n");
+			System.out.println("ID\tSoluzione\tSuggerimento\t\tPunteggio\tCategoria");
+			System.out.println("---------------------------------------------------------------------------\n");
+																																																
+			@SuppressWarnings("unchecked")
+			//popolo una lista di tipo CategoryDTO
+			List<FindMistakeDTO> findMistakes = (List<FindMistakeDTO>) request.get("findMistakes");
+			//Itero la lista e stampo ogni elemento della lista
+			for (FindMistakeDTO f: findMistakes)
+				System.out.println(f);
+			System.out.println();
+		}
+	}
+
+	@Override
 	public void showOptions() {
-		// TODO Auto-generated method stub
 		System.out.println("          Scegli l'operazione da effettuare:");
 		System.out.println("[L]eggi [I]nserisci [M]odifica [C]ancella [B]ack [E]sci");
 
@@ -49,13 +44,10 @@ public class OrganizeSentenceView extends AbstractView {
 
 	@Override
 	public void submit() {
-		// TODO Auto-generated method stub
 		request = new Request();
 		request.put("choice", choice);
 		request.put("mode", "GETCHOICE");
-		MainDispatcher.getInstance().callAction("OrganizeSentence", "doControl", this.request);
+		MainDispatcher.getInstance().callAction("FindMistake", "doControl", this.request);
 	}
-	
-	
 
 }

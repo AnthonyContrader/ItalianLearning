@@ -1,24 +1,24 @@
-package it.contrader.controller.view.quiz;
+package it.contrader.view.findMistake;
 
 import java.util.List;
+
 import it.contrader.controller.Request;
-import it.contrader.dto.QuizDTO;
+import it.contrader.dto.FindMistakeDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
-import it.contrader.service.QuizService;
+import it.contrader.service.FindMistakeService;
 
-public class QuizDeleteView extends AbstractView {
-
-private Request request;
+public class FindMistakeDeleteView extends AbstractView {
+	private Request request;
 	
 	private int id;
 	private final String mode = "DELETE";
-	private QuizService quizService;
+	private FindMistakeService findMistakeService;
 	
-	public QuizDeleteView() {
-		quizService = new QuizService();
+	public FindMistakeDeleteView() {
+		findMistakeService = new FindMistakeService();
 	}
-	
+
 	@Override
 	public void showResults(Request request) {
 if (request!=null) {
@@ -33,27 +33,24 @@ if (request!=null) {
 			}
 			
 			request = new Request();
-			List<QuizDTO> quizzesDTO = quizService.getAll();
-			request.put("quizzes", quizzesDTO);
-			MainDispatcher.getInstance().callView("Quiz", request);
+			List<FindMistakeDTO> findMistakesDTO = findMistakeService.getAll();
+			request.put("findMistakes", findMistakesDTO);
+			MainDispatcher.getInstance().callView("FindMistake", request);
 		}
-		
 	}
 
 	@Override
 	public void showOptions() {
 		System.out.println("Inserisci l'ID del gioco:");
 		id = Integer.parseInt(getInput());
-		
 	}
 
 	@Override
 	public void submit() {
-	request = new Request();
-	request.put("id", id);
-	request.put("mode", mode);
-	MainDispatcher.getInstance().callAction("Quiz", "doControl", request);
-		
+		request = new Request();
+		request.put("id", id);
+		request.put("mode", mode);
+		MainDispatcher.getInstance().callAction("FindMistake", "doControl", request);
 	}
 
 }

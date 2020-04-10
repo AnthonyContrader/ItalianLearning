@@ -1,13 +1,21 @@
-package it.contrader.controller.view.quiz;
+package it.contrader.view.quiz;
 
 import java.util.List;
 
 import it.contrader.controller.Request;
 import it.contrader.dto.CategoryDTO;
+<<<<<<< HEAD:src/main/java/it/contrader/controller/view/quiz/QuizUpdateView.java
+=======
+
+>>>>>>> e5d7bf442dd44557c7ee8feb8016bdd81c11639c:src/main/java/it/contrader/view/quiz/QuizUpdateView.java
 import it.contrader.dto.QuizDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 import it.contrader.service.CategoryService;
+<<<<<<< HEAD:src/main/java/it/contrader/controller/view/quiz/QuizUpdateView.java
+=======
+
+>>>>>>> e5d7bf442dd44557c7ee8feb8016bdd81c11639c:src/main/java/it/contrader/view/quiz/QuizUpdateView.java
 import it.contrader.service.QuizService;
 
 
@@ -23,6 +31,7 @@ public class QuizUpdateView extends AbstractView {
 	private final String mode = "UPDATE";
 	private QuizService quizService;
 	private CategoryService categoryService;
+	private String sentence;
 	
 	public QuizUpdateView() {
 		quizService = new QuizService();
@@ -59,6 +68,7 @@ public class QuizUpdateView extends AbstractView {
 			System.out.println("Inserisci la definizione del gioco:");
 			definition = getInput();
 			System.out.println("Inserisci il suggerimento del gioco:");
+			sentence = getInput();
 			System.out.println("Inserisci il punteggio del gioco:");
 			score = getInput();
 			if ("".equals(score)) {
@@ -91,6 +101,7 @@ public class QuizUpdateView extends AbstractView {
 		request.put("score", score);
 		request.put("idCategory", idCategory);
 		request.put("mode", mode);
+		request.put("sentence", sentence);
 		MainDispatcher.getInstance().callAction("Quiz", "doControl", request);
 		
 	}

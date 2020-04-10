@@ -1,28 +1,27 @@
-package it.contrader.controller.view.quiz;
+package it.contrader.view.findMistake;
 
 import it.contrader.controller.Request;
-import it.contrader.dto.QuizDTO;
+import it.contrader.dto.FindMistakeDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 
-public class QuizReadView extends AbstractView {
+public class FindMistakeReadView extends AbstractView {
 	
 	private Request request;
 	
 	private int id;
 	private final String mode = "READ";
 	
-	public QuizReadView() {
+	public FindMistakeReadView() {
 	}
 
 	@Override
 	public void showResults(Request request) {
 		if (request != null) {
-			QuizDTO quiz = (QuizDTO) request.get("quiz");
-			System.out.println(quiz);
-			MainDispatcher.getInstance().callView("Quiz", null);
+			FindMistakeDTO findMistake = (FindMistakeDTO) request.get("findMistake");
+			System.out.println(findMistake);
+			MainDispatcher.getInstance().callView("FindMistake", null);
 		}
-		
 	}
 
 	@Override
@@ -30,14 +29,14 @@ public class QuizReadView extends AbstractView {
 		System.out.println("Inserisci l'ID del gioco:");
 		id = Integer.parseInt(getInput());
 	}
-	
+
 	@Override
 	public void submit() {
 		request = new Request();
 		request.put("id", id);
 		request.put("mode", mode);
-		MainDispatcher.getInstance().callAction("Quiz", "doControl", request);
-		
+		MainDispatcher.getInstance().callAction("FindMistake", "doControl", request);
 	}
-
+	
+	
 }

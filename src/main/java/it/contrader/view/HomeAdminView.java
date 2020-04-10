@@ -47,24 +47,23 @@ public class HomeAdminView extends AbstractView {
     public void submit() {    
     	//crea una nuova Request (vedi classe Request)
     	request = new Request();
-        switch (choice) {
-        case "u":
+        switch (choice.toUpperCase()) {
+        case "U":
         	this.request.put("mode", "USERLIST");
         	MainDispatcher.getInstance().callAction("User", "doControl", request);
         	break;
-        case "c":
+        case "C":
         	this.request.put("mode", "CATEGORYLIST");
         	MainDispatcher.getInstance().callAction("Category", "doControl", request);
         	break;
-        case "g":
+        case "G":
         	this.request.put("mode", "GAMELIST");
         	MainDispatcher.getInstance().callAction("Game", "doControl", request);
         	break;
-        case "e":
+        case "E":
         	MainDispatcher.getInstance().callAction("Login", "doControl", null);
         	break;
         default:
-        	
             request.put("choice", choice);
         	MainDispatcher.getInstance().callAction("Login", "doControl", request);
         }

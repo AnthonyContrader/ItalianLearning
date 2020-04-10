@@ -1,37 +1,38 @@
-package it.contrader.view.organizeSentence;
+package it.contrader.view.findMistake;
 
 import java.util.List;
 
 import it.contrader.controller.Request;
 import it.contrader.dto.CategoryDTO;
-import it.contrader.dto.OrganizeSentenceDTO;
+import it.contrader.dto.FindMistakeDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 import it.contrader.service.CategoryService;
-import it.contrader.service.OrganizeSentenceService;
+import it.contrader.service.FindMistakeService;
 
-public class OrganizeSentenceUpdateView extends AbstractView {
-	
+public class FindMistakeUpdateView extends AbstractView {
 	private Request request;
 	
 	private int id;
 	private String solution;
 	private String definition;
 	private String sentence;
+	private String optionA;
+	private String optionB;
+	private String optionC;
 	private String score;
 	private String idCategory;
 	private final String mode = "UPDATE";
-	private OrganizeSentenceService organizeSentenceService;
+	private FindMistakeService findMistakeService;
 	private CategoryService categoryService;
 	
-	public OrganizeSentenceUpdateView() {
-		organizeSentenceService = new OrganizeSentenceService();
+	public FindMistakeUpdateView() {
+		findMistakeService = new FindMistakeService();
 		categoryService = new CategoryService();
 	}
 
 	@Override
 	public void showResults(Request request) {
-		// TODO Auto-generated method stub
 		if (request!=null) {
 			Boolean result = (Boolean) request.get("result");
 			
@@ -43,15 +44,14 @@ public class OrganizeSentenceUpdateView extends AbstractView {
 			}
 			
 			request = new Request();
-			List<OrganizeSentenceDTO> organizeSentencesDTO = organizeSentenceService.getAll();
-			request.put("organizeSentences", organizeSentencesDTO);
-			MainDispatcher.getInstance().callView("OrganizeSentence", request);
+			List<FindMistakeDTO> findMistakeDTO = findMistakeService.getAll();
+			request.put("findMistakes", findMistakeDTO);
+			MainDispatcher.getInstance().callView("FindMistake", request);
 		}
 	}
 
 	@Override
 	public void showOptions() {
-		// TODO Auto-generated method stub
 		try {
 			System.out.println("Inserisci id del gioco:");
 			id = Integer.parseInt(getInput());
@@ -59,8 +59,14 @@ public class OrganizeSentenceUpdateView extends AbstractView {
 			solution = getInput();
 			System.out.println("Inserisci la definizione del gioco:");
 			definition = getInput();
-			System.out.println("Inserisci la frase disordinata del gioco:");
+			System.out.println("Inserisci il suggerimento del gioco:");
 			sentence = getInput();
+			System.out.println("Inserisci l'opzione A del gioco:");
+			optionA = getInput();
+			System.out.println("Inserisci l'opzione B del gioco:");
+			optionB = getInput();
+			System.out.println("Inserisci l'opzione C del gioco:");
+			optionC = getInput();
 			System.out.println("Inserisci il punteggio del gioco:");
 			score = getInput();
 			if ("".equals(score)) {
@@ -85,18 +91,18 @@ public class OrganizeSentenceUpdateView extends AbstractView {
 
 	@Override
 	public void submit() {
-		// TODO Auto-generated method stub
 		request = new Request();
 		request.put("id", id);
 		request.put("solution", solution);
 		request.put("definition", definition);
 		request.put("sentence", sentence);
+		request.put("optionA", optionA);
+		request.put("optionB", optionB);
+		request.put("optionC", optionC);
 		request.put("score", score);
 		request.put("idCategory", idCategory);
 		request.put("mode", mode);
-		MainDispatcher.getInstance().callAction("OrganizeSentence", "doControl", request);
+		MainDispatcher.getInstance().callAction("FindMistake", "doControl", request);
 	}
-	
-	
 
 }
