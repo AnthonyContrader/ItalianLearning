@@ -166,7 +166,7 @@ DROP TABLE IF EXISTS `organizeSentence`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `organizeSentence` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `solution` varchar(32) NOT NULL,
+  `solution` varchar(255) NOT NULL,
   `definition` varchar(255) NOT NULL,
   `sentence` varchar(255) NOT NULL,
   `score` int NOT NULL,

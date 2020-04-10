@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.contrader.converter.QuizConverter;
 import it.contrader.dao.QuizDAO;
-import it.contrader.dto.HangmanDTO;
 import it.contrader.dto.QuizDTO;
 
 public class QuizService {

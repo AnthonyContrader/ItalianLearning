@@ -36,7 +36,7 @@ private Request request;
 			request = new Request();
 			List<GuessPictureDTO> guessPictureDTO = guessPictureService.getAll();
 			request.put("guessPictures", guessPictureDTO);
-			MainDispatcher.getInstance().callView("guessPicture", request);
+			MainDispatcher.getInstance().callView("GuessPicture", request);
 		}
 	}
 

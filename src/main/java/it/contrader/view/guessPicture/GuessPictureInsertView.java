@@ -49,8 +49,8 @@ public class GuessPictureInsertView extends AbstractView{
 		System.out.println("Inserisci la soluzione del gioco:");
 		solution = getInput();
 		
-		System.out.println("Inserisci l'immagine del gioco:");
-		image = getInput();
+		System.out.println("Inserisci l'immagine del gioco in formato ascii ( Termina l'inserimento con end_ascii ):");
+		image = getInputAscii();
 
 		System.out.println("Inserisci il punteggio del gioco:");
 		score = Integer.parseInt(getInput());
@@ -68,6 +68,7 @@ public class GuessPictureInsertView extends AbstractView{
 		idCategory = Integer.parseInt(getInput());
 		
 	}
+	
 	@Override
 	public void submit() {
 		request = new Request();

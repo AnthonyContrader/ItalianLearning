@@ -99,7 +99,7 @@ public class OrganizeSentenceController implements Controller {
 			break;
 		case "GAMELIST":
 			List<OrganizeSentenceDTO> organizeSentencesDTO = organizeSentenceService.getAll();
-			request.put("organizeSentence", organizeSentencesDTO);
+			request.put("organizeSentences", organizeSentencesDTO);
 			MainDispatcher.getInstance().callView("OrganizeSentence", request);
 			break;
 		case "GETCHOICE":

@@ -4,12 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import it.contrader.dto.FindAWordDTO;
 import it.contrader.model.FindAWord;
+import it.contrader.dao.CategoryDAO;
 
 public class FindAWordConverter {
+	
+	private CategoryDAO categoryDAO;
+	
+	public FindAWordConverter() {
+		this.categoryDAO = new CategoryDAO();
+		
+	}
+	
 
 	// converte Category Model in CategoryDTO
 		public FindAWordDTO toDTO(FindAWord findAWord) {
-			FindAWordDTO findAWordDTO = new FindAWordDTO(findAWord.getId(),findAWord.getIdCategory(),findAWord.getScore(),findAWord.getSolution(),findAWord.getDefinition(),findAWord.getSentence());
+			String categoryString = categoryDAO.read(findAWord.getIdCategory()).getTitle();
+			FindAWordDTO findAWordDTO = new FindAWordDTO(findAWord.getId(),findAWord.getIdCategory(),findAWord.getScore(),findAWord.getSolution(),findAWord.getDefinition(),findAWord.getSentence(), categoryString);
 			return findAWordDTO;
 		}                                 
 		

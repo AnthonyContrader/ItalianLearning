@@ -5,11 +5,19 @@ import java.util.List;
 
 import it.contrader.dto.GuessPictureDTO;
 import it.contrader.model.GuessPicture;
+import it.contrader.dao.CategoryDAO;
 
 public class GuessPictureConverter {
 	
+	private CategoryDAO categoryDAO;
+	
+	public GuessPictureConverter(){
+		this.categoryDAO = new CategoryDAO();
+	}
+	
 	public GuessPictureDTO toDTO(GuessPicture guessPicture) {
-		GuessPictureDTO guessPictureDTO = new GuessPictureDTO(guessPicture.getId(), guessPicture.getIdCategory(), guessPicture.getScore(), guessPicture.getSolution(), guessPicture.getImage());
+		String categoryString = categoryDAO.read(guessPicture.getIdCategory()).getTitle();
+		GuessPictureDTO guessPictureDTO = new GuessPictureDTO(guessPicture.getId(), guessPicture.getIdCategory(), guessPicture.getScore(), guessPicture.getSolution(), guessPicture.getImage(), categoryString);
 		return guessPictureDTO;
 	}
 		

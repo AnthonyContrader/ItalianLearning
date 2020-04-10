@@ -4,12 +4,10 @@ import java.util.List;
 
 import it.contrader.controller.Request;
 import it.contrader.dto.CategoryDTO;
-import it.contrader.dto.HangmanDTO;
 import it.contrader.dto.OrganizeSentenceDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 import it.contrader.service.CategoryService;
-import it.contrader.service.HangmanService;
 import it.contrader.service.OrganizeSentenceService;
 
 public class OrganizeSentenceInsertView extends AbstractView{
@@ -52,7 +50,7 @@ public class OrganizeSentenceInsertView extends AbstractView{
 		solution = getInput();
 		System.out.println("Inserisci la definizione del gioco:");
 		definition = getInput();
-		System.out.println("Inserisci il suggerimento del gioco:");
+		System.out.println("Inserisci la frase disordinata del gioco:");
 		sentence = getInput();
 		System.out.println("Inserisci il punteggio del gioco:");
 		score = Integer.parseInt(getInput());

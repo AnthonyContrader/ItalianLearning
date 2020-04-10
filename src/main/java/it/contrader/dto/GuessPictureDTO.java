@@ -7,6 +7,7 @@ public class GuessPictureDTO {
 	private Integer score;
 	private String solution;
 	private String image;
+	private String category;
 	
 	public GuessPictureDTO() {}
 	
@@ -23,6 +24,23 @@ public class GuessPictureDTO {
 		this.score = score;
 		this.solution = solution;
 		this.image = image;
+	}
+
+	public GuessPictureDTO(Integer idCategory, Integer score, String solution, String image, String category) {
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.image = image;
+		this.category = category;
+	}
+
+	public GuessPictureDTO(int id, Integer idCategory, Integer score, String solution, String image, String category) {
+		this.id = id;
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.image = image;
+		this.category = category;
 	}
 
 	public int getId() {
@@ -65,9 +83,17 @@ public class GuessPictureDTO {
 		this.image = image;
 	}
 	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
-		return id + "\t" + solution + "\t\t" + image + "\t\t" + score + "\t\t" + idCategory;
+		return id + "\t" + solution + "\t\t" + score + "\t\t" + category;
 	}
 	
 }
