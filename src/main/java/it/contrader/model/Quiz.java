@@ -16,9 +16,9 @@ public class Quiz {
 		
 	}
 
-	public Quiz(int id, Integer idCategory, Integer score) {
+	public Quiz(Integer idCategory, Integer score, String solution, String definition, String sentence) {
 		
-		this.id = id;
+		
 		this.idCategory = idCategory;
 		this.score = score;
 		this.solution = solution;
@@ -27,7 +27,7 @@ public class Quiz {
 	}
 
 	public Quiz(int id, Integer idCategory, Integer score, String solution, String definition, String sentence) {
-		super();
+		
 		this.id = id;
 		this.idCategory = idCategory;
 		this.score = score;

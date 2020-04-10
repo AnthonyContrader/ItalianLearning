@@ -25,7 +25,7 @@ public class QuizConverter {
 	
 	
 	public Quiz toEntity(QuizDTO quizDTO) {
-		Quiz quiz = new Quiz(QuizDTO(quiz.getId(),quiz.getIdCategory(),quiz.getScore(), quiz.getSolution(),quiz.getDefinition(), quiz.getSentence(),categoryString);
+		Quiz quiz = new Quiz(quizDTO.getId(),quizDTO.getIdCategory(),quizDTO.getScore(), quizDTO.getSolution(),quizDTO.getDefinition(), quizDTO.getSentence());
 		return quiz;
 	}
 	

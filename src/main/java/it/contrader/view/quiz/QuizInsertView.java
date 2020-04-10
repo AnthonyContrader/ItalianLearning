@@ -33,7 +33,7 @@ public class QuizInsertView extends AbstractView {
 			
 			List<QuizDTO> quizzesDTO = quizService.getAll();
 			request.put("quizzes", quizzesDTO);
-			MainDispatcher.getInstance().callView("quiz", request);
+			MainDispatcher.getInstance().callView("Quiz", request);
 		}
 	}
 
@@ -66,6 +66,8 @@ public class QuizInsertView extends AbstractView {
 		request.put("score", score);
 		request.put("idCategory", idCategory);
 		request.put("mode", mode);
+		request.put("sentence", sentence);
+		
 		MainDispatcher.getInstance().callAction("Quiz", "doControl", request);
 		
 	}

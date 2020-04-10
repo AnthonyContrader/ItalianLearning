@@ -24,7 +24,7 @@ public class QuizView extends AbstractView{
 			System.out.println("----------------------------------------------------------------------\n");
 																																																
 			@SuppressWarnings("unchecked")
-			List<QuizDTO> quiz = (List<QuizDTO>) request.get("quiz");
+			List<QuizDTO> quiz = (List<QuizDTO>) request.get("quizzes");
 			for (QuizDTO Q: quiz)
 				System.out.println(Q);
 			System.out.println();

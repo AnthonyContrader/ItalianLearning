@@ -49,9 +49,10 @@ public class QuizDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
 			preparedStatement.setString(1,quizToInsert.getSolution());
 			preparedStatement.setString(2,quizToInsert.getDefinition());
-		 	preparedStatement.setInt(3,quizToInsert.getScore());
-			preparedStatement.setInt(4,quizToInsert.getIdCategory());
-			preparedStatement.setString(5, quizToInsert.getSentence());
+			preparedStatement.setString(3, quizToInsert.getSentence());
+		 	preparedStatement.setInt(4,quizToInsert.getScore());
+			preparedStatement.setInt(5,quizToInsert.getIdCategory());
+			
 			preparedStatement.execute();
 			return true;
 			

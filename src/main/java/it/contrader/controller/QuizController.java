@@ -48,7 +48,7 @@ private static String sub_package = "quiz.";
 			idCategory = Integer.parseInt(request.get("idCategory").toString());
 						
 			
-			QuizDTO quiztoinsert = new QuizDTO(idCategory, score, solution, definition);
+			QuizDTO quiztoinsert = new QuizDTO(idCategory, score, solution, definition,sentence);
 			result = quizService.insert(quiztoinsert);
 			
 			
@@ -79,7 +79,7 @@ private static String sub_package = "quiz.";
 			score = Integer.parseInt(request.get("score").toString());
 			idCategory = Integer.parseInt(request.get("idCategory").toString());
 			
-			QuizDTO quiztoupdate = new QuizDTO(id,idCategory,score, solution, definition);
+			QuizDTO quiztoupdate = new QuizDTO(id,idCategory,score, solution, definition,sentence);
 			result = quizService.update(quiztoupdate);
 			request = new Request();
 			request.put("mode", mode);
@@ -91,7 +91,7 @@ private static String sub_package = "quiz.";
 		case "GAMELIST":
 			
 			List<QuizDTO> quizsDTO = quizService.getAll();
-			request.put("quiz", quizsDTO);
+			request.put("quizzes", quizsDTO);
 			MainDispatcher.getInstance().callView("Quiz", request);
 			break;
 			
