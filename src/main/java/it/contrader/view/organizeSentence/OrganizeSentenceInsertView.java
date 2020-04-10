@@ -4,12 +4,10 @@ import java.util.List;
 
 import it.contrader.controller.Request;
 import it.contrader.dto.CategoryDTO;
-import it.contrader.dto.HangmanDTO;
 import it.contrader.dto.OrganizeSentenceDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 import it.contrader.service.CategoryService;
-import it.contrader.service.HangmanService;
 import it.contrader.service.OrganizeSentenceService;
 
 public class OrganizeSentenceInsertView extends AbstractView{

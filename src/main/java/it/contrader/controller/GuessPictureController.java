@@ -3,7 +3,6 @@ package it.contrader.controller;
 import java.util.List;
 
 import it.contrader.dto.GuessPictureDTO;
-import it.contrader.dto.GuessPictureDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.service.GuessPictureService;
 
@@ -83,7 +82,7 @@ private static String sub_package = "guessPicture.";
 			
 		case "GAMELIST":
 			List<GuessPictureDTO> guessPicturesDTO = guessPictureService.getAll();
-			request.put("guessPicture", guessPicturesDTO);
+			request.put("guessPictures", guessPicturesDTO);
 			MainDispatcher.getInstance().callView("GuessPicture", request);
 			break;
 			

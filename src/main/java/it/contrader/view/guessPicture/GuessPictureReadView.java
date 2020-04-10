@@ -1,5 +1,7 @@
 package it.contrader.view.guessPicture;
 
+import java.util.List;
+
 import it.contrader.controller.Request;
 import it.contrader.dto.GuessPictureDTO;
 import it.contrader.main.MainDispatcher;
@@ -11,13 +13,20 @@ public class GuessPictureReadView extends AbstractView{
 	private int id;
 	private final String mode = "READ";
 	
-	public GuessPictureReadView() {}
+	public GuessPictureReadView() {
+	}
 
 	@Override
 	public void showResults(Request request) {
+		
 		if (request != null) {
 			GuessPictureDTO guessPicture = (GuessPictureDTO) request.get("guessPicture");
 			System.out.println(guessPicture);
+			
+			String[] arrayString = guessPicture.getImage().split("\n");
+			for (String s: arrayString ) 
+				System.out.println(s);
+
 			MainDispatcher.getInstance().callView("GuessPicture", null);
 		}
 	}

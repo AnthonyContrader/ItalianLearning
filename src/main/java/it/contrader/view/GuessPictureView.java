@@ -19,8 +19,8 @@ public class GuessPictureView extends AbstractView{
 		if (request != null) {
 			// idCategory,  score,  solution,  image
 			System.out.println("\n--------------------------- Indovina l'immagine --------------------------\n");
-			System.out.println("ID\tSoluzione\tImmagine\t\tPunteggio\tCategoria");
-			System.out.println("---------------------------------------------------------------------------\n");
+			System.out.println("ID\tSoluzione\tPunteggio\tCategoria");
+			System.out.println("--------------------------------------------------------------------------\n");
 																																																
 			@SuppressWarnings("unchecked")
 			List<GuessPictureDTO> guessPicture = (List<GuessPictureDTO>) request.get("guessPictures");
@@ -28,7 +28,6 @@ public class GuessPictureView extends AbstractView{
 				System.out.println(x);
 			System.out.println();
 		}
-		
 	}
 
 	@Override

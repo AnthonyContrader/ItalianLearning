@@ -3,7 +3,6 @@ package it.contrader.view;
 import java.util.List;
 
 import it.contrader.controller.Request;
-import it.contrader.dto.HangmanDTO;
 import it.contrader.dto.OrganizeSentenceDTO;
 import it.contrader.main.MainDispatcher;
 
