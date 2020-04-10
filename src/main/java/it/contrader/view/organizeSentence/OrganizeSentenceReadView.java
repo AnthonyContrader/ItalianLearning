@@ -1,6 +1,7 @@
 package it.contrader.view.organizeSentence;
 
 import it.contrader.controller.Request;
+import it.contrader.dto.CategoryDTO;
 import it.contrader.dto.OrganizeSentenceDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
@@ -19,11 +20,18 @@ public class OrganizeSentenceReadView extends AbstractView{
 	@Override
 	public void showResults(Request request) {
 		// TODO Auto-generated method stub
+		
 		if (request != null) {
 			OrganizeSentenceDTO organizeSentence = (OrganizeSentenceDTO) request.get("organizeSentence");
-			System.out.println(organizeSentence);
+			if(organizeSentence!=null) {
+				System.out.println(organizeSentence);
+			}else {
+				System.out.println("Elemento non trovato");
+			}
+			
 			MainDispatcher.getInstance().callView("OrganizeSentence", null);
 		}
+		
 	}
 	@Override
 	public void showOptions() {

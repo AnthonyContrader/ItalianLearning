@@ -4,6 +4,7 @@ import java.util.List;
 import it.contrader.converter.OrganizeSentenceConverter;
 import it.contrader.dao.OrganizeSentenceDAO;
 import it.contrader.dto.OrganizeSentenceDTO;
+import it.contrader.model.OrganizeSentence;
 
 
 public class OrganizeSentenceService {
@@ -25,11 +26,17 @@ public class OrganizeSentenceService {
 	
 	// Ottiene un'entita e la restituisce convertendola in DTO
 	public OrganizeSentenceDTO read(int id) {
-		return organizeSentenceConverter.toDTO(organizeSentenceDAO.read(id));
+		OrganizeSentence os = organizeSentenceDAO.read(id);
+		if (os != null)
+			return organizeSentenceConverter.toDTO(os);
+		else
+			return null;
+		//return organizeSentenceConverter.toDTO(organizeSentenceDAO.read(id));
 	}
 	
 	// Converte un DTO in entita e lo passa al DAO per l'inserimento
 	public boolean insert(OrganizeSentenceDTO dto) {
+		
 		return organizeSentenceDAO.insert(organizeSentenceConverter.toEntity(dto));
 	}
 	

@@ -89,6 +89,7 @@ public class OrganizeSentenceController implements Controller {
 			sentence = request.get("sentence").toString();
 			score = Integer.parseInt(request.get("score").toString());
 			idCategory = Integer.parseInt(request.get("idCategory").toString());
+			
 			OrganizeSentenceDTO organizeSentencetoupdate = new OrganizeSentenceDTO(solution,sentence, score, definition, idCategory);
 			result = organizeSentenceService.update(organizeSentencetoupdate);
 			request = new Request();

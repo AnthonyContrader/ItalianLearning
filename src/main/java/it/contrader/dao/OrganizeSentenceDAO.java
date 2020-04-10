@@ -46,7 +46,7 @@ public class OrganizeSentenceDAO {
 			}
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		return organizeSentenceList;
@@ -58,6 +58,10 @@ public class OrganizeSentenceDAO {
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE); //oggetto che prepara una query senza eseguirla
+			
+			if (organizeSentenceToInsert.getScore() == null || organizeSentenceToInsert.getScore()< 1) {
+				organizeSentenceToInsert.setScore(1);
+			}
 			preparedStatement.setString(1, organizeSentenceToInsert.getSolution()); //ora settiamo i parametri della query
 			preparedStatement.setString(2, organizeSentenceToInsert.getDefinition()); //ora settiamo i parametri della query
 			preparedStatement.setString(3, organizeSentenceToInsert.getSentence()); //ora settiamo i parametri della query
@@ -67,7 +71,7 @@ public class OrganizeSentenceDAO {
 			return true;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 	}
@@ -94,7 +98,7 @@ public class OrganizeSentenceDAO {
 			return organizeSentence;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	
@@ -136,7 +140,7 @@ public class OrganizeSentenceDAO {
 					organizeSentenceToUpdate.setSentence(organizeSentenceRead.getSentence());
 				}
 				if (organizeSentenceToUpdate.getScore() == null || organizeSentenceToUpdate.getScore() < 1) {
-					organizeSentenceToUpdate.setScore(1);
+					organizeSentenceToUpdate.setScore(organizeSentenceRead.getScore());
 				}
 				if (organizeSentenceToUpdate.getIdCategory() == null || organizeSentenceToUpdate.getIdCategory() < 1) {
 					organizeSentenceToUpdate.setIdCategory(organizeSentenceRead.getIdCategory());
@@ -160,7 +164,7 @@ public class OrganizeSentenceDAO {
 				
 				
 			}catch(SQLException e){
-				e.printStackTrace();
+				//e.printStackTrace();
 				return false;
 			}
 			
@@ -188,7 +192,7 @@ public class OrganizeSentenceDAO {
 				return true;
 
 		}catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 		
