@@ -94,9 +94,9 @@ public class FindAWordController implements Controller {
 					//Chiamo la vista FindAWordUpdateView con il risultato nei parametri
 					MainDispatcher.getInstance().callView(sub_package + "FindAWordUpdate", request);
 					break;
-				case "CATEGORYLIST":
-					List<FindAWordDTO> hangmenDTO = findAWordService.getAll();
-					request.put("hangmen", hangmenDTO);
+				case "GAMELIST":
+					List<FindAWordDTO> findAWordsDTO = findAWordService.getAll();
+					request.put("findAWord", findAWordsDTO);
 					MainDispatcher.getInstance().callView("FindAWord", request);
 					break;
 				case "GETCHOICE":
