@@ -5,6 +5,7 @@ import java.util.List;
 import it.contrader.converter.GuessPictureConverter;
 import it.contrader.dao.GuessPictureDAO;
 import it.contrader.dto.GuessPictureDTO;
+import it.contrader.model.GuessPicture;
 
 public class GuessPictureService {
 	
@@ -23,7 +24,12 @@ public class GuessPictureService {
 		
 	// Ottiene un'entita e la restituisce convertendola in DTO
 	public GuessPictureDTO read(int id) {
-		return guessPictureConverter.toDTO(guessPictureDAO.read(id));
+		
+		GuessPicture game = guessPictureDAO.read(id);
+		if (game != null)
+			return guessPictureConverter.toDTO(game);
+		else
+			return null;
 	}
 		
 	// Converte un DTO in entita e lo passa al DAO per l'inserimento

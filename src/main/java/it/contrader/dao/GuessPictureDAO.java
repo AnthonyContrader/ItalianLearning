@@ -46,7 +46,8 @@ public class GuessPictureDAO {
 			}
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			return null;
 		}
 		
 		return guessPictureList;
@@ -73,7 +74,7 @@ public class GuessPictureDAO {
 			return true;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 	}

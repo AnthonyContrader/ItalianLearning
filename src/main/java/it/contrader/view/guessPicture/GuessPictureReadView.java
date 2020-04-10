@@ -20,17 +20,24 @@ public class GuessPictureReadView extends AbstractView{
 	public void showResults(Request request) {
 		
 		if (request != null) {
-			System.out.println("\n--------------------------- Indovina l'immagine --------------------------\n");
-			System.out.println("ID\tSoluzione\tPunteggio\t\tCategoria");
 			GuessPictureDTO guessPicture = (GuessPictureDTO) request.get("guessPicture");
-			System.out.println("\n------------------------------- immagine ascii ---------------------------\n");
-			System.out.println();
+
+			if (guessPicture != null) {
 			
-			String[] arrayString = guessPicture.getImage().split("\n");
-			for (String s: arrayString ) 
-				System.out.println(s);
-			
-			System.out.println();
+				System.out.println("\n--------------------------- Indovina l'immagine --------------------------\n");
+				System.out.println("ID\tSoluzione\tPunteggio\t\tCategoria");
+				System.out.println("\n------------------------------- immagine ascii ---------------------------\n");
+				System.out.println();
+				
+				String[] arrayString = guessPicture.getImage().split("\n");
+				for (String s: arrayString ) 
+					System.out.println(s);
+				
+				System.out.println();
+			}
+			else {
+				System.out.println("Elemento non trovato");
+			}
 
 			MainDispatcher.getInstance().callView("GuessPicture", null);
 		}

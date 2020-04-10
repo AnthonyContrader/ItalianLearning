@@ -33,7 +33,7 @@ public class CategoryDAO {
 			}
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		return categoriesList;
@@ -50,7 +50,7 @@ public class CategoryDAO {
 			return true;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 	}
@@ -122,7 +122,7 @@ public class CategoryDAO {
 				
 				
 			}catch(SQLException e){
-				e.printStackTrace();
+				//e.printStackTrace();
 				return false;
 			}
 			
@@ -150,7 +150,7 @@ public class CategoryDAO {
 				return true;
 
 		}catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 		
