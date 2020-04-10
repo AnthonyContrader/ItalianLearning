@@ -4,18 +4,12 @@ import java.util.List;
 
 import it.contrader.controller.Request;
 import it.contrader.dto.CategoryDTO;
-<<<<<<< HEAD:src/main/java/it/contrader/controller/view/quiz/QuizUpdateView.java
-=======
 
->>>>>>> e5d7bf442dd44557c7ee8feb8016bdd81c11639c:src/main/java/it/contrader/view/quiz/QuizUpdateView.java
 import it.contrader.dto.QuizDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 import it.contrader.service.CategoryService;
-<<<<<<< HEAD:src/main/java/it/contrader/controller/view/quiz/QuizUpdateView.java
-=======
 
->>>>>>> e5d7bf442dd44557c7ee8feb8016bdd81c11639c:src/main/java/it/contrader/view/quiz/QuizUpdateView.java
 import it.contrader.service.QuizService;
 
 

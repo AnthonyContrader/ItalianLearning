@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import it.contrader.dto.QuizDTO;
 import it.contrader.model.Quiz;
-<<<<<<< HEAD
-=======
+
 import it.contrader.dao.CategoryDAO;
->>>>>>> e5d7bf442dd44557c7ee8feb8016bdd81c11639c
+
 
 public class QuizConverter {
 	
