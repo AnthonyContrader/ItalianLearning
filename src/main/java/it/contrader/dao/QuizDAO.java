@@ -9,9 +9,9 @@ import it.contrader.model.Quiz;
 public class QuizDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM Quiz";
-	private final String QUERY_CREATE = "INSERT INTO Quiz (solution, definition, score, idCategory) VALUES (?,?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO Quiz (solution, definition, sentence, score, idCategory) VALUES (?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM Quiz WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE Quiz SET solution=?, definition=?, score =?, idCategory=? WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE Quiz SET solution=?, definition=?, sentence=?, score =?, idCategory=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM Quiz WHERE id=?";
 	
 	
@@ -22,6 +22,7 @@ public class QuizDAO {
 		
 		try {
 			
+			Quiz quiz;
 			Statement statement = connection.createStatement(); 
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
 			
@@ -29,9 +30,11 @@ public class QuizDAO {
 				int id = resultSet.getInt("id");
 				int idCategory = resultSet.getInt("idCategory");
 				int score = resultSet.getInt("score");
-				String solution= resultSet.getString("solution");		
+				String solution= resultSet.getString("solution");
+				String sentence = resultSet.getString("sentence");
 			    String definition = resultSet.getString("definition");
-				Quiz quiz = new Quiz (solution, definition, id, idCategory, score); 
+				
+				quiz= new Quiz (id, idCategory, score,solution, sentence, definition); 
 				quizList.add(quiz);
 				}
 		} catch (SQLException e) {
@@ -49,6 +52,7 @@ public class QuizDAO {
 			preparedStatement.setString(2,quizToInsert.getDefinition());
 		 	preparedStatement.setInt(3,quizToInsert.getScore());
 			preparedStatement.setInt(4,quizToInsert.getIdCategory());
+			preparedStatement.setString(5, quizToInsert.getSentence());
 			preparedStatement.execute();
 			return true;
 			
@@ -70,10 +74,11 @@ public class QuizDAO {
 			resultSet.next();
 			String solution = resultSet.getString("solution");
 			String definition = resultSet.getString("definition");
+			String sentence = resultSet.getString("sentence");
 			int id = resultSet.getInt("id");
 			Integer score = resultSet.getInt("score");
 			Integer idCategory = resultSet.getInt("IdCategory");
-			Quiz quiz = new Quiz (solution, definition, id, idCategory, score); 
+			Quiz quiz = new Quiz (id, idCategory, score,solution, sentence, definition); 
         return quiz;
 			
 		}catch(SQLException e) {
@@ -114,9 +119,13 @@ public class QuizDAO {
 				if (quizToUpdate.getIdCategory() == null || quizToUpdate.getIdCategory()<1 ) {
 					quizToUpdate.setIdCategory(quizRead.getIdCategory());
 				}
+				if (quizToUpdate.getSentence() == null || quizToUpdate.getSentence().equals("")) {
+					quizToUpdate.setSentence(quizRead.getSentence());
+				}
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement (QUERY_UPDATE); 
 				preparedStatement.setString(1,quizToUpdate.getSolution());
 				preparedStatement.setString(2,quizToUpdate.getDefinition());
+				preparedStatement.setString(3, quizToUpdate.getSentence());
 			 	preparedStatement.setInt(3,quizToUpdate.getScore());
 				preparedStatement.setInt(4,quizToUpdate.getIdCategory());
 				int check = preparedStatement.executeUpdate();

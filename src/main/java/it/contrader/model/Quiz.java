@@ -1,64 +1,90 @@
 package it.contrader.model;
 
 public class Quiz {
+	
 
 	private int id;
 	private Integer idCategory;
 	private Integer score;
 	private String solution;
 	private String definition;
+	private String sentence;
 	
-	public Quiz () {
-	}	
-	public Quiz (String solution, String definition) {
-		this.solution = solution;
-		this.definition = definition;
-}
 	
-	public Quiz (String solution, String definition, int id,  Integer idCategory,  Integer score) {
+	
+	public Quiz() {
+		
+	}
+
+	public Quiz(int id, Integer idCategory, Integer score) {
+		
 		this.id = id;
 		this.idCategory = idCategory;
 		this.score = score;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
 	}
-	
+
+	public Quiz(int id, Integer idCategory, Integer score, String solution, String definition, String sentence) {
+		super();
+		this.id = id;
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+	}
+
 	public int getId() {
 		return id;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Integer getIdCategory() {
 		return idCategory;
 	}
+
+	public void setIdCategory(Integer idCategory) {
+		this.idCategory = idCategory;
+	}
+
 	public Integer getScore() {
 		return score;
 	}
-	
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+
 	public String getSolution() {
 		return solution;
 	}
-	
+
 	public void setSolution(String solution) {
 		this.solution = solution;
 	}
-	
+
 	public String getDefinition() {
 		return definition;
 	}
-	
-	public void setDefinition (String definition) {
+
+	public void setDefinition(String definition) {
 		this.definition = definition;
 	}
-	public void setScore (Integer score) {
-		this.score = score;
+
+	public String getSentence() {
+		return sentence;
 	}
-	public void setIdCategory (Integer idCategory) {
-		this.idCategory = idCategory;
+
+	public void setSentence(String sentence) {
+		this.sentence = sentence;
+	}
+
 	
-	}
-	
-	@Override
-	public String toString() {
-		return "Quiz [id=" + id + ", idCategory=" + idCategory + ", score=" + score + ", solution=" + solution
-				+ ", definition=" + definition + "]";
-	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -85,6 +111,11 @@ public class Quiz {
 				return false;
 		} else if (!score.equals(other.score))
 			return false;
+		if (sentence == null) {
+			if (other.sentence != null)
+				return false;
+		} else if (!sentence.equals(other.sentence))
+			return false;
 		if (solution == null) {
 			if (other.solution != null)
 				return false;
@@ -92,4 +123,16 @@ public class Quiz {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Quiz [id=" + id + ", idCategory=" + idCategory + ", score=" + score + ", solution=" + solution
+				+ ", definition=" + definition + ", sentence=" + sentence + "]";
+	}
+	
+	
+	
+	
+	
+	
 }

@@ -18,13 +18,13 @@ public class QuizConverter {
 	
 	public QuizDTO toDTO(Quiz quiz) {
 		String categoryString = categoryDAO.read(quiz.getIdCategory()).getTitle();
-		QuizDTO quizDTO = new QuizDTO(quiz.getId(),quiz.getIdCategory(),quiz.getScore(), quiz.getSolution(),quiz.getDefinition(), categoryString);
+		QuizDTO quizDTO = new QuizDTO(quiz.getId(),quiz.getIdCategory(),quiz.getScore(), quiz.getSolution(),quiz.getDefinition(), quiz.getSentence(), categoryString);
 		return quizDTO;
 	}
 	
 	
 	public Quiz toEntity(QuizDTO quizDTO) {
-		Quiz quiz = new Quiz(quizDTO.getSolution(),quizDTO.getDefinition(),quizDTO.getId(), quizDTO.getIdCategory(),quizDTO.getScore());
+		Quiz quiz = new Quiz(QuizDTO(quiz.getId(),quiz.getIdCategory(),quiz.getScore(), quiz.getSolution(),quiz.getDefinition(), quiz.getSentence(),categoryString);
 		return quiz;
 	}
 	

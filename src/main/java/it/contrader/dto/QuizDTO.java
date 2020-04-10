@@ -8,6 +8,7 @@ public class QuizDTO {
 	private String solution;
 	private String definition;
 	private String category;
+	private String sentence;
 	
 	
 	
@@ -15,19 +16,20 @@ public class QuizDTO {
 	}
 
 
-	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition) {
+	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String sentence) {
 		
 		this.id = id;
 		this.idCategory = idCategory;
 		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
+		this.sentence = sentence;
 		
 				
 	}
 
 
-	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String category) {
+	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String category, String sentence) {
 		
 		this.id = id;
 		this.idCategory = idCategory;
@@ -35,14 +37,16 @@ public class QuizDTO {
 		this.solution = solution;
 		this.definition = definition;
 		this.category = category;
+		this.sentence = sentence;
 	}
 
 
-	public QuizDTO(Integer idCategory, Integer score, String solution, String definition) {
+	public QuizDTO(Integer idCategory, Integer score, String solution, String definition,String sentence) {
 		this.idCategory = idCategory;
 		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
+		this.sentence = sentence;
 	}
 
 
@@ -105,10 +109,25 @@ public class QuizDTO {
 		this.definition = definition;
 	}
 	
+	public String getSentence() {
+		return sentence;
+	}
+
+
+	public void setSentence(String sentence) {
+		this.sentence = sentence;
+	}
+
+
 	@Override
 	public String toString() {
-		return id + "\t" + solution + "\t\t" + definition  + "\t\t" + score + "\t\t" + idCategory + category;
+		return "QuizDTO [id=" + id + ", idCategory=" + idCategory + ", score=" + score + ", solution=" + solution
+				+ ", definition=" + definition + ", category=" + category + ", sentence=" + sentence + "]";
 	}
-	
+
+
 
 }
+	
+
+
