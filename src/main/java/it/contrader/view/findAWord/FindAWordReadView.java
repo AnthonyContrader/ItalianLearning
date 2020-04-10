@@ -20,7 +20,14 @@ public class FindAWordReadView extends AbstractView{
 		// TODO Auto-generated method stub
 		if (request != null) {
 			FindAWordDTO findAWord = (FindAWordDTO) request.get("findAWord");
-			System.out.println(findAWord);
+			if(findAWord != null) {
+			
+			
+				System.out.println(findAWord);
+			}
+			else {
+				System.out.println("Elemento non trovato");
+			}
 			MainDispatcher.getInstance().callView("FindAWord", null);
 		}
 		

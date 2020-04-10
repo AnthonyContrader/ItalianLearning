@@ -47,7 +47,7 @@ public class FindAWordDAO {
 			}
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 		
 		return findAWordList;
@@ -57,6 +57,10 @@ public class FindAWordDAO {
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE); //oggetto che prepara una query senza eseguirla
+			
+			if(findAWordToInsert.getScore() == null || findAWordToInsert.getScore() <1)
+				findAWordToInsert.setScore(1);
+			
 			preparedStatement.setString(1, findAWordToInsert.getSolution()); //ora settiamo i parametri della query
 			preparedStatement.setString(2, findAWordToInsert.getDefinition());
 			preparedStatement.setString(3, findAWordToInsert.getSentence());
@@ -130,7 +134,7 @@ public class FindAWordDAO {
 						findAWordToUpdate.setSentence(findAWordRead.getSentence());
 					}
 					if (findAWordToUpdate.getScore() == null || findAWordToUpdate.getScore()<1) {
-						findAWordToUpdate.setScore(1);
+						findAWordToUpdate.setScore(findAWordRead.getScore());
 					}
 					if (findAWordToUpdate.getIdCategory() == null || findAWordToUpdate.getIdCategory()<1) {
 						findAWordToUpdate.setIdCategory(findAWordRead.getIdCategory());

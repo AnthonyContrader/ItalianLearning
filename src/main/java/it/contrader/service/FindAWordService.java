@@ -5,6 +5,7 @@ import java.util.List;
 import it.contrader.converter.FindAWordConverter;
 import it.contrader.dao.FindAWordDAO;
 import it.contrader.dto.FindAWordDTO;
+import it.contrader.model.FindAWord;
 
 
 public class FindAWordService {
@@ -23,7 +24,12 @@ public class FindAWordService {
 	
 	// Ottiene un'entita e la restituisce convertendola in DTO
 	public FindAWordDTO read(int id) {
-		return findAWordConverter.toDTO(findAWordDAO.read(id));
+		FindAWord c = findAWordDAO.read(id);
+		if (c != null)
+			return findAWordConverter.toDTO(c);
+		else
+			return null;
+		//return findAWordConverter.toDTO(findAWordDAO.read(id));
 	}
 	
 	// Converte un DTO in entita e lo passa al DAO per l'inserimento

@@ -96,7 +96,7 @@ public class FindAWordController implements Controller {
 					break;
 				case "GAMELIST":
 					List<FindAWordDTO> findAWordsDTO = findAWordService.getAll();
-					request.put("findAWord", findAWordsDTO);
+					request.put("findAWords", findAWordsDTO);
 					MainDispatcher.getInstance().callView("FindAWord", request);
 					break;
 				case "GETCHOICE":

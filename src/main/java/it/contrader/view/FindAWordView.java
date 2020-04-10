@@ -29,7 +29,7 @@ public void showResults(Request request) {
 																																															
 		@SuppressWarnings("unchecked")
 		//popolo una lista di tipo CategoryDTO
-		List<FindAWordDTO> findAWord = (List<FindAWordDTO>) request.get("findAWord");
+		List<FindAWordDTO> findAWord = (List<FindAWordDTO>) request.get("findAWords");
 		//Itero la lista e stampo ogni elemento della lista
 		for (FindAWordDTO h: findAWord)
 			System.out.println(h);
