@@ -46,7 +46,7 @@ private static String sub_package = "guessPicture.";
 			score = Integer.parseInt(request.get("score").toString());
 			idCategory = Integer.parseInt(request.get("idCategory").toString());
 
-			GuessPictureDTO guessPicturetoinsert = new GuessPictureDTO( id,  idCategory,  score,  solution,  image);
+			GuessPictureDTO guessPicturetoinsert = new GuessPictureDTO( idCategory,  score,  solution,  image);
 			result = guessPictureService.insert(guessPicturetoinsert);
 			
 			request = new Request();
@@ -67,23 +67,26 @@ private static String sub_package = "guessPicture.";
 		case "UPDATE":
 			id = Integer.parseInt(request.get("id").toString());
 			solution = request.get("solution").toString();
-			definition = request.get("definition").toString();
-			sentence = request.get("sentence").toString();
+			image = request.get("image").toString();
 			score = Integer.parseInt(request.get("score").toString());
 			idCategory = Integer.parseInt(request.get("idCategory").toString());
-			GuessPictureDTO guessPicturetoupdate = new GuessPictureDTO(id, solution, definition, sentence, score, idCategory);
+			
+			GuessPictureDTO guessPicturetoupdate = new GuessPictureDTO( id,  idCategory,  score,  solution,  image);
+			
 			result = guessPictureService.update(guessPicturetoupdate);
 			request = new Request();
-			request.put("mode", mode); // controllare se � corretto rimandare la stessa mode
-			request.put("result", result); // verificare se si necessita il risultato
-			//Chiamo la vista GuessPictureUpdateView con il risultato nei parametri
+			request.put("mode", mode); 
+			request.put("result", result);
+
 			MainDispatcher.getInstance().callView(sub_package + "GuessPictureUpdate", request);
 			break;
-		case "CATEGORYLIST":
-			List<GuessPictureDTO> hangmenDTO = guessPictureService.getAll();
-			request.put("hangmen", hangmenDTO);
+			
+		case "GAMELIST":
+			List<GuessPictureDTO> guessPicturesDTO = guessPictureService.getAll();
+			request.put("guessPicture", guessPicturesDTO);
 			MainDispatcher.getInstance().callView("GuessPicture", request);
 			break;
+			
 		case "GETCHOICE":
 			
 			//toUpperCase() mette in maiuscolo la scelta
