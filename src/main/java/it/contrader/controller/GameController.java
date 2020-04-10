@@ -45,7 +45,7 @@ public class GameController implements Controller {
 					break;
 			
 				case "T":
-					MainDispatcher.getInstance().callAction("FindAMistake", "doControl", request);
+					MainDispatcher.getInstance().callAction("FindMistake", "doControl", request);
 					break;
 					
 				case "B":

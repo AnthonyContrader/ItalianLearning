@@ -157,17 +157,17 @@ public class HangmanDAO {
 	}
 
 	// metodo che elimina un record (riga) dal database
-	public boolean delete(int categoryId) {
+	public boolean delete(int hangmanId) {
 		
 		// controllo che id non sia uguale a 0
-		if (categoryId == 0)
+		if (hangmanId == 0)
 			return false;
 		
 		Connection connection = ConnectionSingleton.getInstance(); //definisco la connessione al database
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE); //preparo la query ma non la eseguo
-			preparedStatement.setInt(1, categoryId); //setto i parametri nella query
+			preparedStatement.setInt(1, hangmanId); //setto i parametri nella query
 			int check = preparedStatement.executeUpdate(); //eseguo la query
 			
 			if (check > 0)
