@@ -1,4 +1,4 @@
-package it.contrader.controller.view.quiz;
+package it.contrader.view.quiz;
 
 import java.util.List;
 import it.contrader.controller.Request;

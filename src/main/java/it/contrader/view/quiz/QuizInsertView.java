@@ -1,4 +1,4 @@
-package it.contrader.controller.view.quiz;
+package it.contrader.view.quiz;
 
 import java.util.List;
 import it.contrader.controller.Request;
@@ -13,11 +13,13 @@ public class QuizInsertView extends AbstractView {
 	private Request request;
 	private String solution;
 	private String definition;
+	private String sentence;
 	private Integer score;
 	private Integer idCategory;
 	private final String mode = "INSERT";
 	private QuizService quizService;
 	private CategoryService categoryService;
+	
 	
 	public QuizInsertView() {
 		quizService = new QuizService();
@@ -28,6 +30,7 @@ public class QuizInsertView extends AbstractView {
 		if (request!=null) {
 			request = new Request();
 			System.out.println("Inserimento andato a buon fine.\n");
+			
 			List<QuizDTO> quizzesDTO = quizService.getAll();
 			request.put("quizzes", quizzesDTO);
 			MainDispatcher.getInstance().callView("quiz", request);
@@ -41,6 +44,8 @@ public class QuizInsertView extends AbstractView {
 		System.out.println("Inserisci la definizione del gioco:");
 		definition = getInput();
 		System.out.println("Inserisci il suggerimento del gioco:");
+		sentence = getInput();
+		System.out.println("Inserisci il punteggio del gioco:");
 		score = Integer.parseInt(getInput());
 		System.out.println("\n----------------------------- Categorie -----------------------------\n");
 		List<CategoryDTO> categories = (List<CategoryDTO>) categoryService.getAll();

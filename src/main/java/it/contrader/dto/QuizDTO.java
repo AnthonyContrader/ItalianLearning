@@ -7,7 +7,7 @@ public class QuizDTO {
 	private Integer score;
 	private String solution;
 	private String definition;
-	
+	private String category;
 	
 	
 	
@@ -22,6 +22,19 @@ public class QuizDTO {
 		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
+		
+				
+	}
+
+
+	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String category) {
+		
+		this.id = id;
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.definition = definition;
+		this.category = category;
 	}
 
 
@@ -30,6 +43,16 @@ public class QuizDTO {
 		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
+	}
+
+
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 
@@ -84,7 +107,7 @@ public class QuizDTO {
 	
 	@Override
 	public String toString() {
-		return id + "\t" + solution + "\t\t" + definition  + "\t\t" + score + "\t\t" + idCategory;
+		return id + "\t" + solution + "\t\t" + definition  + "\t\t" + score + "\t\t" + idCategory + category;
 	}
 	
 

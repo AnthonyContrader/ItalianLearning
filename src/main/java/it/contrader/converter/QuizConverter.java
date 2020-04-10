@@ -4,11 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import it.contrader.dto.QuizDTO;
 import it.contrader.model.Quiz;
-import it.contrader.model.Quiz;
+import it.contrader.dao.CategoryDAO;
 
 public class QuizConverter {
+	
+	private CategoryDAO categoryDAO;
+	
+	public QuizConverter() {
+	 this.categoryDAO = new CategoryDAO();
+	
+	}
+	
+	
 	public QuizDTO toDTO(Quiz quiz) {
-		QuizDTO quizDTO = new QuizDTO(quiz.getId(),quiz.getIdCategory(),quiz.getScore(), quiz.getSolution(),quiz.getDefinition());
+		String categoryString = categoryDAO.read(quiz.getIdCategory()).getTitle();
+		QuizDTO quizDTO = new QuizDTO(quiz.getId(),quiz.getIdCategory(),quiz.getScore(), quiz.getSolution(),quiz.getDefinition(), categoryString);
 		return quizDTO;
 	}
 	

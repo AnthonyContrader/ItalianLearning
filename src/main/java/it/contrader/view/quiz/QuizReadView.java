@@ -1,4 +1,4 @@
-package it.contrader.controller.view.quiz;
+package it.contrader.view.quiz;
 
 import it.contrader.controller.Request;
 import it.contrader.dto.QuizDTO;
@@ -41,3 +41,6 @@ public class QuizReadView extends AbstractView {
 	}
 
 }
+
+
+
