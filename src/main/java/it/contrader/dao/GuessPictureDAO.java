@@ -64,7 +64,6 @@ public class GuessPictureDAO {
 				guessPictureToInsert.setScore(1);
 			}
 			
-			//devono inserirla gli altri
 			if(guessPictureToInsert.getIdCategory() < 0)
 				return false;
 			
@@ -131,7 +130,7 @@ public class GuessPictureDAO {
 					guessPictureToUpdate.setSolution(guessPictureRead.getSolution());
 				}
 
-				if (guessPictureToUpdate.getImage() == null || guessPictureToUpdate.getImage().equals("")) {
+				if (guessPictureToUpdate.getImage() == null || guessPictureToUpdate.getImage().equals("\n")) {
 					guessPictureToUpdate.setImage(guessPictureRead.getImage());
 				}
 				
