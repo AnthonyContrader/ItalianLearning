@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.contrader.controller.Request;
 import it.contrader.dto.CategoryDTO;
-
 import it.contrader.dto.QuizDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;

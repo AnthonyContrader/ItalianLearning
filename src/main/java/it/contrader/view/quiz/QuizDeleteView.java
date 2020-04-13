@@ -33,6 +33,7 @@ if (request!=null) {
 			}
 			
 			request = new Request();
+			
 			List<QuizDTO> quizzesDTO = quizService.getAll();
 			request.put("quizzes", quizzesDTO);
 			MainDispatcher.getInstance().callView("Quiz", request);
