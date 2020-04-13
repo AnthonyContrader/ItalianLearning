@@ -106,7 +106,7 @@ public class FindAWordDTO {
 	}
 	@Override
 	public String toString() {
-		return id + "\t" + solution + "\t\t" + definition + "\t\t" + sentence + "\t\t" + score + "\t\t" + category;
+		return id + "\t" + solution +  "\t\t" + sentence + "\t\t" + score + "\t\t" + category;
 	}
 
 	public String getCategory() {

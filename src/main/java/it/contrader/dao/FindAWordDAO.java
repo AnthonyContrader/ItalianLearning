@@ -70,7 +70,7 @@ public class FindAWordDAO {
 			return true;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 		
@@ -95,7 +95,7 @@ public class FindAWordDAO {
 			return findAWord;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	}
@@ -157,7 +157,7 @@ public class FindAWordDAO {
 					
 					
 				}catch(SQLException e){
-					e.printStackTrace();
+					//e.printStackTrace();
 					return false;
 				}
 				
@@ -183,7 +183,7 @@ public class FindAWordDAO {
 					return true;
 
 			}catch (SQLException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				return false;
 			}
 			
