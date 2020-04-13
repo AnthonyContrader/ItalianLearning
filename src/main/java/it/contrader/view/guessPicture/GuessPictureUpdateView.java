@@ -39,7 +39,7 @@ public class GuessPictureUpdateView extends AbstractView{
 				System.out.println("Modifica andata a buon fine.\n");
 			}
 			else {
-				System.out.println("Si e' verificato un' errore.\n");
+				System.out.println("Si e' verificato un' errore durante la modifica.\n");
 			}
 			
 			request = new Request();

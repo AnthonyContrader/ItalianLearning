@@ -1,7 +1,5 @@
 package it.contrader.view.guessPicture;
 
-import java.util.List;
-
 import it.contrader.controller.Request;
 import it.contrader.dto.GuessPictureDTO;
 import it.contrader.main.MainDispatcher;
@@ -25,8 +23,9 @@ public class GuessPictureReadView extends AbstractView{
 			if (guessPicture != null) {
 			
 				System.out.println("\n--------------------------- Indovina l'immagine --------------------------\n");
-				System.out.println("ID\tSoluzione\tPunteggio\t\tCategoria");
-				System.out.println("\n------------------------------- immagine ascii ---------------------------\n");
+				System.out.println("ID\tSoluzione\t\tPunteggio\t\tCategoria");
+				System.out.println(guessPicture);
+				System.out.println("\n------------------------------ immagine ascii ----------------------------\n");
 				System.out.println();
 				
 				String[] arrayString = guessPicture.getImage().split("\n");

@@ -46,7 +46,7 @@ public class GuessPictureDAO {
 			}
 			
 		}catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return null;
 		}
 		
@@ -58,11 +58,15 @@ public class GuessPictureDAO {
 		Connection connection = ConnectionSingleton.getInstance(); //definisco la connessione al database
 		
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE); //oggetto che prepara una query senza eseguirla
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
 			
 			if (guessPictureToInsert.getScore() == null || guessPictureToInsert.getScore() < 1 ) {
 				guessPictureToInsert.setScore(1);
 			}
+			
+			//devono inserirla gli altri
+			if(guessPictureToInsert.getIdCategory() < 0)
+				return false;
 			
 			//ora settiamo i parametri della query
 			preparedStatement.setString(1, guessPictureToInsert.getSolution()); 
@@ -98,7 +102,7 @@ public class GuessPictureDAO {
 			return guessPicture;
 			
 		}catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	}
@@ -153,7 +157,7 @@ public class GuessPictureDAO {
 					return false;
 				
 			}catch(SQLException e){
-				e.printStackTrace();
+				//e.printStackTrace();
 				return false;
 			}
 		}

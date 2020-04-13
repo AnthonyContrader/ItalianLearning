@@ -47,7 +47,7 @@ private static String sub_package = "guessPicture.";
 
 			GuessPictureDTO guessPicturetoinsert = new GuessPictureDTO( idCategory,  score,  solution,  image);
 			result = guessPictureService.insert(guessPicturetoinsert);
-			
+
 			request = new Request();
 			request.put("mode", mode); 
 			request.put("result", result); 

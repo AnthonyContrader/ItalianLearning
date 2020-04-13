@@ -33,11 +33,21 @@ public class GuessPictureInsertView extends AbstractView{
 	public void showResults(Request request) {
 		
 		if (request!=null) {
+			
+			Boolean result = (Boolean) request.get("result");
+			
+			if (result) {
+				System.out.println("Inserimento andata a buon fine.\n");
+			}
+			else {
+				System.out.println("Si e' verificato un' errore.\n");
+			}
+			
 			request = new Request();
-			System.out.println("Inserimento andato a buon fine.\n");
 			
 			List<GuessPictureDTO> guessPictureDTO = guessPictureService.getAll();
 			request.put("guessPictures", guessPictureDTO);
+
 			MainDispatcher.getInstance().callView("GuessPicture", request);
 		}
 	}
