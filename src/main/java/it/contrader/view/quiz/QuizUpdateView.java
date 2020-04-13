@@ -1,14 +1,12 @@
 package it.contrader.view.quiz;
 
 import java.util.List;
-
 import it.contrader.controller.Request;
 import it.contrader.dto.CategoryDTO;
 import it.contrader.dto.QuizDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 import it.contrader.service.CategoryService;
-
 import it.contrader.service.QuizService;
 
 
@@ -66,7 +64,7 @@ public class QuizUpdateView extends AbstractView {
 			score = getInput();
 			if ("".equals(score)) {
 				score = "0";
-			
+			}
 			System.out.println("\n----------------------------- Categorie -----------------------------\n");
 			List<CategoryDTO> categories = (List<CategoryDTO>) categoryService.getAll();
 			
@@ -78,11 +76,11 @@ public class QuizUpdateView extends AbstractView {
 			idCategory = getInput();
 			if ("".equals(idCategory)) {
 				idCategory = "0";
-				}
-			  }
-			} catch (Exception e) {
-				e.printStackTrace();
+				
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

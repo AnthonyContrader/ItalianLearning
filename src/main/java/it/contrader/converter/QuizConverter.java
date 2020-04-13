@@ -18,7 +18,7 @@ public class QuizConverter {
 	
 	public QuizDTO toDTO(Quiz quiz) {
 		String categoryString = categoryDAO.read(quiz.getIdCategory()).getTitle();
-		QuizDTO quizDTO = new QuizDTO(quiz.getId(),quiz.getIdCategory(),quiz.getScore(), quiz.getSolution(),quiz.getDefinition(), quiz.getSentence(), categoryString);
+		QuizDTO quizDTO = new QuizDTO(quiz.getId(),quiz.getIdCategory(),quiz.getScore(), quiz.getSolution(),quiz.getDefinition(),categoryString, quiz.getSentence() );
 		return quizDTO;
 	}
 	
