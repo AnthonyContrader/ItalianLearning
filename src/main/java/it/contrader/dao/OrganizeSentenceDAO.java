@@ -16,7 +16,7 @@ idCategory int NOT NULL,
 FOREIGN KEY (idCategory) REFERENCES category (id),
 PRIMARY KEY (id)
 */
-public class OrganizeSentenceDAO {
+public class OrganizeSentenceDAO implements DAO<OrganizeSentence> {
 
 	private final String QUERY_ALL = "SELECT * FROM organizeSentence";
 	private final String QUERY_CREATE = "INSERT INTO organizeSentence (solution, definition,sentence,score,idCategory) VALUES (?,?,?,?,?)";

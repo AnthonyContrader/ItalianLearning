@@ -6,7 +6,7 @@ import java.util.List;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.FindMistake;
 
-public class FindMistakeDAO {
+public class FindMistakeDAO implements DAO<FindMistake>{
 	private final String QUERY_ALL = "SELECT * FROM findMistake";
 	private final String QUERY_CREATE = "INSERT INTO findMistake (solution, definition, sentence, optionA, optionB, optionC, score, idCategory) VALUES (?,?,?,?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM findMistake WHERE id=?";

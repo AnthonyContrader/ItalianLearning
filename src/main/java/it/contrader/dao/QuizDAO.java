@@ -5,7 +5,7 @@ import java.util.List;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.Quiz;
 
-public class QuizDAO {
+public class QuizDAO implements DAO<Quiz> {
 
 	private final String QUERY_ALL = "SELECT * FROM Quiz";
 	private final String QUERY_CREATE = "INSERT INTO Quiz (solution, definition, sentence, score, idCategory) VALUES (?,?,?,?,?)";

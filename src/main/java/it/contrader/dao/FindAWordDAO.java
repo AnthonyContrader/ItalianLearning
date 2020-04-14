@@ -7,7 +7,7 @@ import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.FindAWord;
 
 
-public class FindAWordDAO {
+public class FindAWordDAO implements DAO<FindAWord>{
 	private final String QUERY_ALL = "SELECT * FROM findAWord";
 	private final String QUERY_CREATE = "INSERT INTO findAWord (solution, definition, sentence, score, idCategory) VALUES (?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM findAword WHERE id=?";

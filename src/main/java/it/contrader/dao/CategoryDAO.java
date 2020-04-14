@@ -6,7 +6,7 @@ import java.util.List;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.Category;
 
-public class CategoryDAO {
+public class CategoryDAO implements DAO<Category>  {
 	
 	private final String QUERY_ALL = "SELECT * FROM category";
 	private final String QUERY_CREATE = "INSERT INTO category (title, description) VALUES (?,?)";

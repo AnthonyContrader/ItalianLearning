@@ -6,7 +6,7 @@ import java.util.List;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.GuessPicture;
 
-public class GuessPictureDAO {
+public class GuessPictureDAO implements DAO<GuessPicture>{
 	
 	private final String QUERY_ALL = "SELECT * FROM guessPicture";
 	private final String QUERY_CREATE = "INSERT INTO guessPicture (solution, image, score ,idCategory) VALUES (?,?,?,?)";

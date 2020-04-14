@@ -6,7 +6,7 @@ import java.util.List;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.Hangman;
 
-public class HangmanDAO {
+public class HangmanDAO implements DAO<Hangman>{
 	
 	private final String QUERY_ALL = "SELECT * FROM hangman";
 	private final String QUERY_CREATE = "INSERT INTO hangman (solution, definition, sentence, score, idCategory) VALUES (?,?,?,?,?)";
