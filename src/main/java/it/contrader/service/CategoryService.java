@@ -12,5 +12,4 @@ public class CategoryService extends AbstractService<Category, CategoryDTO>{
 		this.converter = new CategoryConverter();
 	}
 	
-
 }
