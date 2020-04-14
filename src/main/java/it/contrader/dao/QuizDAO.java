@@ -2,7 +2,7 @@ package it.contrader.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import it.contrader.main.ConnectionSingleton;
+import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.Quiz;
 
 public class QuizDAO {

@@ -3,16 +3,8 @@ package it.contrader.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import it.contrader.main.ConnectionSingleton;
+import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.GuessPicture;
-
-/*
- 	id int NOT NULL AUTO_INCREMENT,
-	solution varchar(32) NOT NULL,
-    image text(65535) NOT NULL,
-    score int NOT NULL,
-    idCategory int NOT NULL,
- */
 
 public class GuessPictureDAO {
 	

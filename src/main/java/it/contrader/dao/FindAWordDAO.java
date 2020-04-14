@@ -3,20 +3,9 @@ package it.contrader.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import it.contrader.main.ConnectionSingleton;
+import it.contrader.utils.ConnectionSingleton;
 import it.contrader.model.FindAWord;
 
-/*
- * CREATE TABLE findAWord (
-	id int NOT NULL AUTO_INCREMENT,
-	solution varchar(32) NOT NULL,
-	definition varchar(255) NOT NULL, 	
-    sentence varchar(255) NOT NULL,		
-    score int NOT NULL,
-    idCategory int NOT NULL,
-	FOREIGN KEY (idCategory) REFERENCES category (id),
-	PRIMARY KEY (id)
-	*/
 
 public class FindAWordDAO {
 	private final String QUERY_ALL = "SELECT * FROM findAWord";
