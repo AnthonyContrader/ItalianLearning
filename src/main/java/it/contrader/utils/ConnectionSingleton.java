@@ -23,8 +23,9 @@ public class ConnectionSingleton {
                 String port="3306";
                 String dbName="sampledb";
                 String username="root";
-                String password ="root";
+                String password ="rootroot";
                 String jdbcAdditionalParams="useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useLegacyDatetimeCode=false";
+                System.out.println("CIAO ");
                 Class<?> c = Class.forName(driver);
                 System.out.println("Ho caricato: " + c.getName());
                 String url = "jdbc:" + vendor + "://" + host + ":" + port + "/" + dbName+"?"+jdbcAdditionalParams;
