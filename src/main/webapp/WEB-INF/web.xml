@@ -47,12 +47,23 @@
   	<description></description>
   	<display-name>HangmanServlet</display-name>
   	<servlet-name>HangmanServlet</servlet-name>
-  	<servlet-class>it.contrader.servlets.HangmanServlet</servlet-class>
+  	<servlet-class>it.contrader.servlets.QuizServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>HangmanServlet</servlet-name>
   	<url-pattern>/HangmanServlet</url-pattern>
   </servlet-mapping>
 
+ </servlet-mapping>
+  <servlet>
+  	<description></description>
+  	<display-name>QuizServlet</display-name>
+  	<servlet-name>QuizServlet</servlet-name>
+  	<servlet-class>it.contrader.servlets.QuizServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>QuizServlet</servlet-name>
+  	<url-pattern>/QuizServlet</url-pattern>
+  </servlet-mapping>
 
 </web-app>
