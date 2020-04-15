@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="it.contrader.dto.HangmanDTO"
+    pageEncoding="ISO-8859-1" import="java.util.List"
+    import="it.contrader.dto.HangmanDTO"
     import="it.contrader.dto.CategoryDTO"%>
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,7 @@
 %>
 
 
-<form id="floatleft" action="HangmanServlet?mode=update&id=<%=u.getId()%>" method="post">
+<form id="floatleft" action="HangmanServlet?mode=update&id=<%=h.getId()%>" method="post">
  <div class="row">
     <div class="col-25">
       <label for="solution">Soluzione</label>
