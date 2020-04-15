@@ -43,6 +43,16 @@
     <servlet-name>CategoryServlet</servlet-name>
     <url-pattern>/CategoryServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<description></description>
+  	<display-name>HangmanServlet</display-name>
+  	<servlet-name>HangmanServlet</servlet-name>
+  	<servlet-class>it.contrader.servlets.HangmanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>HangmanServlet</servlet-name>
+  	<url-pattern>/HangmanServlet</url-pattern>
+  </servlet-mapping>
 
-  
+
 </web-app>
