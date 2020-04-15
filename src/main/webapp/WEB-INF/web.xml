@@ -43,6 +43,7 @@
     <servlet-name>CategoryServlet</servlet-name>
     <url-pattern>/CategoryServlet</url-pattern>
   </servlet-mapping>
+
   <servlet>
   	<description></description>
   	<display-name>HangmanServlet</display-name>
@@ -54,5 +55,15 @@
   	<url-pattern>/HangmanServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+  	<description></description>
+  	<display-name>OrganizeSentenceServlet</display-name>
+  	<servlet-name>OrganizeSentenceServlet</servlet-name>
+  	<servlet-class>it.contrader.servlets.OrganizeSentenceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>OrganizeSentenceServlet</servlet-name>
+  	<url-pattern>/OrganizeSentenceServlet</url-pattern>
+  </servlet-mapping>
 
 </web-app>
