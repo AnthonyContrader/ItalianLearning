@@ -25,13 +25,13 @@ public class QuizServlet extends HttpServlet {
 		
 	}
 
-	public void categoryList(HttpServletRequest request) {
+	public void updateList(HttpServletRequest request) {
 		Service<QuizDTO> service = new QuizService();
 		List<QuizDTO>listDTO = service.getAll();
 		request.setAttribute("list", listDTO);
 	}
 		
-	public void updateList(HttpServletRequest request) {
+	public void categoryList(HttpServletRequest request) {
 		Service<CategoryDTO> service = new CategoryService();
 		List<CategoryDTO>listDTO = service.getAll();
 		request.setAttribute("categoryList", listDTO);
