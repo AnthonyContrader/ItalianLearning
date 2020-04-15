@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="it.contrader.dto.CategoryDTO"%>
+    pageEncoding="ISO-8859-1" import="it.contrader.dto.GuessPictureDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,38 +11,30 @@
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
   <a href="homeadmin.jsp">Home</a>
-  <a class="active"  href="UserServlet?mode=userlist">Users</a>
+  <a class="active"  href="GuessPictureServlet?mode=userlist">Users</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <br>
 
 <div class="main">
-<%CategoryDTO c = (CategoryDTO) request.getAttribute("dto");%>
+<%GuessPictureDTO g = (GuessPictureDTO) request.getAttribute("dto");%>
 
-<div class="col-100">
 	<table>
-		<tr> 
+		<tr>
 			<th>Id</th>
-			<th>Title</th>		
+			<th>Solution</th>
+			<th>Score</th>
+			<th>Category</th>
 		</tr>
 		<tr>
-			<td><%=c.getId()%></td>
-			<td> <%=c.getTitle()%></td>
+		
+			<td><%=g.getId()%></td>
+			<td><%=g.getSolution()%></td>
+			<td><%=g.getScore()%></td>
+			<td><%=g.getCategory()%></td>
 			
-		</tr>	
-	</table>
-</div>
-
-<div class="col-100" style="padding-top: 25px;">
-	<table>
-		<tr> 
-			<th>Description</th>
 		</tr>
-		<tr>
-			<td> <%=c.getDescription()%></td>
-		</tr>	
 	</table>
-</div>
 
 <br>
 <br>
