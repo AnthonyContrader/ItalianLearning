@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.contrader.dto.CategoryDTO;
 import it.contrader.dto.GuessPictureDTO;
+import it.contrader.service.CategoryService;
 import it.contrader.service.GuessPictureService;
 import it.contrader.service.Service;
 
@@ -24,6 +26,12 @@ public class GuessPictureServlet extends HttpServlet{
 			request.setAttribute("list", listDTO);
 		}
 		
+		public void categoryList(HttpServletRequest request) {
+			Service<CategoryDTO> service = new CategoryService();
+			List<CategoryDTO> listDTO = service.getAll();
+			request.setAttribute("categoryList", listDTO);
+		}
+		
 		@Override
 		public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
@@ -37,6 +45,7 @@ public class GuessPictureServlet extends HttpServlet{
 
 			case "GAMELIST":
 				updateList(request);
+				categoryList(request);
 				getServletContext().getRequestDispatcher("/guesspicture/guesspicturemanager.jsp").forward(request, response);
 				break;
 
@@ -53,11 +62,9 @@ public class GuessPictureServlet extends HttpServlet{
 				
 				break;
 
-			case "INSERT":
-				
+			case "INSERT":				
 				String solution = request.getParameter("solution").toString();
 				String image = request.getParameter("image").toString();
-				//String category =  request.getParameter("category").toString();
 				Integer score = new Integer(request.getParameter("score"));
 				Integer idCategory = new Integer(request.getParameter("score"));
 
@@ -65,13 +72,13 @@ public class GuessPictureServlet extends HttpServlet{
 				ans = service.insert(dto);
 				request.setAttribute("ans", ans);
 				updateList(request);
+				categoryList(request);
 				getServletContext().getRequestDispatcher("/guesspicture/guesspicturemanager.jsp").forward(request, response);
 				break;
 				
 			case "UPDATE":
 				solution = request.getParameter("solution").toString();
 				image = request.getParameter("image").toString();
-				//category =  request.getParameter("category").toString();
 				score = new Integer(request.getParameter("score"));
 				idCategory = new Integer(request.getParameter("score"));
 				id = Integer.parseInt(request.getParameter("id"));
@@ -79,6 +86,7 @@ public class GuessPictureServlet extends HttpServlet{
 				dto = new GuessPictureDTO (id, idCategory, score, solution, image);
 				ans = service.update(dto);
 				updateList(request);
+				categoryList(request);
 				getServletContext().getRequestDispatcher("/guesspicture/guesspicturemanager.jsp").forward(request, response);
 				break;
 
@@ -87,6 +95,7 @@ public class GuessPictureServlet extends HttpServlet{
 				ans = service.delete(id);
 				request.setAttribute("ans", ans);
 				updateList(request);
+				categoryList(request);
 				getServletContext().getRequestDispatcher("/guesspicture/guesspicturemanager.jsp").forward(request, response);
 				break;
 			}

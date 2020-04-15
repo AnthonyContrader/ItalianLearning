@@ -49,6 +49,15 @@
   
   <div class="row">
     <div class="col-25">
+     <label for="score">Image</label>
+    </div>
+    <div class="col-75">
+      <input type="file" id="image" name="image"> 
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-25">
       <label for="idCategory">Category</label>
    	</div>
    	<div class="col-75">

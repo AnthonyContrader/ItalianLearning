@@ -23,13 +23,7 @@
 	<%
 		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
 		List<GuessPictureDTO> list = (List<GuessPictureDTO>) request.getAttribute("list");
-
 	%>
-
-	private Integer score;
-	private String solution;
-	private String image;
-	private String category;
 
 <br>
 	<table>
@@ -84,6 +78,15 @@
     </div>
     <div class="col-75">
       <input type="number" id="score" name="score" required placeholder="Inserisci il punteggio"> 
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-25">
+     <label for="score">Image</label>
+    </div>
+    <div class="col-75">
+      <input type="file" id="image" name="image" required> 
     </div>
   </div>
   
