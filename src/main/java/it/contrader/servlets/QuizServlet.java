@@ -31,10 +31,10 @@ public class QuizServlet extends HttpServlet {
 		request.setAttribute("list", listDTO);
 	}
 		
-		public void updateList(HttpServletRequest request) {
-			Service<CategoryDTO> service = new CategoryService();
-			List<CategoryDTO>listDTO = service.getAll();
-			request.setAttribute("categorylist", listDTO);
+	public void updateList(HttpServletRequest request) {
+		Service<CategoryDTO> service = new CategoryService();
+		List<CategoryDTO>listDTO = service.getAll();
+		request.setAttribute("categoryList", listDTO);
 	}
 	
 	@Override

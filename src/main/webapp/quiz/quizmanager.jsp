@@ -12,7 +12,7 @@
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
-  <a  href="gamemanager.jsp">Home</a>
+  <a  href="GameServlet">Home</a>
   <a class="active" href="QuizServlet?mode=gamelist">Quizzes</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
@@ -23,9 +23,8 @@
 	<%
 	//Lista contiene tutti gli elementi del quiz che verranno stampati nella tabella
 		List<QuizDTO> list = (List<QuizDTO>) request.getAttribute("list");
-	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-				
-		%>
+		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+	%>
 
 <br>
 <!-- stampo i contenuti di list inclusi nella tabella sottostante -->
@@ -109,12 +108,12 @@
       <select id="idCategory" name="idCategory" required>
       <option value= ''> Choose one...</option>
       <%
-      for (CategoryDTO category : categoryList){
+      	for (CategoryDTO category : categoryList) {
       %>
       <option value= <%= category.getId()%>> <%= category.getTitle() %> </option>
-     <%
+      <%
       	  }
-     %>
+	  %>
    	</select>
     	</div>
   </div>

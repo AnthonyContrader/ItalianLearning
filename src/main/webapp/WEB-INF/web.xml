@@ -32,7 +32,7 @@
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
-
+  
   <servlet>
     <description></description>
     <display-name>CategoryServlet</display-name>
@@ -48,13 +48,13 @@
   	<description></description>
   	<display-name>HangmanServlet</display-name>
   	<servlet-name>HangmanServlet</servlet-name>
-  	<servlet-class>it.contrader.servlets.QuizServlet</servlet-class>
+  	<servlet-class>it.contrader.servlets.HangmanServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>HangmanServlet</servlet-name>
   	<url-pattern>/HangmanServlet</url-pattern>
   </servlet-mapping>
-<servlet>
+  <servlet>
   	<description></description>
   	<display-name>FindAWordServlet</display-name>
   	<servlet-name>FindAWordServlet</servlet-name>
@@ -64,8 +64,7 @@
   	<servlet-name>FindAWordServlet</servlet-name>
   	<url-pattern>/FindAWordServlet</url-pattern>
   </servlet-mapping>
-
-
+  
   <servlet>
   	<description></description>
   	<display-name>OrganizeSentenceServlet</display-name>
@@ -75,8 +74,9 @@
   <servlet-mapping>
   	<servlet-name>OrganizeSentenceServlet</servlet-name>
   	<url-pattern>/OrganizeSentenceServlet</url-pattern>
-
-  	<display-name>GuessPictureServlet</display-name>
+  </servlet-mapping>
+  <servlet>
+ 	<display-name>GuessPictureServlet</display-name>
   	<servlet-name>GuessPictureServlet</servlet-name>
   	<servlet-class>it.contrader.servlets.GuessPictureServlet</servlet-class>
   </servlet>
@@ -84,7 +84,7 @@
   	<servlet-name>GuessPictureServlet</servlet-name>
   	<url-pattern>/GuessPictureServlet</url-pattern>
  </servlet-mapping>
-  <servlet>
+ <servlet>
     <description></description>
     <display-name>QuizServlet</display-name>
     <servlet-name>QuizServlet</servlet-name>
@@ -93,6 +93,16 @@
   <servlet-mapping>
     <servlet-name>QuizServlet</servlet-name>
     <url-pattern>/QuizServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GameServlet</display-name>
+    <servlet-name>GameServlet</servlet-name>
+    <servlet-class>it.contrader.servlets.GameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GameServlet</servlet-name>
+    <url-pattern>/GameServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>
