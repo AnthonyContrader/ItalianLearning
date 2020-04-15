@@ -18,7 +18,7 @@ public class HangmanConverter implements Converter<Hangman, HangmanDTO> {
 	// converte Category Model in CategoryDTO
 		public HangmanDTO toDTO(Hangman hangman) {
 			String categoryString = categoryDAO.read(hangman.getIdCategory()).getTitle();
-			HangmanDTO hangmanDTO = new HangmanDTO(hangman.getId(),hangman.getSolution(),hangman.getDefinition(),hangman.getSentence(), hangman.getScore(), categoryString);
+			HangmanDTO hangmanDTO = new HangmanDTO(hangman.getId(),hangman.getSolution(),hangman.getDefinition(),hangman.getSentence(), hangman.getScore(), hangman.getIdCategory(), categoryString);
 			return hangmanDTO;
 		}
 		

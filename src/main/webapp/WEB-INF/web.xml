@@ -57,7 +57,6 @@
 
   <servlet>
   	<description></description>
-
   	<display-name>OrganizeSentenceServlet</display-name>
   	<servlet-name>OrganizeSentenceServlet</servlet-name>
   	<servlet-class>it.contrader.servlets.OrganizeSentenceServlet</servlet-class>
@@ -75,14 +74,14 @@
   	<url-pattern>/GuessPictureServlet</url-pattern>
  </servlet-mapping>
   <servlet>
-  	<description></description>
-  	<display-name>QuizServlet</display-name>
-  	<servlet-name>QuizServlet</servlet-name>
-  	<servlet-class>it.contrader.servlets.QuizServlet</servlet-class>
+    <description></description>
+    <display-name>QuizServlet</display-name>
+    <servlet-name>QuizServlet</servlet-name>
+    <servlet-class>it.contrader.servlets.QuizServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>QuizServlet</servlet-name>
-  	<url-pattern>/QuizServlet</url-pattern>
+    <servlet-name>QuizServlet</servlet-name>
+    <url-pattern>/QuizServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>

@@ -13,9 +13,14 @@
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
-  <a href="gamemanager.jsp">Indietro</a>
-  <a class="active" href="HangmanServlet?mode=gamelist">Hangmen</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+	<a href="homeadmin.jsp">Home</a>
+  	<a href="FindAWordServlet?mode=gamelist">Find a Words</a>
+  	<a href="GuessPictureServlet?mode=gamelist">Guess Pictures</a>
+  	<a class="active" href="HangmanServlet?mode=gamelist">Hangmen</a>
+  	<a href="HangmanServlet?mode=gamelist">Hangmen</a>
+  	<a href="HangmanServlet?mode=gamelist">Hangmen</a>
+  	<a href="HangmanServlet?mode=gamelist">Hangmen</a>
+  	<a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <div class="main">
 	<%

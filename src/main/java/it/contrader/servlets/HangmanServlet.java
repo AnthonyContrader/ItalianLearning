@@ -57,7 +57,10 @@ public class HangmanServlet extends HttpServlet {
 				
 			}
 			
-			else getServletContext().getRequestDispatcher("/hangman/updatehangman.jsp").forward(request, response);
+			else {
+				categoryList(request);
+				getServletContext().getRequestDispatcher("/hangman/updatehangman.jsp").forward(request, response);
+			}
 			
 			break;
 

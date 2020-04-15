@@ -39,13 +39,14 @@ public class HangmanDTO {
 		this.idCategory = idCategory;
 	}
 	
-	public HangmanDTO(int id, String solution, String definition, String sentence, Integer score, String category) {
+	public HangmanDTO(int id, String solution, String definition, String sentence, Integer score, Integer idCategory, String category) {
 		this.id = id;
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
 		this.score = score;
 		this.category = category;
+		this.idCategory = idCategory;
 	}
 
 	public int getId() {
