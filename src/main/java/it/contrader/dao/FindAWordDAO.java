@@ -115,7 +115,7 @@ public class FindAWordDAO implements DAO<FindAWord>{
 						findAWordToUpdate.setSolution(findAWordRead.getSolution());
 					}
 
-					if (findAWordToUpdate.getDefinition() == null || findAWordToUpdate.getDefinition().equals("")) {
+					if (findAWordToUpdate.getDefinition() == null) {
 						findAWordToUpdate.setDefinition(findAWordRead.getDefinition());
 					}
 					
