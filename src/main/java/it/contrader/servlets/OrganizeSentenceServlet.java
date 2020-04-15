@@ -32,7 +32,7 @@ public class OrganizeSentenceServlet extends HttpServlet {
 	public void categoryList(HttpServletRequest request) {
 		Service<CategoryDTO> service = new CategoryService();
 		List<CategoryDTO>listDTO = service.getAll();
-		request.setAttribute("list", listDTO);
+		request.setAttribute("categoryList", listDTO);
 	}
 	
 	@Override

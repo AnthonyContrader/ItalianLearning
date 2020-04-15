@@ -30,7 +30,7 @@
       <label for="solution">Solution</label>
     </div>
     <div class="col-75">
-      <input type="text" id="solution" name="solution" required placeholder="inserisci soluzione">
+      <input type="text" id="solution" name="solution" value="<%=o.getSolution()%>">
     </div>
   </div>
   
@@ -39,7 +39,7 @@
       <label for="sentence">Organize Sentence</label>
     </div>
     <div class="col-75">
-      <input type="text" id="sentence" name="sentence" required placeholder="inserisci la frase disordinata ">
+      <input type="text" id="sentence" name="sentence" value="<%=o.getSentence()%>"> 
     </div>
   </div>
   <div class="row">
@@ -47,7 +47,7 @@
      <label for="definition">Definition</label>
     </div>
     <div class="col-75">
-      <input type="text" id="definition" name="definition" placeholder="inserisci la definizione del gioco"> 
+      <input type="text" id="definition" name="definition" value="<%=o.getDefinition()%>"> 
     </div>
   </div>
   
@@ -56,7 +56,7 @@
       <label for="score">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" required placeholder="inserisci il punteggio ">
+      <input type="number" id="score" name="score" value="<%=o.getScore()%>">
     </div>
   </div>
   
