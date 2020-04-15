@@ -13,7 +13,7 @@ div.text{
 
 .header {
 	text-align: center;
-	font-size: 800%;
+	font-size: 500%;
 	font-family: sans-serif;
 	color: #00a990;
 }
@@ -118,6 +118,7 @@ a:visited {
 	color: #000000;
 }
 
+
 /*Tables*/
 table {
 	border-collapse: collapse;
@@ -126,7 +127,6 @@ table {
 	border-radius:4px;
     -moz-border-radius:4px;
 }
-
 
 th, td {
 	text-align: center;
@@ -174,10 +174,7 @@ width: 100%;
 	
 }
 
-
-
-
-input {
+input, textarea {
   width: 80%;
   background-color: #ffff;
   color: #000000;
@@ -187,6 +184,8 @@ input {
   border-radius: 4px;
   cursor: pointer;
   float:right;
+  resize: vertical;
+  overflow: auto;
 }
 
 input:hover {
@@ -220,6 +219,12 @@ form {
 .col-75 {
   float: left;
   width: 75%;
+  margin-top: 6px;
+}
+
+.col-100 {
+  float: left;
+  width: 100%;
   margin-top: 6px;
 }
 
@@ -260,7 +265,6 @@ button:hover {
   background-color:  #00ccad; 
   color: white;
 }
-
 
 
 /*IDs*/

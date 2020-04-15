@@ -103,9 +103,10 @@ public class CategoryDAO implements DAO<Category>  {
 				if (categoryToUpdate.getTitle() == null || categoryToUpdate.getTitle().equals("")) {
 					categoryToUpdate.setTitle(categoryRead.getTitle());
 				}
-
-				if (categoryToUpdate.getDescription() == null || categoryToUpdate.getDescription().equals("")) {
-					categoryToUpdate.setDescription(categoryRead.getDescription());
+				
+				
+				if (categoryToUpdate.getDescription() == null) {
+					categoryToUpdate.setDescription("");
 				}
 				
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE); //preparo la query ma non la eseguo

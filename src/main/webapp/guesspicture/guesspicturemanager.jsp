@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
-	import="it.contrader.dto.CategoryDTO"%>
+	import="it.contrader.dto.GuessPictureDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>User Manager</title>
+<title>Guess Picture Manager</title>
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
 
-<div class="navbar"> <!-- questa e la navbar -->
+<div class="navbar">
   <a href="homeadmin.jsp">Home</a>
   <a class="active" href="UserServlet?mode=userlist">Users</a>
   <a href="LogoutServlet" id="logout">Logout</a>  
@@ -19,33 +19,43 @@
 <div class="main">
 	<%
 		// list contiene tutti gli elementi della category che veranno stampati nella tabella
-		List<CategoryDTO> list = (List<CategoryDTO>) request.getAttribute("list");
+		List<GuessPictureDTO> list = (List<GuessPictureDTO>) request.getAttribute("list");
 
 	%>
 
+	private Integer score;
+	private String solution;
+	private String image;
+	private String category;
+
 <br>
-	<!-- Stampo gli elementi contenuti in list nella tabella-->
 	<table>
 		<tr>
 			<th>Id</th>
-			<th>Title</th>
+			<th>Solution</th>
+			<th>Score</th>
+			<th>Category</th>
 			<th></th>
 			<th></th>
 		</tr>
 		<%
-			for (CategoryDTO c : list) {
+			for (GuessPictureDTO g : list) {
 		%>
 		<tr>
-			<td><a href=CategoryServlet?mode=read&id=<%=c.getId()%>>
-				<%=c.getId()%>
+			<td><a href=GuessPictureServlet?mode=read&id=<%=g.getId()%>>
+				<%=g.getId()%>
 			</a></td>
-			<td><a href=CategoryServlet?mode=read&id=<%=c.getId()%>>
-				<%=c.getTitle()%>
+			<td><a href=GuessPictureServlet?mode=read&id=<%=g.getId()%>>
+				<%=g.getSolution()%>
 			</a></td>
 			
-			<td><a href=CategoryServlet?mode=read&update=true&id=<%=c.getId()%>>Edit</a>
+			<td><%=g.getScore()%></td>
+			
+			<td><%=g.getCategory()%></td>
+			
+			<td><a href=GuessPictureServlet?mode=read&update=true&id=<%=g.getId()%>>Edit</a>
 			</td>
-			<td><a href=CategoryServlet?mode=delete&id=<%=c.getId()%>>Delete</a>
+			<td><a href=GuessPictureServlet?mode=delete&id=<%=g.getId()%>>Delete</a>
 			</td>
 
 		</tr>
@@ -54,7 +64,7 @@
 		%>
 	</table>
 
-	<form id="floatright" action="CategoryServlet?mode=insert" method="post">
+	<form id="floatright" action="GuessPictureServlet?mode=insert" method="post">
 	  <div class="row">
 	    <div class="col-25">
 	      <label for="category">Title</label>
