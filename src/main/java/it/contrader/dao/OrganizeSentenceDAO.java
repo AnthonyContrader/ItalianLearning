@@ -132,8 +132,8 @@ public class OrganizeSentenceDAO implements DAO<OrganizeSentence> {
 				}
 
 				
-				if (organizeSentenceToUpdate.getDefinition() == null || organizeSentenceToUpdate.getDefinition().equals("")) {
-					organizeSentenceToUpdate.setDefinition(organizeSentenceRead.getDefinition());
+				if (organizeSentenceToUpdate.getDefinition() == null ) {
+					organizeSentenceToUpdate.setDefinition("");
 				}
 				
 				if (organizeSentenceToUpdate.getSentence() == null || organizeSentenceToUpdate.getSentence().equals("")) {
