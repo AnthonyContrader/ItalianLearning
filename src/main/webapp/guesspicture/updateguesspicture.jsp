@@ -1,73 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" 
-	import="java.util.List"
-	import="it.contrader.dto.GuessPictureDTO"
-	import="it.contrader.dto.CategoryDTO"%>
-	
+    pageEncoding="ISO-8859-1" 
+    import="java.util.List"
+    import="it.contrader.dto.GuessPictureDTO"
+    import="it.contrader.dto.CategoryDTO"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>Guess Pictures Manager</title>
+<title>Edit Guess Picture</title>
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
-
 <div class="navbar">
   <a href="homeadmin.jsp">Home</a>
   <a class="active" href="UserServlet?mode=userlist">Users</a>
-  <a href="LogoutServlet" id="logout">Logout</a>  
+  <a href="LogoutServlet" id="logout">Logout</a>
 </div>
-<div class="main">
-	<%
-		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-		List<GuessPictureDTO> list = (List<GuessPictureDTO>) request.getAttribute("list");
-
-	%>
-
-	private Integer score;
-	private String solution;
-	private String image;
-	private String category;
-
 <br>
-	<table>
-		<tr>
-			<th>Id</th>
-			<th>Solution</th>
-			<th>Score</th>
-			<th>Category</th>
-			<th></th>
-			<th></th>
-		</tr>
-		<%
-			for (GuessPictureDTO g : list) {
-		%>
-		<tr>
-			<td><a href=GuessPictureServlet?mode=read&id=<%=g.getId()%>>
-				<%=g.getId()%>
-			</a></td>
-			<td><a href=GuessPictureServlet?mode=read&id=<%=g.getId()%>>
-				<%=g.getSolution()%>
-			</a></td>
-			
-			<td><%=g.getScore()%></td>
-			
-			<td><%=g.getCategory()%></td>
-			
-			<td><a href=GuessPictureServlet?mode=read&update=true&id=<%=g.getId()%>>Edit</a>
-			</td>
-			<td><a href=GuessPictureServlet?mode=delete&id=<%=g.getId()%>>Delete</a>
-			</td>
+<div class="main">
 
-		</tr>
-		<%
-			}
-		%>
-	</table>
+<%
+	GuessPictureDTO g = (GuessPictureDTO) request.getAttribute("dto");
+	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+%>
 
-<form id="floatright" action="GuessPictureServlet?mode=insert" method="post">
+
+<form id="floatright" action="GuessPictureServlet?mode=update&id=<%=g.getId()%>" method="post">
 
   <div class="row">
     <div class="col-25">
@@ -110,6 +70,6 @@
 	
 </div>
 <br>
-<%@ include file="../css/footer.jsp" %>
+<%@ include file="../css/footer.jsp" %>	
 </body>
 </html>
