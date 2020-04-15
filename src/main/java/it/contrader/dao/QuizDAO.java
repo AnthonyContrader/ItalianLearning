@@ -113,8 +113,8 @@ public class QuizDAO implements DAO<Quiz> {
 					quizToUpdate.setSolution(quizRead.getSolution());
 				}
 
-				if (quizToUpdate.getDefinition() == null || quizToUpdate.getDefinition().equals("")) {
-					quizToUpdate.setDefinition(quizRead.getDefinition());
+				if (quizToUpdate.getDefinition() == null) {//|| quizToUpdate.getDefinition().equals("")) 
+					quizToUpdate.setDefinition("");//(quizRead.getDefinition());
 				}
 				if (quizToUpdate.getScore() == null || quizToUpdate.getScore()<1 ) {
 					quizToUpdate.setScore(quizRead.getScore());
