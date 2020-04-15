@@ -40,9 +40,11 @@
 			for (HangmanDTO h : list) {
 		%>
 		<tr>
-			<td><a href=HangmanServlet?mode=read&id=<%=h.getId()%> style="text-decoration: underline;">
+			<td>
+				<a href="HangmanServlet?mode=read&id=<%=h.getId()%>" style="text-decoration: underline;">
 					<%=h.getId()%>
-			</a></td>
+				</a>
+			</td>
 			<td><%=h.getSolution()%></td>
 			<td><%=h.getSentence()%></td>
 			<td><%=h.getDefinition()%></td>
@@ -107,7 +109,7 @@
  			<%
 				for (CategoryDTO category : categoryList) {
 			%>
-			<option value=<%= category.getId() %>> <%= category.getTitle() %> </option>2
+			<option value=<%= category.getId() %>> <%= category.getTitle() %> </option>
 			<%
 				}
 			%>
