@@ -25,6 +25,7 @@
 FindAWordDTO u = (FindAWordDTO) request.getAttribute("dto");
 List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
 %>
+
 <form id="floatright" action="FindAWordServlet?mode=update&id=<%=u.getId()%>" method="post">
 
   <div class="row">
