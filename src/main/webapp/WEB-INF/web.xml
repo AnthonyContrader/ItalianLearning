@@ -53,6 +53,17 @@
   	<servlet-name>HangmanServlet</servlet-name>
   	<url-pattern>/HangmanServlet</url-pattern>
   </servlet-mapping>
+<servlet>
+  	<description></description>
+  	<display-name>FindAWordServlet</display-name>
+  	<servlet-name>FindAWordServlet</servlet-name>
+  	<servlet-class>it.contrader.servlets.FindAWordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FindAWordServlet</servlet-name>
+  	<url-pattern>/FindAWordServlet</url-pattern>
+  </servlet-mapping>
+
 
 
 </web-app>
