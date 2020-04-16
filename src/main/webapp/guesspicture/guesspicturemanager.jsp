@@ -15,10 +15,12 @@
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="UserServlet?mode=userlist">Users</a>
-  <a href="LogoutServlet" id="logout">Logout</a>  
+	<a href="homeadmin.jsp">Home</a>
+  	<a href="GameServlet">Back</a>
+  	<a class="active" href="GuessPictureServlet?mode=gamelist">Guess Picture</a>
+  	<a href="LogoutServlet" id="logout">Logout</a>
 </div>
+
 <div class="main">
 	<%
 		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");

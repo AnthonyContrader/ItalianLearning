@@ -11,7 +11,7 @@
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
   <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="HangmanServlet?mode=gamelist">Back</a>
+  <a class="active" href="CategoryServlet?mode=categorylist">Back</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <br>
@@ -20,12 +20,6 @@
 <%CategoryDTO c = (CategoryDTO) request.getAttribute("dto");%>
 
 <div class="col-50">
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
 
 		<table class="col-100">
 			<tr> 
