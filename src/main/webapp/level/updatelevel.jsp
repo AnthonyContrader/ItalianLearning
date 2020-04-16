@@ -22,7 +22,7 @@
 <form id="floatleft" action="LevelServlet?mode=update&id=<%=c.getId()%>" method="post">
   <div class="row">
     <div class="col-25">
-      <label for="level">Level</label>
+      <label for="level">Name</label>
     </div>
     <div class="col-75">
       <input type="text" required id="name" name="name" value=<%=c.getName()%>>
@@ -34,7 +34,7 @@
      <label for="score">Score</label>
     </div>
     <div class="col-75">
-      <input type='number' required id="score" name="score" value=<%=c.getScore()%>>
+      <input type='number' min="1" required id="score" name="score" value=<%=c.getScore()%>>
     </div>
   </div>
   
@@ -43,7 +43,7 @@
      <label for="description">Description</label>
     </div>
     <div class="col-75">
-      <textarea id="description" name="description"> <%=c.getDescription()%> </textarea>
+      <textarea id="description" name="description"><%=c.getDescription()%></textarea>
     </div>
   </div>
   

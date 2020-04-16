@@ -1,7 +1,8 @@
 package it.contrader.dto;
 
 public class GuessPictureDTO {
-	
+	private static final String typeGame = "GuessPicture";
+
 	private int id;
 	private Integer idCategory;
 	private Integer score;
@@ -144,6 +145,8 @@ public class GuessPictureDTO {
 		this.level = level;
 	}
 
-	
+	public static String getTypegame() {
+		return typeGame;
+	}
 	
 }

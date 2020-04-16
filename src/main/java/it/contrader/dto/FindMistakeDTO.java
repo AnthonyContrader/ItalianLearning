@@ -1,6 +1,8 @@
 package it.contrader.dto;
 
 public class FindMistakeDTO {
+	private static final String typeGame = "FindMistake";
+
 	private int id;
 	private String solution;
 	private String definition;
@@ -211,5 +213,8 @@ public class FindMistakeDTO {
 		this.level = level;
 	}
 	
+	public static String getTypegame() {
+		return typeGame;
+	}
 
 }

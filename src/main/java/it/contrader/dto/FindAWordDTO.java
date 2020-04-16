@@ -1,6 +1,8 @@
 package it.contrader.dto;
 
 public class FindAWordDTO {
+	private static final String typeGame = "FindAWord";
+
 	private int id;
 	private Integer idCategory;
 	private Integer score;
@@ -159,6 +161,10 @@ public class FindAWordDTO {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public static String getTypegame() {
+		return typeGame;
 	}
 
 }

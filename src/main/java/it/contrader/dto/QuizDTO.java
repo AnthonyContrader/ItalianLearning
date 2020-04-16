@@ -1,6 +1,7 @@
 package it.contrader.dto;
 
 public class QuizDTO {
+	private static final String typeGame = "Quiz";
 	
 	private int id;
 	private Integer idCategory;
@@ -13,11 +14,8 @@ public class QuizDTO {
 	private Integer idLevel;
 	private String level;
 	
-	
 	public QuizDTO() {
 	}
-
-	
 
 	public QuizDTO(Integer idCategory, Integer score, String solution, String definition, String category,
 			String sentence, Integer idLevel, String level) {
@@ -31,8 +29,6 @@ public class QuizDTO {
 		this.idLevel = idLevel;
 		this.level = level;
 	}
-
-
 
 	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String category,
 			String sentence, Integer idLevel, String level) {
@@ -49,17 +45,13 @@ public class QuizDTO {
 	}
 
 
-
 	public Integer getIdLevel() {
 		return idLevel;
 	}
 
-
-
 	public void setIdLevel(Integer idLevel) {
 		this.idLevel = idLevel;
 	}
-
 
 
 	public String getLevel() {
@@ -67,11 +59,9 @@ public class QuizDTO {
 	}
 
 
-
 	public void setLevel(String level) {
 		this.level = level;
 	}
-
 
 
 	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String sentence) {
@@ -81,11 +71,8 @@ public class QuizDTO {
 		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
-		this.sentence = sentence;
-		
-				
+		this.sentence = sentence;	
 	}
-
 
 	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String category, String sentence) {
 		
@@ -174,6 +161,10 @@ public class QuizDTO {
 
 	public void setSentence(String sentence) {
 		this.sentence = sentence;
+	}
+	
+	public static String getTypegame() {
+		return typeGame;
 	}
 
 }

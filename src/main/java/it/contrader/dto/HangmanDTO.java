@@ -1,6 +1,7 @@
 package it.contrader.dto;
 
 public class HangmanDTO {
+	private static final String typeGame = "Hangman";
 
 	private int id;
 	private String solution;
@@ -161,8 +162,8 @@ public class HangmanDTO {
 		this.category = category;
 	}
 
-
-	
-
+	public static String getTypegame() {
+		return typeGame;
+	}
 
 }

@@ -11,7 +11,6 @@ public LevelDTO() {
 }
 
 public LevelDTO(int id, int score, String name, String description) {
-	super();
 	this.id = id;
 	this.score = score;
 	this.name = name;
@@ -19,7 +18,6 @@ public LevelDTO(int id, int score, String name, String description) {
 }
 
 public LevelDTO(int score, String name, String description) {
-	super();
 	this.score = score;
 	this.name = name;
 	this.description = description;

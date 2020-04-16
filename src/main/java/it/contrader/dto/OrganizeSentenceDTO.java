@@ -2,6 +2,7 @@ package it.contrader.dto;
 
 
 public class OrganizeSentenceDTO {
+	private static final String typeGame = "OrganizeSentence";
 
 	private int id;
 	private String solution;
@@ -168,6 +169,8 @@ public class OrganizeSentenceDTO {
 		this.level = level;
 	}
 
-	
+	public static String getTypegame() {
+		return typeGame;
+	}
 
 }

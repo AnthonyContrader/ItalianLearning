@@ -88,7 +88,7 @@
 	     <label for="description">Score</label>
 	    </div>
 	    <div class="col-75">
-	      <input type="number" required id="score" name="score" placeholder="Insert Score">
+	      <input min="1" type="number" required id="score" name="score" placeholder="Insert Score">
 	    </div>
 	  </div>
 	  

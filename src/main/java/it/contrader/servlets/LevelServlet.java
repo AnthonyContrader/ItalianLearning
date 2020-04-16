@@ -66,7 +66,7 @@ public class LevelServlet extends HttpServlet{
 				break;
 				
 			case "UPDATE":
-				name = request.getParameter("title");
+				name = request.getParameter("name");
 				description = request.getParameter("description");
 				id = Integer.parseInt(request.getParameter("id"));
 				score = Integer.parseInt(request.getParameter("score").toString());

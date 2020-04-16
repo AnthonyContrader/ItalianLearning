@@ -16,7 +16,7 @@ public class LevelDAO implements DAO<Level>{
 	private final String QUERY_ALL = "SELECT * FROM level";
 	private final String QUERY_CREATE = "INSERT INTO level (name, description, score) VALUES (?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM level WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE level SET name=?, description=? score=? WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE level SET name=?, description=?, score=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM level WHERE id=?";
 	
 	public List<Level> getAll(){
@@ -102,7 +102,7 @@ public class LevelDAO implements DAO<Level>{
 				preparedStatement.setString(2, levelToUpdate.getDescription()); 
 				preparedStatement.setInt(3, levelToUpdate.getScore());
 				preparedStatement.setInt(4, levelToUpdate.getId());
-
+				
 				int check = preparedStatement.executeUpdate();
 				if (check > 0)
 					return true;
