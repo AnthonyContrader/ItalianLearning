@@ -56,7 +56,7 @@
       <label for="score">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" value="<%=o.getScore()%>" required placeholder="Insert the score">
+      <input type="number" id="score" name="score" value="<%=o.getScore()%>" min=1 required placeholder="Insert the score">
     </div>
   </div>
   

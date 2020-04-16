@@ -95,6 +95,7 @@ public class OrganizeSentenceServlet extends HttpServlet {
 			
 			dto = new OrganizeSentenceDTO (id,solution, sentence, score,definition,idCategory);
 			ans = service.update(dto);
+			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
 			getServletContext().getRequestDispatcher("/organizesentence/organizesentencemanager.jsp").forward(request, response);

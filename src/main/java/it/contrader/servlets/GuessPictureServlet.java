@@ -90,6 +90,7 @@ public class GuessPictureServlet extends HttpServlet{
 			dto = new GuessPictureDTO (id, idCategory, score, solution, image);
 			
 			ans = service.update(dto);
+			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);		
 			getServletContext().getRequestDispatcher("/guesspicture/guesspicturemanager.jsp").forward(request, response);
