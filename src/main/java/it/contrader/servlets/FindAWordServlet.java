@@ -60,7 +60,11 @@ public class FindAWordServlet extends HttpServlet {
 					
 				}
 				
-				else getServletContext().getRequestDispatcher("/findaword/updatefindaword.jsp").forward(request, response);
+				else {
+					
+					categoryList(request);
+					getServletContext().getRequestDispatcher("/findaword/updatefindaword.jsp").forward(request, response);
+				}
 				
 				break;
 

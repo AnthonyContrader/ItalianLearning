@@ -26,7 +26,7 @@ FindAWordDTO u = (FindAWordDTO) request.getAttribute("dto");
 List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
 %>
 
-<form id="floatright" action="FindAWordServlet?mode=update&id=<%=u.getId()%>" method="post">
+<form id="floatleft" action="FindAWordServlet?mode=update&id=<%=u.getId()%>" method="post">
 
   <div class="row">
     <div class="col-25"><!--si prende il 25% dello spazio  -->
@@ -34,7 +34,7 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
     </div>
     <div class="col-75">
     <!-- input crea campo di inserimento -->
-      <input type="text" id="solution" name="solution" required placeholder="Inserisci la soluzione">
+   	 <input value="<%=u.getSolution() %>" type="text" id="solution" name="solution" required placeholder="Inserisci la soluzione">  
     </div>
   </div>
   
@@ -44,7 +44,7 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
     </div>
     <div class="col-75">
     <!-- input crea campo di inserimento -->
-      <input type="text" id="sentence" name="sentence" required placeholder="Inserisci l'indizio">
+      <input value="<%=u.getSentence() %>"type="text" id="sentence" name="sentence" required placeholder="Inserisci l'indizio">
     </div>
   </div>
   
@@ -54,7 +54,7 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
     </div>
     <div class="col-75">
     <!-- input crea campo di inserimento -->
-      <input type="text" id="definition" name="definition" placeholder="Inserisci la definizione">
+      <input value="<%=u.getDefinition() %>"type="text" id="definition" name="definition" placeholder="Inserisci la definizione">
     </div>
   </div>
   
@@ -64,7 +64,7 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
     </div>
     <div class="col-75">
     <!-- input crea campo di inserimento -->
-      <input type="number" id="score" name="score" required placeholder="Inserisci il punteggio">
+      <input value="<%=u.getScore() %>"type="number" id="score" name="score" required placeholder="Inserisci il punteggio">
     </div>
   </div>
   
@@ -81,12 +81,15 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
       <%
       for(CategoryDTO c : categoryList) {
       %>
-     
-      <option value=<%= c.getId() %>> <%=c.getTitle() %> </option>
+     <!-- per menu a tendina sia selezionato sul valore presente nel db grazie all'attributo selected l'operatore ternario è un if-->
+      <option value=<%= c.getId() %> <%= Integer.valueOf(c.getId()) == u.getIdCategory() ? "selected" : ""%>> <!-- è un if -->
+  					<%= c.getTitle() %>
+  					 </option>
       
       <%
       }
       %>
+      
       </select>
     </div>
   </div>

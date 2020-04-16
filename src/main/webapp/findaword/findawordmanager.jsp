@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>User Manager</title>
+<title>Find a Word Manager</title>
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
@@ -45,7 +45,7 @@
 			<td><a href=FindAWordServlet?mode=read&id=<%=u.getId()%>>
 					<%=u.getId()%>
 			</a></td>
-			<td><%=u.getId()%></td>
+			
 			<td><%=u.getSolution()%></td>
 			<td><%=u.getSentence()%></td>
 			<td><%=u.getDefinition()%></td>
@@ -73,7 +73,7 @@
     </div>
     <div class="col-75">
     <!-- input crea campo di inserimento -->
-      <input type="text" id="solution" name="solution" required placeholder="Inserisci la soluzione">
+      <input type="text" id="solution" name="solution" required placeholder="Insert Solution">
     </div>
   </div>
   
@@ -83,7 +83,7 @@
     </div>
     <div class="col-75">
     <!-- input crea campo di inserimento -->
-      <input type="text" id="sentence" name="sentence" required placeholder="Inserisci l'indizio">
+      <input type="text" id="sentence" name="sentence" required placeholder="Insert Sentence">
     </div>
   </div>
   
@@ -93,7 +93,7 @@
     </div>
     <div class="col-75">
     <!-- input crea campo di inserimento -->
-      <input type="text" id="definition" name="definition" placeholder="Inserisci la definizione">
+      <input type="text" id="definition" name="definition" placeholder="Insert Definition">
     </div>
   </div>
   
@@ -103,7 +103,7 @@
     </div>
     <div class="col-75">
     <!-- input crea campo di inserimento -->
-      <input type="number" id="score" name="score" required placeholder="Inserisci il punteggio">
+      <input type="number" id="score" name="score" required placeholder="Insert Score">
     </div>
   </div>
   
