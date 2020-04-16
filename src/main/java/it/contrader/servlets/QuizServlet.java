@@ -64,7 +64,7 @@ public class QuizServlet extends HttpServlet {
 			}
 			else if (request.getParameter("update") != null) {
 				categoryList(request);
-				getServletContext().getRequestDispatcher("/quiz/updatehangman.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/quiz/updatequiz.jsp").forward(request, response);
 			}
 else getServletContext().getRequestDispatcher("/quiz/deletequiz.jsp").forward(request, response);
 			
