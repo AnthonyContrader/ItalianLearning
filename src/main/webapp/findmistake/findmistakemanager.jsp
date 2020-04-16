@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>Hangmen</title>
+<title>Find Mistake</title>
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
