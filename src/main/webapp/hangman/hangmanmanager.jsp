@@ -53,7 +53,7 @@
 			<td><%=h.getCategory()%></td>
 			<td><a href=HangmanServlet?mode=read&update=true&id=<%=h.getId()%> style="text-decoration: underline;">Edit</a>
 			</td>
-			<td><a href=HangmanServlet?mode=delete&id=<%=h.getId()%> style="text-decoration: underline;">Delete</a>
+			<td><a href=HangmanServlet?mode=read&delete=true&id=<%=h.getId()%> style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>

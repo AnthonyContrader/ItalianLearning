@@ -51,15 +51,16 @@ private static final long serialVersionUID = 1L;
 			dto = service.read(id);
 			request.setAttribute("dto", dto);
 			
-			if (request.getParameter("update") == null) {
+			if (request.getParameter("update") == null && request.getParameter("delete") == null) {
 				 getServletContext().getRequestDispatcher("/findmistake/readfindmistake.jsp").forward(request, response);
 				
 			}
 			
-			else {
+			else if (request.getParameter("update") != null){
 				categoryList(request);
 				getServletContext().getRequestDispatcher("/findmistake/updatefindmistake.jsp").forward(request, response);
 			}
+			else getServletContext().getRequestDispatcher("/findmistake/deletefindmistake.jsp").forward(request, response);
 			
 			break;
 

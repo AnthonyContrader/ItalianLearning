@@ -222,6 +222,12 @@ form {
   margin-top: 6px;
 }
 
+.col-50 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+
 .col-100 {
   float: left;
   width: 100%;
@@ -259,6 +265,10 @@ button {
   cursor: pointer;
   border-radius: 7px;
   width:80%;
+}
+
+button.btn-sm {
+  width:30%;
 }
 
 button:hover {

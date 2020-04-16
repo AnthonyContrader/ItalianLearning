@@ -59,9 +59,7 @@
 			<td><%=f.getCategory()%></td>
 			<td><a href=FindMistakeServlet?mode=read&update=true&id=<%=f.getId()%> style="text-decoration: underline;">Edit</a>
 			</td>
-			<td><a href=FindMistakeServlet?mode=delete&id=<%=f.getId()%> style="text-decoration: underline;">Delete</a>
-			</td>
-
+			<td><a href=FindMistakeServlet?mode=read&delete=true&id=<%=f.getId()%> style="text-decoration: underline;">Delete</a>
 		</tr>
 		<%
 			}
