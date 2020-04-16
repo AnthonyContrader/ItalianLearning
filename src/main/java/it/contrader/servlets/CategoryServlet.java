@@ -76,6 +76,7 @@ public class CategoryServlet extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("id"));
 			dto = new CategoryDTO (id,title, description);
 			ans = service.update(dto);
+			request.setAttribute("ans", ans);
 			updateList(request);
 			getServletContext().getRequestDispatcher("/category/categorymanager.jsp").forward(request, response);
 			break;

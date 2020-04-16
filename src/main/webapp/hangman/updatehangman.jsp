@@ -55,7 +55,7 @@
      <label for="score">Punteggio</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" value="<%=h.getScore()%>"> 
+      <input type="number" id="score" name="score" min=1 value="<%=h.getScore()%>"> 
     </div>
   </div>
   <div class="row">

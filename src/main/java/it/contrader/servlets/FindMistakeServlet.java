@@ -93,6 +93,7 @@ private static final long serialVersionUID = 1L;
 			id = Integer.parseInt(request.getParameter("id"));
 			dto = new FindMistakeDTO (id,solution,definition,sentence, optionA, optionB, optionC, score, idCategory);
 			ans = service.update(dto);
+			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
 			getServletContext().getRequestDispatcher("/findmistake/findmistakemanager.jsp").forward(request, response);

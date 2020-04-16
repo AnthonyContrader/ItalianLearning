@@ -20,9 +20,18 @@
 	<%
 		// list contiene tutti gli elementi della category che veranno stampati nella tabella
 		List<CategoryDTO> list = (List<CategoryDTO>) request.getAttribute("list");
+		String ans = null;
+		try{
+			ans = request.getAttribute("ans").toString();
+		}
+		catch (Exception e){}
 
 	%>
-
+<% if (ans != null) {%>
+	<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
+		<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
+	</h2>
+<% } %>
 <br>
 	<!-- Stampo gli elementi contenuti in list nella tabella-->
 	<table>

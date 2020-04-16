@@ -87,6 +87,7 @@ public class HangmanServlet extends HttpServlet {
 			id = Integer.parseInt(request.getParameter("id"));
 			dto = new HangmanDTO (id,solution,definition,sentence, score, idCategory);
 			ans = service.update(dto);
+			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
 			getServletContext().getRequestDispatcher("/hangman/hangmanmanager.jsp").forward(request, response);

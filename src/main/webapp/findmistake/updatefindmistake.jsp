@@ -79,7 +79,7 @@
      <label for="score">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" placeholder="Insert the score" value="<%=f.getScore()%>"> 
+      <input type="number" id="score" name="score" min=1 placeholder="Insert the score" value="<%=f.getScore()%>"> 
     </div>
   </div>
   <div class="row">

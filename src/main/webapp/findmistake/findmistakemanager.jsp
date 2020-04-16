@@ -22,8 +22,17 @@
 	<%
 		List<FindMistakeDTO> list = (List<FindMistakeDTO>) request.getAttribute("list");
 		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+		String ans = null;
+		try{
+			ans = request.getAttribute("ans").toString();
+		}
+		catch (Exception e){}
 	%>
-
+<% if (ans != null) {%>
+	<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
+		<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
+	</h2>
+<% } %>
 <br>
 
 	<table>
@@ -124,7 +133,7 @@
      <label for="score">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" required placeholder="Insert the score"> 
+      <input type="number" id="score" name="score" min=1 required placeholder="Insert the score"> 
     </div>
   </div>
   
