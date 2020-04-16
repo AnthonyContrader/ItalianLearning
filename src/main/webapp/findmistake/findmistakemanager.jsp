@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
-	import="it.contrader.dto.HangmanDTO"
+	import="it.contrader.dto.FindMistakeDTO"
 	import="it.contrader.dto.CategoryDTO"%>
 <!DOCTYPE html>
 <html>
@@ -15,12 +15,12 @@
 <div class="navbar">
 	<a href="homeadmin.jsp">Home</a>
   	<a href="GameServlet">Indietro</a>
-  	<a class="active" href="HangmanServlet?mode=gamelist">Hangmen</a>
+  	<a class="active" href="FindMistakeServlet?mode=gamelist">FindMistakes</a>
   	<a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <div class="main">
 	<%
-		List<HangmanDTO> list = (List<HangmanDTO>) request.getAttribute("list");
+		List<FindMistakeDTO> list = (List<FindMistakeDTO>) request.getAttribute("list");
 		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
 	%>
 
@@ -32,28 +32,34 @@
 			<th>Solution</th>
 			<th>Sentence</th>
 			<th>Definition</th>
+			<th>Option A</th>
+			<th>Option B</th>
+			<th>Option C</th>
 			<th>Score</th>
 			<th>Category</th>
 			<th></th>
 			<th></th>
 		</tr>
 		<%
-			for (HangmanDTO h : list) {
+			for (FindMistakeDTO f : list) {
 		%>
 		<tr>
 			<td>
-				<a href="HangmanServlet?mode=read&id=<%=h.getId()%>" style="text-decoration: underline;">
-					<%=h.getId()%>
+				<a href="FindMistakeServlet?mode=read&id=<%=f.getId()%>" style="text-decoration: underline;">
+					<%=f.getId()%>
 				</a>
 			</td>
-			<td><%=h.getSolution()%></td>
-			<td><%=h.getSentence()%></td>
-			<td><%=h.getDefinition()%></td>
-			<td><%=h.getScore()%></td>
-			<td><%=h.getCategory()%></td>
-			<td><a href=HangmanServlet?mode=read&update=true&id=<%=h.getId()%> style="text-decoration: underline;">Edit</a>
+			<td><%=f.getSolution()%></td>
+			<td><%=f.getSentence()%></td>
+			<td><%=f.getDefinition()%></td>
+			<td><%=f.getOptionA()%></td>
+			<td><%=f.getOptionB()%></td>
+			<td><%=f.getOptionC()%></td>
+			<td><%=f.getScore()%></td>
+			<td><%=f.getCategory()%></td>
+			<td><a href=FindMistakeServlet?mode=read&update=true&id=<%=f.getId()%> style="text-decoration: underline;">Edit</a>
 			</td>
-			<td><a href=HangmanServlet?mode=delete&id=<%=h.getId()%> style="text-decoration: underline;">Delete</a>
+			<td><a href=FindMistakeServlet?mode=delete&id=<%=f.getId()%> style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>
@@ -64,7 +70,7 @@
 
 
 
-<form id="floatright" action="HangmanServlet?mode=insert" method="post">
+<form id="floatright" action="FindMistakeServlet?mode=insert" method="post">
 
   <div class="row">
     <div class="col-25">
@@ -80,7 +86,7 @@
      <label for="sentence">Sentence</label>
     </div>
     <div class="col-75">
-      <input type="text" id="sentence" name="sentence" required placeholder="Insert the hint"> 
+      <input type="text" id="sentence" name="sentence" required placeholder="Insert the sentence"> 
     </div>
   </div>
   <div class="row">
@@ -89,6 +95,30 @@
     </div>
     <div class="col-75">
       <input type="text" id="definition" name="definition" placeholder="Insert the definition"> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+     <label for="optionA">OptionA</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="optionA" name="optionA" placeholder="Insert the first option"> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+     <label for="optionB">Option B</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id=optionB name="optionB" placeholder="Insert the second option"> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+     <label for="optionC">Option C</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="optionC" name="optionC" placeholder="Insert the third option"> 
     </div>
   </div>
   <div class="row">

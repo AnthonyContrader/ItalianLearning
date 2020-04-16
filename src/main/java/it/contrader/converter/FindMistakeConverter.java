@@ -17,7 +17,7 @@ public class FindMistakeConverter implements Converter<FindMistake, FindMistakeD
 	
 	public FindMistakeDTO toDTO(FindMistake findMistake) {
 		String categoryString = categoryDAO.read(findMistake.getIdCategory()).getTitle();
-		FindMistakeDTO findMistakeDTO = new FindMistakeDTO(findMistake.getId(),findMistake.getSolution(),findMistake.getDefinition(),findMistake.getSentence(),findMistake.getOptionA(),findMistake.getOptionB(),findMistake.getOptionC(), findMistake.getScore(), categoryString);
+		FindMistakeDTO findMistakeDTO = new FindMistakeDTO(findMistake.getId(),findMistake.getSolution(),findMistake.getDefinition(),findMistake.getSentence(),findMistake.getOptionA(),findMistake.getOptionB(),findMistake.getOptionC(), findMistake.getScore(), findMistake.getIdCategory(), categoryString);
 		return findMistakeDTO;
 	}
 	

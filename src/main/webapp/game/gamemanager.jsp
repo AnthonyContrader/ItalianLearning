@@ -20,7 +20,7 @@
   	<a href="GuessPictureServlet?mode=gamelist">Guess Pictures</a>
   	<a href="HangmanServlet?mode=gamelist">Hangmen</a>
   	<a href="OrganizeSentenceServlet?mode=gamelist">Organize Sentences</a>
-  	<a href="QuizServlet?mode=gamelist">Quizzes</a>
+  	<a href="QuizServlet?mode=gamelist">Quiz</a>
   	<a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <div class="main">

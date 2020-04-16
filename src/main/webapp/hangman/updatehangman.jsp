@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>Modifica Impiccato</title>
+<title>Edit Hangman</title>
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
@@ -31,7 +31,7 @@
       <label for="solution">Soluzione</label>
     </div>
     <div class="col-75">
-      <input type="text" id="solution" name="solution" value="<%=h.getSolution()%>">
+      <input type="text" id="solution" name="solution" required placeholder="Inserisci la soluzione" value="<%=h.getSolution()%>">
     </div>
   </div>
   <div class="row">
@@ -39,7 +39,7 @@
      <label for="pass">Indizio</label>
     </div>
     <div class="col-75">
-      <input type="text" id="sentence" name="sentence" value="<%=h.getSentence()%>"> 
+      <input type="text" id="sentence" name="sentence" required placeholder="Inserisci l'indizio" value="<%=h.getSentence()%>"> 
     </div>
   </div>
   <div class="row">
@@ -47,7 +47,7 @@
      <label for="definition">Definizione</label>
     </div>
     <div class="col-75">
-      <input type="text" id="definition" name="definition" value="<%=h.getDefinition()%>"> 
+      <input type="text" id="definition" name="definition" placeholder="Inserisci la definizione" value="<%=h.getDefinition()%>"> 
     </div>
   </div>
   <div class="row">
@@ -65,10 +65,10 @@
    		 <div class="col-75">
  			<select id="type" name="idCategory">
 	 			<%
-					for (CategoryDTO c : categoryList) {
+					for (CategoryDTO category : categoryList) {
 				%>
-  				<option value=<%= c.getId() %> <%= Integer.valueOf(c.getId()) == h.getIdCategory() ? "selected" : ""%>>
-  					<%= c.getTitle() %>
+  				<option value=<%= category.getId() %> <%= Integer.valueOf(category.getId()) == h.getIdCategory() ? "selected" : ""%> >
+  					<%= category.getTitle() %>
 				</option>
   				<%
 					}

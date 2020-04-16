@@ -41,7 +41,7 @@ public class FindMistakeDTO {
 	}
 	
 	public FindMistakeDTO(int id, String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, Integer score, String category) {
+			String optionC, Integer score, Integer idCategory, String category) {
 		this.id = id;
 		this.solution = solution;
 		this.definition = definition;
@@ -51,6 +51,7 @@ public class FindMistakeDTO {
 		this.optionC = optionC;
 		this.score = score;
 		this.category = category;
+		this.idCategory = idCategory;
 	}
 	
 	public FindMistakeDTO(int id, String solution, String definition, String sentence, String optionA, String optionB,

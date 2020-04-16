@@ -6,21 +6,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import it.contrader.dto.HangmanDTO;
+import it.contrader.dto.FindMistakeDTO;
 import it.contrader.dto.CategoryDTO;
 import it.contrader.service.Service;
-import it.contrader.service.HangmanService;
+import it.contrader.service.FindMistakeService;
 import it.contrader.service.CategoryService;
 
-public class HangmanServlet extends HttpServlet {
+public class FindMistakeServlet extends HttpServlet {
 	
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
-	public HangmanServlet() {}
+	public FindMistakeServlet() {}
 	
 	public void updateList(HttpServletRequest request) {
-		Service<HangmanDTO> service = new HangmanService();
-		List<HangmanDTO> listDTO = service.getAll();
+		Service<FindMistakeDTO> service = new FindMistakeService();
+		List<FindMistakeDTO> listDTO = service.getAll();
 		request.setAttribute("list", listDTO);
 	}
 	
@@ -32,9 +32,9 @@ public class HangmanServlet extends HttpServlet {
 	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Service<HangmanDTO> service = new HangmanService();
+		Service<FindMistakeDTO> service = new FindMistakeService();
 		String mode = request.getParameter("mode");
-		HangmanDTO dto;
+		FindMistakeDTO dto;
 		int id;
 		boolean ans;
 
@@ -43,7 +43,7 @@ public class HangmanServlet extends HttpServlet {
 		case "GAMELIST":
 			updateList(request);
 			categoryList(request);
-			getServletContext().getRequestDispatcher("/hangman/hangmanmanager.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/findmistake/findmistakemanager.jsp").forward(request, response);
 			break;
 
 		case "READ":
@@ -52,13 +52,13 @@ public class HangmanServlet extends HttpServlet {
 			request.setAttribute("dto", dto);
 			
 			if (request.getParameter("update") == null) {
-				 getServletContext().getRequestDispatcher("/hangman/readhangman.jsp").forward(request, response);
+				 getServletContext().getRequestDispatcher("/findmistake/readfindmistake.jsp").forward(request, response);
 				
 			}
 			
 			else {
 				categoryList(request);
-				getServletContext().getRequestDispatcher("/hangman/updatehangman.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/findmistake/updatefindmistake.jsp").forward(request, response);
 			}
 			
 			break;
@@ -67,28 +67,34 @@ public class HangmanServlet extends HttpServlet {
 			String solution = request.getParameter("solution").toString();
 			String definition = request.getParameter("definition").toString();
 			String sentence = request.getParameter("sentence").toString();
+			String optionA = request.getParameter("optionA").toString();
+			String optionB = request.getParameter("optionB").toString();
+			String optionC = request.getParameter("optionC").toString();
 			Integer score = Integer.parseInt(request.getParameter("score").toString());
 			Integer idCategory = Integer.parseInt(request.getParameter("idCategory").toString());
-			dto = new HangmanDTO (solution,definition,sentence, score, idCategory);
+			dto = new FindMistakeDTO (solution,definition,sentence, optionA, optionB, optionC, score, idCategory);
 			ans = service.insert(dto);
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
-			getServletContext().getRequestDispatcher("/hangman/hangmanmanager.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/findmistake/findmistakemanager.jsp").forward(request, response);
 			break;
 			
 		case "UPDATE":
 			solution = request.getParameter("solution").toString();
 			definition = request.getParameter("definition").toString();
 			sentence = request.getParameter("sentence").toString();
+			optionA = request.getParameter("optionA").toString();
+			optionB = request.getParameter("optionB").toString();
+			optionC = request.getParameter("optionC").toString();
 			score = Integer.parseInt(request.getParameter("score").toString());
 			idCategory = Integer.parseInt(request.getParameter("idCategory").toString());
 			id = Integer.parseInt(request.getParameter("id"));
-			dto = new HangmanDTO (id,solution,definition,sentence, score, idCategory);
+			dto = new FindMistakeDTO (id,solution,definition,sentence, optionA, optionB, optionC, score, idCategory);
 			ans = service.update(dto);
 			updateList(request);
 			categoryList(request);
-			getServletContext().getRequestDispatcher("/hangman/hangmanmanager.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/findmistake/findmistakemanager.jsp").forward(request, response);
 			break;
 
 		case "DELETE":
@@ -97,9 +103,8 @@ public class HangmanServlet extends HttpServlet {
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
-			getServletContext().getRequestDispatcher("/hangman/hangmanmanager.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/findmistake/findmistakemanager.jsp").forward(request, response);
 			break;
 		}
 	}
-
 }
