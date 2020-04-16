@@ -92,6 +92,7 @@ public class FindAWordServlet extends HttpServlet {
 				id = Integer.parseInt(request.getParameter("id"));
 				dto = new FindAWordDTO (id,idCategory,score,solution,definition,sentence);
 				ans = service.update(dto);
+				request.setAttribute("ans", ans);
 				updateList(request);
 				categoryList(request);
 				getServletContext().getRequestDispatcher("/findaword/findawordmanager.jsp").forward(request, response);

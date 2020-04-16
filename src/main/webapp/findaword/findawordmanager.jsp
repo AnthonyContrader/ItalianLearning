@@ -23,6 +23,19 @@
 	//list contiene tutti gli elementi del gioco che verrenno stampati nella tabella
 		List<FindAWordDTO> list = (List<FindAWordDTO>) request.getAttribute("list");
 		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+		
+		
+		String ans = null;
+		try{
+			ans = request.getAttribute("ans").toString();
+		}
+		catch (Exception e){}
+	%>
+<% if (ans != null) {%>
+	<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
+		<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
+	</h2>
+<% } %>
 	%>
 
 <br>
@@ -104,7 +117,7 @@
     </div>
     <div class="col-75">
     <!-- input crea campo di inserimento -->
-      <input type="number" id="score" name="score" required placeholder="Insert Score">
+      <input type="number" id="score" name="score" min=1 required placeholder="Insert Score">
     </div>
   </div>
   
