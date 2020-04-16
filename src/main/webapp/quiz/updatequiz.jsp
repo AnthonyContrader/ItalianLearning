@@ -8,13 +8,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>Quiz</title>
+<title>Modifica Quiz</title>
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
   <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="QuizServlet?mode=quizlist">Quizzes</a>
+  <a class="active" href="QuizServlet?mode=quizlist">Quiz</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <br>
@@ -23,27 +23,27 @@
 <%QuizDTO q = (QuizDTO) request.getAttribute("dto");
 List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
 %>
-<form id="floatright" action="QuizServlet?mode=update&id=<%=q.getId()%>" method="post">
+<form id="floatleft" action="QuizServlet?mode=update&id=<%=q.getId()%>" method="post">
   <div class="row">
     <div class="col-25">
       <label for="quiz">Solution</label>
     </div>
     <div class="col-75">
-      <input type="text" id="solution" name="solution" required placeholder="inserisci la soluzione">
+      <input value="<%= q.getSolution()%>" type="text" id="solution" name="solution" required placeholder="enter the solution">
     </div>
     <div class="row">
     <div class="col-25">
       <label for="quiz">Definition</label>
     </div>
     <div class="col-75">
-      <input type="text" id="definition" name="definition" required placeholder="inserisci la risposta corretta">
+      <input value="<%= q.getDefinition()%>" type="text" id="definition" name="definition" required placeholder="enter the correct answer">
     </div>
     <div class="row">
     <div class="col-25">
       <label for="quiz">Sentence</label>
     </div>
     <div class="col-75">
-      <input type="text" id="sentence" name="sentence" required placeholder="inserisci l'indizio">
+      <input value="<%= q.getSentence()%>" type="text" id="sentence" name="sentence" required placeholder="enter the clue">
     </div>
   </div>
   <div class="row">
@@ -51,7 +51,7 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
      <label for="quizr">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" required placeholder="inserisci punteggio"> 
+      <input value="<%= q.getScore()%>" type="number" id="score" name="score" required placeholder="enter score"> 
     </div>
     <div class="row">
     <div class="col-25">
@@ -63,8 +63,10 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
       <%
       for (CategoryDTO category : categoryList){
       %>
-      <option value= <%= category.getId()%>> <%= category.getTitle() %> </option>
-     <%
+      <option value=<%= category.getId()%> <%= Integer.valueOf(category.getId()) == q.getIdCategory() ? "selected" : ""%> >
+       <%= category.getTitle()%>
+       </option>
+      <% 
       	  }
       %>
      	</select>

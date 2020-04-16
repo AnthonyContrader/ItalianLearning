@@ -6,14 +6,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>Quizzes</title>
+<title>Quiz</title>
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
   <a  href="GameServlet">Home</a>
-  <a class="active" href="QuizServlet?mode=gamelist">Quizzes</a>
+  <a class="active" href="QuizServlet?mode=gamelist">Quiz</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
 
@@ -48,10 +48,7 @@
 		<td><a href=CategoryServlet?mode=read&id=<%=q.getId()%>>
 					<%=q.getId()%>
 			</a></td>
-			<td><a href=QuizServlet?mode=read&id=<%=q.getId()%>>
-					<%=q.getSolution()%>
-			</a></td>
-			<td><%=q.getId()%></td>
+			
 			<td><%=q.getSolution()%></td>
 			<td><%=q.getSentence()%></td>
 			<td><%=q.getDefinition()%></td>
@@ -59,7 +56,7 @@
 			<td><%=q.getCategory()%></td>
 			<td><a href=QuizServlet?mode=read&update=true&id=<%=q.getId()%>>Edit</a>
 			</td>
-			<td><a href=QuizrServlet?mode=delete&id=<%=q.getId()%>>Delete</a>
+			<td><a href=QuizServlet?mode=read&delete=true&id=<%=q.getId()%>>Delete</a>
 			</td>
 
 		</tr>
@@ -76,21 +73,21 @@
       <label for="quiz">Solution</label>
     </div>
     <div class="col-75">
-      <input type="text" id="solution" name="solution" required placeholder="inserisci la soluzione">
+      <input type="text" id="solution" name="solution" required placeholder="enter the solution">
     </div>
     <div class="row">
     <div class="col-25">
       <label for="quiz">Definition</label>
     </div>
     <div class="col-75">
-      <input type="text" id="definition" name="definition" required placeholder="inserisci la risposta corretta">
+      <input type="text" id="definition" name="definition" required placeholder="enter the correct answer">
     </div>
     <div class="row">
     <div class="col-25">
       <label for="quiz">Sentence</label>
     </div>
     <div class="col-75">
-      <input type="text" id="sentence" name="sentence" required placeholder="inserisci l'indizio">
+      <input type="text" id="sentence" name="sentence" required placeholder="enter the clue">
     </div>
   </div>
   <div class="row">
@@ -98,7 +95,7 @@
      <label for="quizr">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" required placeholder="inserisci punteggio"> 
+      <input type="number" id="score" name="score" required placeholder="enter score"> 
     </div>
     <div class="row">
     <div class="col-25">
