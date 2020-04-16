@@ -27,14 +27,14 @@
 %>
 
 
-<form id="floatright" action="GuessPictureServlet?mode=update&id=<%=g.getId()%>" method="post">
+<form id="floatleft" action="GuessPictureServlet?mode=update&id=<%=g.getId()%>" method="post">
 
   <div class="row">
     <div class="col-25">
       <label for="solution">Solution</label>
     </div>
     <div class="col-75">
-      <input type="text" id="solution" name="solution" required placeholder="Inserisci la soluzione">
+      <input value="<%=g.getSolution()%>" type="text" id="solution" name="solution" required placeholder="Insert solution">
     </div>
   </div>
   
@@ -43,7 +43,7 @@
      <label for="score">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" required placeholder="Inserisci il punteggio"> 
+      <input value="<%=g.getScore()%>" type="number" id="score" name="score" required placeholder="insert score"> 
     </div>
   </div>
   
@@ -58,21 +58,24 @@
   
   <div class="row">
     <div class="col-25">
-      <label for="idCategory">Category</label>
-   	</div>
-   	<div class="col-75">
-		<select id="idCategory" name="idCategory" required>
-			<option value="">Choose one...</option>
- 			<%
-				for (CategoryDTO category : categoryList) {
-			%>
-			<option value=<%= category.getId() %>> <%= category.getTitle() %> </option>
-			<%
-				}
-			%>
-		</select>
-   	</div>
+      <label for="type">Categoria</label>
+    </div>
+   		 <div class="col-75">
+ 			<select id="type" name="idCategory">
+	 			<%
+					for (CategoryDTO c : categoryList) {
+				%>
+  				<option value=<%= c.getId() %> <%= Integer.valueOf(c.getId()) == g.getIdCategory() ? "selected" : ""%>>
+  					<%= c.getTitle() %>
+				</option>
+  				<%
+					}
+  				%>
+
+			</select>
+    	</div>
   </div>
+  
   <button type="submit" >Salva</button>
 </form>
 
