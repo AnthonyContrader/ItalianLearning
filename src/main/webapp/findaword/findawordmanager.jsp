@@ -18,6 +18,7 @@
   	<a class="active" href="FindAWordServlet?mode=gamelist">Find a Word</a>
   	<a href="LogoutServlet" id="logout">Logout</a>
 </div>
+<div class="main">
 	<%
 	//list contiene tutti gli elementi del gioco che verrenno stampati nella tabella
 		List<FindAWordDTO> list = (List<FindAWordDTO>) request.getAttribute("list");
