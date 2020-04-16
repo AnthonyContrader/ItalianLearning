@@ -4,7 +4,41 @@ public class FindAWordDTO {
 	private int id;
 	private Integer idCategory;
 	private Integer score;
+	private String solution;
+	private String definition;
+	private String sentence;
+	private String category;
 	
+	private Integer idLevel;
+	private String level;
+	
+	public FindAWordDTO(Integer idCategory, Integer score, String solution, String definition, String sentence,
+			String category, Integer idLevel, String level) {
+		super();
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.category = category;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+	public FindAWordDTO(int id, Integer idCategory, Integer score, String solution, String definition, String sentence,
+			String category, Integer idLevel, String level) {
+		super();
+		this.id = id;
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.category = category;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
 	public FindAWordDTO(Integer idCategory, Integer score, String solution, String definition, String sentence,
 			String category) {
 		super();
@@ -27,11 +61,7 @@ public class FindAWordDTO {
 		this.sentence = sentence;
 		this.category = category;
 	}
-	private String solution;
-	private String definition;
-	private String sentence;
-	private String category;
-	
+
 	public FindAWordDTO()
 	{
 		
@@ -104,9 +134,23 @@ public class FindAWordDTO {
 	public void setSentence(String sentence) {
 		this.sentence = sentence;
 	}
-	@Override
-	public String toString() {
-		return id + "\t" + solution +  "\t\t" + sentence + "\t\t" + score + "\t\t" + category;
+	
+	
+	
+	public Integer getIdLevel() {
+		return idLevel;
+	}
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 	public String getCategory() {

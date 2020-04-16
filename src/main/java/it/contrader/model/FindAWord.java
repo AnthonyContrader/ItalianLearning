@@ -5,6 +5,7 @@ public class FindAWord {
 	private int id;
 	private Integer idCategory;
 	private Integer score;
+	private Integer idLevel;
 	
 	private String solution;
 	private String definition;
@@ -13,6 +14,28 @@ public class FindAWord {
 	public FindAWord()
 	{
 		
+	}
+
+	public FindAWord(int id, Integer idCategory, Integer score, String solution, String definition,
+			String sentence, Integer idLevel) {
+		this.id = id;
+		this.idCategory = idCategory;
+		this.score = score;
+		this.idLevel = idLevel;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+	}
+	
+	public FindAWord(Integer idCategory, Integer score, String solution, String definition,
+			String sentence, Integer idLevel) {
+		super();
+		this.idCategory = idCategory;
+		this.score = score;
+		this.idLevel = idLevel;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
 	}
 
 	public FindAWord(int id, Integer idCategory, Integer score, String solution, String definition, String sentence) {
@@ -82,13 +105,34 @@ public class FindAWord {
 		this.sentence = sentence;
 	}
 
-	@Override
-	public String toString() {
-		return "FindAWord [id=" + id + ", idCategory=" + idCategory + ", score=" + score + ", solution=" + solution
-				+ ", definition=" + definition + ", sentence=" + sentence + "]";
+
+	public Integer getIdLevel() {
+		return idLevel;
 	}
 
-	
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+	@Override
+	public String toString() {
+		return "FindAWord [id=" + id + ", idCategory=" + idCategory + ", score=" + score + ", idLevel=" + idLevel
+				+ ", solution=" + solution + ", definition=" + definition + ", sentence=" + sentence + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((definition == null) ? 0 : definition.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((idCategory == null) ? 0 : idCategory.hashCode());
+		result = prime * result + ((idLevel == null) ? 0 : idLevel.hashCode());
+		result = prime * result + ((score == null) ? 0 : score.hashCode());
+		result = prime * result + ((sentence == null) ? 0 : sentence.hashCode());
+		result = prime * result + ((solution == null) ? 0 : solution.hashCode());
+		return result;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -111,6 +155,11 @@ public class FindAWord {
 				return false;
 		} else if (!idCategory.equals(other.idCategory))
 			return false;
+		if (idLevel == null) {
+			if (other.idLevel != null)
+				return false;
+		} else if (!idLevel.equals(other.idLevel))
+			return false;
 		if (score == null) {
 			if (other.score != null)
 				return false;
@@ -128,6 +177,6 @@ public class FindAWord {
 			return false;
 		return true;
 	}
+
 }
-	
 	

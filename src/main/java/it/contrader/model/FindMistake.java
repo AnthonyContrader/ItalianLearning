@@ -10,11 +10,45 @@ public class FindMistake {
 	private String optionC;
 	private Integer score;
 	private Integer idCategory;
+	private Integer idLevel;
 	
 	public FindMistake() {
 		
 	}
 	
+	public FindMistake(String solution, String definition, String sentence, String optionA, String optionB,
+			String optionC, Integer score, Integer idCategory, Integer idLevel) {
+		super();
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.optionA = optionA;
+		this.optionB = optionB;
+		this.optionC = optionC;
+		this.score = score;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+	}
+
+
+
+	public FindMistake(int id, String solution, String definition, String sentence, String optionA, String optionB,
+			String optionC, Integer score, Integer idCategory, Integer idLevel) {
+		super();
+		this.id = id;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.optionA = optionA;
+		this.optionB = optionB;
+		this.optionC = optionC;
+		this.score = score;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+	}
+
+
+
 	public FindMistake(String solution, String definition, String sentence, String optionA, String optionB,
 			String optionC, Integer score, Integer idCategory) {
 		this.solution = solution;
@@ -112,6 +146,20 @@ public class FindMistake {
 		this.idCategory = idCategory;
 	}
 
+	public Integer getIdLevel() {
+		return idLevel;
+	}
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+	@Override
+	public String toString() {
+		return "FindMistake [id=" + id + ", solution=" + solution + ", definition=" + definition + ", sentence="
+				+ sentence + ", optionA=" + optionA + ", optionB=" + optionB + ", optionC=" + optionC + ", score="
+				+ score + ", idCategory=" + idCategory + ", idLevel=" + idLevel + "]";
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -133,6 +181,11 @@ public class FindMistake {
 			if (other.idCategory != null)
 				return false;
 		} else if (!idCategory.equals(other.idCategory))
+			return false;
+		if (idLevel == null) {
+			if (other.idLevel != null)
+				return false;
+		} else if (!idLevel.equals(other.idLevel))
 			return false;
 		if (optionA == null) {
 			if (other.optionA != null)
@@ -167,10 +220,4 @@ public class FindMistake {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return id + "\t" + solution + "\t\t" + definition + "\t\t"+ sentence + "\t\t"+ optionA + "\t\t" + optionB + "\t\t"+ optionC + "\t\t"
-				+ score + "\t\t" + idCategory;
-	}
-	
 }

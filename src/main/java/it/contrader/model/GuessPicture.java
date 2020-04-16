@@ -4,12 +4,35 @@ public class GuessPicture {
 	
 	private int id;
 	private Integer idCategory;
+	private Integer idLevel;
 	private Integer score;
 	private String solution;
 	private String image;
 	
 
 	public GuessPicture() {}
+	
+
+	public GuessPicture(Integer idCategory, Integer score, String solution, String image, Integer idLevel) {
+		super();
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+		this.score = score;
+		this.solution = solution;
+		this.image = image;
+	}
+
+	public GuessPicture(int id, Integer idCategory, Integer score, String solution, String image, Integer idLevel) {
+		super();
+		this.id = id;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+		this.score = score;
+		this.solution = solution;
+		this.image = image;
+	}
+
+
 
 	public GuessPicture(int id, Integer idCategory, Integer score, String solution, String image) {
 		super();
@@ -69,10 +92,21 @@ public class GuessPicture {
 		this.image = image;
 	}
 
+
+	public Integer getIdLevel() {
+		return idLevel;
+	}
+
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+
 	@Override
 	public String toString() {
-		return "GuessPicture [id=" + id + ", idCategory=" + idCategory + ", score=" + score + ", solution=" + solution
-				+ ", image=" + image + "]";
+		return "GuessPicture [id=" + id + ", idCategory=" + idCategory + ", idLevel=" + idLevel + ", score=" + score
+				+ ", solution=" + solution + ", image=" + image + "]";
 	}
 
 	@Override
@@ -91,6 +125,11 @@ public class GuessPicture {
 				return false;
 		} else if (!idCategory.equals(other.idCategory))
 			return false;
+		if (idLevel == null) {
+			if (other.idLevel != null)
+				return false;
+		} else if (!idLevel.equals(other.idLevel))
+			return false;
 		if (image == null) {
 			if (other.image != null)
 				return false;
@@ -108,5 +147,6 @@ public class GuessPicture {
 			return false;
 		return true;
 	}
+
 	
 }

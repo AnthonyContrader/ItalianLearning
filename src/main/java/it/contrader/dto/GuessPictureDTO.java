@@ -9,8 +9,41 @@ public class GuessPictureDTO {
 	private String image;
 	private String category;
 	
+	private Integer idLevel;
+	private String level;
+	
 	public GuessPictureDTO() {}
 	
+	
+	public GuessPictureDTO(Integer idCategory, Integer score, String solution, String image, String category,
+			Integer idLevel, String level) {
+		super();
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.image = image;
+		this.category = category;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+
+
+	public GuessPictureDTO(int id, Integer idCategory, Integer score, String solution, String image, String category,
+			Integer idLevel, String level) {
+		super();
+		this.id = id;
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.image = image;
+		this.category = category;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+
+
 	public GuessPictureDTO(int id, Integer idCategory, Integer score, String solution, String image) {
 		this.id = id;
 		this.idCategory = idCategory;
@@ -91,9 +124,26 @@ public class GuessPictureDTO {
 		this.category = category;
 	}
 
-	@Override
-	public String toString() {
-		return id + "\t" + solution + "\t\t" + score + "\t\t" + category;
+
+	public Integer getIdLevel() {
+		return idLevel;
 	}
+
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+
+	public String getLevel() {
+		return level;
+	}
+
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	
 	
 }

@@ -117,4 +117,15 @@
 		<servlet-name>GameServlet</servlet-name>
 		<url-pattern>/GameServlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>LevelServlet</display-name>
+		<servlet-name>LevelServlet</servlet-name>
+		<servlet-class>it.contrader.servlets.LevelServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LevelServlet</servlet-name>
+		<url-pattern>/LevelServlet</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

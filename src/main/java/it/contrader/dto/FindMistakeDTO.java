@@ -12,10 +12,51 @@ public class FindMistakeDTO {
 	private Integer score;
 	private Integer idCategory;
 	
+	private Integer idLevel;
+	private String level;
+	
 	public FindMistakeDTO() {
 		
 	}
 	
+	
+	public FindMistakeDTO(String solution, String definition, String sentence, String optionA, String optionB,
+			String optionC, String category, Integer score, Integer idCategory, Integer idLevel, String level) {
+		super();
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.optionA = optionA;
+		this.optionB = optionB;
+		this.optionC = optionC;
+		this.category = category;
+		this.score = score;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+
+
+	public FindMistakeDTO(int id, String solution, String definition, String sentence, String optionA, String optionB,
+			String optionC, String category, Integer score, Integer idCategory, Integer idLevel, String level) {
+		super();
+		this.id = id;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.optionA = optionA;
+		this.optionB = optionB;
+		this.optionC = optionC;
+		this.category = category;
+		this.score = score;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+
+
 	public FindMistakeDTO(String solution, String definition, String sentence, String optionA, String optionB,
 			String optionC, Integer score, String category) {
 		this.solution = solution;
@@ -150,10 +191,25 @@ public class FindMistakeDTO {
 	public String getCategory(Integer idCategory) {
 		return category; 
 	}
-	
-	@Override
-	public String toString() {
-		return id + "\t" + solution + "\t\t"+ sentence + "\t\t"+ score + "\t\t" + category;
+
+
+	public Integer getIdLevel() {
+		return idLevel;
 	}
+
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+	
 
 }

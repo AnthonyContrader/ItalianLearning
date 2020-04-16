@@ -7,10 +7,34 @@ public class Hangman {
 	private String sentence;
 	private Integer score;
 	private Integer idCategory;
+	private Integer idLevel;
 	
 	public Hangman() {
 	}
 	
+	public Hangman(int id, String solution, String definition, String sentence, Integer score, Integer idCategory,
+			Integer idLevel) {
+		super();
+		this.id = id;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.score = score;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+	}
+
+	public Hangman(String solution, String definition, String sentence, Integer score, Integer idCategory,
+			Integer idLevel) {
+		super();
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.score = score;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+	}
+
 	public Hangman(String solution, String definition, String sentence, Integer score, Integer idCategory) {
 		this.solution = solution;
 		this.definition = definition;
@@ -31,10 +55,6 @@ public class Hangman {
 	public int getId() {
 		return id;
 	}
-
-	/*
-	 * public void setId(int id) { this.id = id; }
-	 */
 
 	public String getSolution() {
 		return solution;
@@ -76,6 +96,24 @@ public class Hangman {
 		this.idCategory = idCategory;
 	}
 
+	public Integer getIdLevel() {
+		return idLevel;
+	}
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Hangman [id=" + id + ", solution=" + solution + ", definition=" + definition + ", sentence=" + sentence
+				+ ", score=" + score + ", idCategory=" + idCategory + ", idLevel=" + idLevel + "]";
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -92,9 +130,20 @@ public class Hangman {
 			return false;
 		if (id != other.id)
 			return false;
-		if (idCategory != other.idCategory)
+		if (idCategory == null) {
+			if (other.idCategory != null)
+				return false;
+		} else if (!idCategory.equals(other.idCategory))
 			return false;
-		if (score != other.score)
+		if (idLevel == null) {
+			if (other.idLevel != null)
+				return false;
+		} else if (!idLevel.equals(other.idLevel))
+			return false;
+		if (score == null) {
+			if (other.score != null)
+				return false;
+		} else if (!score.equals(other.score))
 			return false;
 		if (sentence == null) {
 			if (other.sentence != null)
@@ -107,11 +156,6 @@ public class Hangman {
 		} else if (!solution.equals(other.solution))
 			return false;
 		return true;
-	}
-	
-	@Override
-	public String toString() {
-		return id + "\t" + solution + "\t\t" + definition + "\t\t" + sentence + "\t\t" + score + "\t\t" + idCategory;
 	}
 
 }

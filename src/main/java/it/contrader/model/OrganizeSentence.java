@@ -8,12 +8,37 @@ public class OrganizeSentence {
 	private Integer score;
 	private String definition;
 	private Integer idCategory;
-	
+	private Integer idLevel;
 	
 	
 	public OrganizeSentence() {
 		
 	}
+
+	
+	public OrganizeSentence(int id, String solution, String sentence, Integer score, String definition,
+			Integer idCategory, Integer idLevel) {
+		super();
+		this.id = id;
+		this.solution = solution;
+		this.sentence = sentence;
+		this.score = score;
+		this.definition = definition;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+	}
+
+	public OrganizeSentence(String solution, String sentence, Integer score, String definition, Integer idCategory,
+			Integer idLevel) {
+		super();
+		this.solution = solution;
+		this.sentence = sentence;
+		this.score = score;
+		this.definition = definition;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+	}
+
 
 
 	public OrganizeSentence(int id, String solution, String sentence, Integer score, String definition,
@@ -98,12 +123,21 @@ public class OrganizeSentence {
 	}
 
 
+	public Integer getIdLevel() {
+		return idLevel;
+	}
+
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+
 	@Override
 	public String toString() {
 		return "OrganizeSentence [id=" + id + ", solution=" + solution + ", sentence=" + sentence + ", score=" + score
-				+ ", definition=" + definition + ", idCategory=" + idCategory + "]";
+				+ ", definition=" + definition + ", idCategory=" + idCategory + ", idLevel=" + idLevel + "]";
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -121,9 +155,20 @@ public class OrganizeSentence {
 			return false;
 		if (id != other.id)
 			return false;
-		if (idCategory != other.idCategory)
+		if (idCategory == null) {
+			if (other.idCategory != null)
+				return false;
+		} else if (!idCategory.equals(other.idCategory))
 			return false;
-		if (score != other.score)
+		if (idLevel == null) {
+			if (other.idLevel != null)
+				return false;
+		} else if (!idLevel.equals(other.idLevel))
+			return false;
+		if (score == null) {
+			if (other.score != null)
+				return false;
+		} else if (!score.equals(other.score))
 			return false;
 		if (sentence == null) {
 			if (other.sentence != null)
@@ -138,6 +183,4 @@ public class OrganizeSentence {
 		return true;
 	}
 	
-	
-
 }

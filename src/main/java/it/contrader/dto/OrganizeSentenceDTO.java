@@ -11,10 +11,44 @@ public class OrganizeSentenceDTO {
 	private Integer idCategory;
 	private String category;
 	
+	private Integer idLevel;
+	private String level;
+	
 	public OrganizeSentenceDTO() {
 		
 	}
 	
+	public OrganizeSentenceDTO(String solution, String sentence, Integer score, String definition, Integer idCategory,
+			String category, Integer idLevel, String level) {
+		super();
+		this.solution = solution;
+		this.sentence = sentence;
+		this.score = score;
+		this.definition = definition;
+		this.idCategory = idCategory;
+		this.category = category;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+
+
+	public OrganizeSentenceDTO(int id, String solution, String sentence, Integer score, String definition,
+			Integer idCategory, String category, Integer idLevel, String level) {
+		super();
+		this.id = id;
+		this.solution = solution;
+		this.sentence = sentence;
+		this.score = score;
+		this.definition = definition;
+		this.idCategory = idCategory;
+		this.category = category;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+
+
 	public OrganizeSentenceDTO(int id, String solution, String sentence, Integer score, String definition,
 			Integer idCategory, String category) {
 		super();
@@ -118,10 +152,22 @@ public class OrganizeSentenceDTO {
 		this.category = category;
 	}
 
-	@Override
-	public String toString() {
-		return id + "\t" + solution  + "\t\t" + sentence + "\t\t" + score + "\t\t" + category;
+	public Integer getIdLevel() {
+		return idLevel;
 	}
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
 	
 
 }

@@ -10,10 +10,68 @@ public class QuizDTO {
 	private String category;
 	private String sentence;
 	
+	private Integer idLevel;
+	private String level;
 	
 	
 	public QuizDTO() {
 	}
+
+	
+
+	public QuizDTO(Integer idCategory, Integer score, String solution, String definition, String category,
+			String sentence, Integer idLevel, String level) {
+		super();
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.definition = definition;
+		this.category = category;
+		this.sentence = sentence;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+
+
+	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String category,
+			String sentence, Integer idLevel, String level) {
+		super();
+		this.id = id;
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.definition = definition;
+		this.category = category;
+		this.sentence = sentence;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+
+
+	public Integer getIdLevel() {
+		return idLevel;
+	}
+
+
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+
+
+	public String getLevel() {
+		return level;
+	}
+
+
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
 
 
 	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String sentence) {
@@ -118,16 +176,5 @@ public class QuizDTO {
 		this.sentence = sentence;
 	}
 
-
-	@Override
-	public String toString() {
-		return "QuizDTO [id=" + id + ", idCategory=" + idCategory + ", score=" + score + ", solution=" + solution
-				+ ", definition=" + definition + ", category=" + category + ", sentence=" + sentence + "]";
-	}
-
-
-
 }
 	
-
-

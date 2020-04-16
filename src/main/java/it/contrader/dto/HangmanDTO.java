@@ -11,9 +11,44 @@ public class HangmanDTO {
 	@SuppressWarnings("unused")
 	private Integer idCategory;
 	
+	private Integer idLevel;
+	private String level;
+	
 	public HangmanDTO() {
 	}
 	
+	
+	public HangmanDTO(String solution, String definition, String sentence, String category, Integer score,
+			Integer idCategory, Integer idLevel, String level) {
+		super();
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.category = category;
+		this.score = score;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+
+
+	public HangmanDTO(int id, String solution, String definition, String sentence, String category, Integer score,
+			Integer idCategory, Integer idLevel, String level) {
+		super();
+		this.id = id;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.category = category;
+		this.score = score;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+		this.level = level;
+	}
+
+
+
 	public HangmanDTO(String solution, String definition, String sentence, Integer score, Integer idCategory) {
 		this.solution = solution;
 		this.definition = definition;
@@ -101,10 +136,33 @@ public class HangmanDTO {
 		this.idCategory = idCategory;
 	}
 
-	@Override
-	public String toString() {
-		return id + "\t" + solution + "\t" + sentence + "\t\t" + score + "\t\t" + category;
+
+	public Integer getIdLevel() {
+		return idLevel;
 	}
+
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
+
+	public String getLevel() {
+		return level;
+	}
+
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	
 
 
 }

@@ -9,12 +9,38 @@ public class Quiz {
 	private String solution;
 	private String definition;
 	private String sentence;
-	
-	
+	private Integer idLevel;
 	
 	public Quiz() {
 		
 	}
+
+	public Quiz(Integer idCategory, Integer score, String solution, String definition, String sentence,
+			Integer idLevel) {
+		super();
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.idLevel = idLevel;
+	}
+
+
+
+	public Quiz(int id, Integer idCategory, Integer score, String solution, String definition, String sentence,
+			Integer idLevel) {
+		super();
+		this.id = id;
+		this.idCategory = idCategory;
+		this.score = score;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.idLevel = idLevel;
+	}
+
+
 
 	public Quiz(Integer idCategory, Integer score, String solution, String definition, String sentence) {
 		
@@ -83,8 +109,15 @@ public class Quiz {
 	public void setSentence(String sentence) {
 		this.sentence = sentence;
 	}
-
 	
+	public Integer getIdLevel() {
+		return idLevel;
+	}
+
+	public void setIdLevel(Integer idLevel) {
+		this.idLevel = idLevel;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -105,6 +138,11 @@ public class Quiz {
 			if (other.idCategory != null)
 				return false;
 		} else if (!idCategory.equals(other.idCategory))
+			return false;
+		if (idLevel == null) {
+			if (other.idLevel != null)
+				return false;
+		} else if (!idLevel.equals(other.idLevel))
 			return false;
 		if (score == null) {
 			if (other.score != null)
@@ -127,7 +165,7 @@ public class Quiz {
 	@Override
 	public String toString() {
 		return "Quiz [id=" + id + ", idCategory=" + idCategory + ", score=" + score + ", solution=" + solution
-				+ ", definition=" + definition + ", sentence=" + sentence + "]";
+				+ ", definition=" + definition + ", sentence=" + sentence + ", idLevel=" + idLevel + "]";
 	}
 	
 	
