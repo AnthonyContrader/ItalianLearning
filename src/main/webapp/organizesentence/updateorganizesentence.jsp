@@ -24,13 +24,13 @@
 %>
 
 
-<form id="floatright" action="OrganizeSentenceServlet?mode=update&id=<%=o.getId()%>" method="post">
+<form id="floatleft" action="OrganizeSentenceServlet?mode=update&id=<%=o.getId()%>" method="post">
   <div class="row">
     <div class="col-25">
       <label for="solution">Solution</label>
     </div>
     <div class="col-75">
-      <input type="text" id="solution" name="solution" value="<%=o.getSolution()%>">
+      <input type="text" id="solution" name="solution" value="<%=o.getSolution()%>" required placeholder="inserisci soluzione">
     </div>
   </div>
   
@@ -39,7 +39,7 @@
       <label for="sentence">Organize Sentence</label>
     </div>
     <div class="col-75">
-      <input type="text" id="sentence" name="sentence" value="<%=o.getSentence()%>"> 
+      <input type="text" id="sentence" name="sentence" value="<%=o.getSentence()%>" required placeholder="inserisci la frase disordinata"> 
     </div>
   </div>
   <div class="row">
@@ -47,7 +47,7 @@
      <label for="definition">Definition</label>
     </div>
     <div class="col-75">
-      <input type="text" id="definition" name="definition" value="<%=o.getDefinition()%>"> 
+      <input type="text" id="definition" name="definition" value="<%=o.getDefinition()%>"  placeholder="inserisci la definizione"> 
     </div>
   </div>
   
@@ -56,7 +56,7 @@
       <label for="score">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" value="<%=o.getScore()%>">
+      <input type="number" id="score" name="score" value="<%=o.getScore()%>" required placeholder="inserisci il punteggio">
     </div>
   </div>
   

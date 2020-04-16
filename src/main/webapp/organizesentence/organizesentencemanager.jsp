@@ -43,8 +43,9 @@
 		%>
 		<tr>
 			<td><a href=OrganizeSentenceServlet?mode=read&id=<%=o.getId()%>>
-					<%=o.getSolution()%>
+					<%=o.getId()%>
 			</a></td>
+			<td><%=o.getSolution()%></td>
 			<td><%=o.getSentence()%></td>
 			<td><%=o.getDefinition()%></td>
 			<td><%=o.getScore()%></td>
