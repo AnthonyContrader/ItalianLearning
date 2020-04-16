@@ -25,6 +25,19 @@
 	//Lista contiene tutti gli elementi del quiz che verranno stampati nella tabella
 		List<QuizDTO> list = (List<QuizDTO>) request.getAttribute("list");
 		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+		
+		String ans = null;
+		try{
+			ans = request.getAttribute("ans").toString();
+		}
+		catch (Exception e){}
+	%>
+<% if (ans != null) {%>
+	<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
+		<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
+	</h2>
+<% } %>
+<br>
 	%>
 
 <br>
@@ -96,7 +109,7 @@
      <label for="quizr">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" required placeholder="enter score"> 
+      <input type="number" id="score" name="score" min=1 required placeholder="enter score"> 
     </div>
     <div class="row">
     <div class="col-25">

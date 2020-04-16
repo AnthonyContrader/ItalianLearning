@@ -23,6 +23,7 @@
 
 <%QuizDTO q = (QuizDTO) request.getAttribute("dto");
 List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+
 %>
 <form id="floatleft" action="QuizServlet?mode=update&id=<%=q.getId()%>" method="post">
   <div class="row">
@@ -52,7 +53,7 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
      <label for="quizr">Score</label>
     </div>
     <div class="col-75">
-      <input value="<%= q.getScore()%>" type="number" id="score" name="score" required placeholder="enter score"> 
+      <input value="<%= q.getScore()%>" type="number" id="score" name="score" min=1 required placeholder="enter score"> 
     </div>
     <div class="row">
     <div class="col-25">

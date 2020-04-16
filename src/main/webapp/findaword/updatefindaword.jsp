@@ -64,7 +64,7 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
     </div>
     <div class="col-75">
     <!-- input crea campo di inserimento -->
-      <input value="<%=u.getScore() %>"type="number" id="score" name="score" required placeholder="Inserisci il punteggio">
+      <input value="<%=u.getScore() %>"type="number" id="score" name="score"  min=1 required placeholder="Inserisci il punteggio">
     </div>
   </div>
   

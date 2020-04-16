@@ -96,7 +96,7 @@ else getServletContext().getRequestDispatcher("/quiz/deletequiz.jsp").forward(re
 			id = Integer.parseInt(request.getParameter("id"));
 			dto = new QuizDTO (id, idCategory, score, solution, definition, sentence );
 			ans = service.update(dto);
-			
+			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
 			getServletContext().getRequestDispatcher("/quiz/quizmanager.jsp").forward(request, response);
