@@ -54,7 +54,7 @@
 			
 			<td><a href=FindAWordServlet?mode=read&update=true&id=<%=u.getId()%>>Edit</a>
 			</td>
-			<td><a href=FindAWordServlet?mode=delete&id=<%=u.getId()%>>Delete</a>
+			<td><a href=FindAWordServlet?mode=read&delete=true&id=<%=u.getId()%> style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>

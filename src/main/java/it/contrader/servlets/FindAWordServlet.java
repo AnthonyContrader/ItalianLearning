@@ -55,16 +55,15 @@ public class FindAWordServlet extends HttpServlet {
 				dto = service.read(id);
 				request.setAttribute("dto", dto);
 				
-				if (request.getParameter("update") == null) {
-					 getServletContext().getRequestDispatcher("/findaword/readfindaword.jsp").forward(request, response);
-					
-				}
+				if (request.getParameter("update") == null && request.getParameter("delete")== null) {
+					 getServletContext().getRequestDispatcher("/hangman/readhangman.jsp").forward(request, response);
+					}
 				
-				else {
-					
+				else if (request.getParameter("update") != null) {
 					categoryList(request);
 					getServletContext().getRequestDispatcher("/findaword/updatefindaword.jsp").forward(request, response);
 				}
+				else getServletContext().getRequestDispatcher("/findaword/deletefindaword.jsp").forward(request, response);
 				
 				break;
 
