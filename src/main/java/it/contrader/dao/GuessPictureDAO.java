@@ -122,7 +122,7 @@ public class GuessPictureDAO implements DAO<GuessPicture>{
 					guessPictureToUpdate.setSolution(guessPictureRead.getSolution());
 				}
 
-				if (guessPictureToUpdate.getImage() == null || guessPictureToUpdate.getImage().equals("\n")) {
+				if (guessPictureToUpdate.getImage() == null || guessPictureToUpdate.getImage().equals("")) {
 					guessPictureToUpdate.setImage(guessPictureRead.getImage());
 				}
 				

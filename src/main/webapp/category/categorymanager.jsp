@@ -45,7 +45,7 @@
 			
 			<td><a href=CategoryServlet?mode=read&update=true&id=<%=c.getId()%>>Edit</a>
 			</td>
-			<td><a href=CategoryServlet?mode=delete&id=<%=c.getId()%>>Delete</a>
+			<td><a href=CategoryServlet?mode=read&delete=true&id=<%=c.getId()%> style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>

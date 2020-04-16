@@ -19,23 +19,36 @@
 <div class="main">
 <%GuessPictureDTO g = (GuessPictureDTO) request.getAttribute("dto");%>
 
-	<table>
-		<tr>
-			<th>Id</th>
-			<th>Solution</th>
-			<th>Score</th>
-			<th>Category</th>
-		</tr>
-		<tr>
-		
-			<td><%=g.getId()%></td>
-			<td><%=g.getSolution()%></td>
-			<td><%=g.getScore()%></td>
-			<td><%=g.getCategory()%></td>
+	<div class="col-50">
+		<table class="col-75">
+			<tr>
+				<th>Id</th>
+				<th>Solution</th>
+				<th>Score</th>
+				<th>Category</th>
+			</tr>
+			<tr>
 			
-		</tr>
-	</table>
-
+				<td><%=g.getId()%></td>
+				<td><%=g.getSolution()%></td>
+				<td><%=g.getScore()%></td>
+				<td><%=g.getCategory()%></td>
+				
+			</tr>
+		</table>
+	</div>
+	
+	<div class="col-50">
+		<table class="col-100">
+			<tr> 
+				<th>Image</th>
+			</tr>
+			<tr>
+				<td><img style="max-width: 100%;" src="data:image/png;base64,<%=g.getImage()%>"></td>
+			</tr>	
+		</table>
+	</div>
+	
 <br>
 <br>
 <br>

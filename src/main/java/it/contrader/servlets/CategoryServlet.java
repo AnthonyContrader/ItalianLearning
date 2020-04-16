@@ -49,11 +49,12 @@ public class CategoryServlet extends HttpServlet {
 			dto = service.read(id);
 			request.setAttribute("dto", dto);
 			
-			if (request.getParameter("update") == null) {
+			if (request.getParameter("update") == null && request.getParameter("delete") == null) 
 				 getServletContext().getRequestDispatcher("/category/readcategory.jsp").forward(request, response);
-			}
-			
-			else getServletContext().getRequestDispatcher("/category/updatecategory.jsp").forward(request, response);
+			else if  (request.getParameter("update") != null) 
+				getServletContext().getRequestDispatcher("/category/updatecategory.jsp").forward(request, response);
+			else
+				getServletContext().getRequestDispatcher("/category/deletecategory.jsp").forward(request, response);
 			
 			break;
 
