@@ -24,8 +24,9 @@ DROP TABLE IF EXISTS `category`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(32) NOT NULL,
-  `description` varchar(512) DEFAULT NULL,
+  `score` int NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `description` varchar(2048) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -48,14 +49,17 @@ DROP TABLE IF EXISTS `findAWord`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `findAWord` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `score` int NOT NULL,
   `solution` varchar(32) NOT NULL,
   `definition` varchar(255) NOT NULL,
   `sentence` varchar(255) NOT NULL,
-  `score` int NOT NULL,
+  `idLevel` int NOT NULL,
   `idCategory` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idCategory` (`idCategory`),
-  CONSTRAINT `findaword_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`)
+  KEY `idLevel` (`idLevel`),
+  CONSTRAINT `findaword_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`),
+  CONSTRAINT `findaword_ibfk_2` FOREIGN KEY (`idLevel`) REFERENCES `level` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -77,17 +81,20 @@ DROP TABLE IF EXISTS `findMistake`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `findMistake` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `score` int NOT NULL,
   `solution` varchar(32) NOT NULL,
   `definition` varchar(255) NOT NULL,
   `sentence` varchar(255) NOT NULL,
   `optionA` varchar(50) NOT NULL,
   `optionB` varchar(50) NOT NULL,
   `optionC` varchar(50) NOT NULL,
-  `score` int NOT NULL,
+  `idLevel` int NOT NULL,
   `idCategory` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idCategory` (`idCategory`),
-  CONSTRAINT `findmistake_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`)
+  KEY `idLevel` (`idLevel`),
+  CONSTRAINT `findmistake_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`),
+  CONSTRAINT `findmistake_ibfk_2` FOREIGN KEY (`idLevel`) REFERENCES `level` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -101,6 +108,33 @@ LOCK TABLES `findMistake` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `gamePlaylist`
+--
+
+DROP TABLE IF EXISTS `gamePlaylist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `gamePlaylist` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `typeGame` varchar(64) NOT NULL,
+  `idGame` int NOT NULL,
+  `idPlaylist` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idPlaylist` (`idPlaylist`),
+  CONSTRAINT `gameplaylist_ibfk_1` FOREIGN KEY (`idPlaylist`) REFERENCES `playlist` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gamePlaylist`
+--
+
+LOCK TABLES `gamePlaylist` WRITE;
+/*!40000 ALTER TABLE `gamePlaylist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gamePlaylist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `guessPicture`
 --
 
@@ -109,13 +143,16 @@ DROP TABLE IF EXISTS `guessPicture`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `guessPicture` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `score` int NOT NULL,
   `solution` varchar(32) NOT NULL,
   `image` longblob NOT NULL,
-  `score` int NOT NULL,
+  `idLevel` int NOT NULL,
   `idCategory` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idCategory` (`idCategory`),
-  CONSTRAINT `guesspicture_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`)
+  KEY `idLevel` (`idLevel`),
+  CONSTRAINT `guesspicture_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`),
+  CONSTRAINT `guesspicture_ibfk_2` FOREIGN KEY (`idLevel`) REFERENCES `level` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -137,14 +174,17 @@ DROP TABLE IF EXISTS `hangman`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hangman` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `score` int NOT NULL,
   `solution` varchar(32) NOT NULL,
   `definition` varchar(255) NOT NULL,
   `sentence` varchar(255) NOT NULL,
-  `score` int NOT NULL,
+  `idLevel` int NOT NULL,
   `idCategory` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idCategory` (`idCategory`),
-  CONSTRAINT `hangman_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`)
+  KEY `idLevel` (`idLevel`),
+  CONSTRAINT `hangman_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`),
+  CONSTRAINT `hangman_ibfk_2` FOREIGN KEY (`idLevel`) REFERENCES `level` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -158,6 +198,30 @@ LOCK TABLES `hangman` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `level`
+--
+
+DROP TABLE IF EXISTS `level`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `level` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(32) NOT NULL,
+  `description` varchar(2048) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `level`
+--
+
+LOCK TABLES `level` WRITE;
+/*!40000 ALTER TABLE `level` DISABLE KEYS */;
+/*!40000 ALTER TABLE `level` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `organizeSentence`
 --
 
@@ -166,14 +230,17 @@ DROP TABLE IF EXISTS `organizeSentence`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `organizeSentence` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `solution` varchar(255) NOT NULL,
+  `score` int NOT NULL,
+  `solution` varchar(32) NOT NULL,
   `definition` varchar(255) NOT NULL,
   `sentence` varchar(255) NOT NULL,
-  `score` int NOT NULL,
+  `idLevel` int NOT NULL,
   `idCategory` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idCategory` (`idCategory`),
-  CONSTRAINT `organizesentence_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`)
+  KEY `idLevel` (`idLevel`),
+  CONSTRAINT `organizesentence_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`),
+  CONSTRAINT `organizesentence_ibfk_2` FOREIGN KEY (`idLevel`) REFERENCES `level` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -187,6 +254,30 @@ LOCK TABLES `organizeSentence` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `playlist`
+--
+
+DROP TABLE IF EXISTS `playlist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `playlist` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `description` varchar(2048) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `playlist`
+--
+
+LOCK TABLES `playlist` WRITE;
+/*!40000 ALTER TABLE `playlist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `playlist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `quiz`
 --
 
@@ -195,14 +286,17 @@ DROP TABLE IF EXISTS `quiz`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `quiz` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `score` int NOT NULL,
   `solution` varchar(32) NOT NULL,
   `definition` varchar(255) NOT NULL,
   `sentence` varchar(255) NOT NULL,
-  `score` int NOT NULL,
+  `idLevel` int NOT NULL,
   `idCategory` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idCategory` (`idCategory`),
-  CONSTRAINT `quiz_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`)
+  KEY `idLevel` (`idLevel`),
+  CONSTRAINT `quiz_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`),
+  CONSTRAINT `quiz_ibfk_2` FOREIGN KEY (`idLevel`) REFERENCES `level` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -278,4 +372,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-07 14:52:14
+-- Dump completed on 2020-04-16 17:53:09

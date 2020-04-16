@@ -111,7 +111,7 @@
     	</div>
   </div>
   
-  <button type="submit" >Salva</button>
+  <button type="submit" >Insert</button>
 </form>
 
 	
