@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ 
+	page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" 
     import="java.util.List"
     import="it.contrader.dto.GuessPictureDTO"
-    import="it.contrader.dto.CategoryDTO"%>
+    import="it.contrader.dto.CategoryDTO"
+%>
     
 <!DOCTYPE html>
 <html>
@@ -27,7 +29,7 @@
 %>
 
 
-<form id="floatleft" action="GuessPictureServlet?mode=update&id=<%=g.getId()%>" method="post">
+<form id="floatleft" action="GuessPictureServlet?mode=update&id=<%=g.getId()%>" enctype="multipart/form-data" method="post">
 
   <div class="row">
     <div class="col-25">
@@ -52,7 +54,7 @@
      <label for="score">Image</label>
     </div>
     <div class="col-75">
-      <input type="file" id="image" name="image"> 
+      <input type="file" size="50" id="image" name="image"> 
     </div>
   </div>
   
