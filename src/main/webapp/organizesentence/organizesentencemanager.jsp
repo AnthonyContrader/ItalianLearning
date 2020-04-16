@@ -50,9 +50,9 @@
 			<td><%=o.getDefinition()%></td>
 			<td><%=o.getScore()%></td>
 			<td><%=o.getCategory()%></td>
-			<td><a href=UserServlet?mode=read&update=true&id=<%=o.getId()%>>Edit</a>
+			<td><a href=OrganizeSentenceServlet?mode=read&update=true&id=<%=o.getId()%>>Edit</a>
 			</td>
-			<td><a href=UserServlet?mode=delete&id=<%=o.getId()%>>Delete</a>
+			<td><a href=OrganizeSentenceServlet?mode=read&delete=true&id=<%=o.getId()%>>Delete</a>
 			</td>
 
 		</tr>
@@ -69,7 +69,7 @@
       <label for="solution">Solution</label>
     </div>
     <div class="col-75">
-      <input type="text" id="solution" name="solution" required placeholder="inserisci soluzione">
+      <input type="text" id="solution" name="solution" required placeholder="Insert Solution">
     </div>
   </div>
   
@@ -78,7 +78,7 @@
       <label for="sentence">Organize Sentence</label>
     </div>
     <div class="col-75">
-      <input type="text" id="sentence" name="sentence" required placeholder="inserisci la frase disordinata ">
+      <input type="text" id="sentence" name="sentence" required placeholder="Insert Organize Sentence ">
     </div>
   </div>
   <div class="row">
@@ -86,7 +86,7 @@
      <label for="definition">Definition</label>
     </div>
     <div class="col-75">
-      <input type="text" id="definition" name="definition" placeholder="inserisci la definizione del gioco"> 
+      <input type="text" id="definition" name="definition" placeholder="Insert the Definition of the game"> 
     </div>
   </div>
   
@@ -95,7 +95,7 @@
       <label for="score">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" required placeholder="inserisci il punteggio ">
+      <input type="number" id="score" name="score" required placeholder="Insert the score ">
     </div>
   </div>
   
@@ -104,7 +104,7 @@
       <label for="idCategory">Category</label>
     </div>
   <div class="col-75">
-  	<select id="IdCategory" name="IdCategory" required>
+  	<select id="idCategory" name="idCategory" required>
   		<option value=''>Choose one...</option>
   		<%
   			for(CategoryDTO c: categoryList){

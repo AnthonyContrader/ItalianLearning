@@ -57,18 +57,22 @@ public class OrganizeSentenceServlet extends HttpServlet {
 			dto = service.read(id);
 			request.setAttribute("dto", dto);
 			
-			if (request.getParameter("update") == null) {
+			if (request.getParameter("update") == null && request.getParameter("delete") == null) {
 				 getServletContext().getRequestDispatcher("/organizesentence/readorganizesentence.jsp").forward(request, response);
 				
 			}
 			
-			else getServletContext().getRequestDispatcher("/organizesentence/updateorganizesentence.jsp").forward(request, response);
+			else if (request.getParameter("update") != null) {
+				categoryList(request);
+				getServletContext().getRequestDispatcher("/organizesentence/updateorganizesentence.jsp").forward(request, response);
+			}
+			else getServletContext().getRequestDispatcher("/organizesentence/deleteorganizesentence.jsp").forward(request, response);
 			
 			break;
 
 		case "INSERT":
 			String solution = request.getParameter("solution").toString();
-			String sentence = request.getParameter("password").toString();
+			String sentence = request.getParameter("sentence").toString();
 			Integer score = Integer.parseInt(request.getParameter("score").toString());			
 			String definition = request.getParameter("definition").toString();
 			Integer idCategory = Integer.parseInt(request.getParameter("idCategory").toString());

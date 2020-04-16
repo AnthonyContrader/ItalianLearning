@@ -13,7 +13,7 @@
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
   <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="UserServlet?mode=userlist">Users</a>
+  <a class="active" href="OrganizeSentenceServlet?mode=gamelist">OrganizeSentences</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <br>
@@ -30,7 +30,7 @@
       <label for="solution">Solution</label>
     </div>
     <div class="col-75">
-      <input type="text" id="solution" name="solution" value="<%=o.getSolution()%>" required placeholder="inserisci soluzione">
+      <input type="text" id="solution" name="solution" value="<%=o.getSolution()%>" required placeholder="Insert Solution">
     </div>
   </div>
   
@@ -39,7 +39,7 @@
       <label for="sentence">Organize Sentence</label>
     </div>
     <div class="col-75">
-      <input type="text" id="sentence" name="sentence" value="<%=o.getSentence()%>" required placeholder="inserisci la frase disordinata"> 
+      <input type="text" id="sentence" name="sentence" value="<%=o.getSentence()%>" required placeholder="Insert Organize Sentence"> 
     </div>
   </div>
   <div class="row">
@@ -47,7 +47,7 @@
      <label for="definition">Definition</label>
     </div>
     <div class="col-75">
-      <input type="text" id="definition" name="definition" value="<%=o.getDefinition()%>"  placeholder="inserisci la definizione"> 
+      <input type="text" id="definition" name="definition" value="<%=o.getDefinition()%>"  placeholder="Insert the Definition of the game"> 
     </div>
   </div>
   
@@ -56,7 +56,7 @@
       <label for="score">Score</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" value="<%=o.getScore()%>" required placeholder="inserisci il punteggio">
+      <input type="number" id="score" name="score" value="<%=o.getScore()%>" required placeholder="Insert the score">
     </div>
   </div>
   
@@ -65,13 +65,14 @@
       <label for="idCategory">Category</label>
     </div>
   <div class="col-75">
-  	<select id="IdCategory" name="IdCategory" required>
+  	<select id="idCategory" name="idCategory" required>
   		<option value=''>Choose one...</option>
   		<%
   			for(CategoryDTO c: categoryList){
   		//valore id categoria, etichetta titolo categoria
   		%>
-  				<option value=<%= c.getId() %>><%= c.getTitle()  %></option>
+  				<option value=<%= c.getId() %> <%= Integer.valueOf(c.getId()) == o.getIdCategory() ? "selected" : "" %>>
+  				<%= c.getTitle()  %></option>
   		<% 
   			}
   		%>
