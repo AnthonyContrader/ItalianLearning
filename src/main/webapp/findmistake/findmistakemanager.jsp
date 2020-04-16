@@ -14,7 +14,7 @@
 
 <div class="navbar">
 	<a href="homeadmin.jsp">Home</a>
-  	<a href="GameServlet">Indietro</a>
+  	<a href="GameServlet">Back</a>
   	<a class="active" href="FindMistakeServlet?mode=gamelist">FindMistakes</a>
   	<a href="LogoutServlet" id="logout">Logout</a>
 </div>
