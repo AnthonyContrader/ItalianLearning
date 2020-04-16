@@ -56,7 +56,7 @@ public class FindAWordServlet extends HttpServlet {
 				request.setAttribute("dto", dto);
 				
 				if (request.getParameter("update") == null && request.getParameter("delete")== null) {
-					 getServletContext().getRequestDispatcher("/hangman/readhangman.jsp").forward(request, response);
+					 getServletContext().getRequestDispatcher("/findaword/readfindaword.jsp").forward(request, response);
 					}
 				
 				else if (request.getParameter("update") != null) {
