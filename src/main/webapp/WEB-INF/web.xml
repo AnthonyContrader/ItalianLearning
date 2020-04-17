@@ -127,5 +127,17 @@
 		<servlet-name>LevelServlet</servlet-name>
 		<url-pattern>/LevelServlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>PlaylistServlet</display-name>
+		<servlet-name>PlaylistServlet</servlet-name>
+		<servlet-class>it.contrader.servlets.PlaylistServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PlaylistServlet</servlet-name>
+		<url-pattern>/PlaylistServlet</url-pattern>
+	</servlet-mapping>
+	
+	
 	
 </web-app>
