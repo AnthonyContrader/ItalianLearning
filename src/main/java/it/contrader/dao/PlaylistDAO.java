@@ -112,7 +112,7 @@ public class PlaylistDAO implements DAO<Playlist>  {
 			}
 			
 		}
-		return false;
+		return true;
 	}
 
 	public boolean delete(int playlistId) {
