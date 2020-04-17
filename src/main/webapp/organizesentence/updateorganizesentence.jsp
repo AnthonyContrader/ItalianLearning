@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.List"
      import="it.contrader.dto.OrganizeSentenceDTO"
+     import="it.contrader.dto.LevelDTO"
     import="it.contrader.dto.CategoryDTO"%>
 <!DOCTYPE html>
 <html>
@@ -21,6 +22,7 @@
 
 <% OrganizeSentenceDTO o = (OrganizeSentenceDTO) request.getAttribute("dto");
    List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+   List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
 %>
 
 
@@ -51,14 +53,7 @@
     </div>
   </div>
   
-    <div class="row">
-    <div class="col-25">
-      <label for="score">Score</label>
-    </div>
-    <div class="col-75">
-      <input type="number" id="score" name="score" value="<%=o.getScore()%>" min=1 required placeholder="Insert the score">
-    </div>
-  </div>
+
   
   <div class="row">
     <div class="col-25">
@@ -80,6 +75,28 @@
  
   	 </div>
 	</div>
+	
+	<div class="row">
+    <div class="col-25">
+      <label for="idLevel">Level</label>
+    </div>
+  <div class="col-75">
+  	<select id="idLevel" name="idLevel" required>
+  		<option value=''>Choose one...</option>
+  		<%
+  			for(LevelDTO level: levelList){
+  		//valore id categoria, etichetta titolo categoria
+  		%>
+  				<option value=<%= level.getId() %> <%= Integer.valueOf(level.getId()) == o.getIdLevel() ? "selected" : "" %>>
+  				<%= level.getName()  %></option>
+  		<% 
+  			}
+  		%>
+  		</select>
+ 
+  	 </div>
+	</div>
+	
       <button type="submit" >Insert</button>
 </form>
 

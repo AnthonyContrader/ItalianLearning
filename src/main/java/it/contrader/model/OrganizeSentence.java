@@ -5,7 +5,7 @@ public class OrganizeSentence {
 	private int id;
 	private String solution;
 	private String sentence;
-	private Integer score;
+	//private Integer score;
 	private String definition;
 	private Integer idCategory;
 	private Integer idLevel;
@@ -16,24 +16,24 @@ public class OrganizeSentence {
 	}
 
 	
-	public OrganizeSentence(int id, String solution, String sentence, Integer score, String definition,
+	public OrganizeSentence(int id, String solution, String sentence,  String definition,
 			Integer idCategory, Integer idLevel) {
 		super();
 		this.id = id;
 		this.solution = solution;
 		this.sentence = sentence;
-		this.score = score;
+		
 		this.definition = definition;
 		this.idCategory = idCategory;
 		this.idLevel = idLevel;
 	}
 
-	public OrganizeSentence(String solution, String sentence, Integer score, String definition, Integer idCategory,
+	public OrganizeSentence(String solution, String sentence,  String definition, Integer idCategory,
 			Integer idLevel) {
 		super();
 		this.solution = solution;
 		this.sentence = sentence;
-		this.score = score;
+		
 		this.definition = definition;
 		this.idCategory = idCategory;
 		this.idLevel = idLevel;
@@ -41,23 +41,23 @@ public class OrganizeSentence {
 
 
 
-	public OrganizeSentence(int id, String solution, String sentence, Integer score, String definition,
+	public OrganizeSentence(int id, String solution, String sentence,  String definition,
 			Integer idCategory) {
 		super();
 		this.id = id;
 		this.solution = solution;
 		this.sentence = sentence;
-		this.score = score;
+		
 		this.definition = definition;
 		this.idCategory = idCategory;
 	}
 
 
-	public OrganizeSentence(String solution, String sentence, Integer score, String definition, Integer idCategory) {
+	public OrganizeSentence(String solution, String sentence,  String definition, Integer idCategory) {
 		super();
 		this.solution = solution;
 		this.sentence = sentence;
-		this.score = score;
+		
 		this.definition = definition;
 		this.idCategory = idCategory;
 	}
@@ -93,16 +93,6 @@ public class OrganizeSentence {
 	}
 
 
-	public Integer getScore() {
-		return score;
-	}
-
-
-	public void setScore(Integer score) {
-		this.score = score;
-	}
-
-
 	public String getDefinition() {
 		return definition;
 	}
@@ -135,9 +125,10 @@ public class OrganizeSentence {
 
 	@Override
 	public String toString() {
-		return "OrganizeSentence [id=" + id + ", solution=" + solution + ", sentence=" + sentence + ", score=" + score
-				+ ", definition=" + definition + ", idCategory=" + idCategory + ", idLevel=" + idLevel + "]";
+		return "OrganizeSentence [id=" + id + ", solution=" + solution + ", sentence=" + sentence + ", definition="
+				+ definition + ", idCategory=" + idCategory + ", idLevel=" + idLevel + "]";
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -165,11 +156,6 @@ public class OrganizeSentence {
 				return false;
 		} else if (!idLevel.equals(other.idLevel))
 			return false;
-		if (score == null) {
-			if (other.score != null)
-				return false;
-		} else if (!score.equals(other.score))
-			return false;
 		if (sentence == null) {
 			if (other.sentence != null)
 				return false;
@@ -182,5 +168,6 @@ public class OrganizeSentence {
 			return false;
 		return true;
 	}
+
 	
 }

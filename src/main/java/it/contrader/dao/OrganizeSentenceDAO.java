@@ -19,9 +19,9 @@ PRIMARY KEY (id)
 public class OrganizeSentenceDAO implements DAO<OrganizeSentence> {
 
 	private final String QUERY_ALL = "SELECT * FROM organizeSentence";
-	private final String QUERY_CREATE = "INSERT INTO organizeSentence (solution, definition,sentence,score,idCategory) VALUES (?,?,?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO organizeSentence (solution, definition,sentence,idCategory,idLevel) VALUES (?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM organizeSentence WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE organizeSentence SET solution=?, definition=?, sentence=?, score=?, idCategory=? WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE organizeSentence SET solution=?, definition=?, sentence=?, idCategory=?, idLevel=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM organizeSentence WHERE id=?";
 	
 	
@@ -38,10 +38,12 @@ public class OrganizeSentenceDAO implements DAO<OrganizeSentence> {
 				int id = resultSet.getInt("id");
 				String solution = resultSet.getString("solution");
 				String sentence = resultSet.getString("sentence");
-				Integer score = resultSet.getInt("score");
+				//Integer score = resultSet.getInt("score");
 				String definition = resultSet.getString("definition");
 				Integer idCategory = resultSet.getInt("idCategory");
-				organizeSentence = new OrganizeSentence(id,solution,sentence,score,definition,idCategory); //inizializzo elemento category
+				Integer idLevel = resultSet.getInt("idLevel");
+				
+				organizeSentence = new OrganizeSentence(id,solution,sentence,definition,idCategory,idLevel); //inizializzo elemento category
 				organizeSentenceList.add(organizeSentence); //aggiungo elemento category alla lista
 			}
 			
@@ -59,14 +61,15 @@ public class OrganizeSentenceDAO implements DAO<OrganizeSentence> {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE); //oggetto che prepara una query senza eseguirla
 			
-			if (organizeSentenceToInsert.getScore() == null || organizeSentenceToInsert.getScore()< 1) {
-				organizeSentenceToInsert.setScore(1);
-			}
+			if(organizeSentenceToInsert.getIdCategory() < 0 || organizeSentenceToInsert.getIdLevel() < 0)
+				return false;
+			
 			preparedStatement.setString(1, organizeSentenceToInsert.getSolution()); //ora settiamo i parametri della query
 			preparedStatement.setString(2, organizeSentenceToInsert.getDefinition()); //ora settiamo i parametri della query
 			preparedStatement.setString(3, organizeSentenceToInsert.getSentence()); //ora settiamo i parametri della query
-			preparedStatement.setInt(4, organizeSentenceToInsert.getScore());
-			preparedStatement.setInt(5, organizeSentenceToInsert.getIdCategory());
+			//preparedStatement.setInt(4, organizeSentenceToInsert.getScore());
+			preparedStatement.setInt(4, organizeSentenceToInsert.getIdCategory());
+			preparedStatement.setInt(5, organizeSentenceToInsert.getIdLevel());
 			preparedStatement.execute(); //eseguo la query
 			return true;
 			
@@ -93,8 +96,9 @@ public class OrganizeSentenceDAO implements DAO<OrganizeSentence> {
 			
 			int id = resultSet.getInt("id");
 			int idCategory = resultSet.getInt("idCategory");
-			int score = resultSet.getInt("score");
-			OrganizeSentence organizeSentence = new OrganizeSentence(id, solution, sentence, score, definition,idCategory);
+			int idLevel = resultSet.getInt("idLevel");
+			
+			OrganizeSentence organizeSentence = new OrganizeSentence(id, solution, sentence, definition,idCategory, idLevel);
 			return organizeSentence;
 			
 		}catch(SQLException e) {
@@ -139,20 +143,25 @@ public class OrganizeSentenceDAO implements DAO<OrganizeSentence> {
 				if (organizeSentenceToUpdate.getSentence() == null || organizeSentenceToUpdate.getSentence().equals("")) {
 					organizeSentenceToUpdate.setSentence(organizeSentenceRead.getSentence());
 				}
-				if (organizeSentenceToUpdate.getScore() == null || organizeSentenceToUpdate.getScore() < 1) {
-					organizeSentenceToUpdate.setScore(organizeSentenceRead.getScore());
-				}
+//				if (organizeSentenceToUpdate.getScore() == null || organizeSentenceToUpdate.getScore() < 1) {
+//					organizeSentenceToUpdate.setScore(organizeSentenceRead.getScore());
+//				}
+				
 				if (organizeSentenceToUpdate.getIdCategory() == null || organizeSentenceToUpdate.getIdCategory() < 1) {
 					organizeSentenceToUpdate.setIdCategory(organizeSentenceRead.getIdCategory());
 				}
 				
+				if (organizeSentenceToUpdate.getIdLevel() == null || organizeSentenceToUpdate.getIdLevel() < 1) {
+					organizeSentenceToUpdate.setIdCategory(organizeSentenceRead.getIdLevel());
+				}
 				
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE); //preparo la query ma non la eseguo
 				preparedStatement.setString(1, organizeSentenceToUpdate.getSolution()); //ora settiamo i parametri della query
 				preparedStatement.setString(2, organizeSentenceToUpdate.getDefinition()); //ora settiamo i parametri della query
 				preparedStatement.setString(3, organizeSentenceToUpdate.getSentence()); //ora settiamo i parametri della query
-				preparedStatement.setInt(4, organizeSentenceToUpdate.getScore()); //ora settiamo i parametri della query
-				preparedStatement.setInt(5, organizeSentenceToUpdate.getIdCategory()); //ora settiamo i parametri della query
+				//preparedStatement.setInt(4, organizeSentenceToUpdate.getScore()); //ora settiamo i parametri della query
+				preparedStatement.setInt(4, organizeSentenceToUpdate.getIdCategory()); //ora settiamo i parametri della query
+				preparedStatement.setInt(5, organizeSentenceToUpdate.getIdLevel());
 				preparedStatement.setInt(6, organizeSentenceToUpdate.getId()); //ora settiamo i parametri della query
 				
 				int check = preparedStatement.executeUpdate(); //eseguo la query di update (Aggiornamento) del database

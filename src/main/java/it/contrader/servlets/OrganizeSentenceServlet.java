@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.contrader.dto.OrganizeSentenceDTO;
 import it.contrader.dto.CategoryDTO;
+import it.contrader.dto.LevelDTO;
 import it.contrader.service.CategoryService;
+import it.contrader.service.LevelService;
 import it.contrader.service.Service;
 
 import it.contrader.service.OrganizeSentenceService;
@@ -35,6 +37,12 @@ public class OrganizeSentenceServlet extends HttpServlet {
 		request.setAttribute("categoryList", listDTO);
 	}
 	
+	public void levelList(HttpServletRequest request) {
+		Service<LevelDTO> service = new LevelService();
+		List<LevelDTO>listDTO = service.getAll();
+		request.setAttribute("levelList", listDTO);
+	}
+	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//stiamo creando un service per le crud
@@ -49,6 +57,7 @@ public class OrganizeSentenceServlet extends HttpServlet {
 		case "GAMELIST":
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/organizesentence/organizesentencemanager.jsp").forward(request, response);
 			break;
 
@@ -64,6 +73,7 @@ public class OrganizeSentenceServlet extends HttpServlet {
 			
 			else if (request.getParameter("update") != null) {
 				categoryList(request);
+				levelList(request);
 				getServletContext().getRequestDispatcher("/organizesentence/updateorganizesentence.jsp").forward(request, response);
 			}
 			else getServletContext().getRequestDispatcher("/organizesentence/deleteorganizesentence.jsp").forward(request, response);
@@ -73,31 +83,35 @@ public class OrganizeSentenceServlet extends HttpServlet {
 		case "INSERT":
 			String solution = request.getParameter("solution").toString();
 			String sentence = request.getParameter("sentence").toString();
-			Integer score = Integer.parseInt(request.getParameter("score").toString());			
+			//Integer score = Integer.parseInt(request.getParameter("score").toString());			
 			String definition = request.getParameter("definition").toString();
 			Integer idCategory = Integer.parseInt(request.getParameter("idCategory").toString());
+			Integer idLevel = Integer.parseInt(request.getParameter("idLevel").toString());
 			
-			dto = new OrganizeSentenceDTO (solution, sentence,  score, definition, idCategory);
+			dto = new OrganizeSentenceDTO (solution, sentence, definition, idCategory,idLevel);
 			ans = service.insert(dto);
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/organizesentence/organizesentencemanager.jsp").forward(request, response);
 			break;
 			
 		case "UPDATE":
 			solution = request.getParameter("solution");
 			sentence = request.getParameter("sentence");
-			score = Integer.parseInt(request.getParameter("score"));
+			//score = Integer.parseInt(request.getParameter("score"));
 			definition = request.getParameter("definition");
 			idCategory = Integer.parseInt(request.getParameter("idCategory"));
 			id = Integer.parseInt(request.getParameter("id"));
+			idLevel = Integer.parseInt(request.getParameter("idLevel").toString());
 			
-			dto = new OrganizeSentenceDTO (id,solution, sentence, score,definition,idCategory);
+			dto = new OrganizeSentenceDTO (id,solution, sentence, definition,idCategory,idLevel);
 			ans = service.update(dto);
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/organizesentence/organizesentencemanager.jsp").forward(request, response);
 			break;
 
@@ -107,6 +121,7 @@ public class OrganizeSentenceServlet extends HttpServlet {
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/organizesentence/organizesentencemanager.jsp").forward(request, response);
 			break;
 		}

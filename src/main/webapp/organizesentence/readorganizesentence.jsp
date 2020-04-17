@@ -26,7 +26,7 @@
 			<th>Solution</th>
 			<th>OrganizeSentence</th>
 			<th>Definition</th>
-			<th>Score</th>
+			<th>Level</th>
 			<th>Category</th>
 
 		</tr>
@@ -36,7 +36,7 @@
 			<td><%=o.getSolution()%></td>
 			<td><%=o.getSentence()%></td>
 			<td><%=o.getDefinition()%></td>
-			<td><%=o.getScore()%></td>
+			<td><%=o.getLevel()%></td>
 			<td><%=o.getCategory()%></td>
 			
 		</tr>
