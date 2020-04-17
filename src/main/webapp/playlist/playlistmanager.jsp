@@ -14,7 +14,7 @@
 
 <div class="navbar"> <!-- questa e la navbar -->
   <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="CategoryServlet?mode=categorylist">Categories</a>
+  <a class="active" href="PlaylistServlet?mode=Playlistlist">Playlist</a>
   <a href="LogoutServlet" id="logout">Logout</a>  
 </div>
 <div class="main">
@@ -46,16 +46,16 @@
 			for (PlaylistDTO c : list) {
 		%>
 		<tr>
-			<td><a href=CategoryServlet?mode=read&id=<%=c.getId()%>>
+			<td><a href=PlaylistServlet?mode=read&id=<%=c.getId()%>>
 				<%=c.getId()%>
 			</a></td>
-			<td><a href=CategoryServlet?mode=read&id=<%=c.getId()%>>
+			<td><a href=PlaylistServlet?mode=read&id=<%=c.getId()%>>
 				<%=c.getName()%>
 			</a></td>
 			
-			<td><a href=CategoryServlet?mode=read&update=true&id=<%=c.getId()%>>Edit</a>
+			<td><a href=PlaylistServlet?mode=read&update=true&id=<%=c.getId()%>>Edit</a>
 			</td>
-			<td><a href=CategoryServlet?mode=read&delete=true&id=<%=c.getId()%> style="text-decoration: underline;">Delete</a>
+			<td><a href=PlaylistServlet?mode=read&delete=true&id=<%=c.getId()%> style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>
@@ -64,7 +64,7 @@
 		%>
 	</table>
 
-	<form id="floatright" action="CategoryServlet?mode=insert" method="post">
+	<form id="floatright" action="PlaylistServlet?mode=insert" method="post">
 	  <div class="row">
 	    <div class="col-25">
 	      <label for="category">Name</label>
