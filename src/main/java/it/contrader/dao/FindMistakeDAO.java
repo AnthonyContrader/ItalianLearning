@@ -121,7 +121,7 @@ public class FindMistakeDAO implements DAO<FindMistake>{
 					findMistakeToUpdate.setSolution(findMistakeRead.getSolution());
 				}
 
-				if (findMistakeToUpdate.getDefinition() == null || findMistakeToUpdate.getDefinition().equals("")) {
+				if (findMistakeToUpdate.getDefinition() == null) {
 					findMistakeToUpdate.setDefinition(findMistakeRead.getDefinition());
 				}
 				
