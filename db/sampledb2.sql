@@ -13,7 +13,14 @@ DROP TABLE IF EXISTS findAWord;
 DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS level;
 DROP TABLE IF EXISTS playlist;
-DROP TABLE IF EXISTS GamePlaylist;
+DROP TABLE IF EXISTS gamePlaylist;
+
+DROP TRIGGER IF EXISTS hangmanDelete;
+DROP TRIGGER IF EXISTS findMistakeDelete;
+DROP TRIGGER IF EXISTS quizDelete;
+DROP TRIGGER IF EXISTS guessPictureDelete;
+DROP TRIGGER IF EXISTS organizeSentenceDelete;
+DROP TRIGGER IF EXISTS findAWordDelete;
 
 CREATE TABLE playlist(
 	id int NOT NULL AUTO_INCREMENT,
@@ -130,4 +137,56 @@ CREATE TABLE statistic (
 	PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+DELIMITER $$
+CREATE TRIGGER hangmanDelete
+BEFORE DELETE
+ON hangman FOR EACH ROW
+BEGIN
+    DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="Hangman";
+END$$    
+DELIMITER ;
 
+DELIMITER $$
+CREATE TRIGGER findMistakeDelete
+BEFORE DELETE
+ON hangman FOR EACH ROW
+BEGIN
+    DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="FindMistake";
+END$$    
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER quizDelete
+BEFORE DELETE
+ON hangman FOR EACH ROW
+BEGIN
+    DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="Quiz";
+END$$    
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER guessPictureDelete
+BEFORE DELETE
+ON hangman FOR EACH ROW
+BEGIN
+    DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="GuessPicture";
+END$$    
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER organizeSentenceDelete
+BEFORE DELETE
+ON hangman FOR EACH ROW
+BEGIN
+    DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="OrganizeSentence";
+END$$    
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER findAWordDelete
+BEFORE DELETE
+ON hangman FOR EACH ROW
+BEGIN
+    DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="FindAWord";
+END$$    
+DELIMITER ;
