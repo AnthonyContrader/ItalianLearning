@@ -2,7 +2,8 @@
     pageEncoding="ISO-8859-1" 
     import="java.util.List"
     import="it.contrader.dto.FindAWordDTO"
-    import="it.contrader.dto.CategoryDTO"%>
+    import="it.contrader.dto.CategoryDTO"
+    import="it.contrader.dto.LevelDTO"%>
     
 <!DOCTYPE html>
 <html>
@@ -24,6 +25,7 @@
 <%
 FindAWordDTO u = (FindAWordDTO) request.getAttribute("dto");
 List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
 %>
 
 <form id="floatleft" action="FindAWordServlet?mode=update&id=<%=u.getId()%>" method="post">
@@ -58,15 +60,6 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
     </div>
   </div>
   
-  <div class="row">
-    <div class="col-25"><!--si prende il 25% dello spazio  -->
-      <label for="score">Score</label>
-    </div>
-    <div class="col-75">
-    <!-- input crea campo di inserimento -->
-      <input value="<%=u.getScore() %>"type="number" id="score" name="score"  min=1 required placeholder="Inserisci il punteggio">
-    </div>
-  </div>
   
   <div class="row">
     <div class="col-25"><!--si prende il 25% dello spazio  -->
@@ -94,7 +87,31 @@ List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categ
     </div>
   </div>
   
-  
+  <div class="row">
+    <div class="col-25"><!--si prende il 25% dello spazio  -->
+      <label for="idLevel">Level</label>
+    </div>
+    <div class="col-75">
+    <!-- select campo a tendina formato dalle option cioè le opzioni ke si visualizzano quando esce il menù a tendina -->
+      <select id="idLevel" name="idLevel" required>
+      <option value=''> Choose one...</option>
+      
+      <!-- per ogni categ in catlist crea option con valori id categ e come etichetta il titolo categ -->
+      <%
+      for(LevelDTO c : levelList) {
+      %>
+     <!-- per menu a tendina sia selezionato sul valore presente nel db grazie all'attributo selected l'operatore ternario è un if-->
+      <option value=<%= c.getId() %> <%= Integer.valueOf(c.getId()) == u.getIdCategory() ? "selected" : ""%>> <!-- è un if -->
+  					<%= c.getName() %>
+  					 </option>
+      
+      <%
+      }
+      %>
+      
+      </select>
+    </div>
+  </div>
       <button type="submit" >Insert</button>
 </form>
 	

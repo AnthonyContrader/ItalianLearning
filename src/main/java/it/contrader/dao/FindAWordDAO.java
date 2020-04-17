@@ -9,9 +9,9 @@ import it.contrader.model.FindAWord;
 
 public class FindAWordDAO implements DAO<FindAWord>{
 	private final String QUERY_ALL = "SELECT * FROM findAWord";
-	private final String QUERY_CREATE = "INSERT INTO findAWord (solution, definition, sentence, score, idCategory) VALUES (?,?,?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO findAWord (solution, definition, sentence, idCategory, idLevel) VALUES (?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM findAword WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE findAWord SET solution=?, definition=?, sentence=?, score=?, idCategory=?  WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE findAWord SET solution=?, definition=?, sentence=?, idCategory=?, idLevel=?  WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM findAWord WHERE id=?";
 	
 	public List<FindAWord> getAll(){
@@ -26,12 +26,12 @@ public class FindAWordDAO implements DAO<FindAWord>{
 			while(resultSet.next()) { // legge ogni riga restituita dal database
 				int id = resultSet.getInt("id");
 				Integer idCategory = resultSet.getInt("idCategory");
-				Integer score = resultSet.getInt("score");
+				Integer idLevel = resultSet.getInt("idLevel");
 				String solution = resultSet.getString("solution");
 				String sentence = resultSet.getString("sentence");
 				String definition = resultSet.getString("definition");
 				
-				findAWord = new FindAWord(id, idCategory, score, solution, definition, sentence); //inizializzo elemento category
+				findAWord = new FindAWord(id, idCategory, solution, definition, sentence,idLevel); //inizializzo elemento category
 				findAWordList.add(findAWord); //aggiungo elemento category alla lista
 			}
 			
@@ -47,14 +47,14 @@ public class FindAWordDAO implements DAO<FindAWord>{
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE); //oggetto che prepara una query senza eseguirla
 			
-			if(findAWordToInsert.getScore() == null || findAWordToInsert.getScore() <1)
-				findAWordToInsert.setScore(1);
+			if(findAWordToInsert.getIdCategory() < 0 || findAWordToInsert.getIdLevel() < 0)
+				return false;
 			
 			preparedStatement.setString(1, findAWordToInsert.getSolution()); //ora settiamo i parametri della query
 			preparedStatement.setString(2, findAWordToInsert.getDefinition());
 			preparedStatement.setString(3, findAWordToInsert.getSentence());
-			preparedStatement.setInt(4, findAWordToInsert.getScore());
-			preparedStatement.setInt(5, findAWordToInsert.getIdCategory());//ora settiamo i parametri della query
+			preparedStatement.setInt(4, findAWordToInsert.getIdCategory());//ora settiamo i parametri della query
+			preparedStatement.setInt(5, findAWordToInsert.getIdLevel());
 			preparedStatement.execute(); //eseguo la query
 			return true;
 			
@@ -76,11 +76,11 @@ public class FindAWordDAO implements DAO<FindAWord>{
 			String solution = resultSet.getString("solution");
 			String definition = resultSet.getString("definition");
 			String sentence = resultSet.getString("sentence");
-			Integer score = resultSet.getInt("score");
+			Integer idLevel = resultSet.getInt("idLevel");
 			Integer idCategory = resultSet.getInt("idCategory");
 			int id = resultSet.getInt("id");
 			
-			FindAWord findAWord = new FindAWord(id, idCategory, score, solution, definition, sentence);
+			FindAWord findAWord = new FindAWord(id, idCategory, solution, definition, sentence, idLevel);
 			return findAWord;
 			
 		}catch(SQLException e) {
@@ -122,19 +122,20 @@ public class FindAWordDAO implements DAO<FindAWord>{
 					if (findAWordToUpdate.getSentence() == null || findAWordToUpdate.getSentence().equals("")) {
 						findAWordToUpdate.setSentence(findAWordRead.getSentence());
 					}
-					if (findAWordToUpdate.getScore() == null || findAWordToUpdate.getScore()<1) {
-						findAWordToUpdate.setScore(findAWordRead.getScore());
-					}
+					
 					if (findAWordToUpdate.getIdCategory() == null || findAWordToUpdate.getIdCategory()<1) {
 						findAWordToUpdate.setIdCategory(findAWordRead.getIdCategory());
+					}
+					if (findAWordToUpdate.getIdLevel() == null || findAWordToUpdate.getIdLevel()<1) {
+						findAWordToUpdate.setIdLevel(findAWordRead.getIdLevel());
 					}
 					
 					PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE); //preparo la query ma non la eseguo
 					preparedStatement.setString(1, findAWordToUpdate.getSolution()); //ora settiamo i parametri della query
 					preparedStatement.setString(2, findAWordToUpdate.getDefinition()); //ora settiamo i parametri della query
 					preparedStatement.setString(3, findAWordToUpdate.getSentence());
-					preparedStatement.setInt(4, findAWordToUpdate.getScore());
-					preparedStatement.setInt(5, findAWordToUpdate.getIdCategory());
+					preparedStatement.setInt(4, findAWordToUpdate.getIdCategory());
+					preparedStatement.setInt(5, findAWordToUpdate.getIdLevel());
 					preparedStatement.setInt(6, findAWordToUpdate.getId()); //ora settiamo i parametri della query
 					
 					int check = preparedStatement.executeUpdate(); //eseguo la query di update (Aggiornamento) del database
@@ -152,7 +153,7 @@ public class FindAWordDAO implements DAO<FindAWord>{
 				
 			}
 			
-			return false;
+			return true;
 
 		}
 		public boolean delete(int findAWordId) {

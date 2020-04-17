@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
 	import="it.contrader.dto.FindAWordDTO"
-	import="it.contrader.dto.CategoryDTO"%>
+	import="it.contrader.dto.CategoryDTO"
+	import="it.contrader.dto.LevelDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +24,7 @@
 	//list contiene tutti gli elementi del gioco che verrenno stampati nella tabella
 		List<FindAWordDTO> list = (List<FindAWordDTO>) request.getAttribute("list");
 		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+		List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
 		
 		
 		String ans = null;
@@ -31,12 +33,12 @@
 		}
 		catch (Exception e){}
 	%>
-<% if (ans != null) {%>
-	<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
-		<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
-	</h2>
-<% } %>
-	%>
+	<% if (ans != null) {%>
+		<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
+			<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
+		</h2>
+	<% } %>
+
 
 <br>
 <!-- stempo gli elementi contenuti in list nella tabella -->
@@ -46,7 +48,7 @@
 			<th>Solution</th>
 			<th>Sentence</th>
 			<th>Definition</th>
-			<th>Score</th>
+			<th>Level</th>
 			<th>Category</th>
 			<th></th>
 			<th></th>
@@ -63,7 +65,7 @@
 			<td><%=u.getSolution()%></td>
 			<td><%=u.getSentence()%></td>
 			<td><%=u.getDefinition()%></td>
-			<td><%=u.getScore()%></td>
+			<td><%=u.getLevel()%></td>
 			<td><%=u.getCategory()%></td>
 			
 			<td><a href=FindAWordServlet?mode=read&update=true&id=<%=u.getId()%>>Edit</a>
@@ -110,17 +112,7 @@
       <input type="text" id="definition" name="definition" placeholder="Insert Definition">
     </div>
   </div>
-  
-  <div class="row">
-    <div class="col-25"><!--si prende il 25% dello spazio  -->
-      <label for="score">Score</label>
-    </div>
-    <div class="col-75">
-    <!-- input crea campo di inserimento -->
-      <input type="number" id="score" name="score" min=1 required placeholder="Insert Score">
-    </div>
-  </div>
-  
+    
   <div class="row">
     <div class="col-25"><!--si prende il 25% dello spazio  -->
       <label for="idCategory">Category</label>
@@ -144,6 +136,28 @@
     </div>
   </div>
   
+  <div class="row">
+    <div class="col-25"><!--si prende il 25% dello spazio  -->
+      <label for="idLevel">Level</label>
+    </div>
+    <div class="col-75">
+    <!-- select campo a tendina formato dalle option cioè le opzioni ke si visualizzano quando esce il menù a tendina -->
+      <select id="idLevel" name="idLevel" required>
+      <option value=''> Choose one...</option>
+      
+      <!-- per ogni categ in catlist crea option con valori id categ e come etichetta il titolo categ -->
+      <%
+      for(LevelDTO c : levelList) {
+      %>
+     
+      <option value=<%= c.getId() %>> <%=c.getName() %> </option>
+      
+      <%
+      }
+      %>
+      </select>
+    </div>
+  </div>
   
       <button type="submit" >Insert</button>
 </form>
