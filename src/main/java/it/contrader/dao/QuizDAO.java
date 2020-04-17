@@ -8,9 +8,9 @@ import it.contrader.model.Quiz;
 public class QuizDAO implements DAO<Quiz> {
 
 	private final String QUERY_ALL = "SELECT * FROM Quiz";
-	private final String QUERY_CREATE = "INSERT INTO Quiz (solution, definition, sentence, score, idCategory) VALUES (?,?,?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO Quiz (solution, definition, sentence, idCategory, idLevel) VALUES (?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM Quiz WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE Quiz SET solution=?, definition=?, sentence=?, score =?, idCategory=? WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE Quiz SET solution=?, definition=?, sentence=?, idCategory=?, idLevel=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM Quiz WHERE id=?";
 	
 	
@@ -28,12 +28,12 @@ public class QuizDAO implements DAO<Quiz> {
 			while(resultSet.next()) { 
 				int id = resultSet.getInt("id");
 				int idCategory = resultSet.getInt("idCategory");
-				int score = resultSet.getInt("score");
 				String solution= resultSet.getString("solution");
 				String sentence = resultSet.getString("sentence");
 			    String definition = resultSet.getString("definition");
+			    int idLevel = resultSet.getInt("idLevel");
 				
-				quiz= new Quiz (id, idCategory, score,solution, sentence, definition); 
+				quiz= new Quiz (id, idCategory, solution, sentence, definition, idLevel); 
 				quizList.add(quiz);
 				}
 		} catch (SQLException e) {
@@ -45,18 +45,19 @@ public class QuizDAO implements DAO<Quiz> {
 	public boolean insert (Quiz quizToInsert) {
 		Connection connection = ConnectionSingleton.getInstance(); 
 		
-		if (quizToInsert.getScore() == null || quizToInsert.getScore()<1) {
+		/*if
+		 * 
+		 *  (quizToInsert.getScore() == null || quizToInsert.getScore()<1) {
 			quizToInsert.setScore (1);
 		}
-		
+		*/
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
 			preparedStatement.setString(1,quizToInsert.getSolution());
 			preparedStatement.setString(2,quizToInsert.getDefinition());
 			preparedStatement.setString(3, quizToInsert.getSentence());
-		 	preparedStatement.setInt(4,quizToInsert.getScore());
-			preparedStatement.setInt(5,quizToInsert.getIdCategory());
-			
+		 	preparedStatement.setInt(4,quizToInsert.getIdCategory());
+			preparedStatement.setInt(5,quizToInsert.getIdLevel());
 			preparedStatement.execute();
 			return true;
 			
@@ -80,9 +81,9 @@ public class QuizDAO implements DAO<Quiz> {
 			String definition = resultSet.getString("definition");
 			String sentence = resultSet.getString("sentence");
 			int id = resultSet.getInt("id");
-			Integer score = resultSet.getInt("score");
-			Integer idCategory = resultSet.getInt("IdCategory");
-			Quiz quiz = new Quiz (id, idCategory, score,solution, sentence, definition); 
+			Integer idLevel = resultSet.getInt("idLevel");
+			Integer idCategory = resultSet.getInt("idCategory");
+			Quiz quiz = new Quiz (id, idCategory, solution, sentence, definition, idLevel); 
         return quiz;
 			
 		}catch(SQLException e) {
@@ -116,22 +117,28 @@ public class QuizDAO implements DAO<Quiz> {
 				if (quizToUpdate.getDefinition() == null) {//|| quizToUpdate.getDefinition().equals("")) 
 					quizToUpdate.setDefinition("");//(quizRead.getDefinition());
 				}
+				/*
 				if (quizToUpdate.getScore() == null || quizToUpdate.getScore()<1 ) {
 					quizToUpdate.setScore(quizRead.getScore());
 				}
+				*/
 				if (quizToUpdate.getIdCategory() == null || quizToUpdate.getIdCategory()<1 ) {
 					quizToUpdate.setIdCategory(quizRead.getIdCategory());
 				}
 				if (quizToUpdate.getSentence() == null || quizToUpdate.getSentence().equals("")) {
 					quizToUpdate.setSentence(quizRead.getSentence());
 				}
+				if (quizToUpdate.getIdLevel() == null || quizToUpdate.getIdLevel()<1 ) {
+					quizToUpdate.setIdLevel(quizRead.getIdLevel());
+				}
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement (QUERY_UPDATE); 
 				preparedStatement.setString(1,quizToUpdate.getSolution());
 				preparedStatement.setString(2,quizToUpdate.getDefinition());
 				preparedStatement.setString(3, quizToUpdate.getSentence());
-			 	preparedStatement.setInt(4,quizToUpdate.getScore());
-				preparedStatement.setInt(5,quizToUpdate.getIdCategory());
+			 	preparedStatement.setInt(4,quizToUpdate.getIdCategory());
+			 	preparedStatement.setInt(5,quizToUpdate.getIdLevel());
 				preparedStatement.setInt(6,quizToUpdate.getId());
+				
 				int check = preparedStatement.executeUpdate();
 				
 				if (check > 0)

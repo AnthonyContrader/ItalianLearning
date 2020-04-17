@@ -5,7 +5,6 @@ public class Quiz {
 
 	private int id;
 	private Integer idCategory;
-	private Integer score;
 	private String solution;
 	private String definition;
 	private String sentence;
@@ -15,11 +14,10 @@ public class Quiz {
 		
 	}
 
-	public Quiz(Integer idCategory, Integer score, String solution, String definition, String sentence,
+	public Quiz(Integer idCategory, String solution, String definition, String sentence,
 			Integer idLevel) {
-		super();
+		
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
@@ -28,12 +26,11 @@ public class Quiz {
 
 
 
-	public Quiz(int id, Integer idCategory, Integer score, String solution, String definition, String sentence,
+	public Quiz(int id, Integer idCategory, String solution, String definition, String sentence,
 			Integer idLevel) {
-		super();
+	
 		this.id = id;
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
@@ -46,17 +43,15 @@ public class Quiz {
 		
 		
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
 	}
 
-	public Quiz(int id, Integer idCategory, Integer score, String solution, String definition, String sentence) {
+	public Quiz(int id, Integer idCategory, String solution, String definition, String sentence) {
 		
 		this.id = id;
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
@@ -78,13 +73,6 @@ public class Quiz {
 		this.idCategory = idCategory;
 	}
 
-	public Integer getScore() {
-		return score;
-	}
-
-	public void setScore(Integer score) {
-		this.score = score;
-	}
 
 	public String getSolution() {
 		return solution;
@@ -118,6 +106,8 @@ public class Quiz {
 		this.idLevel = idLevel;
 	}
 
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -144,11 +134,6 @@ public class Quiz {
 				return false;
 		} else if (!idLevel.equals(other.idLevel))
 			return false;
-		if (score == null) {
-			if (other.score != null)
-				return false;
-		} else if (!score.equals(other.score))
-			return false;
 		if (sentence == null) {
 			if (other.sentence != null)
 				return false;
@@ -164,11 +149,10 @@ public class Quiz {
 
 	@Override
 	public String toString() {
-		return "Quiz [id=" + id + ", idCategory=" + idCategory + ", score=" + score + ", solution=" + solution
-				+ ", definition=" + definition + ", sentence=" + sentence + ", idLevel=" + idLevel + "]";
+		return "Quiz [id=" + id + ", idCategory=" + idCategory + ", solution=" + solution + ", definition=" + definition
+				+ ", sentence=" + sentence + ", idLevel=" + idLevel + "]";
 	}
-	
-	
+
 	
 	
 	

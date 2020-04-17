@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
-	import="it.contrader.dto.QuizDTO" import="it.contrader.dto.CategoryDTO"%>
+	import="it.contrader.dto.QuizDTO" import="it.contrader.dto.CategoryDTO" import="it.contrader.dto.LevelDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,10 @@
 	<%
 	//Lista contiene tutti gli elementi del quiz che verranno stampati nella tabella
 		List<QuizDTO> list = (List<QuizDTO>) request.getAttribute("list");
+	
 		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+		
+		List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
 		
 		String ans = null;
 		try{
@@ -38,7 +41,7 @@
 	</h2>
 <% } %>
 <br>
-	%>
+
 
 <br>
 <!-- stampo i contenuti di list inclusi nella tabella sottostante -->
@@ -49,7 +52,7 @@
 			<th>Solution</th>
 			<th>Sentence</th>
 			<th>Definition</th>
-			<th>Score</th>
+			<th>Level</th>
 			<th>Category</th>
 			<th></th>
 			<th></th>
@@ -66,7 +69,7 @@
 			<td><%=q.getSolution()%></td>
 			<td><%=q.getSentence()%></td>
 			<td><%=q.getDefinition()%></td>
-			<td><%=q.getScore()%></td>
+			<td><%=q.getLevel()%></td>
 			<td><%=q.getCategory()%></td>
 			<td><a href=QuizServlet?mode=read&update=true&id=<%=q.getId()%>>Edit</a>
 			</td>
@@ -104,13 +107,13 @@
       <input type="text" id="sentence" name="sentence" required placeholder="enter the clue">
     </div>
   </div>
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-25">
      <label for="quizr">Score</label>
     </div>
     <div class="col-75">
       <input type="number" id="score" name="score" min=1 required placeholder="enter score"> 
-    </div>
+    </div>-->
     <div class="row">
     <div class="col-25">
       <label for="quiz">Category</label>
@@ -122,6 +125,23 @@
       	for (CategoryDTO category : categoryList) {
       %>
       <option value= <%= category.getId()%>> <%= category.getTitle() %> </option>
+      <%
+      	  }
+	  %>
+   	</select>
+    	</div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="quiz">Level</label>
+    </div>
+    <div class="col-75">
+      <select id="idLevel" name="idLevel" required>
+      <option value= ''> Choose one...</option>
+      <%
+      	for (LevelDTO level : levelList) {
+      %>
+      <option value= <%= level.getId()%>> <%= level.getName() %> </option>
       <%
       	  }
 	  %>

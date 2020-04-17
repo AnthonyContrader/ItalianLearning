@@ -32,7 +32,7 @@
 		<th>Solution</th>
 		<th>Sentence</th>
 		<th>Definition</th>
-		<th>Score</th>
+		<th>Level</th>
 		<th>Category</th>
 		</tr>
 		<tr>
@@ -40,7 +40,7 @@
 			<td><%=h.getSolution()%></td>
 			<td><%=h.getSentence()%></td>
 			<td><%=h.getDefinition()%></td>
-			<td><%=h.getScore()%></td>
+			<td><%=h.getLevel()%></td>
 			<td><%=h.getCategory()%></td>
 		</tr>	
 	</table>

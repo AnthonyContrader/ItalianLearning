@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.contrader.dto.QuizDTO;
 import it.contrader.service.CategoryService;
+import it.contrader.service.LevelService;
 import it.contrader.service.QuizService;
 import it.contrader.service.Service;
 
 import it.contrader.dto.CategoryDTO;
+import it.contrader.dto.LevelDTO;
 
 
 
@@ -37,6 +39,12 @@ public class QuizServlet extends HttpServlet {
 		request.setAttribute("categoryList", listDTO);
 	}
 	
+	public void levelList(HttpServletRequest request) {
+		Service<LevelDTO> service = new LevelService();
+		List<LevelDTO>listDTO = service.getAll();
+		request.setAttribute("levelList", listDTO);
+	}
+	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Service<QuizDTO> service = new QuizService();
@@ -49,6 +57,7 @@ public class QuizServlet extends HttpServlet {
 
 		case "GAMELIST":
 			categoryList(request);
+			levelList(request);
 			updateList(request);
 			getServletContext().getRequestDispatcher("/quiz/quizmanager.jsp").forward(request, response);
 			break;
@@ -64,6 +73,7 @@ public class QuizServlet extends HttpServlet {
 			}
 			else if (request.getParameter("update") != null) {
 				categoryList(request);
+				levelList(request);
 				getServletContext().getRequestDispatcher("/quiz/updatequiz.jsp").forward(request, response);
 			}
 else getServletContext().getRequestDispatcher("/quiz/deletequiz.jsp").forward(request, response);
@@ -72,33 +82,34 @@ else getServletContext().getRequestDispatcher("/quiz/deletequiz.jsp").forward(re
 			
 		case "INSERT":
 			Integer idCategory = Integer.parseInt(request.getParameter("idCategory"));
-			Integer score = Integer.parseInt(request.getParameter("score"));
 			String solution = request.getParameter("solution").toString();
 			String definition = request.getParameter("definition").toString();
 			String sentence = request.getParameter("sentence").toString();
-			
-			dto = new QuizDTO (idCategory, score, solution, definition, sentence );
+			Integer idLevel = Integer.parseInt(request.getParameter("idLevel"));
+			dto = new QuizDTO(idCategory, solution, definition, sentence, idLevel );
 			
 			ans = service.insert(dto);
 			request.setAttribute("ans", ans);
 			
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/quiz/quizmanager.jsp").forward(request, response);
 			break;	
 			
 		case "UPDATE":
 			idCategory = Integer.parseInt(request.getParameter("idCategory"));
-			score = Integer.parseInt(request.getParameter("score"));
 			solution = request.getParameter("solution").toString();
 			definition = request.getParameter("definition").toString();
 			sentence = request.getParameter("sentence").toString();
 			id = Integer.parseInt(request.getParameter("id"));
-			dto = new QuizDTO (id, idCategory, score, solution, definition, sentence );
+			idLevel = Integer.parseInt(request.getParameter("idLevel"));
+			dto = new QuizDTO (id, idCategory, solution, definition, sentence, idLevel );
 			ans = service.update(dto);
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/quiz/quizmanager.jsp").forward(request, response);
 			break;
 			
@@ -109,6 +120,7 @@ else getServletContext().getRequestDispatcher("/quiz/deletequiz.jsp").forward(re
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/quiz/quizmanager.jsp").forward(request, response);
 			break;
 		}

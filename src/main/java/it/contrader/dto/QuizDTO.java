@@ -5,23 +5,39 @@ public class QuizDTO {
 	
 	private int id;
 	private Integer idCategory;
-	private Integer score;
 	private String solution;
 	private String definition;
 	private String category;
 	private String sentence;
-	
 	private Integer idLevel;
 	private String level;
 	
 	public QuizDTO() {
 	}
 
-	public QuizDTO(Integer idCategory, Integer score, String solution, String definition, String category,
+	public QuizDTO(int id, Integer idCategory, String solution, String definition, String sentence,Integer idLevel) {
+		
+		this.id = id;
+		this.idCategory = idCategory;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.idLevel = idLevel;
+	}
+
+	public QuizDTO(Integer idCategory,  String solution, String definition,String sentence, Integer idLevel) {
+		
+		this.idCategory = idCategory;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.idLevel = idLevel;
+	}
+
+	public QuizDTO(Integer idCategory, String solution, String definition, String category,
 			String sentence, Integer idLevel, String level) {
 		super();
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
 		this.category = category;
@@ -30,12 +46,11 @@ public class QuizDTO {
 		this.level = level;
 	}
 
-	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String category,
+	public QuizDTO(int id, Integer idCategory, String solution, String definition, String category,
 			String sentence, Integer idLevel, String level) {
 		super();
 		this.id = id;
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
 		this.category = category;
@@ -64,21 +79,19 @@ public class QuizDTO {
 	}
 
 
-	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String sentence) {
+	public QuizDTO(int id, Integer idCategory, String solution, String definition, String sentence) {
 		
 		this.id = id;
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;	
 	}
 
-	public QuizDTO(int id, Integer idCategory, Integer score, String solution, String definition, String category, String sentence) {
+	public QuizDTO(int id, Integer idCategory, String solution, String definition, String category, String sentence) {
 		
 		this.id = id;
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
 		this.category = category;
@@ -86,9 +99,8 @@ public class QuizDTO {
 	}
 
 
-	public QuizDTO(Integer idCategory, Integer score, String solution, String definition,String sentence) {
+	public QuizDTO(Integer idCategory, String solution, String definition,String sentence) {
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
@@ -122,16 +134,6 @@ public class QuizDTO {
 
 	public void setIdCategory(Integer idCategory) {
 		this.idCategory = idCategory;
-	}
-
-
-	public Integer getScore() {
-		return score;
-	}
-
-
-	public void setScore(Integer score) {
-		this.score = score;
 	}
 
 

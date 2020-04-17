@@ -27,7 +27,7 @@
 		<th>Solution</th>
 		<th>Sentence</th>
 		<th>Definition</th>
-		<th>Score</th>
+		<th>Level</th>
 		<th>Category</th>
 			
 	</tr>
@@ -36,7 +36,7 @@
 		<td><%=q.getSolution()%></td>
 		<td><%=q.getSentence()%></td>
 		<td><%=q.getDefinition()%></td>
-		<td><%=q.getScore()%></td>
+		<td><%=q.getLevel()%></td>
 		<td><%=q.getCategory()%></td>
 	</tr>	
 </table>
