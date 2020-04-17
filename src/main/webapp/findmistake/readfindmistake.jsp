@@ -29,7 +29,7 @@
 		<th>Option A</th>
 		<th>Option B</th>
 		<th>Option C</th>
-		<th>Score</th>
+		<th>Level</th>
 		<th>Category</th>
 	</tr>
 	<tr>
@@ -40,7 +40,7 @@
 		<td><%=f.getOptionA()%></td>
 		<td><%=f.getOptionB()%></td>
 		<td><%=f.getOptionC()%></td>
-		<td><%=f.getScore()%></td>
+		<td><%=f.getLevel()%></td>
 		<td><%=f.getCategory()%></td>
 	</tr>	
 </table>

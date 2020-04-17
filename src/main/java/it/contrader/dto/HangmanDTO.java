@@ -9,80 +9,47 @@ public class HangmanDTO {
 	private String sentence;
 	private String category;
 	private Integer score;
-	@SuppressWarnings("unused")
 	private Integer idCategory;
-	
 	private Integer idLevel;
 	private String level;
 	
 	public HangmanDTO() {
 	}
 	
+	public HangmanDTO(String solution, String definition, String sentence, Integer idCategory, Integer idLevel) {
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+	}
 	
-	public HangmanDTO(String solution, String definition, String sentence, String category, Integer score,
-			Integer idCategory, Integer idLevel, String level) {
-		super();
+	public HangmanDTO(String solution, String definition, String sentence, String category, String level) {
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
 		this.category = category;
-		this.score = score;
+		this.level = level;
+	}
+	
+	public HangmanDTO(int id, String solution, String definition, String sentence, Integer idCategory, Integer idLevel) {
+		this.id = id;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.idCategory = idCategory;
+		this.idLevel = idLevel;
+	}
+	
+	public HangmanDTO(int id, String solution, String definition, String sentence, Integer idCategory, String category, Integer idLevel, String level) {
+		this.id = id;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.category = category;
 		this.idCategory = idCategory;
 		this.idLevel = idLevel;
 		this.level = level;
-	}
-
-
-
-	public HangmanDTO(int id, String solution, String definition, String sentence, String category, Integer score,
-			Integer idCategory, Integer idLevel, String level) {
-		super();
-		this.id = id;
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.category = category;
-		this.score = score;
-		this.idCategory = idCategory;
-		this.idLevel = idLevel;
-		this.level = level;
-	}
-
-
-
-	public HangmanDTO(String solution, String definition, String sentence, Integer score, Integer idCategory) {
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.score = score;
-		this.idCategory = idCategory;
-	}
-	
-	public HangmanDTO(String solution, String definition, String sentence, Integer score, String category) {
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.score = score;
-		this.category = category;
-	}
-	
-	public HangmanDTO(int id, String solution, String definition, String sentence, Integer score, Integer idCategory) {
-		this.id = id;
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.score = score;
-		this.idCategory = idCategory;
-	}
-	
-	public HangmanDTO(int id, String solution, String definition, String sentence, Integer score, Integer idCategory, String category) {
-		this.id = id;
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.score = score;
-		this.category = category;
-		this.idCategory = idCategory;
 	}
 
 	public int getId() {

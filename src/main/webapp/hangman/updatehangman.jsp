@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.List"
     import="it.contrader.dto.HangmanDTO"
-    import="it.contrader.dto.CategoryDTO"%>
+    import="it.contrader.dto.CategoryDTO"
+    import="it.contrader.dto.LevelDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,7 @@
 <%
 	HangmanDTO h = (HangmanDTO) request.getAttribute("dto");
 	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+	List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
 %>
 
 
@@ -52,18 +54,29 @@
   </div>
   <div class="row">
     <div class="col-25">
-     <label for="score">Punteggio</label>
+    	<label for="idLevel">Punteggio</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" min=1 value="<%=h.getScore()%>"> 
-    </div>
+		<select id="idLevel" name="idLevel">
+ 			<%
+				for (LevelDTO level : levelList) {
+			%>
+			<option value=<%= level.getId() %> <%= Integer.valueOf(level.getId()) == h.getIdLevel() ? "selected" : ""%> >
+				<%= level.getName() %>
+			</option>
+			<%
+				}
+			%>
+
+		</select>
+   	</div>
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="type">Categoria</label>
+      <label for="idCategory">Categoria</label>
     </div>
    		 <div class="col-75">
- 			<select id="type" name="idCategory">
+ 			<select id="idCategory" name="idCategory">
 	 			<%
 					for (CategoryDTO category : categoryList) {
 				%>

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
 	import="it.contrader.dto.FindMistakeDTO"
-	import="it.contrader.dto.CategoryDTO"%>
+	import="it.contrader.dto.CategoryDTO"
+	import="it.contrader.dto.LevelDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,7 @@
 	<%
 		List<FindMistakeDTO> list = (List<FindMistakeDTO>) request.getAttribute("list");
 		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+		List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
 		String ans = null;
 		try{
 			ans = request.getAttribute("ans").toString();
@@ -44,7 +46,7 @@
 			<th>Option A</th>
 			<th>Option B</th>
 			<th>Option C</th>
-			<th>Score</th>
+			<th>Level</th>
 			<th>Category</th>
 			<th></th>
 			<th></th>
@@ -64,7 +66,7 @@
 			<td><%=f.getOptionA()%></td>
 			<td><%=f.getOptionB()%></td>
 			<td><%=f.getOptionC()%></td>
-			<td><%=f.getScore()%></td>
+			<td><%=f.getLevel()%></td>
 			<td><%=f.getCategory()%></td>
 			<td><a href=FindMistakeServlet?mode=read&update=true&id=<%=f.getId()%> style="text-decoration: underline;">Edit</a>
 			</td>
@@ -130,11 +132,20 @@
   </div>
   <div class="row">
     <div class="col-25">
-     <label for="score">Score</label>
+     <label for="idLevel">Level</label>
     </div>
     <div class="col-75">
-      <input type="number" id="score" name="score" min=1 required placeholder="Insert the score"> 
-    </div>
+		<select id="idLevel" name="idLevel" required>
+			<option value="">Choose one...</option>
+ 			<%
+				for (LevelDTO level : levelList) {
+			%>
+			<option value=<%= level.getId() %>> <%= level.getName() %> </option>
+			<%
+				}
+			%>
+		</select>
+   	</div>
   </div>
   
   <div class="row">

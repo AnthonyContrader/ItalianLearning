@@ -12,44 +12,21 @@ public class Hangman {
 	public Hangman() {
 	}
 	
-	public Hangman(int id, String solution, String definition, String sentence, Integer score, Integer idCategory,
-			Integer idLevel) {
-		super();
-		this.id = id;
+	public Hangman(String solution, String definition, String sentence, Integer idCategory, Integer idLevel) {
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
-		this.score = score;
 		this.idCategory = idCategory;
 		this.idLevel = idLevel;
-	}
-
-	public Hangman(String solution, String definition, String sentence, Integer score, Integer idCategory,
-			Integer idLevel) {
-		super();
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.score = score;
-		this.idCategory = idCategory;
-		this.idLevel = idLevel;
-	}
-
-	public Hangman(String solution, String definition, String sentence, Integer score, Integer idCategory) {
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.score = score;
-		this.idCategory = idCategory;
 	}
 	
-	public Hangman(int id, String solution, String definition, String sentence, Integer score, Integer idCategory) {
+	public Hangman(int id, String solution, String definition, String sentence, Integer idCategory,Integer idLevel) {
 		this.id = id;
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
-		this.score = score;
 		this.idCategory = idCategory;
+		this.idLevel = idLevel;
 	}
 
 	public int getId() {
@@ -78,14 +55,6 @@ public class Hangman {
 
 	public void setSentence(String sentence) {
 		this.sentence = sentence;
-	}
-
-	public Integer getScore() {
-		return score;
-	}
-
-	public void setScore(Integer score) {
-		this.score = score;
 	}
 
 	public Integer getIdCategory() {
@@ -139,11 +108,6 @@ public class Hangman {
 			if (other.idLevel != null)
 				return false;
 		} else if (!idLevel.equals(other.idLevel))
-			return false;
-		if (score == null) {
-			if (other.score != null)
-				return false;
-		} else if (!score.equals(other.score))
 			return false;
 		if (sentence == null) {
 			if (other.sentence != null)

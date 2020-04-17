@@ -4,27 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.dao.CategoryDAO;
+import it.contrader.dao.LevelDAO;
 import it.contrader.dto.HangmanDTO;
 import it.contrader.model.Hangman;
 
 public class HangmanConverter implements Converter<Hangman, HangmanDTO> {
 	
 	private CategoryDAO categoryDAO;
+	private LevelDAO levelDAO;
 	
 	public HangmanConverter(){
 		this.categoryDAO = new CategoryDAO();
+		this.levelDAO = new LevelDAO();
 	}
 
 	// converte Category Model in CategoryDTO
 		public HangmanDTO toDTO(Hangman hangman) {
 			String categoryString = categoryDAO.read(hangman.getIdCategory()).getTitle();
-			HangmanDTO hangmanDTO = new HangmanDTO(hangman.getId(),hangman.getSolution(),hangman.getDefinition(),hangman.getSentence(), hangman.getScore(), hangman.getIdCategory(), categoryString);
+			String levelString = levelDAO.read(hangman.getIdLevel()).getName();
+			HangmanDTO hangmanDTO = new HangmanDTO(hangman.getId(),hangman.getSolution(),hangman.getDefinition(),hangman.getSentence(), hangman.getIdCategory(), categoryString, hangman.getIdLevel(), levelString);
 			return hangmanDTO;
 		}
 		
 		//converte category DTO in category model (Entity)
 		public Hangman toEntity(HangmanDTO hangmanDto) {
-			Hangman hangman = new Hangman(hangmanDto.getId(),hangmanDto.getSolution(),hangmanDto.getDefinition(),hangmanDto.getSentence(), hangmanDto.getScore(), hangmanDto.getIdCategory());
+			Hangman hangman = new Hangman(hangmanDto.getId(),hangmanDto.getSolution(),hangmanDto.getDefinition(),hangmanDto.getSentence(), hangmanDto.getIdCategory(), hangmanDto.getIdLevel());
 			return hangman;
 		}
 		

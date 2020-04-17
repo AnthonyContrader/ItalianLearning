@@ -11,7 +11,6 @@ public class FindMistakeDTO {
 	private String optionB;
 	private String optionC;
 	private String category;
-	private Integer score;
 	private Integer idCategory;
 	
 	private Integer idLevel;
@@ -21,10 +20,8 @@ public class FindMistakeDTO {
 		
 	}
 	
-	
 	public FindMistakeDTO(String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, String category, Integer score, Integer idCategory, Integer idLevel, String level) {
-		super();
+			String optionC, String category, String level) {
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
@@ -32,59 +29,38 @@ public class FindMistakeDTO {
 		this.optionB = optionB;
 		this.optionC = optionC;
 		this.category = category;
-		this.score = score;
-		this.idCategory = idCategory;
-		this.idLevel = idLevel;
 		this.level = level;
 	}
-
-
-
-	public FindMistakeDTO(int id, String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, String category, Integer score, Integer idCategory, Integer idLevel, String level) {
-		super();
-		this.id = id;
+	
+	public FindMistakeDTO(String solution, String definition, String sentence, String optionA, String optionB,
+			String optionC, Integer idCategory, Integer idLevel) {
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
 		this.optionA = optionA;
 		this.optionB = optionB;
 		this.optionC = optionC;
-		this.category = category;
-		this.score = score;
 		this.idCategory = idCategory;
 		this.idLevel = idLevel;
+	}
+	
+	public FindMistakeDTO(int id, String solution, String definition, String sentence, String optionA, String optionB,
+			String optionC, Integer idCategory, String category, Integer idLevel, String level) {
+		this.id = id;
+		this.solution = solution;
+		this.definition = definition;
+		this.sentence = sentence;
+		this.optionA = optionA;
+		this.optionB = optionB;
+		this.optionC = optionC;
+		this.category = category;
+		this.idCategory = idCategory;
 		this.level = level;
-	}
-
-
-
-	public FindMistakeDTO(String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, Integer score, String category) {
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.optionA = optionA;
-		this.optionB = optionB;
-		this.optionC = optionC;
-		this.score = score;
-		this.category = category;
-	}
-	
-	public FindMistakeDTO(String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, Integer score, Integer idCategory) {
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.optionA = optionA;
-		this.optionB = optionB;
-		this.optionC = optionC;
-		this.score = score;
-		this.idCategory = idCategory;
+		this.idLevel = idLevel;
 	}
 	
 	public FindMistakeDTO(int id, String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, Integer score, Integer idCategory, String category) {
+			String optionC, Integer idCategory, Integer idLevel) {
 		this.id = id;
 		this.solution = solution;
 		this.definition = definition;
@@ -92,22 +68,8 @@ public class FindMistakeDTO {
 		this.optionA = optionA;
 		this.optionB = optionB;
 		this.optionC = optionC;
-		this.score = score;
-		this.category = category;
 		this.idCategory = idCategory;
-	}
-	
-	public FindMistakeDTO(int id, String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, Integer score, Integer idCategory) {
-		this.id = id;
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.optionA = optionA;
-		this.optionB = optionB;
-		this.optionC = optionC;
-		this.score = score;
-		this.idCategory = idCategory;
+		this.idLevel = idLevel;
 	}
 
 	public int getId() {
@@ -172,14 +134,6 @@ public class FindMistakeDTO {
 
 	public void setCategory(String category) {
 		this.category = category;
-	}
-
-	public Integer getScore() {
-		return score;
-	}
-
-	public void setScore(Integer score) {
-		this.score = score;
 	}
 
 	public Integer getIdCategory() {

@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import it.contrader.dto.HangmanDTO;
 import it.contrader.dto.CategoryDTO;
+import it.contrader.dto.LevelDTO;
 import it.contrader.service.Service;
 import it.contrader.service.HangmanService;
 import it.contrader.service.CategoryService;
+import it.contrader.service.LevelService;
 
 public class HangmanServlet extends HttpServlet {
 	
@@ -30,6 +32,12 @@ public class HangmanServlet extends HttpServlet {
 		request.setAttribute("categoryList", listDTO);
 	}
 	
+	public void levelList(HttpServletRequest request) {
+		Service<LevelDTO> service = new LevelService();
+		List<LevelDTO> listDTO = service.getAll();
+		request.setAttribute("levelList", listDTO);
+	}
+	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Service<HangmanDTO> service = new HangmanService();
@@ -43,6 +51,7 @@ public class HangmanServlet extends HttpServlet {
 		case "GAMELIST":
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/hangman/hangmanmanager.jsp").forward(request, response);
 			break;
 
@@ -58,6 +67,7 @@ public class HangmanServlet extends HttpServlet {
 			
 			else if (request.getParameter("update") != null) {
 				categoryList(request);
+				levelList(request);
 				getServletContext().getRequestDispatcher("/hangman/updatehangman.jsp").forward(request, response);
 			}
 			else getServletContext().getRequestDispatcher("/hangman/deletehangman.jsp").forward(request, response);
@@ -68,13 +78,14 @@ public class HangmanServlet extends HttpServlet {
 			String solution = request.getParameter("solution").toString();
 			String definition = request.getParameter("definition").toString();
 			String sentence = request.getParameter("sentence").toString();
-			Integer score = Integer.parseInt(request.getParameter("score").toString());
 			Integer idCategory = Integer.parseInt(request.getParameter("idCategory").toString());
-			dto = new HangmanDTO (solution,definition,sentence, score, idCategory);
+			Integer idLevel = Integer.parseInt(request.getParameter("idLevel").toString());
+			dto = new HangmanDTO (solution,definition,sentence, idCategory, idLevel);
 			ans = service.insert(dto);
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/hangman/hangmanmanager.jsp").forward(request, response);
 			break;
 			
@@ -82,14 +93,15 @@ public class HangmanServlet extends HttpServlet {
 			solution = request.getParameter("solution").toString();
 			definition = request.getParameter("definition").toString();
 			sentence = request.getParameter("sentence").toString();
-			score = Integer.parseInt(request.getParameter("score").toString());
 			idCategory = Integer.parseInt(request.getParameter("idCategory").toString());
+			idLevel = Integer.parseInt(request.getParameter("idLevel").toString());
 			id = Integer.parseInt(request.getParameter("id"));
-			dto = new HangmanDTO (id,solution,definition,sentence, score, idCategory);
+			dto = new HangmanDTO (id,solution,definition,sentence, idCategory, idLevel);
 			ans = service.update(dto);
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/hangman/hangmanmanager.jsp").forward(request, response);
 			break;
 
@@ -99,6 +111,7 @@ public class HangmanServlet extends HttpServlet {
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/hangman/hangmanmanager.jsp").forward(request, response);
 			break;
 		}

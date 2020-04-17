@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import it.contrader.dto.FindMistakeDTO;
+import it.contrader.dto.LevelDTO;
 import it.contrader.dto.CategoryDTO;
 import it.contrader.service.Service;
 import it.contrader.service.FindMistakeService;
+import it.contrader.service.LevelService;
 import it.contrader.service.CategoryService;
 
 public class FindMistakeServlet extends HttpServlet {
@@ -30,6 +32,12 @@ private static final long serialVersionUID = 1L;
 		request.setAttribute("categoryList", listDTO);
 	}
 	
+	public void levelList(HttpServletRequest request) {
+		Service<LevelDTO> service = new LevelService();
+		List<LevelDTO> listDTO = service.getAll();
+		request.setAttribute("levelList", listDTO);
+	}
+	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Service<FindMistakeDTO> service = new FindMistakeService();
@@ -43,6 +51,7 @@ private static final long serialVersionUID = 1L;
 		case "GAMELIST":
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/findmistake/findmistakemanager.jsp").forward(request, response);
 			break;
 
@@ -58,6 +67,7 @@ private static final long serialVersionUID = 1L;
 			
 			else if (request.getParameter("update") != null){
 				categoryList(request);
+				levelList(request);
 				getServletContext().getRequestDispatcher("/findmistake/updatefindmistake.jsp").forward(request, response);
 			}
 			else getServletContext().getRequestDispatcher("/findmistake/deletefindmistake.jsp").forward(request, response);
@@ -71,13 +81,14 @@ private static final long serialVersionUID = 1L;
 			String optionA = request.getParameter("optionA").toString();
 			String optionB = request.getParameter("optionB").toString();
 			String optionC = request.getParameter("optionC").toString();
-			Integer score = Integer.parseInt(request.getParameter("score").toString());
 			Integer idCategory = Integer.parseInt(request.getParameter("idCategory").toString());
-			dto = new FindMistakeDTO (solution,definition,sentence, optionA, optionB, optionC, score, idCategory);
+			Integer idLevel = Integer.parseInt(request.getParameter("idLevel").toString());
+			dto = new FindMistakeDTO (solution,definition,sentence, optionA, optionB, optionC, idCategory, idLevel);
 			ans = service.insert(dto);
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/findmistake/findmistakemanager.jsp").forward(request, response);
 			break;
 			
@@ -88,14 +99,15 @@ private static final long serialVersionUID = 1L;
 			optionA = request.getParameter("optionA").toString();
 			optionB = request.getParameter("optionB").toString();
 			optionC = request.getParameter("optionC").toString();
-			score = Integer.parseInt(request.getParameter("score").toString());
 			idCategory = Integer.parseInt(request.getParameter("idCategory").toString());
+			idLevel = Integer.parseInt(request.getParameter("idLevel").toString());
 			id = Integer.parseInt(request.getParameter("id"));
-			dto = new FindMistakeDTO (id,solution,definition,sentence, optionA, optionB, optionC, score, idCategory);
+			dto = new FindMistakeDTO (id,solution,definition,sentence, optionA, optionB, optionC, idCategory, idLevel);
 			ans = service.update(dto);
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/findmistake/findmistakemanager.jsp").forward(request, response);
 			break;
 
@@ -105,6 +117,7 @@ private static final long serialVersionUID = 1L;
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/findmistake/findmistakemanager.jsp").forward(request, response);
 			break;
 		}

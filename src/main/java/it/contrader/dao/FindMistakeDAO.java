@@ -8,9 +8,9 @@ import it.contrader.model.FindMistake;
 
 public class FindMistakeDAO implements DAO<FindMistake>{
 	private final String QUERY_ALL = "SELECT * FROM findMistake";
-	private final String QUERY_CREATE = "INSERT INTO findMistake (solution, definition, sentence, optionA, optionB, optionC, score, idCategory) VALUES (?,?,?,?,?,?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO findMistake (solution, definition, sentence, optionA, optionB, optionC, idCategory, idLevel) VALUES (?,?,?,?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM findMistake WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE findMistake SET solution=?, definition=?, sentence=?, optionA=?, optionB=?, optionC=?, score=?, idCategory=? WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE findMistake SET solution=?, definition=?, sentence=?, optionA=?, optionB=?, optionC=?, idCategory=?, idLevel=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM findMistake WHERE id=?";
 	
 	public List<FindMistake> getAll(){
@@ -30,9 +30,9 @@ public class FindMistakeDAO implements DAO<FindMistake>{
 				String optionA = resultSet.getString("optionA");
 				String optionB = resultSet.getString("optionB");
 				String optionC = resultSet.getString("optionC");
-				Integer score = resultSet.getInt("score");
 				Integer idCategory = resultSet.getInt("idCategory");
-				findMistake = new FindMistake(id,solution,definition,sentence,optionA,optionB,optionC,score,idCategory); //inizializzo elemento hangman
+				Integer idLevel = resultSet.getInt("idLevel");
+				findMistake = new FindMistake(id,solution,definition,sentence,optionA,optionB,optionC,idCategory,idLevel); //inizializzo elemento hangman
 				findMistakeList.add(findMistake); //aggiungo elemento hangman alla lista
 			}
 			
@@ -54,8 +54,8 @@ public class FindMistakeDAO implements DAO<FindMistake>{
 			preparedStatement.setString(4, findMistakeToInsert.getOptionA()); //ora settiamo i parametri della query
 			preparedStatement.setString(5, findMistakeToInsert.getOptionB()); //ora settiamo i parametri della query
 			preparedStatement.setString(6, findMistakeToInsert.getOptionC()); //ora settiamo i parametri della query
-			preparedStatement.setInt(7, findMistakeToInsert.getScore()); //ora settiamo i parametri della query
-			preparedStatement.setInt(8, findMistakeToInsert.getIdCategory()); //ora settiamo i parametri della query
+			preparedStatement.setInt(7, findMistakeToInsert.getIdCategory()); //ora settiamo i parametri della query
+			preparedStatement.setInt(8, findMistakeToInsert.getIdLevel()); //ora settiamo i parametri della query
 			preparedStatement.execute(); //eseguo la query
 			return true;
 			
@@ -82,9 +82,9 @@ public class FindMistakeDAO implements DAO<FindMistake>{
 			String optionA = resultSet.getString("optionA");
 			String optionB = resultSet.getString("optionB");
 			String optionC = resultSet.getString("optionC");
-			Integer score = resultSet.getInt("score");
 			Integer idCategory = resultSet.getInt("idCategory");
-			FindMistake findMistake = new FindMistake(id,solution,definition,sentence,optionA,optionB,optionC,score,idCategory);
+			Integer idLevel = resultSet.getInt("idLevel");
+			FindMistake findMistake = new FindMistake(id,solution,definition,sentence,optionA,optionB,optionC,idCategory,idLevel);
 			return findMistake;
 			
 		}catch(SQLException e) {
@@ -141,8 +141,8 @@ public class FindMistakeDAO implements DAO<FindMistake>{
 					findMistakeToUpdate.setOptionC(findMistakeRead.getOptionC());
 				}
 				
-				if (findMistakeToUpdate.getScore() == null || findMistakeToUpdate.getScore() <= 0) {
-					findMistakeToUpdate.setScore(findMistakeRead.getScore());
+				if (findMistakeToUpdate.getIdLevel() == null || findMistakeToUpdate.getIdLevel() <= 0) {
+					findMistakeToUpdate.setIdLevel(findMistakeRead.getIdLevel());
 				}
 				
 				if (findMistakeToUpdate.getIdCategory() == null || findMistakeToUpdate.getIdCategory() <= 0) {
@@ -156,8 +156,8 @@ public class FindMistakeDAO implements DAO<FindMistake>{
 				preparedStatement.setString(4, findMistakeToUpdate.getOptionA()); //ora settiamo i parametri della query
 				preparedStatement.setString(5, findMistakeToUpdate.getOptionB()); //ora settiamo i parametri della query
 				preparedStatement.setString(6, findMistakeToUpdate.getOptionC()); //ora settiamo i parametri della query
-				preparedStatement.setInt(7, findMistakeToUpdate.getScore()); //ora settiamo i parametri della query
-				preparedStatement.setInt(8, findMistakeToUpdate.getIdCategory()); //ora settiamo i parametri della query
+				preparedStatement.setInt(7, findMistakeToUpdate.getIdCategory()); //ora settiamo i parametri della query
+				preparedStatement.setInt(8, findMistakeToUpdate.getIdLevel()); //ora settiamo i parametri della query
 				preparedStatement.setInt(9, findMistakeToUpdate.getId()); //ora settiamo i parametri della query
 				
 				int check = preparedStatement.executeUpdate(); //eseguo la query di update (Aggiornamento) del database

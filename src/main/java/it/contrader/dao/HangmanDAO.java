@@ -9,9 +9,9 @@ import it.contrader.model.Hangman;
 public class HangmanDAO implements DAO<Hangman>{
 	
 	private final String QUERY_ALL = "SELECT * FROM hangman";
-	private final String QUERY_CREATE = "INSERT INTO hangman (solution, definition, sentence, score, idCategory) VALUES (?,?,?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO hangman (solution, definition, sentence, idCategory, idLevel) VALUES (?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM hangman WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE hangman SET solution=?, definition=?, sentence=?, score=?, idCategory=? WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE hangman SET solution=?, definition=?, sentence=?, idCategory=?, idLevel=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM hangman WHERE id=?";
 	
 	public List<Hangman> getAll(){
@@ -28,9 +28,9 @@ public class HangmanDAO implements DAO<Hangman>{
 				String solution = resultSet.getString("solution");
 				String definition = resultSet.getString("definition");
 				String sentence = resultSet.getString("sentence");
-				Integer score = resultSet.getInt("score");
 				Integer idCategory = resultSet.getInt("idCategory");
-				hangman = new Hangman(id,solution,definition,sentence,score,idCategory); //inizializzo elemento hangman
+				Integer idLevel = resultSet.getInt("idLevel");
+				hangman = new Hangman(id,solution,definition,sentence,idCategory,idLevel); //inizializzo elemento hangman
 				hangmenList.add(hangman); //aggiungo elemento hangman alla lista
 			}
 			
@@ -49,13 +49,13 @@ public class HangmanDAO implements DAO<Hangman>{
 			preparedStatement.setString(1, hangmanToInsert.getSolution()); //ora settiamo i parametri della query
 			preparedStatement.setString(2, hangmanToInsert.getDefinition()); //ora settiamo i parametri della query
 			preparedStatement.setString(3, hangmanToInsert.getSentence()); //ora settiamo i parametri della query
-			preparedStatement.setInt(4, hangmanToInsert.getScore()); //ora settiamo i parametri della query
-			preparedStatement.setInt(5, hangmanToInsert.getIdCategory()); //ora settiamo i parametri della query
+			preparedStatement.setInt(4, hangmanToInsert.getIdCategory()); //ora settiamo i parametri della query
+			preparedStatement.setInt(5, hangmanToInsert.getIdLevel()); //ora settiamo i parametri della query
 			preparedStatement.execute(); //eseguo la query
 			return true;
 			
 		}catch(SQLException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -74,9 +74,9 @@ public class HangmanDAO implements DAO<Hangman>{
 			String solution = resultSet.getString("solution");
 			String definition = resultSet.getString("definition");
 			String sentence = resultSet.getString("sentence");
-			Integer score = resultSet.getInt("score");
 			Integer idCategory = resultSet.getInt("idCategory");
-			Hangman hangman = new Hangman(id,solution,definition,sentence,score,idCategory);
+			Integer idLevel = resultSet.getInt("idLevel");
+			Hangman hangman = new Hangman(id,solution,definition,sentence,idCategory,idLevel);
 			return hangman;
 			
 		}catch(SQLException e) {
@@ -113,7 +113,7 @@ public class HangmanDAO implements DAO<Hangman>{
 					hangmanToUpdate.setSolution(hangmanRead.getSolution());
 				}
 
-				if (hangmanToUpdate.getDefinition() == null || hangmanToUpdate.getDefinition().equals("")) {
+				if (hangmanToUpdate.getDefinition() == null) {
 					hangmanToUpdate.setDefinition(hangmanRead.getDefinition());
 				}
 				
@@ -121,20 +121,20 @@ public class HangmanDAO implements DAO<Hangman>{
 					hangmanToUpdate.setSentence(hangmanRead.getSentence());
 				}
 				
-				if (hangmanToUpdate.getScore() == null || hangmanToUpdate.getScore() <= 0) {
-					hangmanToUpdate.setScore(hangmanRead.getScore());
-				}
-				
 				if (hangmanToUpdate.getIdCategory() == null || hangmanToUpdate.getIdCategory() <= 0) {
 					hangmanToUpdate.setIdCategory(hangmanRead.getIdCategory());
+				}
+				
+				if (hangmanToUpdate.getIdLevel() == null || hangmanToUpdate.getIdLevel() <= 0) {
+					hangmanToUpdate.setIdLevel(hangmanRead.getIdLevel());
 				}
 				
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE); //preparo la query ma non la eseguo
 				preparedStatement.setString(1, hangmanToUpdate.getSolution()); //ora settiamo i parametri della query
 				preparedStatement.setString(2, hangmanToUpdate.getDefinition()); //ora settiamo i parametri della query
 				preparedStatement.setString(3, hangmanToUpdate.getSentence()); //ora settiamo i parametri della query
-				preparedStatement.setInt(4, hangmanToUpdate.getScore()); //ora settiamo i parametri della query
-				preparedStatement.setInt(5, hangmanToUpdate.getIdCategory()); //ora settiamo i parametri della query
+				preparedStatement.setInt(4, hangmanToUpdate.getIdCategory()); //ora settiamo i parametri della query
+				preparedStatement.setInt(5, hangmanToUpdate.getIdLevel()); //ora settiamo i parametri della query
 				preparedStatement.setInt(6, hangmanToUpdate.getId()); //ora settiamo i parametri della query
 				
 				int check = preparedStatement.executeUpdate(); //eseguo la query di update (Aggiornamento) del database

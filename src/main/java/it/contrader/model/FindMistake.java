@@ -17,52 +17,19 @@ public class FindMistake {
 	}
 	
 	public FindMistake(String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, Integer score, Integer idCategory, Integer idLevel) {
-		super();
+			String optionC, Integer idCategory, Integer idLevel) {
 		this.solution = solution;
 		this.definition = definition;
 		this.sentence = sentence;
 		this.optionA = optionA;
 		this.optionB = optionB;
 		this.optionC = optionC;
-		this.score = score;
 		this.idCategory = idCategory;
 		this.idLevel = idLevel;
-	}
-
-
-
-	public FindMistake(int id, String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, Integer score, Integer idCategory, Integer idLevel) {
-		super();
-		this.id = id;
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.optionA = optionA;
-		this.optionB = optionB;
-		this.optionC = optionC;
-		this.score = score;
-		this.idCategory = idCategory;
-		this.idLevel = idLevel;
-	}
-
-
-
-	public FindMistake(String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, Integer score, Integer idCategory) {
-		this.solution = solution;
-		this.definition = definition;
-		this.sentence = sentence;
-		this.optionA = optionA;
-		this.optionB = optionB;
-		this.optionC = optionC;
-		this.score = score;
-		this.idCategory = idCategory;
 	}
 	
 	public FindMistake(int id, String solution, String definition, String sentence, String optionA, String optionB,
-			String optionC, Integer score, Integer idCategory) {
+			String optionC, Integer idCategory, Integer idLevel) {
 		this.id = id;
 		this.solution = solution;
 		this.definition = definition;
@@ -70,8 +37,8 @@ public class FindMistake {
 		this.optionA = optionA;
 		this.optionB = optionB;
 		this.optionC = optionC;
-		this.score = score;
 		this.idCategory = idCategory;
+		this.idLevel = idLevel;
 	}
 
 	public int getId() {
@@ -128,14 +95,6 @@ public class FindMistake {
 
 	public void setOptionC(String optionC) {
 		this.optionC = optionC;
-	}
-
-	public Integer getScore() {
-		return score;
-	}
-
-	public void setScore(Integer score) {
-		this.score = score;
 	}
 
 	public Integer getIdCategory() {
@@ -201,11 +160,6 @@ public class FindMistake {
 			if (other.optionC != null)
 				return false;
 		} else if (!optionC.equals(other.optionC))
-			return false;
-		if (score == null) {
-			if (other.score != null)
-				return false;
-		} else if (!score.equals(other.score))
 			return false;
 		if (sentence == null) {
 			if (other.sentence != null)
