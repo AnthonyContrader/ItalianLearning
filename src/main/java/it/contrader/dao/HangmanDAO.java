@@ -152,7 +152,7 @@ public class HangmanDAO implements DAO<Hangman>{
 			
 		}
 		
-		return false;
+		return true;
 
 	}
 
