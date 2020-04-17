@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.xdevapi.JsonArray;
+
 import it.contrader.dto.*;
 import it.contrader.service.*;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
 
 public class PlaylistServlet extends HttpServlet {
 
@@ -114,6 +113,7 @@ public class PlaylistServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Service<PlaylistDTO> service = new PlaylistService();
+		Service<GamePlaylistDTO> gamePlaylistService = new GamePlaylistService();
 		String mode = request.getParameter("mode");
 		PlaylistDTO dto;
 		int id;
@@ -164,11 +164,20 @@ public class PlaylistServlet extends HttpServlet {
 			break;
 				
 		case "EDITPLAYLIST":
-			ScriptEngineManager mgr = new ScriptEngineManager();
-		    ScriptEngine engine = mgr.getEngineByName("JavaScript");
-			String list = engine.eval(request.getParameter("gameList"));
+			String[] list = request.getParameter("gameList").split(",");
+			ArrayList<ArrayList<String>> games = new ArrayList<ArrayList<String>>();
+			for (int i = 0; i < list.length; i++) {
+				ArrayList<String> arr = new ArrayList<String>();
+				if (i % 2 == 0) {
+					arr.add(list[i]);
+				}
+				else {
+					arr.add(list[i]);
+					games.add(arr);
+				}		
+			}
+			gamePlaylistService.insert(games); //Da implementare
 			id = Integer.parseInt(request.getParameter("id"));
-		    
 			break;
 		case "DELETE":
 			id = Integer.parseInt(request.getParameter("id"));
