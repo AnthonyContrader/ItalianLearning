@@ -179,7 +179,7 @@ public class OrganizeSentenceDAO implements DAO<OrganizeSentence> {
 			
 		}
 		
-		return false;
+		return true;
 
 	}
 	
