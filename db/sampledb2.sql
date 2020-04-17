@@ -43,7 +43,7 @@ CREATE TABLE gamePlaylist(
     typeGame varchar(64) NOT NULL,
     idGame int NOT NULL,
     idPlaylist int NOT NULL,
-	FOREIGN KEY (idPlaylist) REFERENCES playlist (id),
+	FOREIGN KEY (idPlaylist) REFERENCES playlist (id) ON DELETE CASCADE,
 	PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
