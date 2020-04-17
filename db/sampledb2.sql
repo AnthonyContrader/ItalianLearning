@@ -48,7 +48,6 @@ CREATE TABLE gamePlaylist(
 
 CREATE TABLE hangman (
 	id int NOT NULL AUTO_INCREMENT,
-    score int NOT NULL,
 	solution varchar(32) NOT NULL,
     definition varchar(255) NOT NULL, 	/* descrizione della parola */
     sentence varchar(255) NOT NULL,		/* indizio */
@@ -61,7 +60,6 @@ CREATE TABLE hangman (
 
 CREATE TABLE findMistake (
 	id int NOT NULL AUTO_INCREMENT,
-	score int NOT NULL,
 	solution varchar(32) NOT NULL,
     definition varchar(255) NOT NULL, 	/* descrizione della parola */
     sentence varchar(255) NOT NULL,		/* frase iniziale */
@@ -77,7 +75,6 @@ CREATE TABLE findMistake (
 
 CREATE TABLE quiz (
 	id int NOT NULL AUTO_INCREMENT,
-	score int NOT NULL,
 	solution varchar(32) NOT NULL,
     definition varchar(255) NOT NULL, 	/* spiegazione della soluzione  */
     sentence varchar(255) NOT NULL,		/* domanda */
@@ -90,7 +87,6 @@ CREATE TABLE quiz (
 
 CREATE TABLE guessPicture (
 	id int NOT NULL AUTO_INCREMENT,
-	score int NOT NULL,
 	solution varchar(32) NOT NULL,
     image longblob NOT NULL,
     idLevel int NOT NULL,
@@ -102,7 +98,6 @@ CREATE TABLE guessPicture (
 
 CREATE TABLE organizeSentence (
 	id int NOT NULL AUTO_INCREMENT,
-	score int NOT NULL,
 	solution varchar(32) NOT NULL,
 	definition varchar(255) NOT NULL, 	/* spiegazione della soluzione  */
     sentence varchar(255) NOT NULL,		/* frase disordinata */
@@ -115,7 +110,6 @@ CREATE TABLE organizeSentence (
 
 CREATE TABLE findAWord (
 	id int NOT NULL AUTO_INCREMENT,
-	score int NOT NULL,
 	solution varchar(32) NOT NULL,
 	definition varchar(255) NOT NULL, 	/* spiegazione della soluzione  */
     sentence varchar(255) NOT NULL,		/* frase disordinata */

@@ -6,23 +6,27 @@ import java.util.List;
 import it.contrader.dto.GuessPictureDTO;
 import it.contrader.model.GuessPicture;
 import it.contrader.dao.CategoryDAO;
+import it.contrader.dao.LevelDAO;
 
 public class GuessPictureConverter implements Converter<GuessPicture, GuessPictureDTO>{
 	
 	private CategoryDAO categoryDAO;
+	private LevelDAO levelDAO;
 	
 	public GuessPictureConverter(){
 		this.categoryDAO = new CategoryDAO();
+		this.levelDAO = new LevelDAO();
 	}
 	
 	public GuessPictureDTO toDTO(GuessPicture guessPicture) {
 		String categoryString = categoryDAO.read(guessPicture.getIdCategory()).getTitle();
-		GuessPictureDTO guessPictureDTO = new GuessPictureDTO(guessPicture.getId(), guessPicture.getIdCategory(), guessPicture.getScore(), guessPicture.getSolution(), guessPicture.getImage(), categoryString);
+		String levelString = levelDAO.read(guessPicture.getIdLevel()).getName();
+		GuessPictureDTO guessPictureDTO = new GuessPictureDTO(guessPicture.getId(), guessPicture.getIdCategory(), guessPicture.getSolution(), guessPicture.getImage(), categoryString, guessPicture.getIdLevel(), levelString);
 		return guessPictureDTO;
 	}
 		
 	public GuessPicture toEntity(GuessPictureDTO guessPictureDTO) {
-		GuessPicture guessPicture = new GuessPicture(guessPictureDTO.getId(), guessPictureDTO.getIdCategory(), guessPictureDTO.getScore(), guessPictureDTO.getSolution(), guessPictureDTO.getImage());
+		GuessPicture guessPicture = new GuessPicture(guessPictureDTO.getId(), guessPictureDTO.getIdCategory(), guessPictureDTO.getSolution(), guessPictureDTO.getImage(), guessPictureDTO.getIdLevel());
 		return guessPicture;
 	}
 		

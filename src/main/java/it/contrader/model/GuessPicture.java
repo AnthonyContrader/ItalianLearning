@@ -5,49 +5,40 @@ public class GuessPicture {
 	private int id;
 	private Integer idCategory;
 	private Integer idLevel;
-	private Integer score;
 	private String solution;
 	private String image;
 	
 
 	public GuessPicture() {}
-	
 
-	public GuessPicture(Integer idCategory, Integer score, String solution, String image, Integer idLevel) {
+	public GuessPicture(Integer idCategory, String solution, String image, Integer idLevel) {
 		super();
 		this.idCategory = idCategory;
 		this.idLevel = idLevel;
-		this.score = score;
 		this.solution = solution;
 		this.image = image;
 	}
 
-	public GuessPicture(int id, Integer idCategory, Integer score, String solution, String image, Integer idLevel) {
+	public GuessPicture(int id, Integer idCategory, String solution, String image, Integer idLevel) {
 		super();
 		this.id = id;
 		this.idCategory = idCategory;
 		this.idLevel = idLevel;
-		this.score = score;
 		this.solution = solution;
 		this.image = image;
 	}
 
-
-
-	public GuessPicture(int id, Integer idCategory, Integer score, String solution, String image) {
+	public GuessPicture(int id, Integer idCategory, String solution, String image) {
 		super();
 		this.id = id;
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.image = image;
 	}
-
 	
-	public GuessPicture(Integer idCategory, Integer score, String solution, String image) {
+	public GuessPicture(Integer idCategory, String solution, String image) {
 		super();
 		this.idCategory = idCategory;
-		this.score = score;
 		this.solution = solution;
 		this.image = image;
 	}
@@ -66,14 +57,6 @@ public class GuessPicture {
 
 	public void setIdCategory(Integer idCategory) {
 		this.idCategory = idCategory;
-	}
-
-	public Integer getScore() {
-		return score;
-	}
-
-	public void setScore(Integer score) {
-		this.score = score;
 	}
 
 	public String getSolution() {
@@ -105,8 +88,8 @@ public class GuessPicture {
 
 	@Override
 	public String toString() {
-		return "GuessPicture [id=" + id + ", idCategory=" + idCategory + ", idLevel=" + idLevel + ", score=" + score
-				+ ", solution=" + solution + ", image=" + image + "]";
+		return "GuessPicture [id=" + id + ", idCategory=" + idCategory + ", idLevel=" + idLevel + ", solution="
+				+ solution + ", image=" + image + "]";
 	}
 
 	@Override
@@ -135,11 +118,6 @@ public class GuessPicture {
 				return false;
 		} else if (!image.equals(other.image))
 			return false;
-		if (score == null) {
-			if (other.score != null)
-				return false;
-		} else if (!score.equals(other.score))
-			return false;
 		if (solution == null) {
 			if (other.solution != null)
 				return false;
@@ -147,6 +125,5 @@ public class GuessPicture {
 			return false;
 		return true;
 	}
-
 	
 }

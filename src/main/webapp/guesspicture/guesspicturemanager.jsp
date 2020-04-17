@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1" 
 	import="java.util.List"
 	import="it.contrader.dto.GuessPictureDTO"
+	import="it.contrader.dto.LevelDTO"
 	import="it.contrader.dto.CategoryDTO"%>
 	
 <!DOCTYPE html>
@@ -24,6 +25,7 @@
 <div class="main">
 	<%
 		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+		List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
 		List<GuessPictureDTO> list = (List<GuessPictureDTO>) request.getAttribute("list");
 		
 		String ans = null;
@@ -32,11 +34,11 @@
 		}
 		catch (Exception e){}
 	%>
-<% if (ans != null) {%>
-	<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
-		<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
-	</h2>
-<% } %>
+	<% if (ans != null) {%>
+		<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
+			<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
+		</h2>
+	<% } %>
 	
 
 <br>
@@ -44,7 +46,7 @@
 		<tr>
 			<th>Id</th>
 			<th>Solution</th>
-			<th>Score</th>
+			<th>Level</th>
 			<th>Category</th>
 			<th></th>
 			<th></th>
@@ -60,7 +62,7 @@
 				<%=g.getSolution()%>
 			</a></td>
 			
-			<td><%=g.getScore()%></td>
+			<td><%=g.getLevel()%></td>
 			
 			<td><%=g.getCategory()%></td>
 			
@@ -75,56 +77,74 @@
 		%>
 	</table>
 
-<form id="floatright" action="GuessPictureServlet?mode=insert" method="post">
-
-  <div class="row">
-    <div class="col-25">
-      <label for="solution">Solution</label>
-    </div>
-    <div class="col-75">
-      <input type="text" id="solution" name="solution" required placeholder="Insert solution">
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-25">
-     <label for="score">Score</label>
-    </div>
-    <div class="col-75">
-      <input type="number" id="score" name="score" min=1 required placeholder="Insert score"> 
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-25">
-     <label for="score">Image</label>
-    </div>
-    <div class="col-75">
-      <input required type="file" id="imageFile" name="imageFile" size="500000" accept="image/*">
-      <input required type="hidden" id="image" name="image">
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-25">
-      <label for="type">Category</label>
-    </div>
-   		 <div class="col-75">
-			<select id="idCategory" name="idCategory" required>
-				<option value="">Choose one...</option>
-	 			<%
-					for (CategoryDTO category : categoryList) {
-				%>
-				<option value=<%= category.getId() %>> <%= category.getTitle() %> </option>
-				<%
-					}
-				%>
-			</select>
-    	</div>
-  </div>
-  
-  <button type="submit" >Insert</button>
-</form>
+	<form id="floatright" action="GuessPictureServlet?mode=insert" method="post">
+	
+	  <div class="row">
+	    <div class="col-25">
+	      <label for="solution">Solution</label>
+	    </div>
+	    <div class="col-75">
+	      <input type="text" id="solution" name="solution" required placeholder="Insert solution">
+	    </div>
+	  </div>
+	  
+	  <!--<div class="row">
+	    <div class="col-25">
+	     <label for="score">Score</label>
+	    </div>
+	    <div class="col-75">
+	      <input type="number" id="score" name="score" min=1 required placeholder="Insert score"> 
+	    </div>
+	  </div>-->
+	  
+	  <div class="row">
+	    <div class="col-25">
+	     <label for="score">Image</label>
+	    </div>
+	    <div class="col-75">
+	      <input required type="file" id="imageFile" name="imageFile" size="500000" accept="image/*">
+	      <input required type="hidden" id="image" name="image">
+	    </div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="col-25">
+	      <label for="idCategory">Category</label>
+	    </div>
+	   		 <div class="col-75">
+				<select id="idCategory" name="idCategory" required>
+					<option value="">Choose one...</option>
+		 			<%
+						for (CategoryDTO category : categoryList) {
+					%>
+					<option value=<%= category.getId() %>> <%= category.getTitle() %> </option>
+					<%
+						}
+					%>
+				</select>
+	    	</div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="col-25">
+	      <label for="idLevel">Level</label>
+	    </div>
+	   		 <div class="col-75">
+				<select id="idLevel" name="idLevel" required>
+					<option value="">Choose one...</option>
+		 			<%
+						for (LevelDTO level : levelList) {
+					%>
+					<option value=<%= level.getId() %>> <%= level.getName() %> </option>
+					<%
+						}
+					%>
+				</select>
+	    	</div>
+	  </div>
+	  
+	  <button type="submit" >Insert</button>
+	</form>
 
 	
 </div>

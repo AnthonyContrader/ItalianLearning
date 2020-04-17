@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.contrader.dto.CategoryDTO;
 import it.contrader.dto.GuessPictureDTO;
+import it.contrader.dto.LevelDTO;
 import it.contrader.service.CategoryService;
 import it.contrader.service.GuessPictureService;
+import it.contrader.service.LevelService;
 import it.contrader.service.Service;
 
 public class GuessPictureServlet extends HttpServlet{
@@ -32,6 +34,12 @@ public class GuessPictureServlet extends HttpServlet{
 		request.setAttribute("categoryList", listDTO);
 	}
 	
+	public void levelList(HttpServletRequest request) {
+		Service<LevelDTO> service = new LevelService();
+		List<LevelDTO> listDTO = service.getAll();
+		request.setAttribute("levelList", listDTO);
+	}
+	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
@@ -46,6 +54,7 @@ public class GuessPictureServlet extends HttpServlet{
 		case "GAMELIST":
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/guesspicture/guesspicturemanager.jsp").forward(request, response);
 			break;
 
@@ -60,6 +69,7 @@ public class GuessPictureServlet extends HttpServlet{
 				
 			else if (request.getParameter("update") != null) {
 				categoryList(request);
+				levelList(request);
 				getServletContext().getRequestDispatcher("/guesspicture/updateguesspicture.jsp").forward(request, response);
 			}
 			else getServletContext().getRequestDispatcher("/guesspicture/deleteguesspicture.jsp").forward(request, response);
@@ -69,30 +79,32 @@ public class GuessPictureServlet extends HttpServlet{
 		case "INSERT":				
 			String solution = request.getParameter("solution").toString();
 			String image = request.getParameter("image").toString();
-			Integer score = new Integer(request.getParameter("score"));
 			Integer idCategory = new Integer(request.getParameter("idCategory"));
+			Integer idLevel = new Integer(request.getParameter("idLevel"));
 
-			dto = new GuessPictureDTO (idCategory, score, solution, image);
+			dto = new GuessPictureDTO (idCategory, solution, image, idLevel);
 			ans = service.insert(dto);
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/guesspicture/guesspicturemanager.jsp").forward(request, response);
 			break;
 				
 		case "UPDATE":
 			solution = request.getParameter("solution").toString();
 			image = request.getParameter("image").toString();
-			score = new Integer(request.getParameter("score"));
 			idCategory = new Integer(request.getParameter("idCategory"));
 			id = Integer.parseInt(request.getParameter("id"));
-		
-			dto = new GuessPictureDTO (id, idCategory, score, solution, image);
+			idLevel = new Integer(request.getParameter("idLevel"));
+
+			dto = new GuessPictureDTO (id, idCategory, solution, image, idLevel);
 			
 			ans = service.update(dto);
 			request.setAttribute("ans", ans);
 			updateList(request);
-			categoryList(request);		
+			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/guesspicture/guesspicturemanager.jsp").forward(request, response);
 			break;
 
@@ -102,6 +114,7 @@ public class GuessPictureServlet extends HttpServlet{
 			request.setAttribute("ans", ans);
 			updateList(request);
 			categoryList(request);
+			levelList(request);
 			getServletContext().getRequestDispatcher("/guesspicture/guesspicturemanager.jsp").forward(request, response);
 			break;
 		}

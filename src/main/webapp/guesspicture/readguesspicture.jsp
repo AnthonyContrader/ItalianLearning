@@ -24,14 +24,14 @@
 			<tr>
 				<th>Id</th>
 				<th>Solution</th>
-				<th>Score</th>
+				<th>Level</th>
 				<th>Category</th>
 			</tr>
 			<tr>
 			
 				<td><%=g.getId()%></td>
 				<td><%=g.getSolution()%></td>
-				<td><%=g.getScore()%></td>
+				<td><%=g.getLevel()%></td>
 				<td><%=g.getCategory()%></td>
 				
 			</tr>

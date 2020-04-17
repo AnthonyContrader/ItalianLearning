@@ -3,6 +3,7 @@
     pageEncoding="ISO-8859-1" 
     import="java.util.List"
     import="it.contrader.dto.GuessPictureDTO"
+    import="it.contrader.dto.LevelDTO"
     import="it.contrader.dto.CategoryDTO"
 %>
     
@@ -26,6 +27,7 @@
 <%
 	GuessPictureDTO g = (GuessPictureDTO) request.getAttribute("dto");
 	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+	List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
 %>
 
 <div class="col-50">
@@ -42,15 +44,6 @@
 	  
 	  <div class="row">
 	    <div class="col-25">
-	     <label for="score">Score</label>
-	    </div>
-	    <div class="col-75">
-	      <input value="<%=g.getScore()%>" type="number" id="score" name="score" min=1 required placeholder="insert score"> 
-	    </div>
-	  </div>
-	  
-	  <div class="row">
-	    <div class="col-25">
 	     <label for="score">Image</label>
 	    </div>
 	    <div class="col-75">
@@ -61,7 +54,7 @@
 	  
 	  <div class="row">
 	    <div class="col-25">
-	      <label for="type">Category</label>
+	      <label for="idCategory">Category</label>
 	    </div>
 	   		 <div class="col-75">
 	 			<select id="type" name="idCategory">
@@ -70,6 +63,26 @@
 					%>
 	  				<option value=<%= c.getId() %> <%= Integer.valueOf(c.getId()) == g.getIdCategory() ? "selected" : ""%>>
 	  					<%= c.getTitle() %>
+					</option>
+	  				<%
+						}
+	  				%>
+	
+				</select>
+	    	</div>
+	  </div>
+	  
+	  <div class="row">
+	    <div class="col-25">
+	      <label for="idLevel">Level</label>
+	    </div>
+	   		 <div class="col-75">
+	 			<select id="type" name="idLevel">
+		 			<%
+						for (LevelDTO l : levelList) {
+					%>
+	  				<option value=<%= l.getId() %> <%= Integer.valueOf(l.getId()) == g.getIdLevel() ? "selected" : ""%>>
+	  					<%= l.getName() %>
 					</option>
 	  				<%
 						}
