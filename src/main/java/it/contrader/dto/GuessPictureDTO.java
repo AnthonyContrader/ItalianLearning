@@ -139,7 +139,7 @@ public class GuessPictureDTO {
 		this.level = level;
 	}
 
-	public static String getTypegame() {
+	public String getTypeGame() {
 		return typeGame;
 	}
 	

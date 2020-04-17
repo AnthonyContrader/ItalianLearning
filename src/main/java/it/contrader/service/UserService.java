@@ -20,6 +20,12 @@ public class UserService extends AbstractService<User, UserDTO> {
 		this.dao = new UserDAO();
 		this.converter = new UserConverter();
 	}
+
+	@Override
+	public String find(String parameter, Integer i, String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

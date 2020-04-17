@@ -12,4 +12,10 @@ public class PlaylistService extends AbstractService<Playlist, PlaylistDTO>{
 		this.converter = new PlaylistConverter();
 	}
 
+	@Override
+	public String find(String parameter, Integer i, String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

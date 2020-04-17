@@ -8,11 +8,12 @@ import it.contrader.model.GamePlaylist;
 
 public class GamePlaylistDAO implements DAO<GamePlaylist>{
 	
-	private final String QUERY_ALL = "SELECT * FROM category";
-	private final String QUERY_CREATE = "INSERT INTO category (idGame, idPlaylist, typeGame) VALUES (?,?,?)";
-	private final String QUERY_READ = "SELECT * FROM category WHERE id=?";
+	private final String QUERY_ALL = "SELECT * FROM gamePlaylist";
+	private final String QUERY_CREATE = "INSERT INTO gamePlaylist (idGame, idPlaylist, typeGame) VALUES (?,?,?)";
+	private final String QUERY_READ = "SELECT * FROM gamePlaylist WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE category SET idGame=?, idPlaylist=?, typeGame=? WHERE id=?";
-	private final String QUERY_DELETE = "DELETE FROM category WHERE id=?";
+	private final String QUERY_DELETE = "DELETE FROM gamePlaylist WHERE id=?";
+	private final String QUERY_FIND = "SELECT * FROM gamePlaylist WHERE idPlaylist=? AND idGame=? and typeGame=?";
 	
 		
 	public List<GamePlaylist> getAll(){
@@ -62,7 +63,7 @@ public class GamePlaylistDAO implements DAO<GamePlaylist>{
 		Connection connection = ConnectionSingleton.getInstance(); //definisco la connessione al database
 	
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ); //oggetto che prepara una query senza eseguirla
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_FIND); //oggetto che prepara una query senza eseguirla
 			preparedStatement.setInt(1, gamePlaylistId); //ora settiamo i parametri della query
 			ResultSet resultSet = preparedStatement.executeQuery(); //eseguo la query
 
@@ -76,6 +77,27 @@ public class GamePlaylistDAO implements DAO<GamePlaylist>{
 			
 		}catch(SQLException e) {
 			return null;
+		}
+	
+	}
+	
+	public boolean find(Integer idPlaylist, Integer idGame, String typeGame) {
+		Connection connection = ConnectionSingleton.getInstance(); //definisco la connessione al database
+	
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ); //oggetto che prepara una query senza eseguirla
+			preparedStatement.setInt(1, idPlaylist); //ora settiamo i parametri della query
+			preparedStatement.setInt(2, idGame); //ora settiamo i parametri della query
+			preparedStatement.setString(3, typeGame); //ora settiamo i parametri della query
+			ResultSet resultSet = preparedStatement.executeQuery(); //eseguo la query
+
+			if (resultSet.next())
+				return true;
+			else
+				return false;
+			
+		}catch(SQLException e) {
+			return false;
 		}
 	
 	}

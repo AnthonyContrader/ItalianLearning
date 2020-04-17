@@ -13,4 +13,10 @@ public class GuessPictureService extends AbstractService<GuessPicture, GuessPict
 		this.converter = new GuessPictureConverter();
 	}
 
+	@Override
+	public String find(String parameter, Integer i, String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

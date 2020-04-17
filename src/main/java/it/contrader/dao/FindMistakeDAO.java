@@ -203,5 +203,11 @@ public class FindMistakeDAO implements DAO<FindMistake>{
 		
 		return false;
 	}
+
+	@Override
+	public boolean find(Integer idPlaylist, Integer idGame, String typeGame) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

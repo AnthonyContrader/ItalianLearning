@@ -14,6 +14,12 @@ public class OrganizeSentenceService extends AbstractService<OrganizeSentence, O
 		this.converter = new OrganizeSentenceConverter();
 		
 	}
+
+	@Override
+	public String find(String parameter, Integer i, String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

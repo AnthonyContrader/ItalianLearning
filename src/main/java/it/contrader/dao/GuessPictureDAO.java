@@ -164,4 +164,10 @@ public class GuessPictureDAO implements DAO<GuessPicture>{
 		
 		return false;
 	}
+
+	@Override
+	public boolean find(Integer idPlaylist, Integer idGame, String typeGame) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

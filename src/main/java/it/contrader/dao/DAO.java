@@ -13,4 +13,6 @@ public interface DAO<DTO> {
 	public boolean update(DTO dto);
 	
 	public boolean delete(int id);
+
+	public boolean find(Integer idPlaylist, Integer idGame, String typeGame);
 }

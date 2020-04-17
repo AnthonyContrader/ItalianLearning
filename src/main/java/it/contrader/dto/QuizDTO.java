@@ -165,7 +165,7 @@ public class QuizDTO {
 		this.sentence = sentence;
 	}
 	
-	public static String getTypegame() {
+	public String getTypeGame() {
 		return typeGame;
 	}
 

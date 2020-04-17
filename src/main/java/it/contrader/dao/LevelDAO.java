@@ -143,4 +143,10 @@ public class LevelDAO implements DAO<Level>{
 		return false;
 	}
 
+	@Override
+	public boolean find(Integer idPlaylist, Integer idGame, String typeGame) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

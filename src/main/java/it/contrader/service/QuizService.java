@@ -8,11 +8,15 @@ import it.contrader.model.Quiz;
 
 public class QuizService extends AbstractService<Quiz, QuizDTO> {
 	
-	
-	
 	public QuizService() {
 		this.dao = new QuizDAO();
 		this.converter  = new QuizConverter();
+	}
+
+	@Override
+	public String find(String parameter, Integer i, String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

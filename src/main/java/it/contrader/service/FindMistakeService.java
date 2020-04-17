@@ -11,4 +11,10 @@ public class FindMistakeService extends AbstractService<FindMistake, FindMistake
 		this.dao = new FindMistakeDAO();
 		this.converter = new FindMistakeConverter();
 	}
+
+	@Override
+	public String find(String parameter, Integer i, String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

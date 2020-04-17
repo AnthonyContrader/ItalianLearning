@@ -129,7 +129,7 @@ public class HangmanDTO {
 		this.category = category;
 	}
 
-	public static String getTypegame() {
+	public String getTypeGame() {
 		return typeGame;
 	}
 

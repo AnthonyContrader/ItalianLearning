@@ -12,17 +12,16 @@ public class GamePlaylistDTO {
 		
 	}
 
-	public GamePlaylistDTO(int id, int idGame, String game, int idPlaylist, String playlist, String typeGame) {
+	public GamePlaylistDTO(int id, Integer idGame, Integer idPlaylist, String playlist, String typeGame) {
 		super();
 		this.id = id;
 		this.idGame = idGame;
-		this.game = game;
 		this.idPlaylist = idPlaylist;
 		this.playlist = playlist;
 		this.typeGame = typeGame;
 	}
 
-	public GamePlaylistDTO(int idGame, int idPlaylist, String typeGame) {
+	public GamePlaylistDTO(Integer idGame, Integer idPlaylist, String typeGame) {
 		super();
 		this.idGame = idGame;
 		this.idPlaylist = idPlaylist;
@@ -51,10 +50,6 @@ public class GamePlaylistDTO {
 
 	public void setIdPlaylist(int idPlaylist) {
 		this.idPlaylist = idPlaylist;
-	}
-	
-	public String getGame() {
-		return game;
 	}
 	
 	public String getPlaylist() {

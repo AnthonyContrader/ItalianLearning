@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" 
-    import="it.contrader.dto.PlaylistDTO"%>
+    import="it.contrader.dto.PlaylistDTO"
+    import="java.util.HashMap"
+    import="java.util.Map"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +22,7 @@
 <div class="main">
 
 <%PlaylistDTO c = (PlaylistDTO) request.getAttribute("dto");%>
+<%HashMap<String,String> gameList = (HashMap<String, String>)request.getAttribute("gameList");%>
 
 <div class="col-100">
 	<table>
@@ -36,3 +39,49 @@
 		</tr>	
 	</table>
 </div>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="col-100">
+	<table>
+		<tr> 
+			<th>Solution</th>	
+			<th>Name</th>
+			<th>Selected</th>
+		</tr>
+		<%
+			for (Map.Entry l : gameList.entrySet()) {
+				Map<String, String> rk = (Map<String, String>) l.getValue();
+		%>
+		<tr>
+			<td><%=(String) rk.get("solution")%></td>
+			<td><%=(String) rk.get("name")%></td>
+			<td>
+				<input type="checkbox" class="selection_cb" id="selected" name="selected" data-id="<%= rk.get("id")%>" data-type-game="<%= rk.get("typeGame")%>" <%= rk.get("checked").equals("true") ? "checked" : "" %>>
+			</td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
+</div>
+<div class="col-25">
+	<button type="submit" onclick="save_playlist()" class="btn-sm" >Save</button>
+</div>
+
+<script>
+	function save_playlist(e) {
+		var list = document.getElementsByClassName("selection_cb");
+		var gameList = []
+		for(i of list){
+			if (i.checked){
+				gameList.push([i.getAttribute('data-id'),i.getAttribute('data-type-game')]) 
+			}
+		}
+		console.log(gameList);
+		this.document.location.href = "PlaylistServlet?mode=editplaylist?gameList=" + gameList + "?id=" + <%=c.getId() %>;
+	}
+</script>
