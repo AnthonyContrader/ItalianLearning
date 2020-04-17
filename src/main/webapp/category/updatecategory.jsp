@@ -25,7 +25,7 @@
       <label for="category">Category</label>
     </div>
     <div class="col-75">
-      <input type="text" required id="title" name="title" value=<%=c.getTitle()%>>
+      <input type="text" required id="title" name="title" value="<%=c.getTitle()%>">
     </div>
   </div>
   <div class="row">

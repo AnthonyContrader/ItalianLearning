@@ -129,7 +129,7 @@ public class CategoryDAO implements DAO<Category>  {
 			
 		}
 		
-		return false;
+		return true;
 
 	}
 

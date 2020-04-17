@@ -25,7 +25,7 @@
       <label for="level">Name</label>
     </div>
     <div class="col-75">
-      <input type="text" required id="name" name="name" value=<%=c.getName()%>>
+      <input type="text" required id="name" name="name" value="<%=c.getName()%>">
     </div>
   </div>
   
@@ -34,7 +34,7 @@
      <label for="score">Score</label>
     </div>
     <div class="col-75">
-      <input type='number' min="1" required id="score" name="score" value=<%=c.getScore()%>>
+      <input type='number' min="1" required id="score" name="score" value="<%=c.getScore()%>">
     </div>
   </div>
   

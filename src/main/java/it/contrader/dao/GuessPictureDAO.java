@@ -138,7 +138,7 @@ public class GuessPictureDAO implements DAO<GuessPicture>{
 			}
 		}
 		
-		return false;
+		return true;
 
 	}
 	

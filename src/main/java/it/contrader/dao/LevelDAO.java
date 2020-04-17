@@ -117,7 +117,7 @@ public class LevelDAO implements DAO<Level>{
 			
 		}
 		
-		return false;
+		return true;
 
 	}
 
