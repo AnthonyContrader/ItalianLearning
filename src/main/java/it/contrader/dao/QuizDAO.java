@@ -154,7 +154,7 @@ public class QuizDAO implements DAO<Quiz> {
 			
 		}
 		
-		return false;
+		return true;
 	}
 
 	public boolean delete(int quizId) {
