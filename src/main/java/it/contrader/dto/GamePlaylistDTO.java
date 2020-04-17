@@ -1,27 +1,31 @@
 package it.contrader.dto;
 
-public class GameplaylistDTO {
+public class GamePlaylistDTO {
 	private int id;
-	private int idGame;
-	private int Playlist;
+	private Integer idGame;
+	private String game;
+	private Integer idPlaylist;
+	private String playlist;
 	private String typeGame;
 	
-	public GameplaylistDTO() {
+	public GamePlaylistDTO() {
 		
 	}
 
-	public GameplaylistDTO(int id, int idGame, int playlist, String typeGame) {
+	public GamePlaylistDTO(int id, int idGame, String game, int idPlaylist, String playlist, String typeGame) {
 		super();
 		this.id = id;
 		this.idGame = idGame;
-		Playlist = playlist;
+		this.game = game;
+		this.idPlaylist = idPlaylist;
+		this.playlist = playlist;
 		this.typeGame = typeGame;
 	}
 
-	public GameplaylistDTO(int idGame, int playlist, String typeGame) {
+	public GamePlaylistDTO(int idGame, int idPlaylist, String typeGame) {
 		super();
 		this.idGame = idGame;
-		Playlist = playlist;
+		this.idPlaylist = idPlaylist;
 		this.typeGame = typeGame;
 	}
 
@@ -33,7 +37,7 @@ public class GameplaylistDTO {
 		this.id = id;
 	}
 
-	public int getIdGame() {
+	public Integer getIdGame() {
 		return idGame;
 	}
 
@@ -41,12 +45,20 @@ public class GameplaylistDTO {
 		this.idGame = idGame;
 	}
 
-	public int getPlaylist() {
-		return Playlist;
+	public Integer getIdPlaylist() {
+		return idPlaylist;
 	}
 
-	public void setPlaylist(int playlist) {
-		Playlist = playlist;
+	public void setIdPlaylist(int idPlaylist) {
+		this.idPlaylist = idPlaylist;
+	}
+	
+	public String getGame() {
+		return game;
+	}
+	
+	public String getPlaylist() {
+		return playlist;
 	}
 
 	public String getTypeGame() {
@@ -59,7 +71,7 @@ public class GameplaylistDTO {
 
 	@Override
 	public String toString() {
-		return "GameplaylistDTO [id=" + id + ", idGame=" + idGame + ", Playlist=" + Playlist + ", typeGame=" + typeGame
+		return "GameplaylistDTO [id=" + id + ", idGame=" + idGame + ", Playlist=" + playlist + ", typeGame=" + typeGame
 				+ "]";
 	}
 
@@ -71,8 +83,8 @@ public class GameplaylistDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GameplaylistDTO other = (GameplaylistDTO) obj;
-		if (Playlist != other.Playlist)
+		GamePlaylistDTO other = (GamePlaylistDTO) obj;
+		if (idPlaylist != other.idPlaylist)
 			return false;
 		if (id != other.id)
 			return false;

@@ -1,16 +1,16 @@
 package it.contrader.model;
 
-public class Gameplaylist {
+public class GamePlaylist {
 	private int id;
-	private int idGame;
-	private int idPlaylist;
+	private Integer idGame;
+	private Integer idPlaylist;
 	private String typeGame;
 	
-	public Gameplaylist() {
+	public GamePlaylist() {
 		
 	}
 
-	public Gameplaylist(int id, int idGame, int idPlaylist, String typeGame) {
+	public GamePlaylist(int id, int idGame, int idPlaylist, String typeGame) {
 		super();
 		this.id = id;
 		this.idGame = idGame;
@@ -18,7 +18,7 @@ public class Gameplaylist {
 		this.typeGame = typeGame;
 	}
 
-	public Gameplaylist(int idGame, int idPlaylist, String typeGame) {
+	public GamePlaylist(int idGame, int idPlaylist, String typeGame) {
 		super();
 		this.idGame = idGame;
 		this.idPlaylist = idPlaylist;
@@ -33,7 +33,7 @@ public class Gameplaylist {
 		this.id = id;
 	}
 
-	public int getIdGame() {
+	public Integer getIdGame() {
 		return idGame;
 	}
 
@@ -41,7 +41,7 @@ public class Gameplaylist {
 		this.idGame = idGame;
 	}
 
-	public int getIdPlaylist() {
+	public Integer getIdPlaylist() {
 		return idPlaylist;
 	}
 
@@ -72,7 +72,7 @@ public class Gameplaylist {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Gameplaylist other = (Gameplaylist) obj;
+		GamePlaylist other = (GamePlaylist) obj;
 		if (id != other.id)
 			return false;
 		if (idGame != other.idGame)
