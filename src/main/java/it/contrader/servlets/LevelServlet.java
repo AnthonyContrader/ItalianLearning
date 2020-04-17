@@ -70,8 +70,9 @@ public class LevelServlet extends HttpServlet{
 				description = request.getParameter("description");
 				id = Integer.parseInt(request.getParameter("id"));
 				score = Integer.parseInt(request.getParameter("score").toString());
-
+				
 				dto = new LevelDTO (id, score, name, description);
+
 				ans = service.update(dto);
 				request.setAttribute("ans", ans);
 				updateList(request);

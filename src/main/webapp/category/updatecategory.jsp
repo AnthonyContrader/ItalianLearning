@@ -33,7 +33,7 @@
      <label for="description">Description</label>
     </div>
     <div class="col-75">
-      <textarea id="description" name="description"> <%=c.getDescription()%> </textarea>
+      <textarea id="description" name="description"><%=c.getDescription()%></textarea>
     </div>
   </div>
   

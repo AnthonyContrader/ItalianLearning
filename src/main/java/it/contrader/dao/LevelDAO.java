@@ -92,7 +92,7 @@ public class LevelDAO implements DAO<Level>{
 		Level levelRead = read(levelToUpdate.getId());
 		if (levelRead == null)
 			return false;
-
+		
 		if ( !levelRead.equals(levelToUpdate) ) { 
 			
 			try {
