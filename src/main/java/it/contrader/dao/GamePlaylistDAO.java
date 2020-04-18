@@ -82,7 +82,6 @@ public class GamePlaylistDAO implements DAO<GamePlaylist>{
 	}
 	
 	public boolean find(Integer idPlaylist, Integer idGame, String typeGame) {
-		System.out.println("Error");
 		Connection connection = ConnectionSingleton.getInstance(); //definisco la connessione al database
 	
 		try {
@@ -98,8 +97,6 @@ public class GamePlaylistDAO implements DAO<GamePlaylist>{
 				return false;
 			
 		}catch(SQLException e) {
-			System.out.println("Error");
-			e.printStackTrace();
 			return false;
 		}
 	

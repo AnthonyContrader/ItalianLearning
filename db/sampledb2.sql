@@ -149,7 +149,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER findMistakeDelete
 BEFORE DELETE
-ON hangman FOR EACH ROW
+ON findMistake FOR EACH ROW
 BEGIN
     DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="FindMistake";
 END$$    
@@ -158,7 +158,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER quizDelete
 BEFORE DELETE
-ON hangman FOR EACH ROW
+ON quiz FOR EACH ROW
 BEGIN
     DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="Quiz";
 END$$    
@@ -167,7 +167,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER guessPictureDelete
 BEFORE DELETE
-ON hangman FOR EACH ROW
+ON guessPicture FOR EACH ROW
 BEGIN
     DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="GuessPicture";
 END$$    
@@ -176,7 +176,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER organizeSentenceDelete
 BEFORE DELETE
-ON hangman FOR EACH ROW
+ON organizeSentence FOR EACH ROW
 BEGIN
     DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="OrganizeSentence";
 END$$    
@@ -185,7 +185,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER findAWordDelete
 BEFORE DELETE
-ON hangman FOR EACH ROW
+ON findAWord FOR EACH ROW
 BEGIN
     DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="FindAWord";
 END$$    
