@@ -22,6 +22,6 @@ public interface Service<DTO> {
 	
 	public boolean delete(int id);
 
-	public String find(String parameter, Integer i, String string);
+	public boolean find(Integer parameter, Integer i, String string);
 
 }

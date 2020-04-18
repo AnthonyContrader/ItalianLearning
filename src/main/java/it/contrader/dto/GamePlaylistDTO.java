@@ -3,7 +3,6 @@ package it.contrader.dto;
 public class GamePlaylistDTO {
 	private int id;
 	private Integer idGame;
-	private String game;
 	private Integer idPlaylist;
 	private String playlist;
 	private String typeGame;

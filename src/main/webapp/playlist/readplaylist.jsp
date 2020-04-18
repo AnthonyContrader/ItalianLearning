@@ -82,6 +82,6 @@
 			}
 		}
 		console.log(gameList);
-		this.document.location.href = "PlaylistServlet?mode=editplaylist?gameList=" + gameList + "?id=" + <%=c.getId() %>;
+		this.document.location.href = "PlaylistServlet?mode=editplaylist&gameList=" + gameList + "&id=" + <%=c.getId() %>;
 	}
 </script>

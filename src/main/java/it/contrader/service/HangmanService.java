@@ -12,9 +12,9 @@ public class HangmanService extends AbstractService<Hangman,HangmanDTO> {
 	}
 
 	@Override
-	public String find(String parameter, Integer i, String string) {
+	public boolean find(Integer parameter, Integer i, String string) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 	
 }

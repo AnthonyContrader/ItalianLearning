@@ -12,7 +12,7 @@ public class GamePlaylistDAO implements DAO<GamePlaylist>{
 	private final String QUERY_CREATE = "INSERT INTO gamePlaylist (idGame, idPlaylist, typeGame) VALUES (?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM gamePlaylist WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE category SET idGame=?, idPlaylist=?, typeGame=? WHERE id=?";
-	private final String QUERY_DELETE = "DELETE FROM gamePlaylist WHERE id=?";
+	private final String QUERY_DELETE = "DELETE FROM gamePlaylist WHERE idPlaylist=?";
 	private final String QUERY_FIND = "SELECT * FROM gamePlaylist WHERE idPlaylist=? AND idGame=? and typeGame=?";
 	
 		
@@ -82,21 +82,24 @@ public class GamePlaylistDAO implements DAO<GamePlaylist>{
 	}
 	
 	public boolean find(Integer idPlaylist, Integer idGame, String typeGame) {
+		System.out.println("Error");
 		Connection connection = ConnectionSingleton.getInstance(); //definisco la connessione al database
 	
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ); //oggetto che prepara una query senza eseguirla
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_FIND); //oggetto che prepara una query senza eseguirla
 			preparedStatement.setInt(1, idPlaylist); //ora settiamo i parametri della query
 			preparedStatement.setInt(2, idGame); //ora settiamo i parametri della query
 			preparedStatement.setString(3, typeGame); //ora settiamo i parametri della query
 			ResultSet resultSet = preparedStatement.executeQuery(); //eseguo la query
-
-			if (resultSet.next())
+			if (resultSet.next()) {
 				return true;
+			}
 			else
 				return false;
 			
 		}catch(SQLException e) {
+			System.out.println("Error");
+			e.printStackTrace();
 			return false;
 		}
 	
@@ -164,28 +167,24 @@ public class GamePlaylistDAO implements DAO<GamePlaylist>{
 	}
 
 	// metodo che elimina un record (riga) dal database
-	public boolean delete(int gamePlaylistId) {
+	public boolean delete(int idPlaylist) {
 		
 		// controllo che id non sia uguale a 0
-		if (gamePlaylistId == 0)
+		if (idPlaylist == 0 )
 			return false;
 		
 		Connection connection = ConnectionSingleton.getInstance(); //definisco la connessione al database
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE); //preparo la query ma non la eseguo
-			preparedStatement.setInt(1, gamePlaylistId); //setto i parametri nella query
-			int check = preparedStatement.executeUpdate(); //eseguo la query
-			
-			if (check > 0)
-				return true;
+			preparedStatement.setInt(1, idPlaylist); //setto i parametri nella query
+			preparedStatement.executeUpdate(); //eseguo la query
+			return true;
 
 		}catch (SQLException e) {
 			//e.printStackTrace();
 			return false;
 		}
-		
-		return false;
 	}
 	
 }

@@ -174,7 +174,19 @@ width: 100%;
 	
 }
 
-input textarea {
+input {
+  width: 80%;
+  background-color: #ffff;
+  color: #000000;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  float:right;
+}
+
+textarea {
   width: 80%;
   background-color: #ffff;
   color: #000000;

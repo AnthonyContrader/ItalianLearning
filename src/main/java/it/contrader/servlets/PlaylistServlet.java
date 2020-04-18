@@ -1,18 +1,13 @@
 package it.contrader.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.mysql.cj.xdevapi.JsonArray;
-
 import it.contrader.dto.*;
 import it.contrader.service.*;
 
@@ -32,7 +27,6 @@ public class PlaylistServlet extends HttpServlet {
 	
 	public void gameList(HttpServletRequest request) {
 		Service<GamePlaylistDTO> service = new GamePlaylistService();
-		List<List> list = new ArrayList<>();
 		
 		Service<FindAWordDTO> findAWord = new FindAWordService();
 		List<FindAWordDTO> listFindAWordDTO = findAWord.getAll();
@@ -42,7 +36,7 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", faw.getSolution());
 			l.put("typeGame",faw.getTypeGame());
 			l.put("name", "Find A Word");
-			l.put("checked", "" + service.find(request.getParameter("id"), faw.getId(), faw.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), faw.getId(), faw.getTypeGame()));
 			gameList.put(faw.getTypeGame(), l);
 		}
 		
@@ -54,7 +48,7 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", fm.getSolution());
 			l.put("typeGame", fm.getTypeGame());
 			l.put("name", "Find Mistake");
-			l.put("checked", "" + service.find(request.getParameter("id"), fm.getId(), fm.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), fm.getId(), fm.getTypeGame()));
 			gameList.put(fm.getTypeGame(), l);
 		}
 		
@@ -66,7 +60,7 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", gp.getSolution());
 			l.put("typeGame", gp.getTypeGame());
 			l.put("name", "Guess Picture");
-			l.put("checked", "" + service.find(request.getParameter("id"), gp.getId(), gp.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), gp.getId(), gp.getTypeGame()));
 			gameList.put(gp.getTypeGame(), l);
 		}
 		
@@ -78,7 +72,7 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", h.getSolution());
 			l.put("typeGame", h.getTypeGame());
 			l.put("name",  h.getTypeGame());
-			l.put("checked", "" + service.find(request.getParameter("id"), h.getId(), h.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), h.getId(), h.getTypeGame()));
 			gameList.put(h.getTypeGame(), l);
 		}
 		
@@ -90,7 +84,7 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", os.getSolution());
 			l.put("typeGame", os.getTypeGame());
 			l.put("name", "Organize Sentence");
-			l.put("checked", "" + service.find(request.getParameter("id"), os.getId(), os.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), os.getId(), os.getTypeGame()));
 			gameList.put(os.getTypeGame(), l);
 		}
 		
@@ -102,7 +96,7 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", q.getSolution());
 			l.put("typeGame", q.getTypeGame());
 			l.put("name", q.getTypeGame());
-			l.put("checked", "" + service.find(request.getParameter("id"), q.getId(), q.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), q.getId(), q.getTypeGame()));
 			gameList.put(q.getTypeGame(), l);
 		}
 		request.setAttribute("gameList", gameList);
@@ -164,20 +158,28 @@ public class PlaylistServlet extends HttpServlet {
 			break;
 				
 		case "EDITPLAYLIST":
-			String[] list = request.getParameter("gameList").split(",");
-			ArrayList<ArrayList<String>> games = new ArrayList<ArrayList<String>>();
-			for (int i = 0; i < list.length; i++) {
-				ArrayList<String> arr = new ArrayList<String>();
-				if (i % 2 == 0) {
-					arr.add(list[i]);
-				}
-				else {
-					arr.add(list[i]);
-					games.add(arr);
-				}		
-			}
-			gamePlaylistService.insert(games); //Da implementare
 			id = Integer.parseInt(request.getParameter("id"));
+			ans = gamePlaylistService.delete(id);
+			if (ans) {
+				String[] list = request.getParameter("gameList").split(",");
+				GamePlaylistDTO gamePlayListDTO = new GamePlaylistDTO();
+				for (int i = 0; i < list.length; i++) {
+					if (i % 2 == 0) {
+						gamePlayListDTO.setIdGame(Integer.parseInt(list[i]));
+					}
+					else {
+						gamePlayListDTO.setTypeGame(list[i]);
+						gamePlayListDTO.setIdPlaylist(id);
+						gamePlaylistService.insert(gamePlayListDTO);
+						gamePlayListDTO = new GamePlaylistDTO();
+					}		
+				}
+			}		
+			request.setAttribute("ans", ans);
+			dto = service.read(id);
+			request.setAttribute("dto", dto);
+			gameList(request);
+			getServletContext().getRequestDispatcher("/playlist/readplaylist.jsp").forward(request, response);
 			break;
 		case "DELETE":
 			id = Integer.parseInt(request.getParameter("id"));

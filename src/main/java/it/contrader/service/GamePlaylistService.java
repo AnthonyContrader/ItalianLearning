@@ -10,16 +10,10 @@ public class GamePlaylistService extends AbstractService<GamePlaylist,GamePlayli
 		this.dao = new GamePlaylistDAO();
 		this.converter = new GamePlaylistConverter();
 	}
-	
+	@Override
 	public boolean find(Integer idPlaylist, Integer idGame, String typeGame) {
 		// Questo mtodo chiama direttamente il DAO
 		return dao.find(idPlaylist, idGame, typeGame);
-	}
-
-	@Override
-	public String find(String parameter, Integer i, String string) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }

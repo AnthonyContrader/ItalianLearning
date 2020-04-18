@@ -169,7 +169,6 @@ public class HangmanDAO implements DAO<Hangman>{
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE); //preparo la query ma non la eseguo
 			preparedStatement.setInt(1, hangmanId); //setto i parametri nella query
 			int check = preparedStatement.executeUpdate(); //eseguo la query
-			
 			if (check > 0)
 				return true;
 

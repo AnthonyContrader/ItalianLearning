@@ -217,7 +217,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `findMistakeDelete` BEFORE DELETE ON `hangman` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `findMistakeDelete` BEFORE DELETE ON `findMistake` FOR EACH ROW BEGIN
     DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="FindMistake";
 END */;;
 DELIMITER ;
@@ -234,7 +234,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `quizDelete` BEFORE DELETE ON `hangman` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `quizDelete` BEFORE DELETE ON `quiz` FOR EACH ROW BEGIN
     DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="Quiz";
 END */;;
 DELIMITER ;
@@ -251,7 +251,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `guessPictureDelete` BEFORE DELETE ON `hangman` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `guessPictureDelete` BEFORE DELETE ON `guessPicture` FOR EACH ROW BEGIN
     DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="GuessPicture";
 END */;;
 DELIMITER ;
@@ -268,7 +268,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `organizeSentenceDelete` BEFORE DELETE ON `hangman` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `organizeSentenceDelete` BEFORE DELETE ON `organizeSentence` FOR EACH ROW BEGIN
     DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="OrganizeSentence";
 END */;;
 DELIMITER ;
@@ -285,7 +285,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `findAWordDelete` BEFORE DELETE ON `hangman` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `findAWordDelete` BEFORE DELETE ON `findAWord` FOR EACH ROW BEGIN
     DELETE FROM gamePlaylist WHERE idGame=OLD.id AND typeGame="FindAWord";
 END */;;
 DELIMITER ;
