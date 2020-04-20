@@ -2,7 +2,8 @@
     pageEncoding="ISO-8859-1" 
     import="it.contrader.dto.PlaylistDTO"
     import="java.util.HashMap"
-    import="java.util.Map"%>
+    import="java.util.Map"
+    import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +22,10 @@
 
 <div class="main">
 
-<%PlaylistDTO c = (PlaylistDTO) request.getAttribute("dto");%>
-<%HashMap<String,String> gameList = (HashMap<String, String>)request.getAttribute("gameList");%>
+<%
+	PlaylistDTO c = (PlaylistDTO) request.getAttribute("dto");
+	HashMap<String,List<Map<String,String>>> gameList = (HashMap<String, List<Map<String,String>>>)request.getAttribute("gameList");
+%>
 
 <div class="col-100">
 	<table>
@@ -54,7 +57,8 @@
 		</tr>
 		<%
 			for (Map.Entry l : gameList.entrySet()) {
-				Map<String, String> rk = (Map<String, String>) l.getValue();
+				List<Map<String,String>> i = (List<Map<String,String>>) l.getValue();
+				for (Map<String,String> rk : i) {
 		%>
 		<tr>
 			<td><%=(String) rk.get("solution")%></td>
@@ -64,6 +68,7 @@
 			</td>
 		</tr>
 		<%
+				}
 			}
 		%>
 	</table>

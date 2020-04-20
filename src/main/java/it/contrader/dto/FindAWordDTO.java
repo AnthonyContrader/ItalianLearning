@@ -183,7 +183,7 @@ public class FindAWordDTO {
 		this.category = category;
 	}
 
-	public String getTypeGame() {
+	public static String getTypeGame() {
 		return typeGame;
 	}
 

@@ -167,7 +167,7 @@ public class FindMistakeDTO {
 		this.level = level;
 	}
 	
-	public String getTypeGame() {
+	public static String getTypeGame() {
 		return typeGame;
 	}
 

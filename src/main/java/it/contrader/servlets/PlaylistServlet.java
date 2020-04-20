@@ -1,6 +1,7 @@
 package it.contrader.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,12 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import it.contrader.dto.*;
+import it.contrader.model.FindAWord;
+import it.contrader.model.FindMistake;
 import it.contrader.service.*;
 
 public class PlaylistServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	public static Map<String, Map<String,String>> gameList = new HashMap<>();
+	public static Map<String, List<Map<String,String>>> gameList = new HashMap<>();
 	public static Map<String, String> l;
 	
 	public PlaylistServlet() {}
@@ -30,75 +33,91 @@ public class PlaylistServlet extends HttpServlet {
 		
 		Service<FindAWordDTO> findAWord = new FindAWordService();
 		List<FindAWordDTO> listFindAWordDTO = findAWord.getAll();
-		l = new HashMap<>();
+		List<Map<String,String>> arr = new ArrayList<>();
 		for (FindAWordDTO faw : listFindAWordDTO) {
+			l = new HashMap<>();
 			l.put("id", "" + faw.getId());
 			l.put("solution", faw.getSolution());
-			l.put("typeGame",faw.getTypeGame());
+			l.put("typeGame",FindAWordDTO.getTypeGame());
 			l.put("name", "Find A Word");
-			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), faw.getId(), faw.getTypeGame()));
-			gameList.put(faw.getTypeGame(), l);
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), faw.getId(), FindAWordDTO.getTypeGame()));
+			arr.add(l);
+			System.out.println("L:" + l);
 		}
+		System.out.println(arr);
+		gameList.put(FindAWordDTO.getTypeGame(), arr);
 		
 		Service<FindMistakeDTO> findMistake= new FindMistakeService();
-		l = new HashMap<>();
+		System.out.println(gameList);
+		arr = new ArrayList<>();
 		List<FindMistakeDTO> listFindMistakeDTO = findMistake.getAll();
 		for (FindMistakeDTO fm : listFindMistakeDTO) {
+			l = new HashMap<>();
 			l.put("id", "" + fm.getId());
 			l.put("solution", fm.getSolution());
-			l.put("typeGame", fm.getTypeGame());
+			l.put("typeGame", FindMistakeDTO.getTypeGame());
 			l.put("name", "Find Mistake");
 			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), fm.getId(), fm.getTypeGame()));
-			gameList.put(fm.getTypeGame(), l);
+			arr.add(l);
 		}
+		gameList.put(FindMistakeDTO.getTypeGame(), arr);
+		System.out.println(gameList.get("FindAWord"));
 		
 		Service<GuessPictureDTO> guessPicture = new GuessPictureService();
-		l = new HashMap<>();
+		arr = new ArrayList<>();
 		List<GuessPictureDTO> listGuessPictureDTO = guessPicture.getAll();
 		for (GuessPictureDTO gp : listGuessPictureDTO) {
+			l = new HashMap<>();
 			l.put("id", "" + gp.getId());
 			l.put("solution", gp.getSolution());
-			l.put("typeGame", gp.getTypeGame());
+			l.put("typeGame", GuessPictureDTO.getTypeGame());
 			l.put("name", "Guess Picture");
 			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), gp.getId(), gp.getTypeGame()));
-			gameList.put(gp.getTypeGame(), l);
+			arr.add(l);
 		}
+		gameList.put(GuessPictureDTO.getTypeGame(), arr);
 		
 		Service<HangmanDTO> hangman = new HangmanService();
-		l = new HashMap<>();
+		arr = new ArrayList<>();
 		List<HangmanDTO> listHangmanDTO = hangman.getAll();
 		for (HangmanDTO h : listHangmanDTO) {
+			l = new HashMap<>();
 			l.put("id", "" + h.getId());
 			l.put("solution", h.getSolution());
-			l.put("typeGame", h.getTypeGame());
-			l.put("name",  h.getTypeGame());
+			l.put("typeGame", HangmanDTO.getTypeGame());
+			l.put("name", HangmanDTO.getTypeGame());
 			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), h.getId(), h.getTypeGame()));
-			gameList.put(h.getTypeGame(), l);
+			arr.add(l);
 		}
+		gameList.put(HangmanDTO.getTypeGame(), arr);
 		
 		Service<OrganizeSentenceDTO> organizeSentence = new OrganizeSentenceService();
-		l = new HashMap<>();
+		arr = new ArrayList<>();
 		List<OrganizeSentenceDTO> listOrganizeSentenceDTO = organizeSentence.getAll();
 		for (OrganizeSentenceDTO os : listOrganizeSentenceDTO) {
+			l = new HashMap<>();
 			l.put("id", "" + os.getId());
 			l.put("solution", os.getSolution());
-			l.put("typeGame", os.getTypeGame());
+			l.put("typeGame", OrganizeSentenceDTO.getTypeGame());
 			l.put("name", "Organize Sentence");
 			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), os.getId(), os.getTypeGame()));
-			gameList.put(os.getTypeGame(), l);
+			arr.add(l);
 		}
+		gameList.put(OrganizeSentenceDTO.getTypeGame(), arr);
 		
 		Service<QuizDTO> quiz = new QuizService();
-		l = new HashMap<>();
+		arr = new ArrayList<>();
 		List<QuizDTO> listQuizDTO = quiz.getAll();
 		for (QuizDTO q : listQuizDTO) {
+			l = new HashMap<>();
 			l.put("id", "" + q.getId());
 			l.put("solution", q.getSolution());
-			l.put("typeGame", q.getTypeGame());
-			l.put("name", q.getTypeGame());
+			l.put("typeGame", QuizDTO.getTypeGame());
+			l.put("name", QuizDTO.getTypeGame());
 			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), q.getId(), q.getTypeGame()));
-			gameList.put(q.getTypeGame(), l);
+			arr.add(l);
 		}
+		gameList.put(QuizDTO.getTypeGame(), arr);
 		request.setAttribute("gameList", gameList);
 		
 	}

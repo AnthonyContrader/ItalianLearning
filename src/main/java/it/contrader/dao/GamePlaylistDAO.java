@@ -10,7 +10,7 @@ public class GamePlaylistDAO implements DAO<GamePlaylist>{
 	
 	private final String QUERY_ALL = "SELECT * FROM gamePlaylist";
 	private final String QUERY_CREATE = "INSERT INTO gamePlaylist (idGame, idPlaylist, typeGame) VALUES (?,?,?)";
-	private final String QUERY_READ = "SELECT * FROM gamePlaylist WHERE id=?";
+//	private final String QUERY_READ = "SELECT * FROM gamePlaylist WHERE id=?";
 	private final String QUERY_UPDATE = "UPDATE category SET idGame=?, idPlaylist=?, typeGame=? WHERE id=?";
 	private final String QUERY_DELETE = "DELETE FROM gamePlaylist WHERE idPlaylist=?";
 	private final String QUERY_FIND = "SELECT * FROM gamePlaylist WHERE idPlaylist=? AND idGame=? and typeGame=?";
