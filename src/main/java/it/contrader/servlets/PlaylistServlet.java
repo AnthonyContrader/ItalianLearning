@@ -42,13 +42,10 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("name", "Find A Word");
 			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), faw.getId(), FindAWordDTO.getTypeGame()));
 			arr.add(l);
-			System.out.println("L:" + l);
 		}
-		System.out.println(arr);
 		gameList.put(FindAWordDTO.getTypeGame(), arr);
 		
 		Service<FindMistakeDTO> findMistake= new FindMistakeService();
-		System.out.println(gameList);
 		arr = new ArrayList<>();
 		List<FindMistakeDTO> listFindMistakeDTO = findMistake.getAll();
 		for (FindMistakeDTO fm : listFindMistakeDTO) {
@@ -57,11 +54,10 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", fm.getSolution());
 			l.put("typeGame", FindMistakeDTO.getTypeGame());
 			l.put("name", "Find Mistake");
-			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), fm.getId(), fm.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), fm.getId(), FindMistakeDTO.getTypeGame()));
 			arr.add(l);
 		}
 		gameList.put(FindMistakeDTO.getTypeGame(), arr);
-		System.out.println(gameList.get("FindAWord"));
 		
 		Service<GuessPictureDTO> guessPicture = new GuessPictureService();
 		arr = new ArrayList<>();
@@ -72,7 +68,7 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", gp.getSolution());
 			l.put("typeGame", GuessPictureDTO.getTypeGame());
 			l.put("name", "Guess Picture");
-			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), gp.getId(), gp.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), gp.getId(), GuessPictureDTO.getTypeGame()));
 			arr.add(l);
 		}
 		gameList.put(GuessPictureDTO.getTypeGame(), arr);
@@ -86,7 +82,7 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", h.getSolution());
 			l.put("typeGame", HangmanDTO.getTypeGame());
 			l.put("name", HangmanDTO.getTypeGame());
-			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), h.getId(), h.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), h.getId(), HangmanDTO.getTypeGame()));
 			arr.add(l);
 		}
 		gameList.put(HangmanDTO.getTypeGame(), arr);
@@ -100,7 +96,7 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", os.getSolution());
 			l.put("typeGame", OrganizeSentenceDTO.getTypeGame());
 			l.put("name", "Organize Sentence");
-			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), os.getId(), os.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), os.getId(), OrganizeSentenceDTO.getTypeGame()));
 			arr.add(l);
 		}
 		gameList.put(OrganizeSentenceDTO.getTypeGame(), arr);
@@ -114,7 +110,7 @@ public class PlaylistServlet extends HttpServlet {
 			l.put("solution", q.getSolution());
 			l.put("typeGame", QuizDTO.getTypeGame());
 			l.put("name", QuizDTO.getTypeGame());
-			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), q.getId(), q.getTypeGame()));
+			l.put("checked", "" + service.find(Integer.parseInt(request.getParameter("id")), q.getId(), QuizDTO.getTypeGame()));
 			arr.add(l);
 		}
 		gameList.put(QuizDTO.getTypeGame(), arr);
