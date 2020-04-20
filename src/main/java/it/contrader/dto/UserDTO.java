@@ -19,4 +19,10 @@ public class UserDTO {
 
 	private Usertype usertype;
 
+	public Usertype getUsertype() {
+		return usertype;
+	}
+	
+	
+
 }
