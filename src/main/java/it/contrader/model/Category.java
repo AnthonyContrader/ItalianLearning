@@ -19,7 +19,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data	//crea getter setter equals hashcode toString
 @Entity	//mappa l'entita sul db
-
 public class Category {
 	
 	@Id //chiave primaria di category
