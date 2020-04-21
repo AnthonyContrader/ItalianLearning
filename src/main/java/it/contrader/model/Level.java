@@ -1,3 +1,4 @@
+//Created By @Alessandro Alfieri
 package it.contrader.model;
 
 import javax.persistence.Column;
@@ -15,21 +16,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class User {
-
-	public enum Usertype {
-		ADMIN, USER
-	}
-
+public class Level {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@Column(unique = true)
-	private String username;
-
-	private String password;
-
-	private Usertype usertype;
-
+	@NotNull
+	private String name;
+	
+	private String description;
+	
+	@NotNull
+	private Integer score;
 }

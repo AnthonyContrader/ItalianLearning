@@ -1,11 +1,15 @@
+//Created By @Alessandro Alfieri
 package it.contrader.model;
+import  it.contrader.model.Level;
+import it.contrader.model.User.Usertype;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,21 +19,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class User {
-
-	public enum Usertype {
-		ADMIN, USER
-	}
-
+public class Hangman {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@Column(unique = true)
-	private String username;
-
-	private String password;
-
-	private Usertype usertype;
-
+	
+	@ManyToOne
+	@JoinColumn(name= "idLevel")
+	private Level level;
 }
