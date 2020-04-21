@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Hangman {
+public class FindMistake {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,15 @@ public class Hangman {
 	
 	@NotNull
 	private String sentence;
+	
+	@NotNull
+	private String optionA;
+	
+	@NotNull
+	private String optionB;
+	
+	@NotNull
+	private String optionC;
 	
 	@ManyToOne
 	@JoinColumn(name= "idCategory")
