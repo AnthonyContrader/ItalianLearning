@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.contrader.dto.GuessPictureDTO;
+import it.contrader.dto.CategoryDTO;
+import it.contrader.dto.LevelDTO;
 import it.contrader.service.GuessPictureService;
 
 /*
@@ -47,7 +49,8 @@ public class GuessPictureController {
 	}
 
 	@PostMapping("/update")
-	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("image") String image, @RequestParam("solution") String solution) {
+	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("image") String image, 
+			@RequestParam("solution") String solution,@RequestParam("category") CategoryDTO category, @RequestParam("level") LevelDTO level) {
 		GuessPictureDTO guessPictureDTO = new GuessPictureDTO();
 		guessPictureDTO.setId(id);
 		guessPictureDTO.setImage(image);
@@ -58,7 +61,8 @@ public class GuessPictureController {
 	}
 	
 	@PostMapping("/insert")
-	public String insert(HttpServletRequest request, @RequestParam("image") String image, @RequestParam("solution") String solution) {
+	public String insert(HttpServletRequest request, @RequestParam("image") String image, @RequestParam("solution") String solution,
+			@RequestParam("category") CategoryDTO category, @RequestParam("level") LevelDTO level) {
 		GuessPictureDTO guessPictureDTO = new GuessPictureDTO();
 		guessPictureDTO.setImage(image);
 		guessPictureDTO.setSolution(solution);

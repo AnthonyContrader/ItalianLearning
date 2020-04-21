@@ -47,7 +47,7 @@ public class CategoryController {
 	}
 
 	@PostMapping("/update")
-	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("title") String title, @RequestParam("descriptio") String description, @Re) {
+	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("title") String title, @RequestParam("descriptio") String description) {
 		CategoryDTO categoryDTO = new CategoryDTO();
 		categoryDTO.setId(id);
 		categoryDTO.setDescription(description);
