@@ -13,8 +13,8 @@
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
-	<a href="homeadmin.jsp">Home</a>	
-	<a class="active" href="GameServlet">Games</a>
+	<a href="../homeadmin.jsp">Home</a>	
+	<a class="active" href="#">Games</a>
   	<a href=/findawords/getall>Find a Words</a>
   	<a href=/findmistakes/getall>Find Mistakes</a>
   	<a href=/guesspictures/getall>Guess Pictures</a>
