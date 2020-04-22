@@ -1,3 +1,4 @@
+//Created By @Alessandro Alfieri
 package it.contrader.controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.contrader.dto.HangmanDTO;
-import it.contrader.model.Hangman;
 import it.contrader.service.HangmanService;
 import it.contrader.service.CategoryService;
 import it.contrader.service.LevelService;
@@ -61,6 +61,27 @@ public class HangmanController {
 		return "hangmen";
 	}
 	
+	@PostMapping("/insert")
+	public String insert(HttpServletRequest request, @RequestParam("solution") String solution,
+			 @RequestParam("definition") String definition, @RequestParam("sentence") String sentence,
+			 @RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel) {
+		
+		HangmanDTO dto =  new HangmanDTO();
+		dto.setSolution(solution);
+		dto.setDefinition(definition);
+		dto.setSentence(sentence);
+		dto.setCategory(categoryService.read(idCategory));
+		dto.setLevel(levelService.read(idLevel));
+		service.insert(dto);
+		setAll(request);
+		return "hangmen";
+	}
+	
+	@GetMapping("/read")
+	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		return "readhangman";
+	}
 	
 	private void setAll(HttpServletRequest request) {
 		request.getSession().setAttribute("list", service.getAll());
