@@ -46,8 +46,20 @@ public class HangmanController {
 	}
 	
 	@PostMapping("/update")
-	public String update(HttpServletRequest request, @RequestParam("id") Long id,
-						 @RequestParam("solution"))
+	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("solution") String solution,
+						 @RequestParam("definition") String definition, @RequestParam("sentence") String sentence,
+						 @RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel) {
+		HangmanDTO dto =  new HangmanDTO();
+		dto.setId(id);
+		dto.setSolution(solution);
+		dto.setDefinition(definition);
+		dto.setSentence(sentence);
+		dto.setCategory(categoryService.read(idCategory));
+		dto.setLevel(levelService.read(idLevel));
+		service.update(dto);
+		setAll(request);
+		return "hangmen";
+	}
 	
 	
 	private void setAll(HttpServletRequest request) {
