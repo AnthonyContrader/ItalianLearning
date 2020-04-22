@@ -17,7 +17,7 @@
 <br>
 
 <div class="main">
-<%OrganizeSentenceDTO o = (OrganizeSentenceDTO) request.getAttribute("dto");%>
+<%OrganizeSentenceDTO o = (OrganizeSentenceDTO) request.getSession().getAttribute("dto");%>
 
 
 	<table>

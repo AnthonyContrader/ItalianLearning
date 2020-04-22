@@ -15,20 +15,20 @@
 
 <div class="navbar">
 	<a href="../homeadmin.jsp">Home</a>
-  	<a href="/games">Back</a>
-  	<a class="active" href="/organizeSentence/getAll">Organize Sentence</a>
+  	<a href="../game/getAll">Back</a>
+  	<a class="active" href="#">Organize Sentence</a>
   	<a href="/user/logout" id="logout">Logout</a>
 </div>
 <div class="main">
 	<%
 		//lista che contiene tutti gli elementi del gioco che verranno stampati nella tabella
-		List<OrganizeSentenceDTO> list = (List<OrganizeSentenceDTO>) request.getAttribute("list");
-		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-		List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+		List<OrganizeSentenceDTO> list = (List<OrganizeSentenceDTO>) request.getSession().getAttribute("list");
+		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+		List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
 		
 		String ans = null;
 		try{
-			ans = request.getAttribute("ans").toString();
+			ans = request.getSession().getAttribute("ans").toString();
 		}
 		catch (Exception e){}
 	
@@ -43,7 +43,7 @@
 
 	<table>
 		<tr>
-			<th>Id</th>
+			
 			<th>Solution</th>
 			<th>OrganizeSentence</th>
 			<th>Definition</th>
@@ -56,17 +56,16 @@
 			for (OrganizeSentenceDTO o : list) {
 		%>
 		<tr>
-			<td><a href=OrganizeSentenceServlet?mode=read&id=<%=o.getId()%>>
-					<%=o.getId()%>
+			<td><a href="/organizesentence/read?id=<%=o.getId()%>">
+					<%=o.getSolution()%>
 			</a></td>
-			<td><%=o.getSolution()%></td>
 			<td><%=o.getSentence()%></td>
 			<td><%=o.getDefinition()%></td>
-			<td><%=o.getLevel()%></td>
-			<td><%=o.getCategory()%></td>
-			<td><a href=OrganizeSentenceServlet?mode=read&update=true&id=<%=o.getId()%>>Edit</a>
+			<td><%=o.getLevel().getName()%></td>
+			<td><%=o.getCategory().getTitle()%></td>
+			<td><a href="/organizesentence/preupdate?id=<%=o.getId()%>">Edit</a>
 			</td>
-			<td><a href=OrganizeSentenceServlet?mode=read&delete=true&id=<%=o.getId()%>>Delete</a>
+			<td><a href="/organizesentence/predelete?id=<%=o.getId()%>">Delete</a>
 			</td>
 
 		</tr>
@@ -77,7 +76,7 @@
 
 
 
-<form id="floatright" action="OrganizeSentenceServlet?mode=insert" method="post">
+<form id="floatright" action="/organizesentence/insert" method="post">
   <div class="row">
     <div class="col-25">
       <label for="solution">Solution</label>

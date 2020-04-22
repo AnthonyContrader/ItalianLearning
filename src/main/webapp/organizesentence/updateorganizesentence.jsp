@@ -20,9 +20,9 @@
 <br>
 <div class="main">
 
-<% OrganizeSentenceDTO o = (OrganizeSentenceDTO) request.getAttribute("dto");
-   List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-   List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+<% OrganizeSentenceDTO o = (OrganizeSentenceDTO) request.getSession().getAttribute("dto");
+   List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+   List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
 %>
 
 
