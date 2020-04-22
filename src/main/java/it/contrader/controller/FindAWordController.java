@@ -17,7 +17,7 @@ import it.contrader.service.FindAWordService;
 import it.contrader.service.LevelService;
 
 @Controller
-@RequestMapping("/findAWord") //le sottopagine di findaword
+@RequestMapping("/findaword") //le sottopagine di findaword
 
 
 public class FindAWordController {
@@ -29,10 +29,11 @@ public class FindAWordController {
 	@Autowired
 	private LevelService levelService;
 	
+	//percorso html
 	@GetMapping("/getall")  // si avrà la kiamata alla pagina findaword/get all
 	public String getAll(HttpServletRequest request) {
 		setAll(request);
-		return "findAWord";//torna a questa pagina
+		return "findaword/findawords";//torna a questa pagina
 	}
 	
 	private void setAll(HttpServletRequest request) {
@@ -44,13 +45,13 @@ public class FindAWordController {
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
 	service.delete(id);
 	setAll(request);// mette nella richiesta tutte le righe dei nostri giochi
-	return "findAWord";
+	return "findaword/findawords";
 	}
 	
 	@GetMapping("/preupdate")
 	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {// il secondo parametro dice ke salvi il parametro id della richiesta nella variabile long id {
 	request.getSession().setAttribute("dto", service.read(id));
-	return "updateuser";
+	return "findaword/updatefindaword";
 	
 	}
 
@@ -70,8 +71,31 @@ public String update(HttpServletRequest request, @RequestParam("id") Long id,
 	dto.setLevel(levelService.read(idLevel));
 	service.update(dto);
 	setAll(request);
-	return "findAWord";
+	return "findaword/findawords";
 
+}
+@PostMapping("/insert")
+public String insert(HttpServletRequest request,
+		@RequestParam("solution") String solution, @RequestParam("definition") String definition,
+		@RequestParam("sentence") String sentence, @RequestParam("idCategory") Long idCategory, 
+		@RequestParam("idLevel") Long idLevel) {
+
+	FindAWordDTO dto = new FindAWordDTO();
+	
+	dto.setSolution(solution);
+	dto.setDefinition(definition);
+	dto.setSentence(sentence);
+	dto.setCategory(categoryService.read(idCategory));
+	dto.setLevel(levelService.read(idLevel));
+	service.update(dto);
+	setAll(request);
+	return "findaword/findawords";
+}
+
+@GetMapping("/read")
+public String read(HttpServletRequest request, @RequestParam("id") Long id) {
+	request.getSession().setAttribute("dto", service.read(id));
+	return "findaword/readfindaword";
 }
 
 
