@@ -1,6 +1,7 @@
 package it.contrader.converter;
 /* created by Anna Cecere */
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import it.contrader.dto.QuizDTO;
@@ -12,11 +13,18 @@ classi che possono utilizzare le annotacion nei file precedenti ex. get/setter, 
 */
  
 public class QuizConverter extends AbstractConverter<Quiz, QuizDTO>{
+	
+
+	@Autowired
+	CategoryConverter categoryConverter = new CategoryConverter();
+	@Autowired
+	LevelConverter levelConverter = new LevelConverter();
+	
 	@Override
 	public Quiz toEntity(QuizDTO quizDTO) {
 		Quiz quiz = null; //se si genera errore possiamo controllare
 		if (quizDTO != null) {
-			quiz = new Quiz(quizDTO.getId(), quizDTO.getSolution(), quizDTO.getDefinition(), quizDTO.getSentence(), quizDTO.getCategoryDTO(), quizDTO.getLevelDTO());
+			quiz = new Quiz(quizDTO.getId(), quizDTO.getSolution(), quizDTO.getDefinition(), quizDTO.getSentence(), categoryConverter.toEntity(quizDTO.getCategory()), levelConverter.toEntity(quizDTO.getLevel()));
 		}
 		
 		return quiz;
@@ -26,7 +34,7 @@ public class QuizConverter extends AbstractConverter<Quiz, QuizDTO>{
 	public QuizDTO toDTO(Quiz quiz) {
 		QuizDTO quizDTO = null;
 		if (quiz != null) {
-			quiz = new Quiz(quizDTO.getId(), quizDTO.getSolution(), quizDTO.getDefinition(), quizDTO.getSentence(), quizDTO.getCategory(), quizDTO.getLevel());
+			quizDTO = new QuizDTO(quiz.getId(), quiz.getSolution(),quiz.getDefinition(), quiz.getSentence(), categoryConverter.toDTO(quiz.getCategory()), levelConverter.toDTO(quiz.getLevel()));
 			}
 	
 		return quizDTO;

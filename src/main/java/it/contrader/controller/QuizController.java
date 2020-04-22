@@ -28,7 +28,7 @@ public class QuizController {
 	@Autowired
 	private QuizService service;
 	@Autowired
-	private CategoryService categoryservice;
+	private CategoryService categoryService;
 	@Autowired
 	private LevelService levelService;
 	
@@ -51,9 +51,9 @@ public class QuizController {
 		return "updatequiz";
 	}
 	
-	/*@PostMapping("/update")
+	@PostMapping("/update")
 	public String update(HttpServletRequest request, @RequestParam("id") Long id,@RequestParam("solution") String solution,
-			@RequestParam("definition") String definition,@RequestParam("sentece") String sentence,
+			@RequestParam("definition") String definition,@RequestParam("sentence") String sentence,
 	        @RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel)
 		 {
 
@@ -64,7 +64,7 @@ public class QuizController {
 		dto.setDefinition(definition);
 		dto.setSentence(sentence);
 		dto.setCategory(categoryService.read(idCategory));
-		dto.setLevel(idLevel);
+		dto.setLevel(levelService.read(idLevel));
 		
 		service.update(dto);
 		setAll(request);
@@ -72,7 +72,7 @@ public class QuizController {
 		
 
 	}
-	*/
+	
 	
 	private void setAll(HttpServletRequest request) {
 		request.getSession() . setAttribute("list", service.getAll());
