@@ -21,7 +21,12 @@
 
 
 	<div class="navbar">
-		<a class="active" href="/homeadmin.jsp">Home</a> <a href=/user/getall>Users</a>
+		<a class="active" href="/homeadmin.jsp">Home</a> 
+		<a href=/user/getall>Users</a>
+		<a href=/category/getall>Categories</a>
+		<a href=/level/getall>Levels</a>
+		<a href=/game/getall>Games</a>
+		<a href=/playlist/getall>Playlists</a>
 		<a href="/user/logout" id="logout">Logout</a>
 	</div>
 
