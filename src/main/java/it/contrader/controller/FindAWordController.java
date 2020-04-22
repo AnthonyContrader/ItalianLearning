@@ -12,7 +12,9 @@ import it.contrader.dto.FindAWordDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.FindAWord;
 import it.contrader.model.User.Usertype;
+import it.contrader.service.CategoryService;
 import it.contrader.service.FindAWordService;
+import it.contrader.service.LevelService;
 
 @Controller
 @RequestMapping("/findAWord") //le sottopagine di findaword
@@ -22,6 +24,10 @@ public class FindAWordController {
 	
 	@Autowired
 	private FindAWordService service;
+	@Autowired
+	private CategoryService categoryService;
+	@Autowired
+	private LevelService levelService;
 	
 	@GetMapping("/getall")  // si avrà la kiamata alla pagina findaword/get all
 	public String getAll(HttpServletRequest request) {
@@ -52,7 +58,7 @@ public class FindAWordController {
 public String update(HttpServletRequest request, @RequestParam("id") Long id, 
 		@RequestParam("solution") String solution, @RequestParam("definition") String definition,
 		@RequestParam("sentence") String sentence, @RequestParam("idCategory") Long idCategory, 
-		@RequestParam("idLevel") String idLevel) {
+		@RequestParam("idLevel") Long idLevel) {
 
 	FindAWordDTO dto = new FindAWordDTO();
 	
