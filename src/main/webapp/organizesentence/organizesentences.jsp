@@ -3,6 +3,7 @@
 	import="it.contrader.dto.OrganizeSentenceDTO"
 	import="it.contrader.dto.LevelDTO"
 	import="it.contrader.dto.CategoryDTO"%>
+	<!-- created by Torquato Di Maio -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +30,7 @@
 		String ans = null;
 		try{
 			ans = request.getSession().getAttribute("ans").toString();
+			request.getSession().removeAttribute("ans");
 		}
 		catch (Exception e){}
 	

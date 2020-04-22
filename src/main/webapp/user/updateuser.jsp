@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="it.contrader.dto.UserDTO"%>
+    <!-- created by Torquato Di Maio -->
 <!DOCTYPE html>
 <html>
 <head>

@@ -3,6 +3,7 @@
      import="it.contrader.dto.OrganizeSentenceDTO"
      import="it.contrader.dto.LevelDTO"
     import="it.contrader.dto.CategoryDTO"%>
+    <!-- created by Torquato Di Maio -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +14,9 @@
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="OrganizeSentenceServlet?mode=gamelist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  <a href="../homeadmin.jsp">Home</a>
+  <a class="active" href="/organizesentence/getall">Back</a>
+  <a href="/user/logout" id="logout">Logout</a>
 </div>
 <br>
 <div class="main">
@@ -26,7 +27,9 @@
 %>
 
 
-<form id="floatleft" action="OrganizeSentenceServlet?mode=update&id=<%=o.getId()%>" method="post">
+<form id="floatleft" action="/organizesentence/update" method="post">
+  <!-- il seguente campo e' nascosto quindi posso metterlo ovunque nella form-->
+  <input type="hidden" name="id" value =<%=o.getId() %>>
   <div class="row">
     <div class="col-25">
       <label for="solution">Solution</label>
@@ -66,7 +69,7 @@
   			for(CategoryDTO c: categoryList){
   		//valore id categoria, etichetta titolo categoria
   		%>
-  				<option value=<%= c.getId() %> <%= Integer.valueOf(c.getId()) == o.getIdCategory() ? "selected" : "" %>>
+  				<option value=<%= c.getId() %> <%= Long.valueOf(c.getId()) == o.getCategory().getId() ? "selected" : "" %>>
   				<%= c.getTitle()  %></option>
   		<% 
   			}
@@ -87,7 +90,7 @@
   			for(LevelDTO level: levelList){
   		//valore id categoria, etichetta titolo categoria
   		%>
-  				<option value=<%= level.getId() %> <%= Integer.valueOf(level.getId()) == o.getIdLevel() ? "selected" : "" %>>
+  				<option value=<%= level.getId() %> <%= Long.valueOf(level.getId()) == o.getLevel().getId() ? "selected" : "" %>>
   				<%= level.getName()  %></option>
   		<% 
   			}

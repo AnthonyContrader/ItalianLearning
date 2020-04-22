@@ -32,12 +32,18 @@ public class OrganizeSentenceController {
 	
 	private boolean ans;
 	
-	//chiamata organizeSentece/getall
+	//chiamata organizesentence/getall
 	@GetMapping("/getall")
 	public String getAll(HttpServletRequest request) {
 		setAll(request);
 		//dove organizeSentences è il nome della pagina jsp
 		return"organizesentence/organizesentences";
+	}
+	
+	@GetMapping("/predelete")
+	public String preDelete(HttpServletRequest request, @RequestParam(value="id",required=true) Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		return "organizesentence/deleteorganizesentence"; //vado alla pagina deleteorganizesentence.jsp nella cartella organizesentence
 	}
 	
 	//RequestParam("id") Long id   salva nella variabile id il valore di "id" della RequestParam 
@@ -64,6 +70,8 @@ public class OrganizeSentenceController {
 		request.getSession().setAttribute("dto", service.read(id));
 		return "organizesentence/updateorganizesentence";
 	}
+	
+	
 	
 	@PostMapping("/update")
 	public String update(HttpServletRequest request, @RequestParam(value="id", required=true) Long id, @RequestParam(value="solution", required=true) String solution,
@@ -122,7 +130,7 @@ public class OrganizeSentenceController {
 	@GetMapping("/read")
 	public String read(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
-		return "organizesentence/readorganizesentences";
+		return "organizesentence/readorganizesentence";
 	}
 	
 	private void setAll(HttpServletRequest request) {
