@@ -36,7 +36,7 @@ public class QuizConverter extends AbstractConverter<Quiz, QuizDTO>{
 		if (quiz != null) {
 			quizDTO = new QuizDTO(quiz.getId(), quiz.getSolution(),quiz.getDefinition(), quiz.getSentence(), categoryConverter.toDTO(quiz.getCategory()), levelConverter.toDTO(quiz.getLevel()));
 			}
-	
+//abbiamo fatto conversione dei due oggetti level e category per oterli poi utilizzare nel controller
 		return quizDTO;
 		}
 	

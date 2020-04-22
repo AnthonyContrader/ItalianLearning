@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import it.contrader.dto.QuizDTO;
-import it.contrader.dto.UserDTO;
-import it.contrader.model.User.Usertype;
 import it.contrader.service.CategoryService;
 import it.contrader.service.LevelService;
 import it.contrader.service.QuizService;
@@ -35,7 +32,7 @@ public class QuizController {
 	@GetMapping("/getall")
 	public String getAll(HttpServletRequest request) {
 		setAll(request);
-		return "quizzes";
+		return "quiz/quizzes";
 	}
 	
 	
@@ -43,12 +40,12 @@ public class QuizController {
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
 		service.delete(id);
 		setAll(request);
-		return "quizzes";
+		return "quiz/quizzes";
 	}
 	@GetMapping("/preupdate")
 	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
-		return "updatequiz";
+		return "quiz/updatequiz";
 	}
 	
 	@PostMapping("/update")
@@ -63,16 +60,35 @@ public class QuizController {
 		dto.setSolution(solution);
 		dto.setDefinition(definition);
 		dto.setSentence(sentence);
-		dto.setCategory(categoryService.read(idCategory));
+		dto.setCategory(categoryService.read(idCategory));//inportiamo i service per prenderci l'oggetto category in base all'id
 		dto.setLevel(levelService.read(idLevel));
 		
 		service.update(dto);
 		setAll(request);
-		return "quizzes";
-		
-
+		return "quiz/quizzes";
 	}
+	@PostMapping("/insert")
+	public String insert(HttpServletRequest request,@RequestParam("solution") String solution,
+			@RequestParam("definition") String definition,@RequestParam("sentence") String sentence,
+	        @RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel) {
 	
+	QuizDTO dto = new QuizDTO();		
+		
+		dto.setSolution(solution);
+		dto.setDefinition(definition);
+		dto.setSentence(sentence);
+		dto.setCategory(categoryService.read(idCategory));//inportiamo i service per prenderci l'oggetto category in base all'id
+		dto.setLevel(levelService.read(idLevel));
+		
+		service.update(dto);
+		setAll(request);
+		return "quiz/quizzes";
+		}
+	@GetMapping("/read")
+	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		return "quiz/readquiz";
+	}
 	
 	private void setAll(HttpServletRequest request) {
 		request.getSession() . setAttribute("list", service.getAll());
