@@ -1,0 +1,101 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="java.util.List"
+    import="it.contrader.dto.HangmanDTO"
+    import="it.contrader.dto.CategoryDTO"
+    import="it.contrader.dto.LevelDTO"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link href="../css/vittoriostyle.css" rel="stylesheet">
+<title>Edit Hangman</title>
+</head>
+<body>
+<%@ include file="../css/header.jsp" %>
+<div class="navbar">
+  <a href="homeadmin.jsp">Home</a>
+  <a class="active" href="HangmanServlet?mode=gamelist">Back</a>
+  <a href="LogoutServlet" id="logout">Logout</a>
+</div>
+<br>
+<div class="main">
+
+<%
+	HangmanDTO h = (HangmanDTO) request.getAttribute("dto");
+	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
+	List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+%>
+
+
+<form id="floatleft" action="HangmanServlet?mode=update&id=<%=h.getId()%>" method="post">
+ <div class="row">
+    <div class="col-25">
+      <label for="solution">Soluzione</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="solution" name="solution" required placeholder="Inserisci la soluzione" value="<%=h.getSolution()%>">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+     <label for="pass">Indizio</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="sentence" name="sentence" required placeholder="Inserisci l'indizio" value="<%=h.getSentence()%>"> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+     <label for="definition">Definizione</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="definition" name="definition" placeholder="Inserisci la definizione" value="<%=h.getDefinition()%>"> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+    	<label for="idLevel">Punteggio</label>
+    </div>
+    <div class="col-75">
+		<select id="idLevel" name="idLevel">
+ 			<%
+				for (LevelDTO level : levelList) {
+			%>
+			<option value=<%= level.getId() %> <%= Integer.valueOf(level.getId()) == h.getIdLevel() ? "selected" : ""%> >
+				<%= level.getName() %>
+			</option>
+			<%
+				}
+			%>
+
+		</select>
+   	</div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="idCategory">Categoria</label>
+    </div>
+   		 <div class="col-75">
+ 			<select id="idCategory" name="idCategory">
+	 			<%
+					for (CategoryDTO category : categoryList) {
+				%>
+  				<option value=<%= category.getId() %> <%= Integer.valueOf(category.getId()) == h.getIdCategory() ? "selected" : ""%> >
+  					<%= category.getTitle() %>
+				</option>
+  				<%
+					}
+  				%>
+
+			</select>
+    	</div>
+  </div>
+      <button type="submit" >Salva</button>
+</form>
+
+	
+</div>
+<br>
+<%@ include file="../css/footer.jsp" %>	
+</body>
+</html>
