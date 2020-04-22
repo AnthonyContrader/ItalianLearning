@@ -9,30 +9,27 @@
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
+
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="GuessPictureServlet?mode=gamelist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  	<a href="../homeadmin.jsp">Home</a>
+  	<a class="active" href="/guesspicture/getall">Back</a>
+	<a href="/user/logout" id="logout">Logout</a>
 </div>
-<br>
 
 <div class="main">
-<%GuessPictureDTO g = (GuessPictureDTO) request.getAttribute("dto");%>
+<%GuessPictureDTO g = (GuessPictureDTO) request.getSession().getAttribute("dto");%>
 
 	<div class="col-50">
 		<table class="col-75">
 			<tr>
-				<th>Id</th>
 				<th>Solution</th>
 				<th>Level</th>
 				<th>Category</th>
 			</tr>
 			<tr>
-			
-				<td><%=g.getId()%></td>
 				<td><%=g.getSolution()%></td>
-				<td><%=g.getLevel()%></td>
-				<td><%=g.getCategory()%></td>
+				<td><%=g.getLevel().getName()%></td>
+				<td><%=g.getCategory().getTitle()%></td>
 				
 			</tr>
 		</table>

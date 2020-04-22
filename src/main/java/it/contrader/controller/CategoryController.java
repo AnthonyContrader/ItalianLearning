@@ -34,6 +34,12 @@ public class CategoryController {
 		setAll(request);
 		return "category/categories";
 	}
+	
+	@GetMapping("/predelete")
+	public String preDelete(HttpServletRequest request, @RequestParam(value="id", required = true) Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		return "category/deletecategory";
+	}
 		
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam(value="id", required = true) Long id) {
@@ -43,7 +49,7 @@ public class CategoryController {
 		}catch(Exception e) {ans = false;}
 		
 		setAll(request);
-		request.setAttribute("ans", ans);
+		request.getSession().setAttribute("ans", ans);
 
 		return "category/categories";
 	}
@@ -55,7 +61,7 @@ public class CategoryController {
 	}
 
 	@PostMapping("/update")
-	public String update(HttpServletRequest request, @RequestParam(value="id", required = true) Long id, @RequestParam(value="title", required = true) String title, @RequestParam("descriptio") String description) {
+	public String update(HttpServletRequest request, @RequestParam(value="id", required = true) Long id, @RequestParam(value="title", required = true) String title, @RequestParam("description") String description) {
 		
 		try {
 			CategoryDTO categoryDTO = new CategoryDTO();
@@ -66,7 +72,7 @@ public class CategoryController {
 		}catch(Exception e) { ans=false; }
 		
 		setAll(request);
-		request.setAttribute("ans", ans);
+		request.getSession().setAttribute("ans", ans);
 		return "category/categories";
 	}
 		
@@ -81,13 +87,13 @@ public class CategoryController {
 		}catch(Exception e) { ans=false; }
 		
 		setAll(request);
-		request.setAttribute("ans", ans);
+		request.getSession().setAttribute("ans", ans);
 		return "category/categories";
 	}
 
 	@GetMapping("/read")
 	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
 	request.getSession().setAttribute("dto", service.read(id));
-	return "category/categories";
+	return "category/readcategory";
 	}
 }

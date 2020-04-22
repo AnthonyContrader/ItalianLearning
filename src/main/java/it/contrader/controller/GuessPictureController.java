@@ -46,6 +46,12 @@ public class GuessPictureController {
 		return "guesspicture/guesspictures";
 	}
 	
+	@GetMapping("/predelete")
+	public String preDelete(HttpServletRequest request, @RequestParam(value="id", required = true) Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		return "guesspicture/deleteguesspicture";
+	}
+	
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam(value="id", required = true) Long id) {
 		
@@ -75,8 +81,8 @@ public class GuessPictureController {
 			guessPictureDTO.setId(id);
 			guessPictureDTO.setImage(image);
 			guessPictureDTO.setSolution(solution);
-			guessPictureDTO.setCategory(new CategoryService().read(idCategory));
-			guessPictureDTO.setLevel(new LevelService().read(idLevel));
+			guessPictureDTO.setCategory(categoryService.read(idCategory));
+			guessPictureDTO.setLevel(levelService.read(idLevel));
 			service.update(guessPictureDTO);
 			ans = true;
 		}
@@ -94,8 +100,9 @@ public class GuessPictureController {
 			GuessPictureDTO guessPictureDTO = new GuessPictureDTO();
 			guessPictureDTO.setImage(image);
 			guessPictureDTO.setSolution(solution);
-			guessPictureDTO.setCategory(new CategoryService().read(idCategory));
-			guessPictureDTO.setLevel(new LevelService().read(idLevel));
+			guessPictureDTO.setCategory(categoryService.read(idCategory));
+			guessPictureDTO.setLevel(levelService.read(idLevel));
+
 			service.insert(guessPictureDTO);
 			ans = true;
 		}catch(Exception e) {ans = false;}

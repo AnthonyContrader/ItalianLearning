@@ -11,29 +11,28 @@
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="GuessPictureServlet?mode=gamelist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  	<a href="../homeadmin.jsp">Home</a>
+  	<a class="active" href="/guesspicture/getall">Back</a>
+	<a href="/user/logout" id="logout">Logout</a>
 </div>
+
 <br>
 
 <div class="main">
-<%GuessPictureDTO g = (GuessPictureDTO) request.getAttribute("dto");%>
+<%GuessPictureDTO g = (GuessPictureDTO) request.getSession().getAttribute("dto");%>
 
 <div class="col-50">
 
 	<table class="col-100">
 		<tr> 
-			<th>ID</th>
 			<th>Solution</th>
 			<th>Level</th>
 			<th>Category</th>
 		</tr>
 		<tr>
-			<td><%=g.getId()%></td>
 			<td><%=g.getSolution()%></td>
-			<td><%=g.getLevel()%></td>
-			<td><%=g.getCategory()%></td>
+			<td><%=g.getLevel().getName()%></td>
+			<td><%=g.getCategory().getTitle()%></td>
 		</tr>	
 	</table>
 	<br>
@@ -49,8 +48,8 @@
 <div class="col-50">
 	<h2 style="text-align: center">Are you sure you want to delete this element?</h2>
 	<div class='row'>
-		<a href=GuessPictureServlet?mode=delete&id=<%=g.getId()%> class="col-50" style="text-align: right"><button class="btn-sm">Confirm</button></a>
-		<a href="GuessPictureServlet?mode=gamelist" class="col-50"><button class="btn-sm">Cancel</button></a>
+		<a href="/guesspicture/delete?id=<%=g.getId()%>" class="col-50" style="text-align: right"><button class="btn-sm">Confirm</button></a>
+		<a href="/guesspicture/getall" class="col-50"><button class="btn-sm">Cancel</button></a>
 	</div>
 </div>
 <br>

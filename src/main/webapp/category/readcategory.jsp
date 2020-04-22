@@ -9,15 +9,18 @@
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
+
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="CategoryServlet?mode=categorylist">Back</a>  
-  <a href="LogoutServlet" id="logout">Logout</a>
+  	<a href="../homeadmin.jsp">Home</a>
+  	<a class="active" href="/category/getall">Back</a>
+	<a href="/user/logout" id="logout">Logout</a>
 </div>
+
+
 <br>
 
 <div class="main">
-<%CategoryDTO c = (CategoryDTO) request.getAttribute("dto");%>
+<%CategoryDTO c = (CategoryDTO) request.getSession().getAttribute("dto");%>
 
 <div class="col-100">
 	<table>

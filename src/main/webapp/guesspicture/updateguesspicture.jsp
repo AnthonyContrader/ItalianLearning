@@ -16,22 +16,26 @@
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
+
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="GuessPictureServlet?mode=gamelist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  	<a href="../homeadmin.jsp">Home</a>
+  	<a class="active" href="/guesspicture/getall">Back</a>
+	<a href="/user/logout" id="logout">Logout</a>
 </div>
+
 <br>
 <div class="main">
 
 <%
-	GuessPictureDTO g = (GuessPictureDTO) request.getAttribute("dto");
-	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-	List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+	GuessPictureDTO g = (GuessPictureDTO) request.getSession().getAttribute("dto");
+	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+	List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
 %>
 
 <div class="col-50">
-	<form class="col-75" id="floatleft" action="GuessPictureServlet?mode=update&id=<%=g.getId()%>" method="post">
+	<form class="col-75" id="floatleft" action="/guesspicture/update" method="post">
+	
+	  <input type="hidden" name="id" value=<%=g.getId()%>>
 	
 	  <div class="row">
 	    <div class="col-25">
@@ -48,7 +52,7 @@
 	    </div>
 	    <div class="col-75">
 	      <input type="file" size="50" id="imageFile" name="imageFile" accept="image/*">
-	      <input type="hidden" id="image" name="image">
+	      <input type="hidden" id="image" name="image" value="<%=g.getImage()%>">
 	    </div>
 	  </div>
 	  
@@ -61,7 +65,7 @@
 		 			<%
 						for (CategoryDTO c : categoryList) {
 					%>
-	  				<option value=<%= c.getId() %> <%= Integer.valueOf(c.getId()) == g.getIdCategory() ? "selected" : ""%>>
+	  				<option value=<%= c.getId() %> <%= Long.valueOf(c.getId()) == g.getCategory().getId() ? "selected" : ""%>>
 	  					<%= c.getTitle() %>
 					</option>
 	  				<%
@@ -81,7 +85,7 @@
 		 			<%
 						for (LevelDTO l : levelList) {
 					%>
-	  				<option value=<%= l.getId() %> <%= Integer.valueOf(l.getId()) == g.getIdLevel() ? "selected" : ""%>>
+	  				<option value=<%= l.getId() %> <%= Long.valueOf(l.getId()) == g.getLevel().getId() ? "selected" : ""%>>
 	  					<%= l.getName() %>
 					</option>
 	  				<%
@@ -112,6 +116,7 @@
 <%@ include file="../css/footer.jsp" %>	
 
 <script>
+
 	var input = document.getElementById("imageFile");
 	
 	input.onchange = function () {

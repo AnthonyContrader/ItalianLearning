@@ -29,6 +29,7 @@
 		String ans = null;
 		try{
 			ans = request.getSession().getAttribute("ans").toString();
+			request.getSession().removeAttribute("ans");
 		}
 		catch (Exception e){}
 
@@ -49,9 +50,7 @@
 			for (CategoryDTO c : list) {
 		%>
 		<tr>
-			<td><a href="/category/read?id=<%=c.getId()%>">
-				<%=c.getTitle()%>
-			</a></td>
+			<td><a href="/category/read?id=<%=c.getId()%>"><%=c.getTitle()%></a></td>
 			
 			<td><a href="/category/preupdate?id=<%=c.getId()%>">Edit</a>
 			

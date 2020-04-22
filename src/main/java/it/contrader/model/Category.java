@@ -29,6 +29,7 @@ public class Category {
 	@NotNull
 	private String title;
 	
+	@Column(name="description", columnDefinition="VARCHAR(1024)")
 	private String description;
 
 }

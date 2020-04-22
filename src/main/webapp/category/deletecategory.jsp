@@ -11,13 +11,13 @@
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
   <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="CategoryServlet?mode=categorylist">Back</a>
+  <a class="active" href="/category/getall">Back</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <br>
 
 <div class="main">
-<%CategoryDTO c = (CategoryDTO) request.getAttribute("dto");%>
+<%CategoryDTO c = (CategoryDTO) request.getSession().getAttribute("dto");%>
 
 <div class="col-50">
 
@@ -48,8 +48,8 @@
 <div class="col-50">
 	<h2 style="text-align: center">Are you sure you want to delete this element?</h2>
 	<div class='row'>
-		<a href=CategoryServlet?mode=delete&id=<%=c.getId()%> class="col-50" style="text-align: right"><button class="btn-sm">Confirm</button></a>
-		<a href="CategoryServlet?mode=categorylist" class="col-50"><button class="btn-sm">Cancel</button></a>
+		<a href="/category/delete?id=<%=c.getId()%>" class="col-50" style="text-align: right"><button class="btn-sm">Confirm</button></a>
+		<a href="/category/getall" class="col-50"><button class="btn-sm">Cancel</button></a>
 	</div>
 </div>
 <br>

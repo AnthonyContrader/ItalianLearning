@@ -34,6 +34,7 @@
 		String ans = null;
 		try{
 			ans = request.getSession().getAttribute("ans").toString();
+			request.getSession().removeAttribute("ans");
 		}
 		catch (Exception e){}
 	%>
