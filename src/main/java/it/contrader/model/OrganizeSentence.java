@@ -1,6 +1,6 @@
 package it.contrader.model;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 
 
 /*
-**created by torquato di maio
+**created by Torquato Di Maio
 */
 @AllArgsConstructor
 @NoArgsConstructor
