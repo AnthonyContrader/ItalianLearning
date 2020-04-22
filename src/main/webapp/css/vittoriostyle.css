@@ -189,6 +189,20 @@ input {
   float:right;
 }
 
+textarea {
+  width: 80%;
+  background-color: #ffff;
+  color: #000000;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  float:right;
+  resize: vertical;
+  overflow: auto;
+}
+
 input:hover {
   background-color:  #00ccad;
 }
@@ -223,6 +237,18 @@ form {
   margin-top: 6px;
 }
 
+.col-50 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+
+.col-100 {
+  float: left;
+  width: 100%;
+  margin-top: 6px;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -254,6 +280,10 @@ button {
   cursor: pointer;
   border-radius: 7px;
   width:80%;
+}
+
+button.btn-sm {
+  width:30%;
 }
 
 button:hover {

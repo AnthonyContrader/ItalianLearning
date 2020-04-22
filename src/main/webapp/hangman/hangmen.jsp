@@ -14,16 +14,16 @@
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
-	<a href="homeadmin.jsp">Home</a>
-  	<a href="GameServlet">Back</a>
-  	<a class="active" href="HangmanServlet?mode=gamelist">Hangmen</a>
-  	<a href="LogoutServlet" id="logout">Logout</a>
+	<a href="../homeadmin.jsp">Home</a>
+  	<a href="/game/getall">Back</a>
+  	<a class="active">Hangmen</a>
+  	<a href="/user/logout" id="logout">Logout</a>
 </div>
 <div class="main">
 	<%
-		List<HangmanDTO> list = (List<HangmanDTO>) request.getAttribute("list");
-		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-		List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+		List<HangmanDTO> list = (List<HangmanDTO>) request.getSession().getAttribute("list");
+		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+		List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
 		
 		String ans = null;
 		try{
@@ -40,7 +40,6 @@
 
 	<table>
 		<tr>
-			<th>ID</th>
 			<th>Solution</th>
 			<th>Sentence</th>
 			<th>Definition</th>
@@ -54,18 +53,17 @@
 		%>
 		<tr>
 			<td>
-				<a href="HangmanServlet?mode=read&id=<%=h.getId()%>" style="text-decoration: underline;">
-					<%=h.getId()%>
+				<a href="/hangman/read?id=<%=h.getId()%>" style="text-decoration: underline;">
+					<%=h.getSolution()%>
 				</a>
 			</td>
-			<td><%=h.getSolution()%></td>
 			<td><%=h.getSentence()%></td>
 			<td><%=h.getDefinition()%></td>
-			<td><%=h.getLevel()%></td>
-			<td><%=h.getCategory()%></td>
-			<td><a href=HangmanServlet?mode=read&update=true&id=<%=h.getId()%> style="text-decoration: underline;">Edit</a>
+			<td><%=h.getLevel().getName()%></td>
+			<td><%=h.getCategory().getTitle()%></td>
+			<td><a href=/hangman/preupdate?id=<%=h.getId()%> style="text-decoration: underline;">Edit</a>
 			</td>
-			<td><a href=HangmanServlet?mode=read&delete=true&id=<%=h.getId()%> style="text-decoration: underline;">Delete</a>
+			<td><a href=/hangman/delete?id=<%=h.getId()%> style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>
@@ -76,7 +74,7 @@
 
 
 
-<form id="floatright" action="HangmanServlet?mode=insert" method="post">
+<form id="floatright" action="/hangman/insert" method="post">
 
   <div class="row">
     <div class="col-25">

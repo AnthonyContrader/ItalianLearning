@@ -85,5 +85,7 @@ public class HangmanController {
 	
 	private void setAll(HttpServletRequest request) {
 		request.getSession().setAttribute("list", service.getAll());
+		request.getSession().setAttribute("categoryList", categoryService.getAll());
+		request.getSession().setAttribute("levelList", levelService.getAll());
 	}
 }

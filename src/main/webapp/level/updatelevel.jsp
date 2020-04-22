@@ -10,16 +10,16 @@
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="LevelServlet?mode=levellist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  <a href="../homeadmin.jsp">Home</a>
+  <a class="active" href="/level/levels">Back</a>
+  <a href="/user/logout" id="logout">Logout</a>
 </div>
 <br>
 <div class="main">
 
-<%LevelDTO c = (LevelDTO) request.getAttribute("dto");%>
+<%LevelDTO c = (LevelDTO) request.getSession().getAttribute("dto");%>
 
-<form id="floatleft" action="LevelServlet?mode=update&id=<%=c.getId()%>" method="post">
+<form id="floatleft" action="/level/update?id=<%=c.getId()%>" method="post">
   <div class="row">
     <div class="col-25">
       <label for="level">Name</label>

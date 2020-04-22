@@ -13,21 +13,21 @@
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="HangmanServlet?mode=gamelist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  <a href="../homeadmin.jsp">Home</a>
+  <a class="active" href="/hangman/getall">Back</a>
+  <a href="/user/logout" id="logout">Logout</a>
 </div>
 <br>
 <div class="main">
 
 <%
-	HangmanDTO h = (HangmanDTO) request.getAttribute("dto");
-	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-	List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+	HangmanDTO h = (HangmanDTO) request.getSession().getAttribute("dto");
+	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+	List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
 %>
 
 
-<form id="floatleft" action="HangmanServlet?mode=update&id=<%=h.getId()%>" method="post">
+<form id="floatleft" action="/hangman/update?id=<%=h.getId()%>" method="post">
  <div class="row">
     <div class="col-25">
       <label for="solution">Soluzione</label>

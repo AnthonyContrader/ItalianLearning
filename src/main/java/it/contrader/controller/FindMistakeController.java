@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,7 +44,7 @@ public class FindMistakeController {
 		return "findmistake/updatefindmistake";
 	}
 	
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public String update(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id, @RequestParam(value = "solution", required = true) String solution,
 						 @RequestParam("definition") String definition, @RequestParam(value = "sentence", required = true) String sentence,
 						 @RequestParam(value = "optionA", required = true) String optionA, @RequestParam(value = "optionB", required = true) String optionB,
@@ -64,7 +65,7 @@ public class FindMistakeController {
 		return "findmistake/findmistakes";
 	}
 	
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public String insert(HttpServletRequest request, @RequestParam(value = "solution", required = true) String solution,
 						 @RequestParam("definition") String definition, @RequestParam(value = "sentence", required = true) String sentence,
 						 @RequestParam(value = "optionA", required = true) String optionA, @RequestParam(value = "optionB", required = true) String optionB,

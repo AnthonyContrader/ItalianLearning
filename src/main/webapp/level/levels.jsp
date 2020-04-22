@@ -12,31 +12,23 @@
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar"> <!-- questa e la navbar -->
-  <a href="/user/getall">Home</a>
+  <a href="../homeadmin.jsp">Home</a>
   <a class="active">Levels</a>
   <a href="/user/logout" id="logout">Logout</a>  
 </div>
 <div class="main">
 	<%
 		// list contiene tutti gli elementi della level che veranno stampati nella tabella
-		List<LevelDTO> list = (List<LevelDTO>) request.getAttribute("list");
-		String ans = null;
-		try{
-			ans = request.getAttribute("ans").toString();
-		}
-		catch (Exception e){}
+		List<LevelDTO> list = (List<LevelDTO>) request.getSession().getAttribute("list");
+		
 
 	%>
-	<% if (ans != null) {%>
-		<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
-			<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
-		</h2>
-	<% } %>
+	
 <br>
 	<table>
 		<tr>
-			<th>Id</th>
 			<th>Name</th>
+			<th>Description</th>
 			<th>Score</th>
 			<th></th>
 			<th></th>
@@ -45,15 +37,15 @@
 			for (LevelDTO l : list) {
 		%>
 		<tr>
-			<td><a href=level/read?id=<%=l.getId()%>>
-				<%=l.getId()%>
+			<td><a href=/level/read?id=<%=l.getId()%>>
+				<%=l.getName()%>
 			</a></td>
-			<td><%=l.getName()%></td>
+			<td><%=l.getDescription()%></td>
 			<td><%=l.getScore()%></td>
 			
-			<td><a href=level/preupdate?id=<%=l.getId()%>>Edit</a>
+			<td><a href=/level/preupdate?id=<%=l.getId()%>>Edit</a>
 			</td>
-			<td><a href=level/delete?id=<%=l.getId()%> style="text-decoration: underline;">Delete</a>
+			<td><a href=/level/delete?id=<%=l.getId()%> style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>
@@ -62,7 +54,7 @@
 		%>
 	</table>
 
-	<form id="floatright" action="level/insert" method="post">
+	<form id="floatright" action="/level/insert" method="post">
 	  <div class="row">
 	    <div class="col-25">
 	      <label for="level">Name</label>

@@ -11,13 +11,13 @@
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
   <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="HangmanServlet?mode=gamelist">Back</a>
+  <a class="active" href="/hangman/getall">Back</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <br>
 
 <div class="main">
-<%HangmanDTO h = (HangmanDTO) request.getAttribute("dto");%>
+<%HangmanDTO h = (HangmanDTO) request.getSession().getAttribute("dto");%>
 
 
 <table>
@@ -34,8 +34,8 @@
 		<td><%=h.getSolution()%></td>
 		<td><%=h.getSentence()%></td>
 		<td><%=h.getDefinition()%></td>
-		<td><%=h.getLevel()%></td>
-		<td><%=h.getCategory()%></td>
+		<td><%=h.getLevel().getName()%></td>
+		<td><%=h.getCategory().getTitle()%></td>
 	</tr>	
 </table>
 

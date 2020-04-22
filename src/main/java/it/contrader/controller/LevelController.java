@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -46,7 +47,7 @@ public class LevelController {
 		return "level/updatelevel";
 	}
 	
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public String update(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id, @RequestParam(value = "name", required = true) String name,
 						 @RequestParam("description") String description, @RequestParam(value = "score", required = true) Integer score) {
 		LevelDTO dto =  new LevelDTO();
@@ -59,7 +60,7 @@ public class LevelController {
 		return "level/levels";
 	}
 	
-	@GetMapping("/insert")
+	@PostMapping("/insert")
 	public String insert(HttpServletRequest request, @RequestParam(value = "name", required = true) String name,
 						 @RequestParam("description") String description, @RequestParam(value = "score", required = true) Integer score) {
 		LevelDTO dto =  new LevelDTO();
