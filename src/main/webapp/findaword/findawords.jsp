@@ -3,6 +3,9 @@
 	import="it.contrader.dto.FindAWordDTO"
 	import="it.contrader.dto.CategoryDTO"
 	import="it.contrader.dto.LevelDTO"%>
+	
+	<!-- created by Gabriella Brunetto -->
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,22 +17,25 @@
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
-	<a href="homeadmin.jsp">Home</a>
-  	<a href="GameServlet">Back</a>
-  	<a class="active" href="FindAWordServlet?mode=gamelist">Find a Word</a>
+	<a href="../homeadmin.jsp">Home</a><!-- i due puntini ti permettono di trovare il file nella cartella precedente -->
+  	<a href="../game/getall">Back</a>
+  	<a class="active" href="#">Find a Word</a><!-- # ti fa rimanere sulla pagina in cui sei -->
   	<a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <div class="main">
 	<%
 	//list contiene tutti gli elementi del gioco che verrenno stampati nella tabella
-		List<FindAWordDTO> list = (List<FindAWordDTO>) request.getAttribute("list");
-		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-		List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+		List<FindAWordDTO> list = (List<FindAWordDTO>) request.getSession().getAttribute("list");
+		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+		List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
+		//dentro request c'è il contenitore session che contiene gli attributi
 		
-		
+		// ans = valore di ritorno ke dava il service diceva se l'operazione andva a buon fine o no
 		String ans = null;
 		try{
-			ans = request.getAttribute("ans").toString();
+		
+			ans = request.getSession().getAttribute("ans").toString();
+			request.getSession().removeAttribute("ans");
 		}
 		catch (Exception e){}
 	%>
@@ -44,7 +50,7 @@
 <!-- stempo gli elementi contenuti in list nella tabella -->
 	<table>
 		<tr>
-			<th>Id</th>
+			
 			<th>Solution</th>
 			<th>Sentence</th>
 			<th>Definition</th>
@@ -58,19 +64,16 @@
 			for (FindAWordDTO u : list) {
 		%>
 		<tr>
-			<td><a href=FindAWordServlet?mode=read&id=<%=u.getId()%>>
-					<%=u.getId()%>
-			</a></td>
 			
-			<td><%=u.getSolution()%></td>
+			<td><a href="/findaword/read?id=<%=u.getId()%>"><%=u.getSolution()%></a></td><!-- dice al controller di andare sulla read e metti l'id del gioco corrente -->
 			<td><%=u.getSentence()%></td>
 			<td><%=u.getDefinition()%></td>
-			<td><%=u.getLevel()%></td>
-			<td><%=u.getCategory()%></td>
+			<td><%=u.getLevel().getName()%></td> <!-- prendiamo il nome dall'oggetto livello -->
+			<td><%=u.getCategory().getTitle()%></td>
 			
-			<td><a href=FindAWordServlet?mode=read&update=true&id=<%=u.getId()%>>Edit</a>
+			<td><a href="/findaword/preupdate?id=<%=u.getId()%>">Edit</a>
 			</td>
-			<td><a href=FindAWordServlet?mode=read&delete=true&id=<%=u.getId()%> style="text-decoration: underline;">Delete</a>
+			<td><a href="/findaword/predelete?id=<%=u.getId()%>" style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>
@@ -81,7 +84,7 @@
 
 
 
-<form id="floatright" action="FindAWordServlet?mode=insert" method="post">
+<form id="floatright" action="/findaword/insert" method="post">
 
   <div class="row">
     <div class="col-25"><!--si prende il 25% dello spazio  -->

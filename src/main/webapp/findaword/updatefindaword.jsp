@@ -5,6 +5,8 @@
     import="it.contrader.dto.CategoryDTO"
     import="it.contrader.dto.LevelDTO"%>
     
+    <!-- created by Gabriella Brunetto -->
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,21 +17,23 @@
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="FindAWordServlet?mode=gamelist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  <a href="../homeadmin.jsp">Home</a>
+  <a class="active" href="/findaword/getall">Back</a><!-- il tasto back ti riporta al link -->
+  <a href="/user/logout" id="logout">Logout</a>
 </div>
 <br>
 <div class="main">
 
 <%
-FindAWordDTO u = (FindAWordDTO) request.getAttribute("dto");
-List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+FindAWordDTO u = (FindAWordDTO) request.getSession().getAttribute("dto");
+List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
 %>
 
-<form id="floatleft" action="FindAWordServlet?mode=update&id=<%=u.getId()%>" method="post">
+<form id="floatleft" action="/findaword/update" method="post">
 
+ <input type="hidden" name="id" value =<%=u.getId() %>> 
+ 
   <div class="row">
     <div class="col-25"><!--si prende il 25% dello spazio  -->
       <label for="solution">Solution</label>
@@ -75,7 +79,7 @@ List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
       for(CategoryDTO c : categoryList) {
       %>
      <!-- per menu a tendina sia selezionato sul valore presente nel db grazie all'attributo selected l'operatore ternario è un if-->
-      <option value=<%= c.getId() %> <%= Integer.valueOf(c.getId()) == u.getIdCategory() ? "selected" : ""%>> <!-- è un if -->
+      <option value=<%= c.getId() %> <%= Long.valueOf(c.getId()) == u.getCategory().getId() ? "selected" : ""%>> <!-- è un if -->
   					<%= c.getTitle() %>
   					 </option>
       
@@ -101,7 +105,7 @@ List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
       for(LevelDTO c : levelList) {
       %>
      <!-- per menu a tendina sia selezionato sul valore presente nel db grazie all'attributo selected l'operatore ternario è un if-->
-      <option value=<%= c.getId() %> <%= Integer.valueOf(c.getId()) == u.getIdCategory() ? "selected" : ""%>> <!-- è un if -->
+      <option value=<%= c.getId() %> <%= Long.valueOf(c.getId()) == u.getLevel().getId() ? "selected" : ""%>> <!-- è un if -->
   					<%= c.getName() %>
   					 </option>
       
