@@ -28,6 +28,12 @@ public class LevelController {
 		return "level/levels";
 	}
 	
+	@GetMapping("/predelete")
+	public String preDelete(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		return "level/deletelevel";
+	}
+	
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
 		try {
@@ -50,12 +56,17 @@ public class LevelController {
 	@PostMapping("/update")
 	public String update(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id, @RequestParam(value = "name", required = true) String name,
 						 @RequestParam("description") String description, @RequestParam(value = "score", required = true) Integer score) {
-		LevelDTO dto =  new LevelDTO();
-		dto.setId(id);
-		dto.setName(name);
-		dto.setDescription(description);
-		dto.setScore(score);
-		service.update(dto);
+		try {
+			LevelDTO dto =  new LevelDTO();
+			dto.setId(id);
+			dto.setName(name);
+			dto.setDescription(description);
+			dto.setScore(score);
+			service.update(dto);
+			request.getSession().setAttribute("ans", true);
+		}catch(Exception e) {
+			request.getSession().setAttribute("ans", false);
+		}
 		setAll(request);
 		return "level/levels";
 	}
@@ -63,11 +74,16 @@ public class LevelController {
 	@PostMapping("/insert")
 	public String insert(HttpServletRequest request, @RequestParam(value = "name", required = true) String name,
 						 @RequestParam("description") String description, @RequestParam(value = "score", required = true) Integer score) {
-		LevelDTO dto =  new LevelDTO();
-		dto.setName(name);
-		dto.setDescription(description);
-		dto.setScore(score);
-		service.insert(dto);
+		try {
+			LevelDTO dto =  new LevelDTO();
+			dto.setName(name);
+			dto.setDescription(description);
+			dto.setScore(score);
+			service.insert(dto);
+			request.getSession().setAttribute("ans", true);
+		}catch(Exception e) {
+			request.getSession().setAttribute("ans", false);
+		}
 		setAll(request);
 		return "level/levels";
 	}

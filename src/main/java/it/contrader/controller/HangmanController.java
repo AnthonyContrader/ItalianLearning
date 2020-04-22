@@ -32,9 +32,20 @@ public class HangmanController {
 		return "hangman/hangmen";
 	}
 	
+	@GetMapping("/predelete")
+	public String preDelete(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		return "hangman/deletehangman";
+	}
+	
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
-		service.delete(id);
+		try {
+			service.delete(id);
+			request.getSession().setAttribute("ans", true);
+		}catch(Exception e) {
+			request.getSession().setAttribute("ans", false);
+		}
 		setAll(request);
 		return "hangman/hangmen";
 	}
@@ -50,14 +61,19 @@ public class HangmanController {
 	public String update(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id, @RequestParam(value = "solution", required = true) String solution,
 						 @RequestParam("definition") String definition, @RequestParam(value = "sentence", required = true) String sentence,
 						 @RequestParam(value = "idCategory", required = true) Long idCategory, @RequestParam(value = "idLevel", required = true) Long idLevel) {
-		HangmanDTO dto =  new HangmanDTO();
-		dto.setId(id);
-		dto.setSolution(solution);
-		dto.setDefinition(definition);
-		dto.setSentence(sentence);
-		dto.setCategory(categoryService.read(idCategory));
-		dto.setLevel(levelService.read(idLevel));
-		service.update(dto);
+		try {
+			HangmanDTO dto =  new HangmanDTO();
+			dto.setId(id);
+			dto.setSolution(solution);
+			dto.setDefinition(definition);
+			dto.setSentence(sentence);
+			dto.setCategory(categoryService.read(idCategory));
+			dto.setLevel(levelService.read(idLevel));
+			service.update(dto);
+			request.getSession().setAttribute("ans", true);
+		}catch(Exception e) {
+			request.getSession().setAttribute("ans", false);
+		}
 		setAll(request);
 		return "hangman/hangmen";
 	}
@@ -66,14 +82,18 @@ public class HangmanController {
 	public String insert(HttpServletRequest request, @RequestParam(value = "solution", required = true) String solution,
 			 @RequestParam("definition") String definition, @RequestParam(value = "sentence", required = true) String sentence,
 			 @RequestParam(value = "idCategory", required = true) Long idCategory, @RequestParam(value = "idLevel", required = true) Long idLevel) {
-		
-		HangmanDTO dto =  new HangmanDTO();
-		dto.setSolution(solution);
-		dto.setDefinition(definition);
-		dto.setSentence(sentence);
-		dto.setCategory(categoryService.read(idCategory));
-		dto.setLevel(levelService.read(idLevel));
-		service.insert(dto);
+		try {
+			HangmanDTO dto =  new HangmanDTO();
+			dto.setSolution(solution);
+			dto.setDefinition(definition);
+			dto.setSentence(sentence);
+			dto.setCategory(categoryService.read(idCategory));
+			dto.setLevel(levelService.read(idLevel));
+			service.insert(dto);
+			request.getSession().setAttribute("ans", true);
+		}catch(Exception e) {
+			request.getSession().setAttribute("ans", false);
+		}
 		setAll(request);
 		return "hangman/hangmen";
 	}

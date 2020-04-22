@@ -1,3 +1,4 @@
+<!-- Created By @Alessandro Alfieri -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
 	import="it.contrader.dto.LevelDTO"%>
@@ -21,9 +22,18 @@
 		// list contiene tutti gli elementi della level che veranno stampati nella tabella
 		List<LevelDTO> list = (List<LevelDTO>) request.getSession().getAttribute("list");
 		
-
+		String ans = null;
+		try{
+			ans = request.getSession().getAttribute("ans").toString();
+			request.getSession().removeAttribute("ans");
+		}
+		catch (Exception e){}
 	%>
-	
+<% if (ans != null) {%>
+	<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
+		<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
+	</h2>
+<% } %>
 <br>
 	<table>
 		<tr>
@@ -45,7 +55,7 @@
 			
 			<td><a href=/level/preupdate?id=<%=l.getId()%>>Edit</a>
 			</td>
-			<td><a href=/level/delete?id=<%=l.getId()%> style="text-decoration: underline;">Delete</a>
+			<td><a href=/level/predelete?id=<%=l.getId()%> style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>

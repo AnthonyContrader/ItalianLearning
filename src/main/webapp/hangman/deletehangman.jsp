@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<!-- Created By @Alessandro Alfieri -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="it.contrader.dto.HangmanDTO"%>
 <!DOCTYPE html>
 <html>
@@ -10,14 +11,14 @@
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="HangmanServlet?mode=gamelist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  <a href="../homeadmin.jsp">Home</a>
+  <a class="active" href="/hangman/getall">Back</a>
+  <a href="/user/logout" id="logout">Logout</a>
 </div>
 <br>
 
 <div class="main">
-<%HangmanDTO h = (HangmanDTO) request.getAttribute("dto");%>
+<%HangmanDTO h = (HangmanDTO) request.getSession().getAttribute("dto");%>
 
 <div class="col-50">
 	<br>
@@ -39,16 +40,16 @@
 			<td><%=h.getSolution()%></td>
 			<td><%=h.getSentence()%></td>
 			<td><%=h.getDefinition()%></td>
-			<td><%=h.getLevel()%></td>
-			<td><%=h.getCategory()%></td>
+			<td><%=h.getLevel().getName()%></td>
+			<td><%=h.getCategory().getTitle()%></td>
 		</tr>	
 	</table>
 </div>
 <div class="col-50">
 	<h2 style="text-align: center">Are you sure you want to delete this element?</h2>
 	<div class='row'>
-		<a href=HangmanServlet?mode=delete&id=<%=h.getId()%> class="col-50" style="text-align: right"><button class="btn-sm">Confirm</button></a>
-		<a href="HangmanServlet?mode=gamelist" class="col-50"><button class="btn-sm">Cancel</button></a>
+		<a href=/hangman/delete?id=<%=h.getId()%> class="col-50" style="text-align: right"><button class="btn-sm">Confirm</button></a>
+		<a href="/hangman/getall" class="col-50"><button class="btn-sm">Cancel</button></a>
 	</div>
 </div>
 <br>

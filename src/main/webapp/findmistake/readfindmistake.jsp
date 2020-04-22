@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<!-- Created By @Alessandro Alfieri -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="it.contrader.dto.FindMistakeDTO"%>
 <!DOCTYPE html>
 <html>
@@ -10,14 +11,14 @@
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="FindMistakeServlet?mode=gamelist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  <a href="../homeadmin.jsp">Home</a>
+  <a class="active" href="/findmistake/getall">Back</a>
+  <a href="/user/logout" id="logout">Logout</a>
 </div>
 <br>
 
 <div class="main">
-<%FindMistakeDTO f = (FindMistakeDTO) request.getAttribute("dto");%>
+<%FindMistakeDTO f = (FindMistakeDTO) request.getSession().getAttribute("dto");%>
 
 
 <table>
@@ -40,8 +41,8 @@
 		<td><%=f.getOptionA()%></td>
 		<td><%=f.getOptionB()%></td>
 		<td><%=f.getOptionC()%></td>
-		<td><%=f.getLevel()%></td>
-		<td><%=f.getCategory()%></td>
+		<td><%=f.getLevel().getName()%></td>
+		<td><%=f.getCategory().getTitle()%></td>
 	</tr>	
 </table>
 

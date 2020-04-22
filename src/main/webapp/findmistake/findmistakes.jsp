@@ -1,3 +1,4 @@
+<!-- Created By @Alessandro Alfieri -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
 	import="it.contrader.dto.FindMistakeDTO"
@@ -14,19 +15,20 @@
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
-	<a href="homeadmin.jsp">Home</a>
-  	<a href="GameServlet">Back</a>
-  	<a class="active" href="FindMistakeServlet?mode=gamelist">FindMistakes</a>
-  	<a href="LogoutServlet" id="logout">Logout</a>
+	<a href="../homeadmin.jsp">Home</a>
+  	<a href="/game/getall">Back</a>
+  	<a class="active">FindMistakes</a>
+  	<a href="/user/logout" id="logout">Logout</a>
 </div>
 <div class="main">
 	<%
-		List<FindMistakeDTO> list = (List<FindMistakeDTO>) request.getAttribute("list");
-		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-		List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+		List<FindMistakeDTO> list = (List<FindMistakeDTO>) request.getSession().getAttribute("list");
+		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+		List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
 		String ans = null;
 		try{
-			ans = request.getAttribute("ans").toString();
+			ans = request.getSession().getAttribute("ans").toString();
+			request.getSession().removeAttribute("ans");
 		}
 		catch (Exception e){}
 	%>
@@ -39,7 +41,6 @@
 
 	<table>
 		<tr>
-			<th>ID</th>
 			<th>Solution</th>
 			<th>Sentence</th>
 			<th>Definition</th>
@@ -56,21 +57,20 @@
 		%>
 		<tr>
 			<td>
-				<a href="FindMistakeServlet?mode=read&id=<%=f.getId()%>" style="text-decoration: underline;">
-					<%=f.getId()%>
+				<a href="/findmistake/read?id=<%=f.getId()%>" style="text-decoration: underline;">
+					<%=f.getSolution()%>
 				</a>
 			</td>
-			<td><%=f.getSolution()%></td>
 			<td><%=f.getSentence()%></td>
 			<td><%=f.getDefinition()%></td>
 			<td><%=f.getOptionA()%></td>
 			<td><%=f.getOptionB()%></td>
 			<td><%=f.getOptionC()%></td>
-			<td><%=f.getLevel()%></td>
-			<td><%=f.getCategory()%></td>
-			<td><a href=FindMistakeServlet?mode=read&update=true&id=<%=f.getId()%> style="text-decoration: underline;">Edit</a>
+			<td><%=f.getLevel().getName()%></td>
+			<td><%=f.getCategory().getTitle()%></td>
+			<td><a href=/findmistake/preupdate?id=<%=f.getId()%> style="text-decoration: underline;">Edit</a>
 			</td>
-			<td><a href=FindMistakeServlet?mode=read&delete=true&id=<%=f.getId()%> style="text-decoration: underline;">Delete</a>
+			<td><a href=/findmistake/predelete?id=<%=f.getId()%> style="text-decoration: underline;">Delete</a>
 		</tr>
 		<%
 			}
@@ -79,7 +79,7 @@
 
 
 
-<form id="floatright" action="FindMistakeServlet?mode=insert" method="post">
+<form id="floatright" action="/findmistake/insert" method="post">
 
   <div class="row">
     <div class="col-25">

@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<!-- Created By @Alessandro Alfieri -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="it.contrader.dto.LevelDTO"%>
 <!DOCTYPE html>
 <html>
@@ -10,14 +11,14 @@
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="LevelServlet?mode=levellist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  <a href="../homeadmin.jsp">Home</a>
+  <a class="active" href="/level/getall">Back</a>
+  <a href="/user/logout" id="logout">Logout</a>
 </div>
 <br>
 
 <div class="main">
-<%LevelDTO x = (LevelDTO) request.getAttribute("dto");%>
+<%LevelDTO l = (LevelDTO) request.getSession().getAttribute("dto");%>
 
 <div class="col-50">
 
@@ -25,21 +26,14 @@
 			<tr> 
 				<th>Id</th>
 				<th>Name</th>
+				<th>Description</th>
 				<th>Score</th>		
 			</tr>
 			<tr>
-				<td><%=x.getId()%></td>
-				<td> <%=x.getName()%></td>
-				<td> <%=x.getScore()%></td>
-			</tr>	
-		</table>
-	
-		<table class="col-100">
-			<tr> 
-				<th>Description</th>
-			</tr>
-			<tr>
-				<td> <%=x.getDescription()%></td>
+				<td><%=l.getId()%></td>
+				<td><%=l.getName()%></td>
+				<td><%=l.getDescription()%></td>
+				<td><%=l.getScore()%></td>
 			</tr>	
 		</table>
 
@@ -49,8 +43,8 @@
 <div class="col-50">
 	<h2 style="text-align: center">Are you sure you want to delete this element?</h2>
 	<div class='row'>
-		<a href=LevelServlet?mode=delete&id=<%=x.getId()%> class="col-50" style="text-align: right"><button class="btn-sm">Confirm</button></a>
-		<a href="LevelServlet?mode=levellist" class="col-50"><button class="btn-sm">Cancel</button></a>
+		<a href=/level/delete?id=<%=l.getId()%> class="col-50" style="text-align: right"><button class="btn-sm">Confirm</button></a>
+		<a href="/level/getall" class="col-50"><button class="btn-sm">Cancel</button></a>
 	</div>
 </div>
 <br>

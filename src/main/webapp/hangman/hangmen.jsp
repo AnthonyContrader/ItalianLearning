@@ -28,7 +28,8 @@
 		
 		String ans = null;
 		try{
-			ans = request.getAttribute("ans").toString();
+			ans = request.getSession().getAttribute("ans").toString();
+			request.getSession().removeAttribute("ans");
 		}
 		catch (Exception e){}
 	%>
@@ -64,7 +65,7 @@
 			<td><%=h.getCategory().getTitle()%></td>
 			<td><a href=/hangman/preupdate?id=<%=h.getId()%> style="text-decoration: underline;">Edit</a>
 			</td>
-			<td><a href=/hangman/delete?id=<%=h.getId()%> style="text-decoration: underline;">Delete</a>
+			<td><a href=/hangman/predelete?id=<%=h.getId()%> style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>

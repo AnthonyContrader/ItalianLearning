@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<!-- Created By @Alessandro Alfieri -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="it.contrader.dto.HangmanDTO"%>
 <!DOCTYPE html>
 <html>

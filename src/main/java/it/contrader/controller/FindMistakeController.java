@@ -31,9 +31,21 @@ public class FindMistakeController {
 		setAll(request);
 		return "findmistake/findmistakes";
 	}
+	
+	@GetMapping("/predelete")
+	public String preDelete(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		return "findmistake/deletefindmistake";
+	}
+	
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
-		service.delete(id);
+		try {
+			service.delete(id);
+			request.getSession().setAttribute("ans", true);
+		}catch(Exception e) {
+			request.getSession().setAttribute("ans", false);
+		}
 		setAll(request);
 		return "findmistake/findmistakes";
 	}
@@ -41,6 +53,7 @@ public class FindMistakeController {
 	@GetMapping("/preupdate")
 	public String preUpdate(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
+		setAll(request);
 		return "findmistake/updatefindmistake";
 	}
 	
@@ -50,17 +63,22 @@ public class FindMistakeController {
 						 @RequestParam(value = "optionA", required = true) String optionA, @RequestParam(value = "optionB", required = true) String optionB,
 						 @RequestParam(value = "optionC", required = true) String optionC, @RequestParam(value = "idCategory", required = true) Integer idCategory,
 				 		 @RequestParam(value = "idLevel", required = true) Integer idLevel) {
-		FindMistakeDTO dto = new FindMistakeDTO();
-		dto.setId(id);
-		dto.setSolution(solution);
-		dto.setDefinition(definition);
-		dto.setSentence(sentence);
-		dto.setOptionA(optionA);
-		dto.setOptionB(optionB);
-		dto.setOptionC(optionC);
-		dto.setCategory(categoryService.read(idCategory));
-		dto.setLevel(levelService.read(idLevel));
-		service.update(dto);
+		try {
+			FindMistakeDTO dto = new FindMistakeDTO();
+			dto.setId(id);
+			dto.setSolution(solution);
+			dto.setDefinition(definition);
+			dto.setSentence(sentence);
+			dto.setOptionA(optionA);
+			dto.setOptionB(optionB);
+			dto.setOptionC(optionC);
+			dto.setCategory(categoryService.read(idCategory));
+			dto.setLevel(levelService.read(idLevel));
+			service.update(dto);
+			request.getSession().setAttribute("ans", true);
+		}catch(Exception e) {
+			request.getSession().setAttribute("ans", false);
+		}
 		setAll(request);
 		return "findmistake/findmistakes";
 	}
@@ -71,16 +89,21 @@ public class FindMistakeController {
 						 @RequestParam(value = "optionA", required = true) String optionA, @RequestParam(value = "optionB", required = true) String optionB,
 						 @RequestParam(value = "optionC", required = true) String optionC, @RequestParam(value = "idCategory", required = true) Integer idCategory,
 				 		 @RequestParam(value = "idLevel", required = true) Integer idLevel) {
-		FindMistakeDTO dto = new FindMistakeDTO();
-		dto.setSolution(solution);
-		dto.setDefinition(definition);
-		dto.setSentence(sentence);
-		dto.setOptionA(optionA);
-		dto.setOptionB(optionB);
-		dto.setOptionC(optionC);
-		dto.setCategory(categoryService.read(idCategory));
-		dto.setLevel(levelService.read(idLevel));
-		service.insert(dto);
+		try {
+			FindMistakeDTO dto = new FindMistakeDTO();
+			dto.setSolution(solution);
+			dto.setDefinition(definition);
+			dto.setSentence(sentence);
+			dto.setOptionA(optionA);
+			dto.setOptionB(optionB);
+			dto.setOptionC(optionC);
+			dto.setCategory(categoryService.read(idCategory));
+			dto.setLevel(levelService.read(idLevel));
+			service.insert(dto);
+			request.getSession().setAttribute("ans", true);
+		}catch(Exception e) {
+			request.getSession().setAttribute("ans", false);
+		}
 		setAll(request);
 		return "findmistake/findmistakes";
 	}
@@ -93,5 +116,7 @@ public class FindMistakeController {
 	
 	public void setAll(HttpServletRequest request) {
 		request.getSession().setAttribute("list", service.getAll());
+		request.getSession().setAttribute("categoryList", categoryService.getAll());
+		request.getSession().setAttribute("levelList", levelService.getAll());
 	}
 }

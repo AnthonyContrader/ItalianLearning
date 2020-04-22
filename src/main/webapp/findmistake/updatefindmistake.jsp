@@ -1,3 +1,4 @@
+<!-- Created By @Alessandro Alfieri -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.List"
     import="it.contrader.dto.FindMistakeDTO"
@@ -13,21 +14,21 @@
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="FindMistakeServlet?mode=gamelist">Back</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  <a href="../homeadmin.jsp">Home</a>
+  <a class="active" href="/findmistake/getall">Back</a>
+  <a href="/user/logout" id="logout">Logout</a>
 </div>
 <br>
 <div class="main">
 
 <%
-	FindMistakeDTO f = (FindMistakeDTO) request.getAttribute("dto");
-	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-	List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+	FindMistakeDTO f = (FindMistakeDTO) request.getSession().getAttribute("dto");
+	List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+	List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
 %>
 
 
-<form id="floatleft" action="FindMistakeServlet?mode=update&id=<%=f.getId()%>" method="post">
+<form id="floatleft" action="/findmistake/update?id=<%=f.getId()%>" method="post">
  <div class="row">
     <div class="col-25">
       <label for="solution">Solution</label>
@@ -85,7 +86,7 @@
  			<%
 				for (LevelDTO level : levelList) {
 			%>
-			<option value=<%= level.getId() %> <%= Integer.valueOf(level.getId()) == f.getIdLevel() ? "selected" : ""%> >
+			<option value=<%= level.getId() %> <%= level.getId() == f.getLevel().getId() ? "selected" : ""%> >
 				<%= level.getName() %>
 			</option>
 			<%
@@ -104,7 +105,7 @@
 	 			<%
 					for (CategoryDTO category : categoryList) {
 				%>
-  				<option value=<%= category.getId() %> <%= Integer.valueOf(category.getId()) == f.getIdCategory() ? "selected" : ""%> >
+  				<option value=<%= category.getId() %> <%= category.getId() == f.getCategory().getId() ? "selected" : ""%> >
   					<%= category.getTitle() %>
 				</option>
   				<%
