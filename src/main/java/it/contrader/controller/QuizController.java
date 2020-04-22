@@ -28,6 +28,8 @@ public class QuizController {
 	private CategoryService categoryService;
 	@Autowired
 	private LevelService levelService;
+	private boolean ans;
+	
 	
 	@GetMapping("/getall")
 	public String getAll(HttpServletRequest request) {
@@ -35,24 +37,40 @@ public class QuizController {
 		return "quiz/quizzes";
 	}
 	
+	@GetMapping("/predelete")
+	public String predelete(HttpServletRequest request, @RequestParam(value = "id", required = true ) Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		return "quiz/deletequiz";
+	}
 	
 	@GetMapping("/delete")
-	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
-		service.delete(id);
-		setAll(request);
+	public String delete(HttpServletRequest request, @RequestParam(value = "id", required = true ) Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		try {
+			service.delete(id);
+			ans = true;
+			
+		}catch(Exception e) {
+			ans = false;
+		}
+		
+		setAll (request);
+		request.getSession().setAttribute ("ans" , ans);
 		return "quiz/quizzes";
+			
 	}
 	@GetMapping("/preupdate")
-	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {
+	public String preUpdate(HttpServletRequest request, @RequestParam(value = "id", required = true ) Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
 		return "quiz/updatequiz";
 	}
 	
 	@PostMapping("/update")
-	public String update(HttpServletRequest request, @RequestParam("id") Long id,@RequestParam("solution") String solution,
-			@RequestParam("definition") String definition,@RequestParam("sentence") String sentence,
-	        @RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel)
-		 {
+	public String update(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id, @RequestParam(value = "solution", required = true) String solution,
+			 @RequestParam("definition") String definition, @RequestParam(value = "sentence", required = true) String sentence,
+			 @RequestParam(value = "idCategory", required = true) Long idCategory, @RequestParam(value = "idLevel", required = true) Long idLevel) {
+		
+		try {
 
 		QuizDTO dto = new QuizDTO();
 			
@@ -64,14 +82,22 @@ public class QuizController {
 		dto.setLevel(levelService.read(idLevel));
 		
 		service.update(dto);
+		
+		ans = true;
+		
+		}catch(Exception e) {
+			ans = false;
+		}
 		setAll(request);
+		request.getSession().setAttribute("ans", ans);
 		return "quiz/quizzes";
 	}
+		
 	@PostMapping("/insert")
-	public String insert(HttpServletRequest request,@RequestParam("solution") String solution,
-			@RequestParam("definition") String definition,@RequestParam("sentence") String sentence,
-	        @RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel) {
-	
+	public String insert(HttpServletRequest request, @RequestParam(value = "solution", required = true) String solution,
+			 @RequestParam("definition") String definition, @RequestParam(value = "sentence", required = true) String sentence,
+			 @RequestParam(value = "idCategory", required = true) Long idCategory, @RequestParam(value = "idLevel", required = true) Long idLevel) {
+		try {
 	QuizDTO dto = new QuizDTO();		
 		
 		dto.setSolution(solution);
@@ -82,16 +108,23 @@ public class QuizController {
 		
 		service.update(dto);
 		setAll(request);
+		ans = true;
+	}catch(Exception e) {
+		ans = false;
+	}
 		return "quiz/quizzes";
 		}
 	@GetMapping("/read")
-	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
+	public String read(HttpServletRequest request, @RequestParam (value = "id", required = true ) Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
 		return "quiz/readquiz";
 	}
 	
 	private void setAll(HttpServletRequest request) {
 		request.getSession() . setAttribute("list", service.getAll());
+		request.getSession() . setAttribute("categoryList", categoryService.getAll());
+		request.getSession() . setAttribute("levelList", levelService.getAll());
+		
 	}
 	
 	

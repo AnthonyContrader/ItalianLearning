@@ -1,39 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.List"
-	import="it.contrader.dto.QuizDTO" import="it.contrader.dto.CategoryDTO" import="it.contrader.dto.LevelDTO" %>
+	pageEncoding="ISO-8859-1" 
+	import="java.util.List"
+	import="it.contrader.dto.QuizDTO"
+	import="it.contrader.dto.CategoryDTO"
+	import="it.contrader.dto.LevelDTO" %>
+	 <!-- created by Anna Cecere -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>Quiz</title>
+<title>Quiz Manager</title>
 </head>
 <body>
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
-  <a href="GameServlet?mode=gamelist"">Back</a>
-  <a class="active" href="QuizServlet?mode=gamelist">Quiz</a>
-  <a href="LogoutServlet" id="logout">Logout</a>
+  <a href="../homeadmin.jsp">Home</a>
+  <a href="../game/getall"">Back</a>
+  <a class="active">Quiz</a>
+  <a href="/user/logout" id="logout">Logout</a>
 </div>
 
-<!-- commento -->
 
 <div class="main">
 	<%
-	//Lista contiene tutti gli elementi del quiz che verranno stampati nella tabella
-		List<QuizDTO> list = (List<QuizDTO>) request.getAttribute("list");
-	
-		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-		
-		List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
+		//Lista contiene tutti gli elementi del quiz che verranno stampati nella tabella
+		List<QuizDTO> list = (List<QuizDTO>) request.getSession().getAttribute("list");
+		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+		List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
 		
 		String ans = null;
 		try{
-			ans = request.getAttribute("ans").toString();
-		}
-		catch (Exception e){}
+			ans = request.getSession().getAttribute("ans").toString();
+			request.getSession().removeAttribute("ans");
+		
+		}catch (Exception e){}
 	%>
 <% if (ans != null) {%>
 	<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
@@ -48,7 +50,7 @@
 	
 	<table>
 		<tr>
-			<th>Id</th>
+			
 			<th>Solution</th>
 			<th>Sentence</th>
 			<th>Definition</th>
@@ -62,18 +64,15 @@
 			for (QuizDTO q : list) {
 		%>
 		<tr>
-		<td><a href=CategoryServlet?mode=read&id=<%=q.getId()%>>
-					<%=q.getId()%>
-			</a></td>
+		<td><a href="/quiz/read?id=<%=q.getId()%>"><%=q.getSolution()%></a></td>
 			
-			<td><%=q.getSolution()%></td>
 			<td><%=q.getSentence()%></td>
 			<td><%=q.getDefinition()%></td>
-			<td><%=q.getLevel()%></td>
-			<td><%=q.getCategory()%></td>
-			<td><a href=QuizServlet?mode=read&update=true&id=<%=q.getId()%>>Edit</a>
+			<td><%=q.getLevel().getName()%></td>
+			<td><%=q.getCategory().getTitle()%></td>
+			<td><a href="/quiz/preupdate?id=<%=q.getId()%>">Edit</a>
 			</td>
-			<td><a href=QuizServlet?mode=read&delete=true&id=<%=q.getId()%>>Delete</a>
+			<td><a href="/quiz/predelete?id=<%=q.getId()%>">Delete</a>
 			</td>
 
 		</tr>
@@ -84,7 +83,7 @@
 
 
 
-<form id="floatright" action="QuizServlet?mode=insert" method="post">
+<form id="floatright" action="/quiz/insert" method="post">
   <div class="row">
     <div class="col-25">
       <label for="quiz">Solution</label>
@@ -107,13 +106,7 @@
       <input type="text" id="sentence" name="sentence" required placeholder="enter the clue">
     </div>
   </div>
-  <!-- <div class="row">
-    <div class="col-25">
-     <label for="quizr">Score</label>
-    </div>
-    <div class="col-75">
-      <input type="number" id="score" name="score" min=1 required placeholder="enter score"> 
-    </div>-->
+  
     <div class="row">
     <div class="col-25">
       <label for="quiz">Category</label>

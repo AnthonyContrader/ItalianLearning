@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="it.contrader.dto.QuizDTO"%>
+    <!-- created by Anna Cecere --> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +11,15 @@
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
-  <a href="homeadmin.jsp">Home</a>
+  <a href="../homeadmin.jsp">Home</a>
   
-  <a class="active" href="QuizServlet?mode=gamelist">Back</a>
+  <a class="active" href="/quiz/getall">Back</a>
   <a href="LogoutServlet" id="logout">Logout</a>
 </div>
 <br>
 
 <div class="main">
-<%QuizDTO q = (QuizDTO) request.getAttribute("dto");%>
+<%QuizDTO q = (QuizDTO) request.getSession().getAttribute("dto");%>
 
 
 <table>
@@ -36,8 +37,8 @@
 		<td><%=q.getSolution()%></td>
 		<td><%=q.getSentence()%></td>
 		<td><%=q.getDefinition()%></td>
-		<td><%=q.getLevel()%></td>
-		<td><%=q.getCategory()%></td>
+		<td><%=q.getLevel().getName()%></td>
+		<td><%=q.getCategory().getTitle()%></td>
 	</tr>	
 </table>
 
