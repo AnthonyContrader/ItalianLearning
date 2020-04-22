@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.contrader.dto.OrganizeSentenceDTO;
-import it.contrader.model.OrganizeSentence;
+//import it.contrader.model.OrganizeSentence;
 import it.contrader.service.OrganizeSentenceService;
 import it.contrader.service.CategoryService;
 import it.contrader.service.LevelService;
+
 /*
 **created by Torquato Di Maio
 */
@@ -34,7 +35,7 @@ public class OrganizeSentenceController {
 	public String getAll(HttpServletRequest request) {
 		setAll(request);
 		//dove organizeSentences è il nome della pagina jsp
-		return"organizeSentences";
+		return"organizeSentence/organizeSentences";
 	}
 	
 	//RequestParam("id") Long id   salva nella variabile id il valore di "id" della RequestParam 
@@ -42,14 +43,14 @@ public class OrganizeSentenceController {
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
 		service.delete(id);
 		setAll(request); //mette nella richiesta tutte le righe dei nostri giochi
-		return "organizeSentences";
+		return "organizeSentence/organizeSentences";
 	}
 	
-	//salvo il parametro id della richiesta nella variabile Long id questo è il secondo parametro
+	//salvo il parametro id della richiesta nella variabile Long id questo è il secondo parametro!
 	@GetMapping("/preupdate")
 	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
-		return "updateorganizeSentence";
+		return "organizeSentence/updateorganizeSentence";
 	}
 	
 	@PostMapping("/update")
@@ -69,12 +70,32 @@ public class OrganizeSentenceController {
 		
 		service.update(dto);
 		setAll(request);
-		return "organizeSentences";
+		return "organizeSentence/organizeSentences";
 
 	}
 	
+	@PostMapping("/insert")
+	public String insert(HttpServletRequest request, @RequestParam("solution") String solution,
+			@RequestParam("sentence") String sentence, @RequestParam("definition") String definition,
+			@RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel ) {
+		
+		OrganizeSentenceDTO dto = new OrganizeSentenceDTO();
+		dto.setSolution(solution);
+		dto.setSentence(sentence);
+		dto.setDefinition(definition);
+		
+		dto.setCategory(categoryService.read(idCategory));
+		dto.setLevel(levelService.read(idLevel));
+		service.insert(dto);
+		setAll(request);
+		return "organizeSentence/organizeSentences";
+	}
 	
-	
+	@GetMapping("/read")
+	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
+		request.getSession().setAttribute("dto", service.read(id));
+		return "organizeSentence/readorganizeSentences";
+	}
 	
 	private void setAll(HttpServletRequest request) {
 		//prende la sessione aperta(pagina chrome aperta)e gli passi un attributo di chiave lista e come valore service.getAll() 

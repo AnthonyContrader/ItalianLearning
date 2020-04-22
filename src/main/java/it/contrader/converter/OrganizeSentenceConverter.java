@@ -24,6 +24,7 @@ public class OrganizeSentenceConverter extends AbstractConverter<OrganizeSentenc
 		OrganizeSentence organizeSentence = null;
 		if (organizeSentenceDTO != null) {
 			//il costruttore di Model e in ordine a come ho definito le variabili in OrganizeSentence
+			//inoltre dovevamo convertire la categoria e il livello in oggetti Category e Level per via del costruttore di OrganizeSentence
 			organizeSentence = new OrganizeSentence(organizeSentenceDTO.getId(), organizeSentenceDTO.getSolution(), 
 					organizeSentenceDTO.getSentence(), organizeSentenceDTO.getDefinition(), categoryConverter.toEntity(organizeSentenceDTO.getCategory()),
 					levelConverter.toEntity(organizeSentenceDTO.getLevel()));
@@ -35,6 +36,7 @@ public class OrganizeSentenceConverter extends AbstractConverter<OrganizeSentenc
 	public OrganizeSentenceDTO toDTO(OrganizeSentence organizeSentence) {
 		OrganizeSentenceDTO organizeSentenceDTO = null;
 		if (organizeSentence != null) {
+			//qui category e level li vogliamo come oggetti CategoryDTO e LevelDTO per via del costruttore del DTO di OrganizeSentence
 			organizeSentenceDTO = new OrganizeSentenceDTO(organizeSentence.getId(), organizeSentence.getSolution(), 
 					organizeSentence.getSentence(), organizeSentence.getDefinition(), categoryConverter.toDTO(organizeSentence.getCategory()),
 					levelConverter.toDTO(organizeSentence.getLevel()));
