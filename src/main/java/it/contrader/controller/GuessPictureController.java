@@ -33,20 +33,20 @@ public class GuessPictureController {
 	@GetMapping("/getall")
 	public String getAll(HttpServletRequest request) {
 		setAll(request);
-		return "guesspictur/guesspicturs";
+		return "guesspicture/guesspictures";
 	}
 	
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
 		service.delete(id);
 		setAll(request);
-		return "guesspictur/guesspicturs";
+		return "guesspicture/guesspictures";
 	}
 	
 	@GetMapping("/preupdate")
 	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
-		return "guesspictur/updateguesspicture";
+		return "guesspicture/updateguesspicture";
 	}
 
 	@PostMapping("/update")
@@ -60,7 +60,7 @@ public class GuessPictureController {
 		guessPictureDTO.setLevel(new LevelService().read(idLevel));
 		service.update(guessPictureDTO);
 		setAll(request);
-		return "guesspictur/guesspictures";
+		return "guesspicture/guesspictures";
 	}
 	
 	@PostMapping("/insert")
@@ -73,13 +73,13 @@ public class GuessPictureController {
 		guessPictureDTO.setLevel(new LevelService().read(idLevel));
 		service.insert(guessPictureDTO);
 		setAll(request);
-		return "guesspictur/guesspictures";
+		return "guesspicture/guesspictures";
 	}
 
 	@GetMapping("/read")
 	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
-		return "guesspictur/guesspicture";
+		return "guesspicture/reedguesspicture";
 	}
 
 }

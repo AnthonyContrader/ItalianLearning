@@ -95,7 +95,7 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		request.getSession().invalidate();
-		return "user/index";
+		return "index";
 	}
 
 	private void setAll(HttpServletRequest request) {

@@ -15,13 +15,13 @@
 <div class="navbar">
 	<a href="../homeadmin.jsp">Home</a>	
 	<a class="active" href="#">Games</a>
-  	<a href=/findawords/getall>Find a Words</a>
-  	<a href=/findmistakes/getall>Find Mistakes</a>
-  	<a href=/guesspictures/getall>Guess Pictures</a>
-  	<a href=/hangmen/getall>Hangmen</a>
-  	<a href=/organizesentences/getall>Organize Sentences</a>
+  	<a href=/findaword/getall>Find a Words</a>
+  	<a href=/findmistake/getall>Find Mistakes</a>
+  	<a href=/guesspicture/getall>Guess Pictures</a>
+  	<a href=/hangman/getall>Hangmen</a>
+  	<a href=/organizesentence/getall>Organize Sentences</a>
   	<a href=/quiz/getall>Quiz</a>
-  	<a href="LogoutServlet" id="logout">Logout</a>
+	<a href="/user/logout" id="logout">Logout</a>
 </div>
 <div class="main">
 </div>
