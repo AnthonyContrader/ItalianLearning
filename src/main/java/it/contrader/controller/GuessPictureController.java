@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.contrader.dto.GuessPictureDTO;
-import it.contrader.dto.CategoryDTO;
-import it.contrader.dto.LevelDTO;
 import it.contrader.service.GuessPictureService;
+import it.contrader.service.LevelService;
+import it.contrader.service.CategoryService;
+
 
 /*
  * Created by Enzo Tasca
@@ -50,11 +51,13 @@ public class GuessPictureController {
 
 	@PostMapping("/update")
 	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("image") String image, 
-			@RequestParam("solution") String solution,@RequestParam("category") CategoryDTO category, @RequestParam("level") LevelDTO level) {
+			@RequestParam("solution") String solution, @RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel) {
 		GuessPictureDTO guessPictureDTO = new GuessPictureDTO();
 		guessPictureDTO.setId(id);
 		guessPictureDTO.setImage(image);
 		guessPictureDTO.setSolution(solution);
+		guessPictureDTO.setCategory(new CategoryService().read(idCategory));
+		guessPictureDTO.setLevel(new LevelService().read(idLevel));
 		service.update(guessPictureDTO);
 		setAll(request);
 		return "guesspictures";
@@ -62,10 +65,12 @@ public class GuessPictureController {
 	
 	@PostMapping("/insert")
 	public String insert(HttpServletRequest request, @RequestParam("image") String image, @RequestParam("solution") String solution,
-			@RequestParam("category") CategoryDTO category, @RequestParam("level") LevelDTO level) {
+			@RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel) {
 		GuessPictureDTO guessPictureDTO = new GuessPictureDTO();
 		guessPictureDTO.setImage(image);
 		guessPictureDTO.setSolution(solution);
+		guessPictureDTO.setCategory(new CategoryService().read(idCategory));
+		guessPictureDTO.setLevel(new LevelService().read(idLevel));
 		service.insert(guessPictureDTO);
 		setAll(request);
 		return "guesspictures";
