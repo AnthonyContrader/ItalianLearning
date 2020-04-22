@@ -17,7 +17,7 @@
 	<a href="../homeadmin.jsp">Home</a>
   	<a href="/games">Back</a>
   	<a class="active" href="/organizeSentence/getAll">Organize Sentence</a>
-  	<a href="LogoutServlet" id="logout">Logout</a>
+  	<a href="/user/logout" id="logout">Logout</a>
 </div>
 <div class="main">
 	<%

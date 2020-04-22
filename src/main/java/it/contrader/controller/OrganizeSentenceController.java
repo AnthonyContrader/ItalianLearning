@@ -20,7 +20,7 @@ import it.contrader.service.LevelService;
 */
 
 @Controller
-@RequestMapping("/organizeSentence")
+@RequestMapping("/organizesentence")
 public class OrganizeSentenceController {
 	
 	@Autowired
@@ -35,7 +35,7 @@ public class OrganizeSentenceController {
 	public String getAll(HttpServletRequest request) {
 		setAll(request);
 		//dove organizeSentences è il nome della pagina jsp
-		return"organizeSentence/organizeSentences";
+		return"organizesentence/organizesentences";
 	}
 	
 	//RequestParam("id") Long id   salva nella variabile id il valore di "id" della RequestParam 
@@ -43,14 +43,14 @@ public class OrganizeSentenceController {
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
 		service.delete(id);
 		setAll(request); //mette nella richiesta tutte le righe dei nostri giochi
-		return "organizeSentence/organizeSentences";
+		return "organizesentence/organizesentences";
 	}
 	
 	//salvo il parametro id della richiesta nella variabile Long id questo è il secondo parametro!
 	@GetMapping("/preupdate")
 	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
-		return "organizeSentence/updateorganizeSentence";
+		return "organizesentence/updateorganizesentence";
 	}
 	
 	@PostMapping("/update")
@@ -70,7 +70,7 @@ public class OrganizeSentenceController {
 		
 		service.update(dto);
 		setAll(request);
-		return "organizeSentence/organizeSentences";
+		return "organizesentence/organizesentences";
 
 	}
 	
@@ -88,13 +88,13 @@ public class OrganizeSentenceController {
 		dto.setLevel(levelService.read(idLevel));
 		service.insert(dto);
 		setAll(request);
-		return "organizeSentence/organizeSentences";
+		return "organizesentence/organizesentences";
 	}
 	
 	@GetMapping("/read")
 	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
-		return "organizeSentence/readorganizeSentences";
+		return "organizesentence/readorganizesentences";
 	}
 	
 	private void setAll(HttpServletRequest request) {
