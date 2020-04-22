@@ -61,7 +61,7 @@
  			<%
 				for (LevelDTO level : levelList) {
 			%>
-			<option value=<%= level.getId() %> <%= Integer.valueOf(level.getId()) == h.getIdLevel() ? "selected" : ""%> >
+			<option value=<%= level.getId() %> <%= level.getId() == h.getLevel().getId() ? "selected" : ""%> >
 				<%= level.getName() %>
 			</option>
 			<%
@@ -80,7 +80,7 @@
 	 			<%
 					for (CategoryDTO category : categoryList) {
 				%>
-  				<option value=<%= category.getId() %> <%= Integer.valueOf(category.getId()) == h.getIdCategory() ? "selected" : ""%> >
+  				<option value=<%= category.getId() %> <%= category.getId() == h.getCategory().getId() ? "selected" : ""%> >
   					<%= category.getTitle() %>
 				</option>
   				<%

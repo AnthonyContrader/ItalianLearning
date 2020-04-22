@@ -42,6 +42,7 @@ public class HangmanController {
 	@GetMapping("/preupdate")
 	public String preUpdate(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
+		setAll(request);
 		return "hangman/updatehangman";
 	}
 	
