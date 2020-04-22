@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ 
+	page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" 
 	import="java.util.List"
 	import="it.contrader.dto.GuessPictureDTO"
 	import="it.contrader.dto.LevelDTO"
-	import="it.contrader.dto.CategoryDTO"%>
+	import="it.contrader.dto.CategoryDTO"
+%>
 	
 <!DOCTYPE html>
 <html>
@@ -16,21 +18,22 @@
 <%@ include file="../css/header.jsp" %>
 
 <div class="navbar">
-	<a href="homeadmin.jsp">Home</a>
-  	<a href="GameServlet">Back</a>
-  	<a class="active" href="GuessPictureServlet?mode=gamelist">Guess Picture</a>
-  	<a href="LogoutServlet" id="logout">Logout</a>
+	<a href="../homeadmin.jsp">Home</a>
+  	<a href="../game/getall">Back</a>
+  	<a class="active" href="#">Guess Picture</a>
+	<a href="/user/logout" id="logout">Logout</a>
 </div>
 
 <div class="main">
+
 	<%
-		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getAttribute("categoryList");
-		List<LevelDTO> levelList = (List<LevelDTO>) request.getAttribute("levelList");
-		List<GuessPictureDTO> list = (List<GuessPictureDTO>) request.getAttribute("list");
+		List<CategoryDTO> categoryList = (List<CategoryDTO>) request.getSession().getAttribute("categoryList");
+		List<LevelDTO> levelList = (List<LevelDTO>) request.getSession().getAttribute("levelList");
+		List<GuessPictureDTO> list = (List<GuessPictureDTO>) request.getSession().getAttribute("list");
 		
 		String ans = null;
 		try{
-			ans = request.getAttribute("ans").toString();
+			ans = request.getSession().getAttribute("ans").toString();
 		}
 		catch (Exception e){}
 	%>
@@ -40,11 +43,9 @@
 		</h2>
 	<% } %>
 	
-
-<br>
+	<br>
 	<table>
 		<tr>
-			<th>Id</th>
 			<th>Solution</th>
 			<th>Level</th>
 			<th>Category</th>
@@ -55,20 +56,15 @@
 			for (GuessPictureDTO g : list) {
 		%>
 		<tr>
-			<td><a href=GuessPictureServlet?mode=read&id=<%=g.getId()%>>
-				<%=g.getId()%>
-			</a></td>
-			<td><a href=GuessPictureServlet?mode=read&id=<%=g.getId()%>>
-				<%=g.getSolution()%>
-			</a></td>
+			<td><a href="/guesspicture/read?id=<%=g.getId()%>"><%=g.getSolution()%></a></td>
 			
-			<td><%=g.getLevel()%></td>
+			<td><%=g.getLevel().getName()%></td>
 			
-			<td><%=g.getCategory()%></td>
+			<td><%=g.getCategory().getTitle()%></td>
 			
-			<td><a href=GuessPictureServlet?mode=read&update=true&id=<%=g.getId()%>>Edit</a>
+			<td><a href="/guesspicture/preupdate?id=<%=g.getId()%>">Edit</a>
 			</td>
-			<td><a href=GuessPictureServlet?mode=read&delete=true&id=<%=g.getId()%> style="text-decoration: underline;">Delete</a>
+			<td><a href="/guesspicture/predelete?id=<%=g.getId()%>" style="text-decoration: underline;">Delete</a>
 			</td>
 
 		</tr>
@@ -77,7 +73,7 @@
 		%>
 	</table>
 
-	<form id="floatright" action="GuessPictureServlet?mode=insert" method="post">
+	<form id="floatright" action="/guesspicture/insert" method="post">
 	
 	  <div class="row">
 	    <div class="col-25">
@@ -87,15 +83,6 @@
 	      <input type="text" id="solution" name="solution" required placeholder="Insert solution">
 	    </div>
 	  </div>
-	  
-	  <!--<div class="row">
-	    <div class="col-25">
-	     <label for="score">Score</label>
-	    </div>
-	    <div class="col-75">
-	      <input type="number" id="score" name="score" min=1 required placeholder="Insert score"> 
-	    </div>
-	  </div>-->
 	  
 	  <div class="row">
 	    <div class="col-25">

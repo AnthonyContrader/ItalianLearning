@@ -1,42 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ 
+	page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
-	import="it.contrader.dto.CategoryDTO"%>
+	import="it.contrader.dto.CategoryDTO"
+%>
+
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<link href="../css/vittoriostyle.css" rel="stylesheet">
-<title>User Manager</title>
-</head>
+	<head>
+		<meta charset="ISO-8859-1">
+		<link href="../css/vittoriostyle.css" rel="stylesheet">
+		<title>Categories Manager</title>
+	</head>
+
 <body>
 <%@ include file="../css/header.jsp" %>
 
-<div class="navbar"> <!-- questa e la navbar -->
-  <a href="../homeadmin.jsp">Home</a>
-  <a class="active" href="#">Categories</a>
-  <a href="LogoutServlet" id="logout">Logout</a>  
+<div class="navbar">
+	<a href="../homeadmin.jsp">Home</a>
+	<a class="active" href="#">Categories</a>
+	<a href="/user/logout" id="logout">Logout</a>
 </div>
+
 <div class="main">
+
 	<%
 		// list contiene tutti gli elementi della category che veranno stampati nella tabella
-		List<CategoryDTO> list = (List<CategoryDTO>) request.getAttribute("list");
+		List<CategoryDTO> list = (List<CategoryDTO>) request.getSession().getAttribute("list");
 		String ans = null;
 		try{
-			ans = request.getAttribute("ans").toString();
+			ans = request.getSession().getAttribute("ans").toString();
 		}
 		catch (Exception e){}
 
 	%>
-<% if (ans != null) {%>
-	<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
-		<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
-	</h2>
-<% } %>
+	<% if (ans != null) {%>
+		<h2 style="text-align: center; color: <%= ans != "true" ? "red" : "green" %>">
+			<%= ans == "true" ? "Operation completed successfully." : "An error has occurred!" %>
+		</h2>
+	<% } %>
 <br>
-	<!-- Stampo gli elementi contenuti in list nella tabella-->
 	<table>
 		<tr>
-			<th>Id</th>
 			<th>Title</th>
 			<th></th>
 			<th></th>
@@ -45,17 +49,13 @@
 			for (CategoryDTO c : list) {
 		%>
 		<tr>
-			<td><a href=CategoryServlet?mode=read&id=<%=c.getId()%>>
-				<%=c.getId()%>
-			</a></td>
-			<td><a href=CategoryServlet?mode=read&id=<%=c.getId()%>>
+			<td><a href="/category/read?id=<%=c.getId()%>">
 				<%=c.getTitle()%>
 			</a></td>
 			
-			<td><a href=CategoryServlet?mode=read&update=true&id=<%=c.getId()%>>Edit</a>
-			</td>
-			<td><a href=CategoryServlet?mode=read&delete=true&id=<%=c.getId()%> style="text-decoration: underline;">Delete</a>
-			</td>
+			<td><a href="/category/preupdate?id=<%=c.getId()%>">Edit</a>
+			
+			<td><a href="/category/predelete?id=<%=c.getId()%>">Delete</a></td>
 
 		</tr>
 		<%
@@ -63,7 +63,7 @@
 		%>
 	</table>
 
-	<form id="floatright" action="CategoryServlet?mode=insert" method="post">
+	<form id="floatright" action="/category/insert" method="post">
 	  <div class="row">
 	    <div class="col-25">
 	      <label for="category">Title</label>
@@ -82,7 +82,7 @@
 	    </div>
 	  </div>
 	  
-	  <button type="submit" >Insert</button>
+	  <button type="submit">Insert</button>
 	</form>
 	
 </div>

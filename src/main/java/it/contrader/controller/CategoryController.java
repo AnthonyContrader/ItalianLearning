@@ -22,6 +22,8 @@ public class CategoryController {
 
 	@Autowired
 	private CategoryService service;
+	
+	private boolean ans = true;
 		
 	private void setAll(HttpServletRequest request) {
 		request.getSession().setAttribute("list", service.getAll());
@@ -34,36 +36,52 @@ public class CategoryController {
 	}
 		
 	@GetMapping("/delete")
-	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
-		service.delete(id);
+	public String delete(HttpServletRequest request, @RequestParam(value="id", required = true) Long id) {
+		
+		try {
+			service.delete(id);
+		}catch(Exception e) {ans = false;}
+		
 		setAll(request);
+		request.setAttribute("ans", ans);
+
 		return "category/categories";
 	}
 		
 	@GetMapping("/preupdate")
-	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {
+	public String preUpdate(HttpServletRequest request, @RequestParam(value="id", required = true) Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
 		return "category/updatecategory";
 	}
 
 	@PostMapping("/update")
-	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("title") String title, @RequestParam("descriptio") String description) {
-		CategoryDTO categoryDTO = new CategoryDTO();
-		categoryDTO.setId(id);
-		categoryDTO.setDescription(description);
-		categoryDTO.setTitle(title);
-		service.update(categoryDTO);
+	public String update(HttpServletRequest request, @RequestParam(value="id", required = true) Long id, @RequestParam(value="title", required = true) String title, @RequestParam("descriptio") String description) {
+		
+		try {
+			CategoryDTO categoryDTO = new CategoryDTO();
+			categoryDTO.setId(id);
+			categoryDTO.setDescription(description);
+			categoryDTO.setTitle(title);
+			service.update(categoryDTO);
+		}catch(Exception e) { ans=false; }
+		
 		setAll(request);
+		request.setAttribute("ans", ans);
 		return "category/categories";
 	}
 		
 	@PostMapping("/insert")
-	public String insert(HttpServletRequest request, @RequestParam("title") String title, @RequestParam("description") String description) {
-		CategoryDTO categoryDTO = new CategoryDTO();
-		categoryDTO.setTitle(title);
-		categoryDTO.setDescription(description);
-		service.insert(categoryDTO);
+	public String insert(HttpServletRequest request, @RequestParam(value = "title", required = true) String title, @RequestParam("description") String description) {
+		
+		try {
+			CategoryDTO categoryDTO = new CategoryDTO();
+			categoryDTO.setTitle(title);
+			categoryDTO.setDescription(description);
+			service.insert(categoryDTO);
+		}catch(Exception e) { ans=false; }
+		
 		setAll(request);
+		request.setAttribute("ans", ans);
 		return "category/categories";
 	}
 

@@ -26,8 +26,18 @@ public class GuessPictureController {
 	@Autowired
 	private GuessPictureService service;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
+	@Autowired
+	private LevelService levelService;
+	
+	private boolean ans;
+	
 	private void setAll(HttpServletRequest request) {
 		request.getSession().setAttribute("list", service.getAll());
+		request.getSession().setAttribute("levelList", levelService.getAll());
+		request.getSession().setAttribute("categoryList", categoryService.getAll());
 	}
 	
 	@GetMapping("/getall")
@@ -37,49 +47,68 @@ public class GuessPictureController {
 	}
 	
 	@GetMapping("/delete")
-	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
-		service.delete(id);
+	public String delete(HttpServletRequest request, @RequestParam(value="id", required = true) Long id) {
+		
+		try {
+			service.delete(id);
+			ans = true;
+		}catch(Exception e) {
+			ans = false;
+		}
+		
 		setAll(request);
+		request.getSession().setAttribute("ans", ans);
 		return "guesspicture/guesspictures";
 	}
 	
 	@GetMapping("/preupdate")
-	public String preUpdate(HttpServletRequest request, @RequestParam("id") Long id) {
+	public String preUpdate(HttpServletRequest request, @RequestParam(value="id", required = true) Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
 		return "guesspicture/updateguesspicture";
 	}
 
 	@PostMapping("/update")
-	public String update(HttpServletRequest request, @RequestParam("id") Long id, @RequestParam("image") String image, 
-			@RequestParam("solution") String solution, @RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel) {
-		GuessPictureDTO guessPictureDTO = new GuessPictureDTO();
-		guessPictureDTO.setId(id);
-		guessPictureDTO.setImage(image);
-		guessPictureDTO.setSolution(solution);
-		guessPictureDTO.setCategory(new CategoryService().read(idCategory));
-		guessPictureDTO.setLevel(new LevelService().read(idLevel));
-		service.update(guessPictureDTO);
+	public String update(HttpServletRequest request, @RequestParam(value="id", required = true) Long id, @RequestParam(value="image", required = true) String image, 
+			@RequestParam(value="solution", required = true) String solution, @RequestParam(value="idCategory", required = true) Long idCategory, @RequestParam(value="idLevel", required = true) Long idLevel) {
+		try{
+			GuessPictureDTO guessPictureDTO = new GuessPictureDTO();
+			guessPictureDTO.setId(id);
+			guessPictureDTO.setImage(image);
+			guessPictureDTO.setSolution(solution);
+			guessPictureDTO.setCategory(new CategoryService().read(idCategory));
+			guessPictureDTO.setLevel(new LevelService().read(idLevel));
+			service.update(guessPictureDTO);
+			ans = true;
+		}
+		catch(Exception e) {ans = false;}
+		
 		setAll(request);
+		request.getSession().setAttribute("ans", ans);
 		return "guesspicture/guesspictures";
 	}
 	
 	@PostMapping("/insert")
-	public String insert(HttpServletRequest request, @RequestParam("image") String image, @RequestParam("solution") String solution,
-			@RequestParam("idCategory") Long idCategory, @RequestParam("idLevel") Long idLevel) {
-		GuessPictureDTO guessPictureDTO = new GuessPictureDTO();
-		guessPictureDTO.setImage(image);
-		guessPictureDTO.setSolution(solution);
-		guessPictureDTO.setCategory(new CategoryService().read(idCategory));
-		guessPictureDTO.setLevel(new LevelService().read(idLevel));
-		service.insert(guessPictureDTO);
+	public String insert(HttpServletRequest request, @RequestParam(value = "image", required = true) String image, @RequestParam(value = "solution", required = true) String solution,
+			@RequestParam(value = "idCategory", required = true) Long idCategory, @RequestParam(value = "idLevel", required = true) Long idLevel) {
+		try {
+			GuessPictureDTO guessPictureDTO = new GuessPictureDTO();
+			guessPictureDTO.setImage(image);
+			guessPictureDTO.setSolution(solution);
+			guessPictureDTO.setCategory(new CategoryService().read(idCategory));
+			guessPictureDTO.setLevel(new LevelService().read(idLevel));
+			service.insert(guessPictureDTO);
+			ans = true;
+		}catch(Exception e) {ans = false;}
+		
 		setAll(request);
+		request.getSession().setAttribute("ans", ans);
 		return "guesspicture/guesspictures";
 	}
 
 	@GetMapping("/read")
-	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
+	public String read(HttpServletRequest request, @RequestParam(value="id", required = true) Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
-		return "guesspicture/reedguesspicture";
+		return "guesspicture/readguesspicture";
 	}
 
 }
