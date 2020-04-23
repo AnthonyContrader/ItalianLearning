@@ -98,22 +98,23 @@ public class QuizController {
 			 @RequestParam("definition") String definition, @RequestParam(value = "sentence", required = true) String sentence,
 			 @RequestParam(value = "idCategory", required = true) Long idCategory, @RequestParam(value = "idLevel", required = true) Long idLevel) {
 		try {
-	QuizDTO dto = new QuizDTO();		
+			QuizDTO dto = new QuizDTO();		
 		
-		dto.setSolution(solution);
-		dto.setDefinition(definition);
-		dto.setSentence(sentence);
-		dto.setCategory(categoryService.read(idCategory));//inportiamo i service per prenderci l'oggetto category in base all'id
-		dto.setLevel(levelService.read(idLevel));
-		
-		service.update(dto);
-		setAll(request);
-		ans = true;
-	}catch(Exception e) {
-		ans = false;
-	}
-		return "quiz/quizzes";
+			dto.setSolution(solution);
+			dto.setDefinition(definition);
+			dto.setSentence(sentence);
+			dto.setCategory(categoryService.read(idCategory));//inportiamo i service per prenderci l'oggetto category in base all'id
+			dto.setLevel(levelService.read(idLevel));
+			
+			service.update(dto);
+			setAll(request);
+			ans = true;
+		}catch(Exception e) {
+			ans = false;
 		}
+		request.getSession().setAttribute("ans", ans);
+		return "quiz/quizzes";
+	}
 	@GetMapping("/read")
 	public String read(HttpServletRequest request, @RequestParam (value = "id", required = true ) Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
