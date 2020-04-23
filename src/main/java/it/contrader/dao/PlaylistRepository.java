@@ -5,7 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import it.contrader.model.Category;
+import it.contrader.model.Playlist;
 
 /*
  * created by Enzo, Gabriella
@@ -13,4 +13,4 @@ import it.contrader.model.Category;
 
 @Repository
 @Transactional
-public interface PlaylistRepository  extends CrudRepository<Category, Long> { }
+public interface PlaylistRepository  extends CrudRepository<Playlist, Long> { }

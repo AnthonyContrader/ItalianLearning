@@ -1,11 +1,12 @@
 package it.contrader.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+/*
+ * Created By Enzo, Gabriella 
+ */
 
 @Data
 @AllArgsConstructor
@@ -16,6 +17,6 @@ public class PlaylistDTO {
 	private String name;
 	private String description;
 	
-    private List<GamePlaylistDTO> gamePlaylist = new ArrayList<>();
+    //private List<GamePlaylistDTO> gamePlaylist = new ArrayList<>();
 
 }

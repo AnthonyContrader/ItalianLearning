@@ -1,30 +1,23 @@
 package it.contrader.converter;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import it.contrader.dto.PlaylistDTO;
-import it.contrader.dto.GamePlaylistDTO;
-
 import it.contrader.model.Playlist;
-import it.contrader.model.GamePlaylist;
 
 /*
- * created by Enzo, Gabriella
+ * Created by Enzo, Gabriella
  */
 
+@Component
 public class PlaylistConverter extends AbstractConverter<Playlist, PlaylistDTO>{
-	
-	@Autowired
-	GamePlaylistConverter gamePlylistConverter = new GamePlaylistConverter();
 	
 	@Override
 	public Playlist toEntity(PlaylistDTO playlistDTO) {
 		if(playlistDTO == null)
 			return null;
 		
-		List<GamePlaylist> g = gamePlylistConverter.toEntityList(playlistDTO.getGamePlaylist());
-		return new Playlist(playlistDTO.getId(), playlistDTO.getName(), playlistDTO.getDescription(), g);
+		return new Playlist(playlistDTO.getId(), playlistDTO.getName(), playlistDTO.getDescription());
 	}
 
 	@Override
@@ -32,8 +25,7 @@ public class PlaylistConverter extends AbstractConverter<Playlist, PlaylistDTO>{
 		if(playlist == null)
 			return null;
 		
-		List<GamePlaylistDTO> g = gamePlylistConverter.toDTOList(playlist.getGamePlaylists());		
-		return new PlaylistDTO(playlist.getId(), playlist.getName(), playlist.getDescription(), g);
+		return new PlaylistDTO(playlist.getId(), playlist.getName(), playlist.getDescription());
 	}
 
 }
