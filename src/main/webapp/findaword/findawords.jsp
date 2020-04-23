@@ -20,7 +20,7 @@
 	<a href="../homeadmin.jsp">Home</a><!-- i due puntini ti permettono di trovare il file nella cartella precedente -->
   	<a href="../game/getall">Back</a>
   	<a class="active" href="#">Find a Word</a><!-- # ti fa rimanere sulla pagina in cui sei -->
-  	<a href="LogoutServlet" id="logout">Logout</a>
+  	<a href="/user/logout" id="logout">Logout</a>
 </div>
 <div class="main">
 	<%
