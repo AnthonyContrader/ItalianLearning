@@ -31,13 +31,10 @@
 			<tr> 
 			<th>Id</th>
 			<th>Name</th>	
-			<th>Description</th>	
 		</tr>
 		<tr>
 			<td><%=c.getId()%></td>
-			<td> <%=c.getName()%></td>
-			<td> <%=c.getDescription()%></td>
-				
+			<td> <%=c.getName()%></td>				
 			</tr>	
 		</table>
 	

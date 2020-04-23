@@ -28,7 +28,7 @@
 		List<PlaylistDTO> list = (List<PlaylistDTO>) request.getSession().getAttribute("list");
 		String ans = null;
 		try{
-			ans = request.getAttribute("ans").toString();
+			ans = request.getSession().getAttribute("ans").toString();
 			request.getSession().removeAttribute("ans");
 
 		}
