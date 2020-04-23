@@ -1,6 +1,6 @@
 package it.contrader.dao;
 /*
- * createt by Anna Cecere
+ * created by Anna Cecere & Alessandro Alfieri
  */
 
 import javax.transaction.Transactional;
@@ -14,6 +14,9 @@ import it.contrader.model.GamePlaylist;
 
 @Repository
 @Transactional
-
-public interface GamePlaylistRepository extends CrudRepository<GamePlaylist, Long>{}
+public interface GamePlaylistRepository extends CrudRepository<GamePlaylist, Long>{
+	
+	boolean existsByIdPlaylistAndIdGameAndTypeGame(Long idPlaylist, Long idGame, String typeGame);
+	
+}
  

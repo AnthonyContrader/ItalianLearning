@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import it.contrader.dto.GamePlaylistDTO;
-import it.contrader.dto.UserDTO;
 import it.contrader.model.GamePlaylist;
 
 
@@ -20,7 +19,7 @@ public class GamePlaylistConverter extends AbstractConverter<GamePlaylist, GameP
 		GamePlaylist gamePlaylist = null;
 		if (gamePlaylistDTO != null) {
 			gamePlaylist = new GamePlaylist(gamePlaylistDTO.getId(), gamePlaylistDTO.getTypeGame(),
-					gamePlaylistDTO.getIdGame(), gamePlaylistDTO.getPlaylist());
+					gamePlaylistDTO.getIdGame(), playlistConverter.toEntity(gamePlaylistDTO.getPlaylist()));
 		}
 		return gamePlaylist;
 	}
@@ -30,7 +29,7 @@ public class GamePlaylistConverter extends AbstractConverter<GamePlaylist, GameP
 		GamePlaylistDTO gamePlaylistDTO = null;
 		if (gamePlaylist != null) {
 			gamePlaylistDTO = new GamePlaylistDTO(gamePlaylist.getId(), gamePlaylist.getTypeGame(), 
-					gamePlaylist.getIdGame(), gamePlaylist.getPlaylist());
+					gamePlaylist.getIdGame(), playlistConverter.toDTO(gamePlaylist.getPlaylist()));
 		}
 		return gamePlaylistDTO;
 	}

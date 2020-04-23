@@ -1,5 +1,10 @@
 package it.contrader.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,16 +14,117 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import it.contrader.dto.PlaylistDTO;
-import it.contrader.service.PlaylistService;
+import it.contrader.dto.*;
+import it.contrader.service.*;
 
 @Controller
 @RequestMapping("/playlist")	
 public class PlaylistController {
+	
 	@Autowired
 	private PlaylistService service;
+	@Autowired
+	private GamePlaylistService gpService;
+	@Autowired
+	private FindAWordService findAWord;
+	@Autowired
+	private FindMistakeService findMistake;
+	@Autowired
+	private GuessPictureService guessPicture;
+	@Autowired
+	private HangmanService hangman;
+	@Autowired
+	private OrganizeSentenceService organizeSentence;
+	@Autowired
+	private QuizService quiz;
 	
 	private boolean ans;
+	
+	public void gameList(HttpServletRequest request) {
+		Map<String, String> l;
+		List<Map<String,String>> arr;
+		List<List<Map<String,String>>> gameList = new ArrayList<>();
+		
+		List<FindAWordDTO> listFindAWordDTO = findAWord.getAll();
+		arr = new ArrayList<>();
+		for (FindAWordDTO faw : listFindAWordDTO) {
+			l = new HashMap<>();
+			l.put("id", "" + faw.getId());
+			l.put("solution", faw.getSolution());
+			l.put("typeGame",FindAWordDTO.getTypeGame());
+			l.put("name", "Find A Word");
+			l.put("checked", "" + gpService.findGameInPlaylist(((Long) request.getSession().getAttribute("id")), faw.getId(), FindAWordDTO.getTypeGame()));
+			arr.add(l);
+		}
+		gameList.add(arr);
+		
+		arr = new ArrayList<>();
+		List<FindMistakeDTO> listFindMistakeDTO = findMistake.getAll();
+		for (FindMistakeDTO fm : listFindMistakeDTO) {
+			l = new HashMap<>();
+			l.put("id", "" + fm.getId());
+			l.put("solution", fm.getSolution());
+			l.put("typeGame", FindMistakeDTO.getTypeGame());
+			l.put("name", "Find Mistake");
+			l.put("checked", "" + gpService.findGameInPlaylist(((Long) request.getSession().getAttribute("id")), fm.getId(), FindMistakeDTO.getTypeGame()));
+			arr.add(l);
+		}
+		gameList.add(arr);
+			
+		arr = new ArrayList<>();
+		List<GuessPictureDTO> listGuessPictureDTO = guessPicture.getAll();
+		for (GuessPictureDTO gp : listGuessPictureDTO) {
+			l = new HashMap<>();
+			l.put("id", "" + gp.getId());
+			l.put("solution", gp.getSolution());
+			l.put("typeGame", GuessPictureDTO.getTypeGame());
+			l.put("name", "Guess Picture");
+			l.put("checked", "" + gpService.findGameInPlaylist(((Long) request.getSession().getAttribute("id")), gp.getId(), GuessPictureDTO.getTypeGame()));
+			arr.add(l);
+		}
+		gameList.add(arr);
+		
+		arr = new ArrayList<>();
+		List<HangmanDTO> listHangmanDTO = hangman.getAll();
+		for (HangmanDTO h : listHangmanDTO) {
+			l = new HashMap<>();
+			l.put("id", "" + h.getId());
+			l.put("solution", h.getSolution());
+			l.put("typeGame", HangmanDTO.getTypeGame());
+			l.put("name", HangmanDTO.getTypeGame());
+			l.put("checked", "" + gpService.findGameInPlaylist(((Long) request.getSession().getAttribute("id")), h.getId(), HangmanDTO.getTypeGame()));
+			arr.add(l);
+		}
+		gameList.add(arr);
+		
+		arr = new ArrayList<>();
+		List<OrganizeSentenceDTO> listOrganizeSentenceDTO = organizeSentence.getAll();
+		for (OrganizeSentenceDTO os : listOrganizeSentenceDTO) {
+			l = new HashMap<>();
+			l.put("id", "" + os.getId());
+			l.put("solution", os.getSolution());
+			l.put("typeGame", OrganizeSentenceDTO.getTypeGame());
+			l.put("name", "Organize Sentence");
+			l.put("checked", "" + gpService.findGameInPlaylist(((Long) request.getSession().getAttribute("id")), os.getId(), OrganizeSentenceDTO.getTypeGame()));
+			arr.add(l);
+		}
+		gameList.add(arr);
+		
+		arr = new ArrayList<>();
+		List<QuizDTO> listQuizDTO = quiz.getAll();
+		for (QuizDTO q : listQuizDTO) {
+			l = new HashMap<>();
+			l.put("id", "" + q.getId());
+			l.put("solution", q.getSolution());
+			l.put("typeGame", QuizDTO.getTypeGame());
+			l.put("name", QuizDTO.getTypeGame());
+			l.put("checked", "" + gpService.findGameInPlaylist(((Long) request.getSession().getAttribute("id")), q.getId(), QuizDTO.getTypeGame()));
+			arr.add(l);
+		}
+		gameList.add(arr);
+		request.getSession().setAttribute("gameList", gameList);
+		
+	}
 		
 	private void setAll(HttpServletRequest request) {
 		request.getSession().setAttribute("list", service.getAll());
@@ -93,6 +199,7 @@ public class PlaylistController {
 	@GetMapping("/read")
 	public String read(HttpServletRequest request, @RequestParam("id") Long id) {
 	request.getSession().setAttribute("dto", service.read(id));
+	gameList(request);
 	return "playlist/readplaylist";
 	}
 }

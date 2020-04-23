@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GuessPictureDTO {
 	
+	private static final String typeGame = "GuessPicture";
+	
 	private Long id;
 	private String solution;
 	private String image;
@@ -20,4 +22,7 @@ public class GuessPictureDTO {
 	private CategoryDTO category;
 	private LevelDTO level;
 
+	public static String getTypeGame() {
+		return typeGame;
+	}
 }
