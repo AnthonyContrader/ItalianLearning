@@ -7,6 +7,8 @@
     import="it.contrader.dto.CategoryDTO"
 %>
     
+<!-- created by Enzo Tasca -->
+    
 <!DOCTYPE html>
 <html>
 <head>

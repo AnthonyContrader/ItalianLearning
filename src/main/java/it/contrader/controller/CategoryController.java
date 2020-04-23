@@ -23,7 +23,7 @@ public class CategoryController {
 	@Autowired
 	private CategoryService service;
 	
-	private boolean ans = true;
+	private boolean ans;
 		
 	private void setAll(HttpServletRequest request) {
 		request.getSession().setAttribute("list", service.getAll());
@@ -46,6 +46,7 @@ public class CategoryController {
 		
 		try {
 			service.delete(id);
+			ans = true;
 		}catch(Exception e) {ans = false;}
 		
 		setAll(request);
@@ -69,6 +70,7 @@ public class CategoryController {
 			categoryDTO.setDescription(description);
 			categoryDTO.setTitle(title);
 			service.update(categoryDTO);
+			ans = true;
 		}catch(Exception e) { ans=false; }
 		
 		setAll(request);
@@ -84,6 +86,8 @@ public class CategoryController {
 			categoryDTO.setTitle(title);
 			categoryDTO.setDescription(description);
 			service.insert(categoryDTO);
+			ans = true;
+
 		}catch(Exception e) { ans=false; }
 		
 		setAll(request);
