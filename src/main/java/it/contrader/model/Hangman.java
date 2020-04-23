@@ -2,8 +2,11 @@
 package it.contrader.model;
 
 import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +34,9 @@ public class Hangman {
 	@NotNull
 	private String sentence;
 	
+	@Transient
+	public static final String typeGame = "Hangman";
+	
 	@ManyToOne
 	@JoinColumn(name= "idCategory")
 	private Category category;
@@ -38,4 +44,8 @@ public class Hangman {
 	@ManyToOne
 	@JoinColumn(name= "idLevel")
 	private Level level;
+
+	public static final String getTypeGame() {
+		return typeGame;
+	}
 }
