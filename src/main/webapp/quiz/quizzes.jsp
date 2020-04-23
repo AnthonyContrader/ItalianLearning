@@ -91,13 +91,15 @@
     <div class="col-75">
       <input type="text" id="solution" name="solution" required placeholder="enter the solution">
     </div>
-    <div class="row">
+   </div>
+   <div class="row">
     <div class="col-25">
       <label for="quiz">Definition</label>
     </div>
     <div class="col-75">
       <input type="text" id="definition" name="definition" required placeholder="enter the correct answer">
     </div>
+   </div>
     <div class="row">
     <div class="col-25">
       <label for="quiz">Sentence</label>
