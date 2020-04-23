@@ -1,7 +1,7 @@
 package it.contrader.dto;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +16,6 @@ public class PlaylistDTO {
 	private String name;
 	private String description;
 	
-    private Set<GamePlaylistDTO> gamePlaylist = new HashSet<>();
+    private List<GamePlaylistDTO> gamePlaylist = new ArrayList<>();
 
 }
