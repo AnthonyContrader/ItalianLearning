@@ -133,7 +133,7 @@ public class PlaylistController {
 	@GetMapping("/getall")
 	public String getAll(HttpServletRequest request) {
 		setAll(request);
-		return "playlist/categories";
+		return "playlist/playlist";
 	}
 	
 	@GetMapping("/predelete")
@@ -153,7 +153,7 @@ public class PlaylistController {
 		setAll(request);
 		request.getSession().setAttribute("ans", ans);
 
-		return "playlist/categories";
+		return "playlist/playlist";
 	}
 		
 	@GetMapping("/preupdate")
@@ -176,7 +176,7 @@ public class PlaylistController {
 		
 		setAll(request);
 		request.getSession().setAttribute("ans", ans);
-		return "playlist/categories";
+		return "playlist/playlist";
 	}
 		
 	@PostMapping("/insert")
@@ -193,7 +193,7 @@ public class PlaylistController {
 		
 		setAll(request);
 		request.getSession().setAttribute("ans", ans);
-		return "playlist/categories";
+		return "playlist/playlist";
 	}
 
 	@GetMapping("/read")

@@ -1,7 +1,7 @@
 package it.contrader.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,6 +38,6 @@ public class Playlist {
 	private String description;
 		
 	@OneToMany(mappedBy = "playlist")
-    private Set<GamePlaylist> gamePlaylists = new HashSet<>();
+    private List<GamePlaylist> gamePlaylists = new ArrayList<>();
 	
 }

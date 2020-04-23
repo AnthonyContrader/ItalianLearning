@@ -11,15 +11,7 @@ import it.contrader.model.FindAWord;
 
 //created by Gabriella Brunetto
 
-
 @Service
-
 public class FindAWordService extends AbstractService<FindAWord, FindAWordDTO> {
-//abbiamo gà tutto quello ke ci serve nell'abstractService non abbiamo bisogno di autowired
-	
-	/*@Autowired
-	private FindAWordConverter converter;
-	
-	@Autowired
-	private FindAWordRepository repository;*/
+
 }
