@@ -16,7 +16,7 @@
 
 <div class="navbar">
 	<a href="../homeadmin.jsp">Home</a>
-  	<a href="../game/getAll">Back</a>
+  	<a href="/game/getall">Back</a>
   	<a class="active" href="#">Organize Sentence</a>
   	<a href="/user/logout" id="logout">Logout</a>
 </div>
