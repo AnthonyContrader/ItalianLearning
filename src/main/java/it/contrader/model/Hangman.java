@@ -4,13 +4,7 @@ package it.contrader.model;
 import javax.persistence.JoinColumn;
 
 import javax.persistence.ManyToOne;
-import javax.persistence.PreRemove;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import it.contrader.dto.HangmanDTO;
-import it.contrader.service.GamePlaylistService;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
