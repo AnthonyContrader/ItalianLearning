@@ -1,3 +1,4 @@
+// Created By @Alessandro Alfieri, @Gabriella Brunetto & @Enzo Tasca 
 package it.contrader.controller;
 
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.contrader.converter.PlaylistConverter;
 import it.contrader.dto.*;
-import it.contrader.model.Playlist;
 import it.contrader.service.*;
 
 @Controller
