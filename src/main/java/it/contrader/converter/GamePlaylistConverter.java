@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 import it.contrader.dto.GamePlaylistDTO;
 import it.contrader.model.GamePlaylist;
 
+/*
+ * created by Torquato Di Maio
+ */
 
 @Component
 public class GamePlaylistConverter extends AbstractConverter<GamePlaylist, GamePlaylistDTO>{
