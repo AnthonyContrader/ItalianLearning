@@ -13,6 +13,7 @@ import it.contrader.dto.OrganizeSentenceDTO;
 //import it.contrader.model.OrganizeSentence;
 import it.contrader.service.OrganizeSentenceService;
 import it.contrader.service.CategoryService;
+import it.contrader.service.GamePlaylistService;
 import it.contrader.service.LevelService;
 
 /*
@@ -29,6 +30,8 @@ public class OrganizeSentenceController {
 	private CategoryService categoryService;
 	@Autowired
 	private LevelService levelService;
+	@Autowired
+	private GamePlaylistService gpService;
 	
 	private boolean ans;
 	
@@ -51,6 +54,7 @@ public class OrganizeSentenceController {
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam(value="id", required=true) Long id) {
 		try {
+			gpService.deleteAllByIdGameAndTypeGame(id, OrganizeSentenceDTO.getTypeGame());
 			service.delete(id);
 			ans=true;
 		}catch(Exception e) {
