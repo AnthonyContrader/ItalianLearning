@@ -9,13 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import it.contrader.dto.FindAWordDTO;
-import it.contrader.dto.UserDTO;
-import it.contrader.model.FindAWord;
-import it.contrader.model.User.Usertype;
 import it.contrader.service.CategoryService;
 import it.contrader.service.FindAWordService;
+import it.contrader.service.GamePlaylistService;
 import it.contrader.service.LevelService;
 
 @Controller
@@ -31,6 +28,8 @@ public class FindAWordController {
 	private CategoryService categoryService;
 	@Autowired
 	private LevelService levelService;
+	@Autowired
+	private GamePlaylistService gpService; 
 	
 	private boolean ans;
 	
@@ -62,6 +61,7 @@ public class FindAWordController {
 	
 	public String delete(HttpServletRequest request, @RequestParam("id") Long id) {
 		try {
+			gpService.deleteAllByIdGameAndTypeGame(id, FindAWordDTO.getTypeGame());
 			service.delete(id);
 			ans=true;
 	
