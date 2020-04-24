@@ -4,6 +4,7 @@ package it.contrader.dao;
  */
 
 import java.math.BigInteger;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -22,7 +23,11 @@ public interface GamePlaylistRepository extends CrudRepository<GamePlaylist, Lon
 	@Query(value = "select (case when count(*) > 0 then true else false end) from game_playlist WHERE id_playlist = :idPlaylist AND id_game = :idGame AND type_game = :typeGame", nativeQuery = true)
 	BigInteger findGameInPlaylist(@Param("idPlaylist") Long idPlaylist, @Param("idGame") Long idGame,@Param("typeGame") String typeGame);
 	
+	void deleteAllByIdGameAndTypeGame(Long idGame, String typeGame);
+
 	void deleteAllByPlaylist(Playlist playlist);
+	
+	List<GamePlaylist> getAllByPlaylist(Playlist playlist);
 	
 }
  

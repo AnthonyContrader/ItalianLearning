@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.contrader.dto.HangmanDTO;
 import it.contrader.service.HangmanService;
 import it.contrader.service.CategoryService;
+import it.contrader.service.GamePlaylistService;
 import it.contrader.service.LevelService;
 
 @Controller
@@ -21,6 +22,8 @@ public class HangmanController {
 	
 	@Autowired
 	private HangmanService service;
+	@Autowired
+	private GamePlaylistService gpService;
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
@@ -41,6 +44,7 @@ public class HangmanController {
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
 		try {
+			gpService.deleteAllByIdGameAndTypeGame(id, HangmanDTO.getTypeGame());
 			service.delete(id);
 			request.getSession().setAttribute("ans", true);
 		}catch(Exception e) {

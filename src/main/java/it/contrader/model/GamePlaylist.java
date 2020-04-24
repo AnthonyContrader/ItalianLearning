@@ -1,5 +1,6 @@
 package it.contrader.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,11 +27,10 @@ public class GamePlaylist {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotNull
-	private String TypeGame;
+	private String typeGame;
 	@NotNull
 	private Long idGame;
 	
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name="IdPlaylist")
 	private Playlist playlist;

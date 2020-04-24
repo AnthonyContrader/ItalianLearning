@@ -1,6 +1,6 @@
 package it.contrader.service;
 
-import java.math.BigInteger;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,16 @@ public class GamePlaylistService extends AbstractService <GamePlaylist, GamePlay
 	public boolean findGameInPlaylist(Long idPlaylist, Long idGame, String typeGame) {
 		return repository.findGameInPlaylist(idPlaylist, idGame, typeGame).toString().equals("1");
 	}
+	
+	public void deleteAllByIdGameAndTypeGame(Long idGame, String typeGame) {
+		repository.deleteAllByIdGameAndTypeGame(idGame, typeGame);
+	}
 	public void deleteAllByPlaylist(Playlist playlist) {
 		repository.deleteAllByPlaylist(playlist);
+	}
+	
+	public List<GamePlaylist> getAllByPlaylist(Playlist playlist){
+		return repository.getAllByPlaylist(playlist);
 	}
 	
 }
