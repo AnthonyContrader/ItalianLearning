@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.contrader.dto.FindMistakeDTO;
+import it.contrader.dto.HangmanDTO;
 import it.contrader.service.CategoryService;
 import it.contrader.service.FindMistakeService;
+import it.contrader.service.GamePlaylistService;
 import it.contrader.service.LevelService;
 
 @Controller
@@ -21,6 +23,8 @@ public class FindMistakeController {
 
 	@Autowired
 	private FindMistakeService service;
+	@Autowired
+	private GamePlaylistService gpService;
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
@@ -41,6 +45,7 @@ public class FindMistakeController {
 	@GetMapping("/delete")
 	public String delete(HttpServletRequest request, @RequestParam(value = "id", required = true) Long id) {
 		try {
+			gpService.deleteAllByIdGameAndTypeGame(id, FindMistakeDTO.getTypeGame());
 			service.delete(id);
 			request.getSession().setAttribute("ans", true);
 		}catch(Exception e) {

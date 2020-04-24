@@ -172,18 +172,20 @@ public class PlaylistController {
 		try {
 			gpService.deleteAllByPlaylist(playlistConverter.toEntity(service.read(id)));
 			String[] list = request.getParameter("gameList").split(",");
-			GamePlaylistDTO gamePlayListDTO = new GamePlaylistDTO();
-			for (int i = 0; i < list.length; i++) {
-				if (i % 2 == 0) {
-					gamePlayListDTO.setIdGame(Long.parseLong(list[i]));
-				}
-				else {
-					gamePlayListDTO.setTypeGame(list[i]);
-					gamePlayListDTO.setPlaylist(service.read(id));
-					gpService.insert(gamePlayListDTO);
-					gamePlayListDTO = new GamePlaylistDTO();
-				}		
-			}	
+			if (list.length > 1 && list.length % 2 == 0) {
+				GamePlaylistDTO gamePlayListDTO = new GamePlaylistDTO();
+				for (int i = 0; i < list.length; i++) {
+					if (i % 2 == 0) {
+						gamePlayListDTO.setIdGame(Long.parseLong(list[i]));
+					}
+					else {
+						gamePlayListDTO.setTypeGame(list[i]);
+						gamePlayListDTO.setPlaylist(service.read(id));
+						gpService.insert(gamePlayListDTO);
+						gamePlayListDTO = new GamePlaylistDTO();
+					}		
+				}	
+			}
 			ans = true;
 		}catch(Exception e) {
 			ans = false;
