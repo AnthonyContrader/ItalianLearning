@@ -30,7 +30,7 @@ public class GuessPicture {
 	
 	@NotNull
 	@Lob
-	@Column(name="image", columnDefinition="BLOB")
+	@Column(name="image", columnDefinition="LONGBLOB")
 	private String image;
 	
 	@NotNull

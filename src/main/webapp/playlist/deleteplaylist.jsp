@@ -16,7 +16,7 @@
 <body>
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
-	<a href="../homeadmin.jsp">Back</a>
+	<a href="/playlist/getall">Back</a>
 	<a class="active" href="#">Playlist</a>
 	<a href="/user/logout" id="logout">Logout</a>
 </div>

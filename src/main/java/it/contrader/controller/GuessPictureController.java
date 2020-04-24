@@ -13,7 +13,7 @@ import it.contrader.dto.GuessPictureDTO;
 import it.contrader.service.GuessPictureService;
 import it.contrader.service.LevelService;
 import it.contrader.service.CategoryService;
-
+import it.contrader.service.GamePlaylistService;
 
 /*
  * Created by Enzo Tasca
@@ -31,6 +31,9 @@ public class GuessPictureController {
 	
 	@Autowired
 	private LevelService levelService;
+	
+	@Autowired
+	private GamePlaylistService gpService;
 	
 	private boolean ans;
 	
@@ -56,6 +59,7 @@ public class GuessPictureController {
 	public String delete(HttpServletRequest request, @RequestParam(value="id", required = true) Long id) {
 		
 		try {
+			gpService.deleteAllByIdGameAndTypeGame(id, GuessPictureDTO.getTypeGame());
 			service.delete(id);
 			ans = true;
 		}catch(Exception e) {
