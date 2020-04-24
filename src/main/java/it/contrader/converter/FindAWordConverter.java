@@ -1,3 +1,5 @@
+//created by Gabriella Brunetto
+
 package it.contrader.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +8,6 @@ import org.springframework.stereotype.Component;
 import it.contrader.dto.FindAWordDTO;
 import it.contrader.model.FindAWord;
 
-//created by Gabriella Brunetto
 
 @Component //legge e comprende le annotazioni di altre classi per restituirle al converter se ne ha necessità
 

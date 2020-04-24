@@ -1,3 +1,5 @@
+//created by Gabriella Brunetto
+
 package it.contrader.controller;
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,7 +21,7 @@ import it.contrader.service.LevelService;
 @Controller
 @RequestMapping("/findaword") //le sottopagine di findaword
 
-//created by Gabriella Brunetto
+
 
 public class FindAWordController {
 	

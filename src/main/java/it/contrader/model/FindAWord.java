@@ -1,3 +1,5 @@
+//created by Gabriella Brunetto
+
 package it.contrader.model;
 
 import javax.persistence.Entity;
@@ -12,7 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//created by Gabriella Brunetto
+
 
 @AllArgsConstructor
 @NoArgsConstructor

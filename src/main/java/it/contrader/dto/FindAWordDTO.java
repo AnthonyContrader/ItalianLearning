@@ -1,3 +1,5 @@
+//created by Gabriella Brunetto
+
 package it.contrader.dto;
 
 import it.contrader.model.Category;
@@ -6,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// created By Gabriella Brunetto
+
 
 @Data
 @AllArgsConstructor

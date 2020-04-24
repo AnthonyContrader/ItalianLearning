@@ -1,3 +1,5 @@
+//created by Gabriella Brunetto
+
 package it.contrader.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,7 @@ import it.contrader.dao.FindAWordRepository;
 import it.contrader.dto.FindAWordDTO;
 import it.contrader.model.FindAWord;
 
-//created by Gabriella Brunetto
+
 
 
 @Service
