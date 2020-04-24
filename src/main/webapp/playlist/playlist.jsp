@@ -54,10 +54,10 @@
 			for (PlaylistDTO c : list) {
 		%>
 		<tr>
-			<td><a href="/playlist/read?id<%=c.getId()%>">
+			<td><a href="/playlist/read?id=<%=c.getId()%>">
 				<%=c.getId()%>
 			</a></td>
-			<td><a href="/playlist/read?id<%=c.getId()%>">
+			<td><a href="/playlist/read?id=<%=c.getId()%>">
 				<%=c.getName()%>
 			</a></td>
 			

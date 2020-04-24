@@ -15,8 +15,8 @@
 <%@ include file="../css/header.jsp" %>
 <div class="navbar">
   <a href="homeadmin.jsp">Home</a>
-  <a class="active" href="PlaylistServlet?mode=playlistlist">Back</a>  
-  <a href="LogoutServlet" id="logout">Logout</a>
+  <a class="active" href="/playlist/getall">Back</a>  
+  <a href="/user/logout" id="logout">Logout</a>
 </div>
 <br>
 
@@ -24,7 +24,7 @@
 
 <%
 	PlaylistDTO c = (PlaylistDTO) request.getSession().getAttribute("dto");
-	//HashMap<String,List<Map<String,String>>> gameList = (HashMap<String, List<Map<String,String>>>)request.getAttribute("gameList");
+	List<List<Map<String,String>>> gameList = (List<List<Map<String,String>>>) request.getSession().getAttribute("gameList");
 %>
 
 <div class="col-100">
@@ -56,9 +56,8 @@
 			<th>Selected</th>
 		</tr>
 		<%
-			for (Map.Entry l : gameList.entrySet()) {
-				List<Map<String,String>> i = (List<Map<String,String>>) l.getValue();
-				for (Map<String,String> rk : i) {
+			for (List<Map<String,String>> l : gameList) {
+				for (Map<String,String> rk : l) {
 		%>
 		<tr>
 			<td><%=(String) rk.get("solution")%></td>
@@ -87,6 +86,6 @@
 			}
 		}
 		console.log(gameList);
-		this.document.location.href = "PlaylistServlet?mode=editplaylist&gameList=" + gameList + "&id=" + <%=c.getId() %>;
+		this.document.location.href = "/playlist/editplaylist?gameList=" + gameList + "&id=" + <%=c.getId() %>;
 	}
 </script>
