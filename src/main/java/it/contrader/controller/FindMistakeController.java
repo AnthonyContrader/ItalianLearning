@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.contrader.dto.FindMistakeDTO;
-import it.contrader.dto.HangmanDTO;
 import it.contrader.service.CategoryService;
 import it.contrader.service.FindMistakeService;
 import it.contrader.service.GamePlaylistService;
