@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+
 import it.contrader.dto.QuizDTO;
 import it.contrader.service.CategoryService;
+import it.contrader.service.GamePlaylistService;
 import it.contrader.service.LevelService;
 import it.contrader.service.QuizService;
 
@@ -29,7 +32,8 @@ public class QuizController {
 	@Autowired
 	private LevelService levelService;
 	private boolean ans;
-	
+	@Autowired
+	GamePlaylistService gpService;
 	
 	@GetMapping("/getall")
 	public String getAll(HttpServletRequest request) {
@@ -47,6 +51,7 @@ public class QuizController {
 	public String delete(HttpServletRequest request, @RequestParam(value = "id", required = true ) Long id) {
 		request.getSession().setAttribute("dto", service.read(id));
 		try {
+			gpService.deleteAllByIdGameAndTypeGame(id, QuizDTO.getTypeGame());
 			service.delete(id);
 			ans = true;
 			
