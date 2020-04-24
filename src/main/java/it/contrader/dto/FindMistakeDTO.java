@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FindMistakeDTO {
 	
+	private static final String typeGame = "FindMistake";
+		
 	private Long id;
 	
 	private String solution;
@@ -27,4 +29,8 @@ public class FindMistakeDTO {
 	private CategoryDTO category;
 	
 	private LevelDTO level;
+	
+	public static String getTypeGame() {
+		return typeGame;
+	}
 }

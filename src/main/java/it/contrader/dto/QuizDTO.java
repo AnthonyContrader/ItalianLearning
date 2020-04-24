@@ -13,10 +13,16 @@ import lombok.NoArgsConstructor;
 
 public class QuizDTO {
 
+	private static final String typeGame = "Quiz";
+	
 	private Long id;
 	private String solution;
 	private String definition;
 	private String sentence;
 	private CategoryDTO category;
 	private LevelDTO level;
+	
+	public static String getTypeGame() {
+		return typeGame;
+	}
 }

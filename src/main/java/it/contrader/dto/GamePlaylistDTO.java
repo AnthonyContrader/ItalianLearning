@@ -1,12 +1,13 @@
 package it.contrader.dto;
 
 
-
-import it.contrader.model.Playlist;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * created by Torquato Di Maio
+ */
 
 @Data
 @AllArgsConstructor
@@ -20,5 +21,5 @@ public class GamePlaylistDTO {
 	
 	private Long idGame;
 	
-	private Playlist playlist;
+	private PlaylistDTO playlist;
 }

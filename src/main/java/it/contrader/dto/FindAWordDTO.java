@@ -2,8 +2,6 @@
 
 package it.contrader.dto;
 
-import it.contrader.model.Category;
-import it.contrader.model.Level;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,27 +13,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class FindAWordDTO {
+		private static final String typeGame = "FindAWord";
 	
-	
-		
-		
 		private Long id;
-		
 		
 		private CategoryDTO category;
 		
-		
 		private LevelDTO level;
-		
 		
 		private String solution;
 		
 		private String definition;
 		
-		
 		private String sentence;
 
-
-
-
+		public static String getTypeGame() {
+			return typeGame;
+		}
 }

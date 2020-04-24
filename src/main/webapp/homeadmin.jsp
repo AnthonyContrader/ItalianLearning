@@ -9,9 +9,6 @@
 
 <title>Home</title>
 
-<!-- Bootstrap core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-
 <!-- Custom styles for this template -->
 <link href="/css/vittoriostyle.css" rel="stylesheet">
 </head>
@@ -23,10 +20,10 @@
 	<div class="navbar">
 		<a class="active" href="/homeadmin.jsp">Home</a> 
 		<a href=/user/getall>Users</a>
+		<a href=/game/getall>Games</a>
 		<a href=/category/getall>Categories</a>
 		<a href=/level/getall>Levels</a>
-		<a href=/game/getall>Games</a>
-		<a href=/playlist/getall>Playlists</a>
+		<a href=/playlist/getall>Playlist</a>
 		<a href="/user/logout" id="logout">Logout</a>
 	</div>
 

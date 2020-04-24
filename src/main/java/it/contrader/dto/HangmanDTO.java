@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HangmanDTO {
 	
+	private static final String typeGame = "Hangman";
+	
 	private Long id;
 	
 	private String solution;
@@ -21,4 +23,8 @@ public class HangmanDTO {
 	private CategoryDTO category;
 	
 	private LevelDTO level;
+	
+	public static String getTypeGame() {
+		return typeGame;
+	}
 }

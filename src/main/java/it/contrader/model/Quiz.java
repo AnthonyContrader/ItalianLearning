@@ -1,7 +1,7 @@
 package it.contrader.model;
 /* created by Anna Cecere */
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +24,7 @@ public class Quiz {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique = true)
+	
 	@NotNull
 	private String solution;
 	private String definition;

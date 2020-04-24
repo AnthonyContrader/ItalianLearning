@@ -1,8 +1,6 @@
 package it.contrader.dto;
 
 
-import it.contrader.model.Category;
-import it.contrader.model.Level;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrganizeSentenceDTO {
 	
+	private static final String typeGame = "OrganizeSentence";
+		
 	private Long id;
 	
 	private String solution; 
@@ -28,4 +28,7 @@ public class OrganizeSentenceDTO {
 	
 	private LevelDTO level;
 
+	public static String getTypeGame() {
+		return typeGame;
+	}
 }
