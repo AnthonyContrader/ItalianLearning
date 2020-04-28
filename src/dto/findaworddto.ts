@@ -6,17 +6,17 @@ export class FindAWordDTO{
 
     typeGame : "FindAWord";
 	
-    id: Number;
+    id: number;
     
     category: CategoryDTO;
     
     level: LevelDTO;
     
-    solution: String ;
+    solution: string ;
     
-    definition: String;
+    definition: string;
     
-    sentence: String ;
+    sentence: string ;
 
 }
 
