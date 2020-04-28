@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HangmanDTO } from 'src/dto/hangmandto';
 import { HangmanService } from 'src/service/hangman.service';
+import { CategoriesComponent } from 'src/app/admin/categories/categories.component'
+import { LevelsComponent } from 'src/app/admin/levels/levels.component'
 
 @Component({
   selector: 'app-hangmen',
@@ -12,7 +14,7 @@ export class HangmenComponent implements OnInit {
   hangmenDTO: HangmanDTO[];
   hangmantoinsert: HangmanDTO = new HangmanDTO();
 
-  constructor(private service: HangmanService) { }
+  constructor(private service: HangmanService, private category: CategoriesComponent, private level: LevelsComponent) { }
 
   ngOnInit() {
     this.getHangmen();
@@ -20,6 +22,8 @@ export class HangmenComponent implements OnInit {
 
   getHangmen() {
     this.service.getAll().subscribe(hangmen => this.hangmenDTO = hangmen);
+    this.level.getLevels();
+    this.category.getCategories();
   }
 
   delete(hangman: HangmanDTO){
