@@ -1,5 +1,5 @@
-import {CategoryDTO} from './categoryDTO';
-import {LevelDTO} from './levelDTO';
+import {CategoryDTO} from './categorydto';
+import {LevelDTO} from './leveldto';
   
 /*created by Anna Cecere */
 
