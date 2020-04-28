@@ -2,9 +2,9 @@ import {CategoryDTO} from "./categorydto";
 import {LevelDTO} from "./leveldto";
 
 
-export class FindAWord{
+export class FindAWordDTO{
 
-    typeGame = "FindAWord";
+    typeGame : "FindAWord";
 	
     id: Number;
     
