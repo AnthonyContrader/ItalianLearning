@@ -10,12 +10,12 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
     providedIn: 'root'
   })
-  export class CategoryService extends AbstractService<CategoryDTO>{
-  
-    constructor(http: HttpClient) {
-      super(http);
-      this.type = 'category';
-    }
-  
+export class CategoryService extends AbstractService<CategoryDTO>{
+
+  constructor(http: HttpClient) {
+    super(http);
+    this.type = 'category';
   }
+
+}
   

@@ -8,8 +8,8 @@ import { GuessPictureService } from 'src/service/guesspicture.service';
 
 @Component({
   selector: 'app-guesspictures',
-  templateUrl: './guesspicturs.component.html',
-  styleUrls: ['./guesspicturs.component.css']
+  templateUrl: './guesspictures.component.html',
+  styleUrls: ['./guesspictures.component.css']
 })
 export class GuesspicturesComponent implements OnInit {
 

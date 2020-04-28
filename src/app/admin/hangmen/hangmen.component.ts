@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HangmanDTO } from 'src/dto/hangmandto';
+import { HangmanService } from 'src/service/hangman.service';
 
 @Component({
   selector: 'app-hangmen',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HangmenComponent implements OnInit {
 
-  constructor() { }
+  hangmenDTO: HangmanDTO[];
+  hangmantoinsert: HangmanDTO = new HangmanDTO();
+
+  constructor(private service: HangmanService) { }
 
   ngOnInit() {
+    this.getHangmen();
+  }
+
+  getHangmen() {
+    this.service.getAll().subscribe(hangmen => this.hangmenDTO = hangmen);
+  }
+
+  delete(hangman: HangmanDTO){
+    this.service.delete(hangman.id).subscribe(() => this.getHangmen());
+  }
+
+  update(hangman: HangmanDTO){
+    this.service.update(hangman).subscribe( () => this.getHangmen());
+  }
+
+  insert(hangman: HangmanDTO){
+    this.service.insert(hangman).subscribe( () => this.getHangmen());
+  }
+
+  clear(){
+    this.hangmantoinsert = new HangmanDTO();
   }
 
 }
