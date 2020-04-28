@@ -3,10 +3,14 @@ import { AbstractService } from './abstractservice';
 import { CategoryDTO } from 'src/dto/categorydto';
 import { HttpClient } from '@angular/common/http';
 
+/*
+ * @author Enzo Tasca
+ */
+
 @Injectable({
     providedIn: 'root'
   })
-  export class UserService extends AbstractService<CategoryDTO>{
+  export class CategoryService extends AbstractService<CategoryDTO>{
   
     constructor(http: HttpClient) {
       super(http);
