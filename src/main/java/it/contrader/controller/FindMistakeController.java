@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.contrader.dto.FindMistakeDTO;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/findmistake")
 @CrossOrigin(origins = "http://localhost:4200")
 public class FindMistakeController extends AbstractController<FindMistakeDTO>{
 
