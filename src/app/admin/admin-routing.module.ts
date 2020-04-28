@@ -4,6 +4,12 @@ import { AdminLayoutComponent } from '../layout/admin-layout/admin-layout.compon
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+import { HangmenComponent } from './hangmen/hangmen.component';
+import { FindawordsComponent } from './findawords/findawords.component';
+import { FindmistakesComponent } from './findmistakes/findmistakes.component';
+import { GuesspicturesComponent } from './guesspictures/guesspictures.component';
+import { OrganizesentencesComponent } from './organizesentences/organizesentences.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 /**
  * Modulo di routing dell'admin. Qui ci sono i percorsi che un admin può seguire:
@@ -21,7 +27,15 @@ const routes: Routes = [
   { path: 'admin-dashboard', component: AdminLayoutComponent, children:[
     { path: '', component: AdminDashboardComponent},
     { path: 'users', component: UsersComponent},
-    { path: 'work-in-progress', component: WorkInProgressComponent}
+    { path: 'work-in-progress', component: WorkInProgressComponent},
+    { path: 'games', children: [
+      { path: 'findawords', component: FindawordsComponent},
+      { path: 'findmistakes', component: FindmistakesComponent},
+      { path: 'guesspictures', component: GuesspicturesComponent},
+      { path: 'hangmen', component: HangmenComponent},
+      { path: 'organizesentences', component: OrganizesentencesComponent},
+      { path: 'quiz', component: QuizComponent}
+    ]}
   ]}
 ];
 
