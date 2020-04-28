@@ -2,6 +2,10 @@
 import {CategoryDTO} from './categorydto';
 import {LevelDTO} from './leveldto';
 
+/*
+* created by Torquato Di Maio
+*/
+
 export class OrganizeSentenceDTO{
     typeGame : "OrganizeSentence";
 
