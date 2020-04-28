@@ -5,8 +5,8 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
+
 import { LevelComponent } from './level/level.component';
-import { HangmanComponent } from './hangman/hangman.component';
 
 /**
  * Modulo dell'admin, qui vengono dichiarate le component che utilizza 
@@ -17,13 +17,7 @@ import { HangmanComponent } from './hangman/hangman.component';
  * @see AdminRoutingModule
  */
 @NgModule({
-  declarations: [
-    AdminDashboardComponent, 
-    UsersComponent, 
-    WorkInProgressComponent, 
-    LevelComponent, 
-    HangmanComponent
-  ],
+  declarations: [AdminDashboardComponent, UsersComponent, WorkInProgressComponent, evelComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
