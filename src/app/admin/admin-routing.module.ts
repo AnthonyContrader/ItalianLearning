@@ -10,6 +10,9 @@ import { FindmistakesComponent } from './findmistakes/findmistakes.component';
 import { GuesspicturesComponent } from './guesspictures/guesspictures.component';
 import { OrganizesentencesComponent } from './organizesentences/organizesentences.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { LevelsComponent } from './levels/levels.component';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 /**
  * Modulo di routing dell'admin. Qui ci sono i percorsi che un admin può seguire:
@@ -28,6 +31,9 @@ const routes: Routes = [
     { path: '', component: AdminDashboardComponent},
     { path: 'users', component: UsersComponent},
     { path: 'work-in-progress', component: WorkInProgressComponent},
+    { path: 'categories', component: CategoriesComponent},
+    { path: 'levels', component: LevelsComponent},
+    { path: 'playlist', component: PlaylistComponent},
     { path: 'games', children: [
       { path: 'findawords', component: FindawordsComponent},
       { path: 'findmistakes', component: FindmistakesComponent},
