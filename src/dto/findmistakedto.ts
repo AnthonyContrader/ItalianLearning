@@ -1,16 +1,22 @@
 import {LevelDTO} from './leveldto'
 import {CategoryDTO} from './categorydto'
 
-export class HangmanDTO{
+export class FindMistakeDTO{
 
-    typeGame: "Hangman";
+    typeGame: "FindMistake";
 
     id: number;
 
     solution: string;
     
     definition: string;
+
+    optionA: string;
     
+    optionB: string;
+    
+    optionC: string;
+
     sentence: string;
     
     category: CategoryDTO;
