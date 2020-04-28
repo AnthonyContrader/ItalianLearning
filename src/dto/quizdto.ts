@@ -1,6 +1,7 @@
 import {CategoryDTO} from './categoryDTO';
 import {LevelDTO} from './levelDTO';
-    
+  
+/*created by Anna Cecere */
 
 export class QuizDTO{
     typeGame: "Quiz";
