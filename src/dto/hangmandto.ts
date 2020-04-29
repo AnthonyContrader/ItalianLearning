@@ -10,9 +10,7 @@ import {LevelDTO} from './leveldto'
 import {CategoryDTO} from './categorydto'
 
 export class HangmanDTO{
-
-    typeGame: "Hangman";
-
+    
     id: number;
 
     solution: string;

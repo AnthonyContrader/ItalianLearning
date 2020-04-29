@@ -11,6 +11,7 @@ export class LevelsComponent implements OnInit {
 
   levelsDTO: LevelDTO[];
   leveltoinsert: LevelDTO = new LevelDTO();
+  
   constructor(private service: LevelService) { }
 
   ngOnInit() {

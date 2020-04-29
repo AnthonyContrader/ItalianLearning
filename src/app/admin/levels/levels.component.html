@@ -1,3 +1,62 @@
-<p>
-  levels works!
-</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10 table-responsive">
+      <table class='table table-striped table-bordered'>
+        <tr class="text-center">
+          <th>
+            Name
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Score
+          </th>
+          <th>
+            Action
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input style="width: 100%;" placeholder="Name" [(ngModel)]="leveltoinsert.name">
+          </td>
+          <td>
+            <input style="width: 100%;" placeholder="Definition" [(ngModel)]="leveltoinsert.description">
+          </td>
+          <td>
+            <input style="width: 100%;" type="number" placeholder="Score" [(ngModel)]="leveltoinsert.score">
+          </td>
+          <td class="td-compact">
+            <button class="btn btn-primary" (click)="insert(leveltoinsert)">Insert</button>
+            <div class='pull-right'>
+              <button class="btn btn-secondary" (click)="clear()">Clear</button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngFor="let level of levelsDTO">
+          <td>
+            <input style="width: 100%;" type="text" [(ngModel)]="level.name">
+          </td>
+          <td>
+            <input style="width: 100%;" [(ngModel)]="level.description">
+          </td>
+          <td>
+            <input style="width: 100%;" type="number" [(ngModel)]="level.score">
+          </td>
+          <td>
+            <button class="btn btn-warning btn" (click)="update(level)">Save</button>
+            <div class='pull-right'>
+              <button class="btn btn-danger btn" (click)="delete(level)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+  </div>
+</div>

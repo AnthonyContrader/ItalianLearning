@@ -3,9 +3,9 @@
     <div class="col-md-1">
 
     </div>
-    <div class="col-md-10">
-      <table class='table table-responsive table-striped table-condensed'>
-        <tr>
+    <div class="col-md-10 table-responsive">
+      <table class='table table-striped table-bordered'>
+        <tr class="text-center">
           <th>
             Solution
           </th>
@@ -15,72 +15,67 @@
           <th>
             Sentence
           </th>
-          <!-- <th>
+          <th>
             Level
           </th>
           <th>
             Category
-          </th> -->
-          <th colspan="2">
+          </th>
+          <th>
             Action
           </th>
         </tr>
         <tr>
           <td>
-            <input placeholder="Solution" [(ngModel)]="hangmantoinsert.solution">
+            <input style="width: 100%;" placeholder="Solution" [(ngModel)]="hangmantoinsert.solution">
           </td>
           <td>
-            <input placeholder="Definition" [(ngModel)]="hangmantoinsert.definition">
+            <input style="width: 100%;" placeholder="Definition" [(ngModel)]="hangmantoinsert.definition">
           </td>
           <td>
-            <input placeholder="Sentence" [(ngModel)]="hangmantoinsert.sentence">
+            <input style="width: 100%;" placeholder="Sentence" [(ngModel)]="hangmantoinsert.sentence">
           </td>
-          <!-- <td>
-            <select [(ngModel)]="usertoinsert.usertype">
-              <option value="ADMIN">ADMIN</option>
-              <option value="USER">USER</option>
+          <td>
+            <select style="width: 100%;" [(ngModel)]="hangmantoinsert.level">
+              <option [value]="0">Choose one...</option>
+              <option *ngFor="let level of levelsDTO" [ngValue]="level">{{level.name}}</option>
             </select>
           </td>
           <td>
-            <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
-              <option value="ADMIN">ADMIN</option>
-              <option value="USER">USER</option>
+            <select style="width: 100%;" [(ngModel)]="hangmantoinsert.category">
+              <option [value]="0">Choose one...</option>
+              <option *ngFor="let category of categoriesDTO" [ngValue]="category">{{category.title}}</option>
             </select>
-          </td> -->
-          <td>
-            <button (click)="insert(hangmantoinsert)">Insert</button>
           </td>
           <td>
-            <button (click)="clear()">Clear</button>
+            <button class="btn btn-primary" (click)="insert(hangmantoinsert)">Insert</button>
+            <button class="btn btn-secondary" (click)="clear()">Clear</button>
           </td>
         </tr>
-        <tr *ngFor="let hangman of hangmen">
+        <tr *ngFor="let hangman of hangmenDTO">
           <td>
-            <input [(ngModel)]="hangman.solution">
+            <input style="width: 100%;" [(ngModel)]="hangman.solution">
           </td>
           <td>
-            <input [(ngModel)]="hangman.definition">
+            <input style="width: 100%;" [(ngModel)]="hangman.definition">
           </td>
           <td>
-            <input [(ngModel)]="hangman.sentence">
+            <input style="width: 100%;" [(ngModel)]="hangman.sentence">
           </td>
-          <!-- <td>
-            <select [(ngModel)]="usertoinsert.usertype">
-              <option value="ADMIN">ADMIN</option>
-              <option value="USER">USER</option>
+          
+          <td>
+            <select style="width: 100%;" [(ngModel)]="hangman.level">
+              <option [selected]="level.id===hangman.level.id" [value]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
             </select>
           </td>
           <td>
-            <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
-              <option value="ADMIN">ADMIN</option>
-              <option value="USER">USER</option>
+            <select style="width: 100%;" [(ngModel)]="hangman.category">
+              <option [selected]="category.id===hangman.category.id" [value]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
             </select>
-          </td> -->
-          <td>
-            <button (click)="update(hangman)">Save</button>
           </td>
           <td>
-            <button (click)="delete(hangman)">Delete</button>
+            <button class="btn btn-warning btn" (click)="update(hangman)">Save</button>
+            <button class="btn btn-danger btn" (click)="delete(hangman)">Delete</button>
           </td>
         </tr>
       </table>
