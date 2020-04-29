@@ -31,23 +31,21 @@
           </td>
 
           <td>
-            <input type="file" placeholder="solution" [(ngModel)]="guesspicturetoinsert.image">
+            <input placeholder="image" [(ngModel)]="guesspicturetoinsert.image">
           </td>
 
           <td>
             <select placeholder="category" [(ngModel)]="guesspicturetoinsert.category">
-              <!--option value="ADMIN"></option>
-              <option value="guesspicture">guesspicture</option -->
+              <option *ngFor="let c of categoriesDTO" [value]="c.id"> {{c.title}} </option>
             </select>
           </td>
           <td>
             <select placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
-              <!--option value="ADMIN"></option>
-              <option value="guesspicture">guesspicture</option -->
+              <option *ngFor="let l of levelsDTO" [value]="l.id"> {{l.name}} </option>
             </select>
           </td>
           <td>
-            <button class="btn btn-primary btn" (click)="insert(usertoinsert)">Insert</button>
+            <button class="btn btn-primary btn" (click)="insert(guesspicturetoinsert)">Insert</button>
           </td>
           <td>
             <button class="btn btn-primary btn" (click)="clear()">Clear</button>
@@ -58,31 +56,41 @@
             <input [(ngModel)]="g.solution">
           </td>
           <td>
-            <div>
-              <input type="file" placeholder="solution" [(ngModel)]="guesspicturetoinsert.image">
-              <a>Mostra immaggine</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Open Image</button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <img style="max-width: 100%;" src="data:image/png;base64,{{g.image}}">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </td>
           <td>
             <select [(ngModel)]="g.category">
-              <option *ngFor="let c of categoriesDTO"  [selected]="g.category===c" [value]="c.id"> {{c.title}} </option>
+              <option *ngFor="let c of categoriesDTO" [selected]="g.category===c" [value]="c.id"> {{c.title}} </option>
             </select>
           </td>
           <td>
-            <select [(ngModel)]="g.level.name">
-              
-                
-              
-
-              <!--option [selected]="guesspicture.usertype===ADMIN" value="ADMIN">ADMIN</option>
-              <option [selected]="guesspicture.usertype===guesspicture" value="guesspicture">guesspicture</option -->
+            <select [(ngModel)]="g.level">
+              <option *ngFor="let l of levelsDTO" [selected]="g.level===l" [value]="l.id"> {{l.name}} </option>
             </select>
           </td>
           <td>
-            <button (click)=update(guesspicture)>Save</button>
+            <button (click)=update(g)>Save</button>
           </td>
           <td>
-            <button (click)="delete(guesspicture)">Delete</button>
+            <button (click)="delete(g)">Delete</button>
           </td>
         </tr>
       </table>
@@ -92,3 +100,19 @@
     </div>
   </div>
 </div>
+
+<!--script>
+	var input = document.getElementById("imageFile");
+	
+	input.onchange = function () {
+		var file = input.files[0],
+	 	reader = new FileReader();
+	
+		reader.onloadend = function () {
+	 		var b64 = reader.result.replace(/^data:.+;base64,/, '');
+	 		document.getElementById("image").value = b64;
+      alert(b64);
+		};
+		reader.readAsDataURL(file);
+	};
+</script -->

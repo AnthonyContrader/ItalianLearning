@@ -23,6 +23,8 @@ export class GuesspicturesComponent implements OnInit {
   levelsDTO: LevelDTO[];
   categoriesDTO: CategoryDTO[];
 
+  cat: CategoryDTO = new CategoryDTO();
+
 
   constructor(private service: GuessPictureService, private serviceCategory: CategoryService, private serviceLevel:LevelService) { }
 
@@ -44,7 +46,6 @@ export class GuesspicturesComponent implements OnInit {
     this.serviceCategory.getAll().subscribe(category => this.categoriesDTO = category);
   }
 
-
   delete(guesspicture: GuessPictureDTO) {
     this.service.delete(guesspicture.id).subscribe(() => this.getGuessPictures());
   }
@@ -54,7 +55,17 @@ export class GuesspicturesComponent implements OnInit {
   }
 
   insert(guesspicture: GuessPictureDTO) {
-    this.service.insert(guesspicture).subscribe(() => this.getGuessPictures());
+    this.serviceCategory.read(Number(guesspicture.category)).subscribe(function(c){
+      this.cat = c;
+
+    } );
+    console.log(this.cat);
+
+    //this.serviceLevel.read(Number(guesspicture.level)).subscribe(l => guesspicture.level = l);
+
+    //console.log(guesspicture.category.id);
+    //this.service.insert(guesspicture).subscribe(() => this.getGuessPictures());
+
   }
 
   clear(){
