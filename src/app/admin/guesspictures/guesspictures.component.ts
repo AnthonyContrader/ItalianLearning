@@ -51,7 +51,7 @@ export class GuesspicturesComponent implements OnInit {
     this.service.update(guesspicture).subscribe(() => this.getGuessPictures());
   }
 
-  insert(guesspicture: GuessPictureDTO, category: string, level: string) {
+  insert(guesspicture: GuessPictureDTO) {
     console.log(guesspicture);
     this.service.insert(guesspicture).subscribe(() => this.getGuessPictures());
   }
