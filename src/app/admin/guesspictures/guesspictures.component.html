@@ -53,7 +53,7 @@
             <button class="btn btn-primary btn" (click)="clear()">Clear</button>
           </td>
         </tr>
-        <tr *ngFor="let g of guesspictures">
+        <tr *ngFor="let g of guesspicturesDTO">
           <td>
             <input [(ngModel)]="g.solution">
           </td>
@@ -64,10 +64,16 @@
             </div>
           </td>
           <td>
-            <input [(ngModel)]="g.category.title">
+            <select [(ngModel)]="g.category">
+              <option *ngFor="let c of categoriesDTO"  [selected]="g.category===c" [value]="c.id"> {{c.title}} </option>
+            </select>
           </td>
           <td>
             <select [(ngModel)]="g.level.name">
+              
+                
+              
+
               <!--option [selected]="guesspicture.usertype===ADMIN" value="ADMIN">ADMIN</option>
               <option [selected]="guesspicture.usertype===guesspicture" value="guesspicture">guesspicture</option -->
             </select>
