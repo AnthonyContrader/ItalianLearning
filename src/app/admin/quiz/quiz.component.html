@@ -1,3 +1,81 @@
-<p>
-  quiz works!
-</p>
+<!--created by Anna Cecere-->
+
+
+<div class="container">
+  <div class="row mt-9">
+    <div class="col-mt-50">
+         </div>
+     
+    <div class="col-md-10">
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th> Solution </th>
+          <th> Definition </th>
+          <th> Sentence </th>
+          <th> Category </th>
+          <th> Level </th>
+          <th>
+          <th>
+          <th> Edit </th>
+          <th>
+          <th> User </th>
+          <th>
+        </tr>
+      </thead>
+        <tr>
+          <td>
+            <input placeholder="solution" [(ngModel)]="quiztoinsert.solution">
+          </td>
+          <td>
+            <input placeholder="definition" [(ngModel)]="quiztoinsert.definition">
+          </td>
+          <td>
+            <input placeholder="sentence" [(ngModel)]="quiztoinsert.sentence">
+          </td>
+          <td>
+            <select placeholder="category" [(ngModel)]="quiztoinsert.category"></select> 
+          </td>
+          <td>
+              <select placeholder="level" [(ngModel)]="quiztoinsert.level"></select>
+          </td>
+          <td>
+            <button (click)=insert(quiztoinsert) type="button" class="btn btn-info">Insert</button>
+          </td>
+          <td>
+            <button (click)="clear()" type="button" class="btn btn-secondary">Clear</button>
+          </td>
+        </tr>
+        <tr *ngFor="let quiz of quizDTO">
+          <td>
+            <input [(ngModel)]="quiz.solution">
+          </td>
+          <td>
+            <input [(ngModel)]="quiz.definition">
+          </td>
+          <td>
+            <input [(ngModel)]="quiz.sentence">
+          </td>
+          <td>
+            <input [(ngModel)]="quiz.category">
+          </td>
+          <td>
+            <input [(ngModel)]="quiz.level">
+          </td>
+          <td>
+            <button (click)=update(quiz) type="button" class="btn btn-success">Save</button>
+          </td>
+          <td>
+            <button (click)="delete(quiz)" type="button" class="btn btn-primary">Delete</button>
+          </td>
+                   
+        </tr>
+      </table>
+    </div>
+  <div class="col-mt-50"> 
+
+  
+
+    </div>
+  </div>
+</div>

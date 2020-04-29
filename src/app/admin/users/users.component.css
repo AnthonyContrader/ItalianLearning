@@ -1,8 +1,12 @@
+/*
+
 *{
     text-align: center;
 }
 
 /*Tables*/
+
+/*
 table {
 	border-collapse: collapse;
 	width: 100%;
@@ -22,12 +26,12 @@ td{
 
 
 tr:nth-child(even) {
-	background-color: #ffdb99;
+	background-color: #b8def3;
 }
 
 th {
-	background-color: darkorange;
-	color: #ffffff;
+	background-color: #b8def3;
+	color: #b8def3;
 }
 
 a:hover {
@@ -46,3 +50,4 @@ input:hover,  input:active, input:focus{
 button:hover{
     background-color: crimson;
 }
+*/
