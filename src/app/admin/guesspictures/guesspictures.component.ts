@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GuessPictureDTO } from 'src/dto/guesspicturedto';
 import { GuessPictureService } from 'src/service/guesspicture.service';
+import { LevelsComponent } from 'src/app/admin/levels/levels.component';
+import { CategoriesComponent } from 'src/app/admin/categories/categories.component';
 
 /*
  * @author Enzo Tasca
@@ -15,6 +17,7 @@ export class GuesspicturesComponent implements OnInit {
 
   guesspictures: GuessPictureDTO[];
   guesspicturetoinsert: GuessPictureDTO = new GuessPictureDTO();
+  levels :LevelsComponent;
 
   constructor(private service: GuessPictureService) { }
 

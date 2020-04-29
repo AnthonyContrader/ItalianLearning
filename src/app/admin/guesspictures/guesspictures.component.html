@@ -1,3 +1,88 @@
-<p>
-  guesspictures works!
-</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+      <table class="table table-striped">
+        <tr>
+          <th>
+            Solution
+          </th>
+          <th>
+            Image
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Level
+          </th>
+          <th>
+            Edit
+          </th>
+          <th>
+            Delete
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input placeholder="solution" [(ngModel)]="guesspicturetoinsert.solution">
+          </td>
+
+          <td>
+            <input type="file" placeholder="solution" [(ngModel)]="guesspicturetoinsert.image">
+          </td>
+
+          <td>
+            <select placeholder="category" [(ngModel)]="guesspicturetoinsert.category">
+              <!--option value="ADMIN"></option>
+              <option value="guesspicture">guesspicture</option -->
+            </select>
+          </td>
+          <td>
+            <select placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
+              <!--option value="ADMIN"></option>
+              <option value="guesspicture">guesspicture</option -->
+            </select>
+          </td>
+          <td>
+            <button class="btn btn-primary btn" (click)="insert(usertoinsert)">Insert</button>
+          </td>
+          <td>
+            <button class="btn btn-primary btn" (click)="clear()">Clear</button>
+          </td>
+        </tr>
+        <tr *ngFor="let g of guesspictures">
+          <td>
+            <input [(ngModel)]="g.solution">
+          </td>
+          <td>
+            <div>
+              <input type="file" placeholder="solution" [(ngModel)]="guesspicturetoinsert.image">
+              <a>Mostra immaggine</a>
+            </div>
+          </td>
+          <td>
+            <input [(ngModel)]="g.category.title">
+          </td>
+          <td>
+            <select [(ngModel)]="g.level.name">
+              <!--option [selected]="guesspicture.usertype===ADMIN" value="ADMIN">ADMIN</option>
+              <option [selected]="guesspicture.usertype===guesspicture" value="guesspicture">guesspicture</option -->
+            </select>
+          </td>
+          <td>
+            <button (click)=update(guesspicture)>Save</button>
+          </td>
+          <td>
+            <button (click)="delete(guesspicture)">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+  </div>
+</div>
