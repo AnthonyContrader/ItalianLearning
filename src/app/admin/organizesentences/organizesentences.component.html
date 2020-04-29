@@ -41,13 +41,13 @@
             <input placeholder="Definition" [(ngModel)]="organizesentencetoinsert.definition">
           </td>
           <td>
-            <select placeholder="category" [(ngModel)]="organizesentencetoinsert.category">
+            <!--<select placeholder="category" [(ngModel)]="organizesentencetoinsert.category">
             </select>
           </td>
           <td>
-            <select placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
+            <select placeholder="level" [(ngModel)]="organizesentencetoinsert.level">
             </select>
-          </td>
+          </td>-->
           <!--<td>
             <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
               <option value="ADMIN">ADMIN</option>
@@ -78,7 +78,7 @@
               <option [selected]="user.usertype===USER" value="USER">USER</option>
             </select>
           </td>-->
-          <td>
+          <!--<td>
             <select [(ngModel)]="organizesentence.category">
               <option *ngFor="let c of categoriesDTO"  [selected]="organizesentence.category===c" [value]="c.id"> {{c.title}} </option>
             </select>
@@ -88,7 +88,7 @@
               
                 
             </select>
-          </td>
+          </td>-->
           <td>
             <button (click)=update(organizesentence)>Save</button>
           </td>
