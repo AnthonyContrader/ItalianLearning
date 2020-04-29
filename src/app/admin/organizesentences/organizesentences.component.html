@@ -1,3 +1,105 @@
-<p>
-  organizesentences works!
-</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+      <table>
+        <tr>
+          <th>
+            Solution
+          </th>
+          <th>
+            Sentence
+          </th>
+          <th>
+            Definition
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            <th>
+            Level
+            </th>
+            <th>
+          <th>
+            Edit
+          </th>
+          <th>
+            Delete
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input placeholder="Solution" [(ngModel)]="organizesentencetoinsert.solution">
+          </td>
+          <td>
+            <input placeholder="Sentence" [(ngModel)]="organizesentencetoinsert.sentence">
+          </td>
+          <td>
+            <input placeholder="Definition" [(ngModel)]="organizesentencetoinsert.definition">
+          </td>
+          <td>
+            <select placeholder="category" [(ngModel)]="organizesentencetoinsert.category">
+            </select>
+          </td>
+          <td>
+            <select placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
+            </select>
+          </td>
+          <!--<td>
+            <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
+              <option value="ADMIN">ADMIN</option>
+              <option value="USER">USER</option>
+            </select>
+          </td>-->
+          <td>
+            <button (click)="insert(organizesentencetoinsert)">Insert</button>
+          </td>
+          <td>
+            <button (click)="clear()">Clear</button>
+          </td>
+        </tr>
+        <!-- ciclo for each-->
+        <tr *ngFor="let organizesentence of organizesentencesDTO">
+          <td>
+            <input [(ngModel)]="organizesentence.solution">
+          </td>
+          <td>
+            <input [(ngModel)]="organizesentence.sentence">
+          </td>
+          <td>
+            <input [(ngModel)]="organizesentence.definition">
+          </td>
+          <!--<td>
+            <select [(ngModel)]="user.usertype">
+              <option [selected]="user.usertype===ADMIN" value="ADMIN">ADMIN</option>
+              <option [selected]="user.usertype===USER" value="USER">USER</option>
+            </select>
+          </td>-->
+          <td>
+            <select [(ngModel)]="organizesentence.category">
+              <option *ngFor="let c of categoriesDTO"  [selected]="organizesentence.category===c" [value]="c.id"> {{c.title}} </option>
+            </select>
+          </td>
+          <td>
+            <select [(ngModel)]="organizesentence.level.name">
+              
+                
+            </select>
+          </td>
+          <td>
+            <button (click)=update(organizesentence)>Save</button>
+          </td>
+          <td>
+            <button (click)="delete(organizesentence)">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+  </div>
+</div>
