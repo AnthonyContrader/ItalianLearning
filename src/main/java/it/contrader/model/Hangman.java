@@ -33,10 +33,10 @@ public class Hangman {
 	private String sentence;
 	
 	@ManyToOne
-	@JoinColumn(name= "idcategory")
+	@JoinColumn(name= "idCategory")
 	private Category category;
 	
 	@ManyToOne
-	@JoinColumn(name= "idlevel")
+	@JoinColumn(name= "idLevel")
 	private Level level;
 }
