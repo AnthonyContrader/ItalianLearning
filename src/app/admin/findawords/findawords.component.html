@@ -1,3 +1,75 @@
-<p>
-  findawords works!
-</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+      <table class="table table-striped">
+        <tr>
+          <th>
+            Solution
+          </th>
+          <th>
+            Definition
+          </th>
+          <th>
+            Sentence
+          </th>
+          <th>
+            Level
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Edit
+          </th>
+          <th>
+            Delete
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input placeholder="Solution" [(ngModel)]="findawordinsert.solution">
+          </td>
+          <td>
+            <input placeholder="Definition" [(ngModel)]="findawordinsert.definition">
+          </td>
+          <td>
+            <input placeholder="Sentence" [(ngModel)]="findawordinsert.sentence">
+          </td>
+          <td>
+            <input placeholder="Category" [(ngModel)]="findawordinsert.category">
+          </td>
+          <td>
+            <input placeholder="Level" [(ngModel)]="findawordinsert.level">
+          </td>
+          
+          <td>
+            <button class="btn btn-primary btn-lg" (click)="insert(usertoinsert)">Insert</button>
+          </td>
+          <td>
+            <button class="btn btn-primary btn-lg" (click)="clear()">Clear</button>
+          </td>
+        </tr>
+        <tr *ngFor="let findaword of findaword">
+          <td>
+            <input [(ngModel)]="findaword.username">
+          </td>
+          <td>
+            <input [(ngModel)]="findaword.password">
+          </td>
+          <td>
+            <button (click)=update(findaword)>Save</button>
+          </td>
+          <td>
+            <button (click)="delete(findaword)">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+  </div>
+</div>

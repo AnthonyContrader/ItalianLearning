@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FindAWordDTO } from 'src/dto/findaworddto';
 import { FindAWordService } from 'src/service/findaword.service';
+import { LevelDTO } from 'src/dto/leveldto';
+import { CategoryDTO } from 'src/dto/categorydto';
+import { CategoryService } from 'src/service/category.service';
+import { LevelService } from 'src/service/level.service';
 
 @Component({
   selector: 'app-findawords',
@@ -12,12 +16,18 @@ export class FindawordsComponent implements OnInit {
   findawordsDTO: FindAWordDTO[]; // variabile ke contiene arrey di findaworddto
   findawordtoinsert: FindAWordDTO = new FindAWordDTO(); //prendiamo un singolo oggetto vuoto
 
+  //per prendere tutti i dati del level e category
+  levelsDTO: LevelDTO[]; 
+  categoriesDTO: CategoryDTO[];
+
   //creiamo variabile service dentro il costruttore x poterla utilizzare con il nostro oggetto
-  constructor(private service: FindAWordService) { }
+  constructor(private service: FindAWordService, private serviceCategory: CategoryService, private serviceLevel:LevelService) { }
 
   ngOnInit() {
     //appena parte la pagina farà questo
     this.getFindAWord();
+    this.getCategories();
+    this.getLevels();
   }
 
   getFindAWord() {
@@ -26,6 +36,14 @@ export class FindawordsComponent implements OnInit {
     /* cio ke restituisce getall è un osserveble di arrey di findaworddto,
     col metodo subscribe passiamo il parametro di nome findaword ke conterra i dati del osservable  
     vengono salvati nella variabili findsaworddtodto*/ 
+  }
+
+  getLevels() {
+    this.serviceLevel.getAll().subscribe(level => this.levelsDTO = level);
+  }
+
+  getCategories() {
+    this.serviceCategory.getAll().subscribe(category => this.categoriesDTO = category);
   }
 
   delete(findaword: FindAWordDTO){
