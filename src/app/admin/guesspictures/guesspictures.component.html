@@ -36,12 +36,12 @@
 
           <td>
             <select placeholder="category" [(ngModel)]="guesspicturetoinsert.category">
-              <option *ngFor="let c of categoriesDTO" [value]="c.id"> {{c.title}} </option>
+              <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
             </select>
           </td>
           <td>
             <select placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
-              <option *ngFor="let l of levelsDTO" [value]="l.id"> {{l.name}} </option>
+              <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
             </select>
           </td>
           <td>

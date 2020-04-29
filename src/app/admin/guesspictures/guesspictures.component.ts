@@ -23,9 +23,6 @@ export class GuesspicturesComponent implements OnInit {
   levelsDTO: LevelDTO[];
   categoriesDTO: CategoryDTO[];
 
-  cat: CategoryDTO = new CategoryDTO();
-
-
   constructor(private service: GuessPictureService, private serviceCategory: CategoryService, private serviceLevel:LevelService) { }
 
   ngOnInit() {
@@ -54,18 +51,9 @@ export class GuesspicturesComponent implements OnInit {
     this.service.update(guesspicture).subscribe(() => this.getGuessPictures());
   }
 
-  insert(guesspicture: GuessPictureDTO) {
-    this.serviceCategory.read(Number(guesspicture.category)).subscribe(function(c){
-      this.cat = c;
-
-    } );
-    console.log(this.cat);
-
-    //this.serviceLevel.read(Number(guesspicture.level)).subscribe(l => guesspicture.level = l);
-
-    //console.log(guesspicture.category.id);
-    //this.service.insert(guesspicture).subscribe(() => this.getGuessPictures());
-
+  insert(guesspicture: GuessPictureDTO, category: string, level: string) {
+    console.log(guesspicture);
+    this.service.insert(guesspicture).subscribe(() => this.getGuessPictures());
   }
 
   clear(){
