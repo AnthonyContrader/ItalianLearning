@@ -14,7 +14,7 @@ export class HangmenComponent implements OnInit {
   hangmenDTO: HangmanDTO[];
   hangmantoinsert: HangmanDTO = new HangmanDTO();
 
-  constructor(private service: HangmanService, private category: CategoriesComponent, private level: LevelsComponent) { }
+  constructor(private service: HangmanService) { }
 
   ngOnInit() {
     this.getHangmen();
@@ -22,8 +22,8 @@ export class HangmenComponent implements OnInit {
 
   getHangmen() {
     this.service.getAll().subscribe(hangmen => this.hangmenDTO = hangmen);
-    this.level.getLevels();
-    this.category.getCategories();
+    // this.level.getLevels();
+    // this.category.getCategories();
   }
 
   delete(hangman: HangmanDTO){
@@ -31,7 +31,7 @@ export class HangmenComponent implements OnInit {
   }
 
   update(hangman: HangmanDTO){
-    this.service.update(hangman).subscribe( () => this.getHangmen());
+    this.service.update(hangman).subscribe(() => this.getHangmen());
   }
 
   insert(hangman: HangmanDTO){

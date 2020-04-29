@@ -1,3 +1,92 @@
-<p>
-  hangmen works!
-</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+      <table class='table table-responsive table-striped table-condensed'>
+        <tr>
+          <th>
+            Solution
+          </th>
+          <th>
+            Definition
+          </th>
+          <th>
+            Sentence
+          </th>
+          <!-- <th>
+            Level
+          </th>
+          <th>
+            Category
+          </th> -->
+          <th colspan="2">
+            Action
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input placeholder="Solution" [(ngModel)]="hangmantoinsert.solution">
+          </td>
+          <td>
+            <input placeholder="Definition" [(ngModel)]="hangmantoinsert.definition">
+          </td>
+          <td>
+            <input placeholder="Sentence" [(ngModel)]="hangmantoinsert.sentence">
+          </td>
+          <!-- <td>
+            <select [(ngModel)]="usertoinsert.usertype">
+              <option value="ADMIN">ADMIN</option>
+              <option value="USER">USER</option>
+            </select>
+          </td>
+          <td>
+            <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
+              <option value="ADMIN">ADMIN</option>
+              <option value="USER">USER</option>
+            </select>
+          </td> -->
+          <td>
+            <button (click)="insert(hangmantoinsert)">Insert</button>
+          </td>
+          <td>
+            <button (click)="clear()">Clear</button>
+          </td>
+        </tr>
+        <tr *ngFor="let hangman of hangmen">
+          <td>
+            <input [(ngModel)]="hangman.solution">
+          </td>
+          <td>
+            <input [(ngModel)]="hangman.definition">
+          </td>
+          <td>
+            <input [(ngModel)]="hangman.sentence">
+          </td>
+          <!-- <td>
+            <select [(ngModel)]="usertoinsert.usertype">
+              <option value="ADMIN">ADMIN</option>
+              <option value="USER">USER</option>
+            </select>
+          </td>
+          <td>
+            <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
+              <option value="ADMIN">ADMIN</option>
+              <option value="USER">USER</option>
+            </select>
+          </td> -->
+          <td>
+            <button (click)="update(hangman)">Save</button>
+          </td>
+          <td>
+            <button (click)="delete(hangman)">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+  </div>
+</div>
