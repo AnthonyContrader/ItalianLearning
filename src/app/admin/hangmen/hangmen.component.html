@@ -27,53 +27,53 @@
         </tr>
         <tr>
           <td>
-            <input style="width: 100%;" placeholder="Solution" [(ngModel)]="hangmantoinsert.solution">
+            <input class="form-control" style="width: 100%;" placeholder="Solution" [(ngModel)]="hangmantoinsert.solution">
           </td>
           <td>
-            <input style="width: 100%;" placeholder="Definition" [(ngModel)]="hangmantoinsert.definition">
+            <input class="form-control" style="width: 100%;" placeholder="Definition" [(ngModel)]="hangmantoinsert.definition">
           </td>
           <td>
-            <input style="width: 100%;" placeholder="Sentence" [(ngModel)]="hangmantoinsert.sentence">
+            <input class="form-control" style="width: 100%;" placeholder="Sentence" [(ngModel)]="hangmantoinsert.sentence">
           </td>
           <td>
-            <select style="width: 100%;" [(ngModel)]="hangmantoinsert.level">
-              <option [value]="0">Choose one...</option>
+            <select class="form-control" style="width: 100%;" [(ngModel)]="hangmantoinsert.level">
+              <option selected disabled [value]="">Choose one...</option>
               <option *ngFor="let level of levelsDTO" [ngValue]="level">{{level.name}}</option>
             </select>
           </td>
           <td>
-            <select style="width: 100%;" [(ngModel)]="hangmantoinsert.category">
-              <option [value]="0">Choose one...</option>
+            <select class="form-control" style="width: 100%;" [(ngModel)]="hangmantoinsert.category">
+              <option selected disabled [value]="0">Choose one...</option>
               <option *ngFor="let category of categoriesDTO" [ngValue]="category">{{category.title}}</option>
             </select>
           </td>
-          <td>
+          <td class="btn-group">
             <button class="btn btn-primary" (click)="insert(hangmantoinsert)">Insert</button>
             <button class="btn btn-secondary" (click)="clear()">Clear</button>
           </td>
         </tr>
         <tr *ngFor="let hangman of hangmenDTO">
           <td>
-            <input style="width: 100%;" [(ngModel)]="hangman.solution">
+            <input class="form-control" style="width: 100%;" [(ngModel)]="hangman.solution">
           </td>
           <td>
-            <input style="width: 100%;" [(ngModel)]="hangman.definition">
+            <input class="form-control" style="width: 100%;" [(ngModel)]="hangman.definition">
           </td>
           <td>
-            <input style="width: 100%;" [(ngModel)]="hangman.sentence">
+            <input class="form-control" style="width: 100%;" [(ngModel)]="hangman.sentence">
           </td>
           
           <td>
-            <select style="width: 100%;" [(ngModel)]="hangman.level">
-              <option [selected]="level.id===hangman.level.id" [value]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
+            <select class="form-control" style="width: 100%;" [(ngModel)]="hangman.level.id">
+              <option [ngValue]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
             </select>
           </td>
           <td>
-            <select style="width: 100%;" [(ngModel)]="hangman.category">
-              <option [selected]="category.id===hangman.category.id" [value]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
+            <select class="form-control" style="width: 100%;" [(ngModel)]="hangman.category.id">
+              <option [ngValue]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
             </select>
           </td>
-          <td>
+          <td class="btn-group">
             <button class="btn btn-warning btn" (click)="update(hangman)">Save</button>
             <button class="btn btn-danger btn" (click)="delete(hangman)">Delete</button>
           </td>

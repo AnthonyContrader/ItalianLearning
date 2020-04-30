@@ -72,7 +72,7 @@
           <td>
             <input [(ngModel)]="organizesentence.definition">
           </td>
-         
+        <td>
           <select [(ngModel)]="organizesentence.category.id">
             <option *ngFor="let c of categoriesDTO" [selected]="organizesentence.category===c" [ngValue]="c.id"> {{c.title}} </option>
           </select>
