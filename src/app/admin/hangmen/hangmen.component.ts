@@ -39,7 +39,6 @@ export class HangmenComponent implements OnInit {
   }
 
   insert(hangman: HangmanDTO){
-    console.log(hangman);
     this.service.insert(hangman).subscribe(() => this.getHangmen());
   }
 

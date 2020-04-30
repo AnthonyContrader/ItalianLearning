@@ -1,87 +1,80 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-md-1">
-
-    </div>
-    <div class="col-md-10 table-responsive">
-      <table class='table table-striped table-bordered'>
-        <tr class="text-center">
-          <th>
-            Solution
-          </th>
-          <th>
-            Definition
-          </th>
-          <th>
-            Sentence
-          </th>
-          <th>
-            Level
-          </th>
-          <th>
-            Category
-          </th>
-          <th>
-            Action
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <input class="form-control" style="width: 100%;" placeholder="Solution" [(ngModel)]="hangmantoinsert.solution">
-          </td>
-          <td>
-            <input class="form-control" style="width: 100%;" placeholder="Definition" [(ngModel)]="hangmantoinsert.definition">
-          </td>
-          <td>
-            <input class="form-control" style="width: 100%;" placeholder="Sentence" [(ngModel)]="hangmantoinsert.sentence">
-          </td>
-          <td>
-            <select class="form-control" style="width: 100%;" [(ngModel)]="hangmantoinsert.level">
-              <option selected disabled [value]="">Choose one...</option>
-              <option *ngFor="let level of levelsDTO" [ngValue]="level">{{level.name}}</option>
-            </select>
-          </td>
-          <td>
-            <select class="form-control" style="width: 100%;" [(ngModel)]="hangmantoinsert.category">
-              <option selected disabled [value]="0">Choose one...</option>
-              <option *ngFor="let category of categoriesDTO" [ngValue]="category">{{category.title}}</option>
-            </select>
-          </td>
-          <td class="btn-group">
-            <button class="btn btn-primary" (click)="insert(hangmantoinsert)">Insert</button>
-            <button class="btn btn-secondary" (click)="clear()">Clear</button>
-          </td>
-        </tr>
-        <tr *ngFor="let hangman of hangmenDTO">
-          <td>
-            <input class="form-control" style="width: 100%;" [(ngModel)]="hangman.solution">
-          </td>
-          <td>
-            <input class="form-control" style="width: 100%;" [(ngModel)]="hangman.definition">
-          </td>
-          <td>
-            <input class="form-control" style="width: 100%;" [(ngModel)]="hangman.sentence">
-          </td>
-          
-          <td>
-            <select class="form-control" style="width: 100%;" [(ngModel)]="hangman.level.id">
-              <option [ngValue]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
-            </select>
-          </td>
-          <td>
-            <select class="form-control" style="width: 100%;" [(ngModel)]="hangman.category.id">
-              <option [ngValue]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
-            </select>
-          </td>
-          <td class="btn-group">
-            <button class="btn btn-warning btn" (click)="update(hangman)">Save</button>
-            <button class="btn btn-danger btn" (click)="delete(hangman)">Delete</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="col-md-1">
-
-    </div>
+<h2 class="text-center mt-2">Hangmen</h2>
+<div class="row mt-5">
+  <div class="col-md-12 table-responsive">
+    <table class='table table-striped'>
+      <tr class="text-center">
+        <th>
+          Solution
+        </th>
+        <th>
+          Definition
+        </th>
+        <th>
+          Sentence
+        </th>
+        <th>
+          Level
+        </th>
+        <th>
+          Category
+        </th>
+        <th>
+          Action
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <input class="form-control" style="width: 100%;" placeholder="Solution" [(ngModel)]="hangmantoinsert.solution">
+        </td>
+        <td>
+          <input class="form-control" style="width: 100%;" placeholder="Definition" [(ngModel)]="hangmantoinsert.definition">
+        </td>
+        <td>
+          <input class="form-control" style="width: 100%;" placeholder="Sentence" [(ngModel)]="hangmantoinsert.sentence">
+        </td>
+        <td>
+          <select class="form-control" style="width: 100%;" [(ngModel)]="hangmantoinsert.level">
+            <option selected disabled [value]="">Choose one...</option>
+            <option *ngFor="let level of levelsDTO" [ngValue]="level">{{level.name}}</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-control" style="width: 100%;" [(ngModel)]="hangmantoinsert.category">
+            <option selected disabled [value]="0">Choose one...</option>
+            <option *ngFor="let category of categoriesDTO" [ngValue]="category">{{category.title}}</option>
+          </select>
+        </td>
+        <td class="text-right">
+          <button class="btn btn-primary mr-3" (click)="insert(hangmantoinsert)">Insert</button>
+          <button class="btn btn-secondary mr-3" (click)="clear()">Clear</button>
+        </td>
+      </tr>
+      <tr *ngFor="let hangman of hangmenDTO">
+        <td>
+          <input class="form-control" style="width: 100%;" [(ngModel)]="hangman.solution">
+        </td>
+        <td>
+          <input class="form-control" style="width: 100%;" [(ngModel)]="hangman.definition">
+        </td>
+        <td>
+          <input class="form-control" style="width: 100%;" [(ngModel)]="hangman.sentence">
+        </td>
+        
+        <td>
+          <select class="form-control" style="width: 100%;" [(ngModel)]="hangman.level.id">
+            <option [ngValue]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-control" style="width: 100%;" [(ngModel)]="hangman.category.id">
+            <option [ngValue]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
+          </select>
+        </td>
+        <td class="text-right">
+          <button class="btn btn-warning mr-3" (click)="update(hangman)">Save</button>
+          <button class="btn btn-danger mr-3" (click)="delete(hangman)">Delete</button>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
