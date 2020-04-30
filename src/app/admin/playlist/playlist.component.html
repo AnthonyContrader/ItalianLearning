@@ -1,3 +1,90 @@
-<p>
-  playlist works!
-</p>
+<h2 class="text-center mt-2">Playlist</h2>
+<div class="row mt-5">
+  <div class="offset-md-1 col-md-10 table-responsive">
+    <table class='table table-striped' style="table-layout: auto !important;">
+      <tr class="text-center">
+        <th>
+          Name
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Action
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <input class= "form-control-sm" style="width: 100%;" placeholder="Name" [(ngModel)]="playlisttoinsert.name">
+        </td>
+        <td>
+          <input class= "form-control-sm" style="width: 100%;" placeholder="Definition" [(ngModel)]="playlisttoinsert.description">
+        </td>
+        <td class="text-right btn-toolbar justify-content-between">
+          <button class="btn btn-primary btn-sm mr-3" (click)="insert(playlisttoinsert)">Insert</button>
+          <button class="btn btn-secondary btn-sm mr-3" (click)="clear()">Clear</button>
+        </td>
+      </tr>
+      <tr *ngFor="let playlist of playlistDTO">
+        <td>
+          <input class= "form-control-sm" style="width: 100%;" type="text" [(ngModel)]="playlist.name">
+        </td>
+        <td>
+          <input class= "form-control-sm" style="width: 100%;" [(ngModel)]="playlist.description">
+        </td>
+        <td class="text-right btn-toolbar justify-content-between"  style="width: auto">
+          <button class="btn btn-warning btn-sm mr-3" (click)="update(playlist)">Save</button>
+          <button class="btn btn-warning btn-sm mr-3" (click)="gamePlaylist(playlist)">Save</button>
+          <button class="btn btn-danger btn-sm mr-3" (click)="delete(playlist)">Delete</button>
+        </td>
+      </tr>
+    </table>
+
+    
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="gamePlaylistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title">Giochi nella Playlist</div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+          <div class="offset-md-1 col-md-10 table-responsive">
+            <table class='table table-striped' style="table-layout: auto !important;">
+              <tr class="text-center">
+                <th>
+                  Solution
+                </th>
+                <th>
+                  Game
+                </th>
+                <!-- <th>
+                  Present
+                </th> -->
+              </tr>
+              <tr *ngFor="let game of _gamesArray">
+                <td>
+                  <input class= "form-control-sm" style="width: 100%;" type="text" [(ngModel)]="game.solution">
+                </td>
+                <td>
+                  <input class= "form-control-sm" style="width: 100%;" [(ngModel)]="game.name">
+                </td>
+                <!-- <td>
+                  <input class= "form-control-sm" style="width: 100%;" [(ngModel)]="game.che">
+                </td> -->
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
