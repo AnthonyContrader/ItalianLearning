@@ -1,4 +1,6 @@
 
+/*
+
 #header{
     background-color:  #1e282d;
 }
@@ -6,13 +8,14 @@
 body,html{
   height: 100%;
   width: 100%;
-  margin-left: 10 px;
+  margin-right: 20 px;
   padding: auto;
   background: #42b1dd !important;
   }
 
   .searchbar{
   margin-top: 10px;
+  margin-right: 20 px;
   display: inline-block;
   height: auto;
   background-color: #353b48;
@@ -91,10 +94,12 @@ body,html{
     border-radius: 15px;
   
   }
-  */
+  
   p{
+    */
     /*pezzetto di navbar su menù sx*/
-      color: rgb(121, 210, 245);
+     /* 
+    color: rgb(121, 210, 245);
       font-weight: bold;
       margin-left: 0px;
       padding-left: 7px;
@@ -108,3 +113,4 @@ body,html{
     background-color: rgb(20, 163, 220);
 
   }
+  */

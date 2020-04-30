@@ -1,5 +1,6 @@
+/*
 .sidenav {
-    /*sfondo del resto del menù*/
+    /*sfondo del resto del menù
     height:92vh;
     width: 100%;
     top: 0;
@@ -9,11 +10,10 @@
     transition: 0.5s;
     padding-top: 0;
   }
-  
-  
+  */
+  /*
   .menubtn{
-      /*elementi del menù*/
-      width: 100%;
+      /*elementi del menù
       text-align: left;
       background-color: #1e282d;
       color: rgb(143, 205, 226);
@@ -22,26 +22,33 @@
       padding-top: 10px;
       padding-bottom: 10px;
   }
-  
+  */
+    /*
   
   a{
       text-decoration: none;
       /*dashbard*/
+      /*
       color: rgb(143, 205, 226);
       ;
   }
   
   button:focus {
+      */
       /*elemento del menu selezionato*/
+      /*
       background-color: #4197e7;
   }
   
   button:hover, a:hover {
+      */
       /*elementi evidenziati dal mouse*/
-  background-color: rgb(3, 3, 3);
+  /*
+      background-color: rgb(3, 3, 3);
   color: rgb(10, 71, 184);
   }
 
   *{
       font-size: 16px;
   }
+  */
