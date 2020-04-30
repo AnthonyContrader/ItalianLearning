@@ -2,13 +2,13 @@
 
 
 <div class="container">
-  <div class="row mt-9">
-    <div class="col-mt-50">
+  <div class="row mt-12">
+    <div class="col-md-1">
          </div>
      
-    <div class="col-md-10">
-      <table class="table">
-        <thead class="thead-dark">
+    <div class="col-md-10 table-responsive">
+      <table class="'table table-striped table-bordered">
+        <thead class="text-center">
         <tr>
           <th> Solution </th>
           <th> Definition </th>
@@ -16,28 +16,32 @@
           <th> Category </th>
           <th> Level </th>
           <th>
+          <th> Action </th>
           <th>
-          <th> Edit </th>
-          <th>
-          <th> User </th>
-          <th>
+         
         </tr>
       </thead>
         <tr>
           <td>
-            <input placeholder="solution" [(ngModel)]="quiztoinsert.solution">
+            <input class="form-control" style="width: 100%;" placeholder="solution" [(ngModel)]="quiztoinsert.solution">
           </td>
           <td>
-            <input placeholder="definition" [(ngModel)]="quiztoinsert.definition">
+            <input class="form-control" style="width: 100%;" placeholder="definition" [(ngModel)]="quiztoinsert.definition">
           </td>
           <td>
-            <input placeholder="sentence" [(ngModel)]="quiztoinsert.sentence">
+            <input class="form-control" style="width: 100%;" placeholder="sentence" [(ngModel)]="quiztoinsert.sentence">
           </td>
           <td>
-            <select placeholder="category" [(ngModel)]="quiztoinsert.category"></select> 
+            <select class="form-control" style="width: 100%;" placeholder="category" [(ngModel)]="quiztoinsert.category">
+              <option [value]="0">Choose one...</option>
+              <option *ngFor="let category of categoriesDTO" [ngValue]="category">{{category.title}}</option>
+            </select> 
           </td>
           <td>
-              <select placeholder="level" [(ngModel)]="quiztoinsert.level"></select>
+              <select class="form-control" style="width: 100%;" placeholder="level" [(ngModel)]="quiztoinsert.level">
+                <option [value]="0">Choose one...</option>
+              <option *ngFor="let level of levelsDTO" [ngValue]="level">{{level.name}}</option>
+            </select>
           </td>
           <td>
             <button (click)=insert(quiztoinsert) type="button" class="btn btn-info">Insert</button>
@@ -48,19 +52,23 @@
         </tr>
         <tr *ngFor="let quiz of quizDTO">
           <td>
-            <input [(ngModel)]="quiz.solution">
+            <input class="form-control" style="width: 100%;" [(ngModel)]="quiz.solution">
           </td>
           <td>
-            <input [(ngModel)]="quiz.definition">
+            <input class="form-control" style="width: 100%;" [(ngModel)]="quiz.definition">
           </td>
           <td>
-            <input [(ngModel)]="quiz.sentence">
+            <input class="form-control" style="width: 100%;" [(ngModel)]="quiz.sentence">
           </td>
           <td>
-            <input [(ngModel)]="quiz.category">
+            <select class="form-control" style="width: 100%;" [(ngModel)]="quiz.category.id">
+              <option class="form-control" style="width: 100%;" [ngValue]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
+            </select>
           </td>
           <td>
-            <input [(ngModel)]="quiz.level">
+            <select class="form-control" style="width: 100%;" [(ngModel)]="quiz.level.id">
+              <option [ngValue]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
+            </select>
           </td>
           <td>
             <button (click)=update(quiz) type="button" class="btn btn-success">Save</button>
@@ -72,7 +80,7 @@
         </tr>
       </table>
     </div>
-  <div class="col-mt-50"> 
+  <div class="col-md-1"> 
 
   
 

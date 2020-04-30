@@ -24,6 +24,9 @@ export class GuesspicturesComponent implements OnInit {
   categoriesDTO: CategoryDTO[];
 
   b64: string;
+  b64toinsert: string;
+  b64toupdate: string;
+
 
   constructor(private service: GuessPictureService, private serviceCategory: CategoryService, private serviceLevel:LevelService) { }
 
@@ -50,16 +53,50 @@ export class GuesspicturesComponent implements OnInit {
   }
 
   update(guesspicture: GuessPictureDTO) {
+    if (this.b64toupdate != ''){
+      guesspicture.image = this.b64toupdate;
+      console.log(this.b64toupdate);
+    }
+      
+    //console.log(guesspicture);
     this.service.update(guesspicture).subscribe(() => this.getGuessPictures());
   }
 
   insert(guesspicture: GuessPictureDTO) {
-    console.log(guesspicture);
+    guesspicture.image = this.b64toinsert;
     this.service.insert(guesspicture).subscribe(() => this.getGuessPictures());
   }
 
   clear(){
     this.guesspicturetoinsert = new GuessPictureDTO();
+  }
+
+  imageModal(image: string){
+    this.b64=image;
+  }
+
+  handleInputChange(e) {
+    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    var pattern = /image-*/;
+    var reader = new FileReader();
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+  _handleReaderLoaded(e) {
+    let reader = e.target;
+    this.b64toinsert = reader.result;
+  }
+
+  handleUpdateChange(e) {
+    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    var pattern = /image-*/;
+    var reader = new FileReader();
+    reader.onload = this._handleUpdateLoaded.bind(this);
+    reader.readAsDataURL(file);
+  }
+  _handleUpdateLoaded(e) {
+    let reader = e.target;
+    this.b64toupdate = reader.result;
   }
 
 }
