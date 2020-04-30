@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FindAWordDTO } from 'src/dto/findaworddto';
 import { FindAWordService } from 'src/service/findaword.service';
-import { LevelDTO } from 'src/dto/leveldto';
 import { CategoryDTO } from 'src/dto/categorydto';
 import { CategoryService } from 'src/service/category.service';
 import { LevelService } from 'src/service/level.service';
+import { LevelDTO } from 'src/dto/leveldto';
 
 @Component({
   selector: 'app-findawords',
@@ -61,10 +61,10 @@ export class FindawordsComponent implements OnInit {
     this.service.insert(findaword).subscribe(()=> this.getFindAWord());
   }
 
-clear(){
+  clear(){
   //funzione per il tasto clear che pulisce i campi della caselle
-  this.findawordtoinsert = new FindAWordDTO();
-}
+    this.findawordtoinsert = new FindAWordDTO();
+  }
 
 
 }

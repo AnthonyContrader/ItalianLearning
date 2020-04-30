@@ -30,23 +30,27 @@
         </tr>
         <tr>
           <td>
-            <input placeholder="Solution" [(ngModel)]="findawordinsert.solution">
+            <input placeholder="Solution" [(ngModel)]="findawordtoinsert.solution">
           </td>
           <td>
-            <input placeholder="Definition" [(ngModel)]="findawordinsert.definition">
+            <input placeholder="Definition" [(ngModel)]="findawordtoinsert.definition">
           </td>
           <td>
-            <input placeholder="Sentence" [(ngModel)]="findawordinsert.sentence">
+            <input placeholder="Sentence" [(ngModel)]="findawordtoinsert.sentence">
           </td>
           <td>
-            <input placeholder="Category" [(ngModel)]="findawordinsert.category">
+            <select placeholder="category" [(ngModel)]="findawordtoinsert.category">
+              <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
+            </select>
           </td>
           <td>
-            <input placeholder="Level" [(ngModel)]="findawordinsert.level">
+            <select placeholder="level" [(ngModel)]="findawordtoinsert.level">
+              <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
+            </select>
           </td>
           
           <td>
-            <button class="btn btn-primary btn-lg" (click)="insert(usertoinsert)">Insert</button>
+            <button class="btn btn-primary btn-lg" (click)="insert(findawordtoinsert)">Insert</button>
           </td>
           <td>
             <button class="btn btn-primary btn-lg" (click)="clear()">Clear</button>
