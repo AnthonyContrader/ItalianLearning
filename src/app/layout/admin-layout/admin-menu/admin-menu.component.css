@@ -4,7 +4,7 @@
     width: 100%;
     top: 0;
     left: 0;
-    background-color: #126b97;
+    background-color: #1e282d;
     overflow-x: visible;
     transition: 0.5s;
     padding-top: 0;
@@ -15,8 +15,8 @@
       /*elementi del menù*/
       width: 100%;
       text-align: left;
-      background-color: #126b97;
-      color: rgb(229, 238, 241);
+      background-color: #1e282d;
+      color: rgb(143, 205, 226);
       border: none;
       padding-left: 20px;
       padding-top: 10px;
@@ -27,7 +27,7 @@
   a{
       text-decoration: none;
       /*dashbard*/
-      color: rgb(229, 238, 241);
+      color: rgb(143, 205, 226);
       ;
   }
   
