@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PlaylistDTO } from 'src/dto/playlistdto';
 import { PlaylistService } from 'src/service/playlist.service';
 import { GamePlaylistService } from 'src/service/gameplaylist.service';
-import { $ } from 'protractor';
 
 @Component({
   selector: 'app-playlist',
@@ -38,7 +37,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   gamePlaylist(playlist: PlaylistDTO){
-    $("#gamePlaylistModal").modal('show')
+    // ("#gamePlaylistModal").modal('show')
     this.gpService.findByPlaylist(playlist.id).subscribe(obj =>{
       for (var rk in obj){
         let map = new Map<string, any>();
