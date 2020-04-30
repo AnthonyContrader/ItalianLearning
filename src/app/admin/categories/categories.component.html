@@ -33,10 +33,10 @@
             <input placeholder="Description" [(ngModel)]="categorytoinsert.description">
           </td>
           <td>
-            <button (click)="insert(categorytoinsert)">Insert</button>
+            <button class="btn btn-primary mr-3" (click)="insert(categorytoinsert)">Insert</button>
           </td>
           <td>
-            <button (click)="clear()">Clear</button>
+            <button class="btn btn-secondary mr-3" (click)="clear()">Clear</button>
           </td>
         </tr>
         <tr *ngFor="let c of categories">
@@ -47,10 +47,10 @@
             <input [(ngModel)]="c.description">
           </td>
           <td>
-            <button (click)="update(c)">Save</button>
+            <button class="btn btn-warning mr-3" (click)="update(category)">Save</button>
           </td>
           <td>
-            <button (click)="delete(c)">Delete</button>
+            <button class="btn btn-danger mr-3" (click)="delete(category)">Delete</button>
           </td>
         </tr>
       </table>
