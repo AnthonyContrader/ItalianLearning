@@ -23,6 +23,8 @@ export class GuesspicturesComponent implements OnInit {
   levelsDTO: LevelDTO[];
   categoriesDTO: CategoryDTO[];
 
+  b64: string;
+
   constructor(private service: GuessPictureService, private serviceCategory: CategoryService, private serviceLevel:LevelService) { }
 
   ngOnInit() {

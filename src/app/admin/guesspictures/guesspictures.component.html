@@ -31,16 +31,19 @@
           </td>
 
           <td>
-            <input placeholder="image" [(ngModel)]="guesspicturetoinsert.image">
+            <input type="file" id="fileImage"  placeholder="image">
+            <input type="hidden" [(ngModel)]="guesspicturetoinsert.image" id="image">
           </td>
 
           <td>
             <select placeholder="category" [(ngModel)]="guesspicturetoinsert.category">
+              <option>scegli</option>
               <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
             </select>
           </td>
           <td>
             <select placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
+              <option>scegli</option>
               <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
             </select>
           </td>
@@ -56,34 +59,16 @@
             <input [(ngModel)]="g.solution">
           </td>
           <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Open Image</button>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <img style="max-width: 100%;" src="data:image/png;base64,{{g.image}}">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">Open Image</button>
           </td>
           <td>
             <select [(ngModel)]="g.category">
-              <option *ngFor="let c of categoriesDTO" [selected]="g.category===c" [value]="c.id"> {{c.title}} </option>
+              <option *ngFor="let c of categoriesDTO" [selected]="g.category===c"> {{c.title}} </option>
             </select>
           </td>
           <td>
             <select [(ngModel)]="g.level">
-              <option *ngFor="let l of levelsDTO" [selected]="g.level===l" [value]="l.id"> {{l.name}} </option>
+              <option *ngFor="let l of levelsDTO" [selected]="g.level===l"> {{l.name}} </option>
             </select>
           </td>
           <td>
@@ -96,13 +81,33 @@
       </table>
     </div>
     <div class="col-md-1">
+            
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+            <img style="max-width: 100%;" src="data:image/png;base64,{{b64}}">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     </div>
   </div>
 </div>
 
-<!--script>
-	var input = document.getElementById("imageFile");
+<script>
+
+	var input = document.getElementById("fileImage");
 	
 	input.onchange = function () {
 		var file = input.files[0],
@@ -111,8 +116,7 @@
 		reader.onloadend = function () {
 	 		var b64 = reader.result.replace(/^data:.+;base64,/, '');
 	 		document.getElementById("image").value = b64;
-      alert(b64);
 		};
 		reader.readAsDataURL(file);
 	};
-</script -->
+</script>
