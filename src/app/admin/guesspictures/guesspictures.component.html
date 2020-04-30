@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-1">
 
-    </div>
-    <div class="col-md-10">
+    <div class="col-md-12">
       <table class="table table-striped">
         <tr>
           <th>
@@ -27,23 +25,22 @@
         </tr>
         <tr>
           <td>
-            <input placeholder="solution" [(ngModel)]="guesspicturetoinsert.solution">
+            <input placeholder="solution" required [(ngModel)]="guesspicturetoinsert.solution">
           </td>
 
           <td>
-            <input type="file" id="fileImage"  placeholder="image">
-            <input type="hidden" [(ngModel)]="guesspicturetoinsert.image" id="image">
+            <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" />
           </td>
 
           <td>
             <select placeholder="category" [(ngModel)]="guesspicturetoinsert.category">
-              <option>scegli</option>
+              <option selected disabled [value]="">Choose one...</option>
               <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
             </select>
           </td>
           <td>
             <select placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
-              <option>scegli</option>
+              <option selected disabled [value]="">Choose one...</option>
               <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
             </select>
           </td>
@@ -59,16 +56,17 @@
             <input [(ngModel)]="g.solution">
           </td>
           <td>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">Open Image</button>
+            <button type="button" (click)="imageModal(g.image)" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">Change Image</button>
+            <input type="hidden" [(ngModel)]="g.image" value="g.image">
           </td>
           <td>
-            <select [(ngModel)]="g.category">
-              <option *ngFor="let c of categoriesDTO" [selected]="g.category===c"> {{c.title}} </option>
+            <select [(ngModel)]="g.category.id">
+              <option [ngValue]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
             </select>
           </td>
           <td>
-            <select [(ngModel)]="g.level">
-              <option *ngFor="let l of levelsDTO" [selected]="g.level===l"> {{l.name}} </option>
+            <select [(ngModel)]="g.level.id">
+              <option [ngValue]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
             </select>
           </td>
           <td>
@@ -83,7 +81,7 @@
     <div class="col-md-1">
             
     <!-- Modal -->
-    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -92,31 +90,15 @@
              </button>
           </div>
           <div class="modal-body">
-            <img style="max-width: 100%;" src="data:image/png;base64,{{b64}}">
+            <img style="max-width: 100%;" src="{{b64}}">
           </div>
           <div class="modal-footer">
+            <input name="imageUrlUpdate" type="file" accept="image/*" (change)="handleUpdateChange($event)" />
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
 
-    </div>
   </div>
 </div>
-
-<script>
-
-	var input = document.getElementById("fileImage");
-	
-	input.onchange = function () {
-		var file = input.files[0],
-	 	reader = new FileReader();
-	
-		reader.onloadend = function () {
-	 		var b64 = reader.result.replace(/^data:.+;base64,/, '');
-	 		document.getElementById("image").value = b64;
-		};
-		reader.readAsDataURL(file);
-	};
-</script>
