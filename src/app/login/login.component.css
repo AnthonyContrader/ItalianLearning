@@ -1,3 +1,4 @@
+/*
 form{
     margin-top:270px;
     width: 55%;
@@ -22,7 +23,7 @@ input, input:hover, input::selection, input:checked, input:focus{
 }
 
 .container-fluid{
-    background-color: rgb(91, 158, 235);
+    background-color: rgb(146, 189, 238);
     height: 100vh;
 }
 input::placeholder{
@@ -51,3 +52,4 @@ p{
 font-size: 14px;
 color: white;
 }
+*/
