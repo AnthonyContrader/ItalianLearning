@@ -56,12 +56,25 @@
             <button class="btn btn-primary btn-lg" (click)="clear()">Clear</button>
           </td>
         </tr>
-        <tr *ngFor="let findaword of findaword">
+        <tr *ngFor="let findaword of findawordsDTO">
           <td>
-            <input [(ngModel)]="findaword.username">
+            <input [(ngModel)]="findaword.solution">
           </td>
           <td>
-            <input [(ngModel)]="findaword.password">
+            <input [(ngModel)]="findaword.definition">
+          </td>
+          <td>
+            <input [(ngModel)]="findaword.sentence">
+          </td>
+          <td>
+            <select placeholder="category" [(ngModel)]="findaword.category.id">
+              <option *ngFor="let c of categoriesDTO" [ngValue]="c.id"> {{c.title}} </option>
+            </select>
+          </td>
+          <td>
+            <select placeholder="level" [(ngModel)]="findaword.level.id">
+              <option *ngFor="let l of levelsDTO" [ngValue]="l.id"> {{l.name}} </option>
+            </select>
           </td>
           <td>
             <button (click)=update(findaword)>Save</button>
