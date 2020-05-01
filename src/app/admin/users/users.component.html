@@ -1,62 +1,62 @@
 <div class="container">
-  <div class="row mt-5">
-    <div class="col-md-1">
 
-    </div>
-    <div class="col-md-10">
-      <table class="table">
-        <thead class="thead-dark"></thead>
-        <tr>
-          <th>Username</th>
-          <th>Password</th>
-          <th>Usertype</th>
-          <th>Edit</th>
-          <th>User</th>
-        </tr>
-        <tr>
-          <td>
-            <input placeholder="username" [(ngModel)]="usertoinsert.username">
+  <br>
+  <h1 class="text-center mt-5"> User </h1>
+  <br>
+  <br>
+    
+     <div class="col-12 table responsive">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr class="text-center">
+              
+            <th>Username</th>
+            <th>Password</th>
+            <th>Usertype</th>
+
+            <th colspan="2"> Action </th>
+
+          </tr>
+       </thead> 
+          <tr>
+           <td>
+             <input class="form-control" style="width: 100%" placeholder="username" [(ngModel)]="usertoinsert.username">
           </td>
           <td>
-            <input placeholder="password" [(ngModel)]="usertoinsert.password">
+            <input class="form-control" style="width: 100%" placeholder="password" [(ngModel)]="usertoinsert.password">
           </td>
           <td>
-            <select placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
+            <select class="form-control" style="width: 100%" placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
               <option value="ADMIN">ADMIN</option>
               <option value="USER">USER</option>
             </select>
           </td>
           <td>
-            <button (click)=insert(usertoinsert) type="button" class="btn btn-info">Insert</button>
+            <button (click)=insert(usertoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>
           </td>
           <td>
-            <button (click)="clear()" type="button" class="btn btn-secondary">Clear</button>
+            <button (click)="clear()" type="button" class="btn btn-secondary btn-block mr-3">Clear</button>
           </td>
         </tr>
         <tr *ngFor="let user of users">
           <td>
-            <input [(ngModel)]="user.username">
+            <input class="form-control" style="width: 100%;" [(ngModel)]="user.username">
           </td>
           <td>
-            <input [(ngModel)]="user.password">
+            <input class="form-control" style="width: 100%;" [(ngModel)]="user.password">
           </td>
           <td>
-            <select [(ngModel)]="user.usertype">
+            <select class="form-control" style="width: 100%;" [(ngModel)]="user.usertype">
               <option [selected]="user.usertype===ADMIN" value="ADMIN">ADMIN</option>
               <option [selected]="user.usertype===USER" value="USER">USER</option>
             </select>
           </td>
           <td>
-            <button (click)=update(quiz) type="button" class="btn btn-success">Save</button>
+            <button (click)=update(user) type="button" class="btn btn-success btn-block mr-3">Save</button>
           </td>
           <td>
-            <button (click)="delete(quiz)" type="button" class="btn btn-primary">Delete</button>
+            <button (click)="delete(user)" type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
           </td>
         </tr>
       </table>
-    </div>
-    <div class="col-md-1">
-
-    </div>
-  </div>
-</div>
+    

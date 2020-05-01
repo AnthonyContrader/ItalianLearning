@@ -1,29 +1,39 @@
 <!-- Created By Alessandro Alfieri -->
-<h2 class="text-center mt-2">Playlist</h2>
-<div class="row mt-5">
-  <div class="offset-md-1 col-md-10 table-responsive">
-    <table class='table table-striped' style="table-layout: auto !important;">
-      <tr class="text-center">
-        <th>
-          Name
-        </th>
-        <th>
-          Description
-        </th>
-        <th>
-          Action
-        </th>
-      </tr>
-      <tr>
-        <td>
-          <input class= "form-control-sm" style="width: 100%;" placeholder="Name" [(ngModel)]="playlisttoinsert.name">
+<div class="container">
+
+<br>
+<h1 class="text-center mt-5"> Playlist </h1>
+<br>
+<br>
+  
+    <div class="col-12 table responsive">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr class="text-center">
+            
+            <th>
+              Name
+            </th>
+            <th>
+              Description
+            </th>
+            <th colspan="4">
+              Action
+            </th>
+          </tr>  
+      </thead>  
+       <tr>
+         <td >
+           <input class= "form-control-sm" style="width: 100%;" placeholder="Name" [(ngModel)]="playlisttoinsert.name">
         </td>
         <td>
           <input class= "form-control-sm" style="width: 100%;" placeholder="Definition" [(ngModel)]="playlisttoinsert.description">
         </td>
-        <td class="text-right btn-toolbar justify-content-between">
-          <button class="btn btn-primary btn-sm mr-3" (click)="insert(playlisttoinsert)">Insert</button>
-          <button class="btn btn-secondary btn-sm mr-3" (click)="clear()">Clear</button>
+        <td colspan="2">
+          <button (click)=insert(playlisttoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>
+        </td>
+        <td colspan="2">  
+          <button (click)="clear()" type="button" class="btn btn-secondary btn-block mr-3">Clear</button>
         </td>
       </tr>
       <tr *ngFor="let playlist of playlistDTO">
@@ -33,10 +43,14 @@
         <td>
           <input class= "form-control-sm" style="width: 100%;" [(ngModel)]="playlist.description">
         </td>
-        <td class="text-right btn-toolbar justify-content-between"  style="width: auto">
-          <button class="btn btn-warning btn-sm mr-3" (click)="update(playlist)">Save</button>
-          <button class="btn btn-info btn-sm mr-3" data-toggle="modal" data-target="#gamePlaylistModal" (click)="gamePlaylist(playlist)">Detail</button>
-          <button class="btn btn-danger btn-sm mr-3" (click)="delete(playlist)">Delete</button>
+        <td>
+          <button (click)="update(playlist)"type="button" class="btn btn-success btn-block mr-3">Save</button>
+        </td>
+        <td>
+          <button class="btn btn-info btn-block mr-3" data-toggle="modal" data-target="#gamePlaylistModal" (click)="gamePlaylist(playlist)">Detail</button>
+        </td>
+        <td>
+          <button (click)="delete(playlist)"type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
         </td>
       </tr>
     </table>
