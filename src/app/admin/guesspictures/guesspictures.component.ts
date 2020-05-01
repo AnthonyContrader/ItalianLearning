@@ -27,6 +27,8 @@ export class GuesspicturesComponent implements OnInit {
   b64toinsert: string;
   b64toupdate: string;
 
+  html: string;
+
 
   constructor(private service: GuessPictureService, private serviceCategory: CategoryService, private serviceLevel:LevelService) { }
 
@@ -63,8 +65,20 @@ export class GuesspicturesComponent implements OnInit {
   }
 
   insert(guesspicture: GuessPictureDTO) {
+
+    
+    /*if(guesspicture.solution == null){
+      this.html = '<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
+      '<strong>Holy guacamole!</strong> You should check in on some of those fields below.'+
+      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+        '<span aria-hidden="true">&times;</span>'+
+      '</button>'+
+    '</div>';
+    }*/
+
     guesspicture.image = this.b64toinsert;
     this.service.insert(guesspicture).subscribe(() => this.getGuessPictures());
+    this.clear();
   }
 
   clear(){

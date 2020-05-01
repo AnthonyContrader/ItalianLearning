@@ -6,7 +6,7 @@
 <br>
 <br>
 
-    <div class="col-12">
+    <div class="col-12 table-responsive">
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
@@ -27,10 +27,10 @@
 
         <tr>
           <td>
-            <input placeholder="Title" [(ngModel)]="categorytoinsert.title">
+            <input class="form-control" placeholder="Title" [(ngModel)]="categorytoinsert.title">
           </td>
           <td>
-            <input placeholder="Description" [(ngModel)]="categorytoinsert.description">
+            <input class="form-control" placeholder="Description" [(ngModel)]="categorytoinsert.description">
           </td>
           <td>
             <button class="btn btn-primary mr-3" (click)="insert(categorytoinsert)">Insert</button>
@@ -41,10 +41,10 @@
         </tr>
         <tr *ngFor="let c of categories">
           <td>
-            <input [(ngModel)]="c.title">
+            <input class="form-control" [(ngModel)]="c.title">
           </td>
           <td>
-            <input [(ngModel)]="c.description">
+            <input class="form-control" [(ngModel)]="c.description">
           </td>
           <td>
             <button class="btn btn-warning mr-3" (click)="update(category)">Save</button>
