@@ -1,3 +1,117 @@
-<p>
-  findmistakes works!
-</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+      <table>
+        <tr>
+          <th>
+            Solution
+          </th>
+          <th>
+            Sentence
+          </th>
+          <th>
+            Definition
+          </th>
+          <th>
+            OptionA
+          </th>
+          <th>
+            OptionB
+          </th>
+          <th>
+            OptionC
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            <th>
+            Level
+            </th>
+            <th>
+          <th>
+            Edit
+          </th>
+          <th>
+            Delete
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input placeholder="Solution" [(ngModel)]="findmistaketoinsert.solution">
+          </td>
+          <td>
+            <input placeholder="Sentence" [(ngModel)]="findmistaketoinsert.sentence">
+          </td>
+          <td>
+            <input placeholder="Definition" [(ngModel)]="findmistaketoinsert.definition">
+          </td>
+          <td>
+            <input placeholder="OptionA" [(ngModel)]="findmistaketoinsert.optionA">
+          </td>
+          <td>
+            <input placeholder="OptionB" [(ngModel)]="findmistaketoinsert.optionB">
+          </td>
+          <td>
+            <input placeholder="OptionC" [(ngModel)]="findmistaketoinsert.optionC">
+          </td>
+          <!--category-->
+          <td>
+            <select placeholder="category" [(ngModel)]="findmistaketoinsert.category">
+              <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
+            </select>
+          </td>
+          <!--level-->
+          <td>
+            <select placeholder="level" [(ngModel)]="findmistaketoinsert.level">
+              <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
+            </select>
+          </td>
+          <!-- button di inserimento-->
+          <td>
+            <button (click)="insert(findmistaketoinsert)">Insert</button>
+          </td>
+          <!--button clear-->
+          <td>
+            <button (click)="clear()">Clear</button>
+          </td>
+        </tr>
+        <!-- ciclo for each per vedere tutti i giochi di organizesentence-->
+        <tr *ngFor="let findmistake of findmistakesDTO">
+          <td>
+            <input [(ngModel)]="findmistake.solution">
+          </td>
+          <td>
+            <input [(ngModel)]="findmistake.sentence">
+          </td>
+          <td>
+            <input [(ngModel)]="findmistake.definition">
+          </td>
+        <td>
+          <select [(ngModel)]="findmistake.category.id">
+            <option *ngFor="let c of categoriesDTO" [selected]="findmistake.category===c" [ngValue]="c.id"> {{c.title}} </option>
+          </select>
+        </td>
+        <td>
+          <select [(ngModel)]="findmistake.level.id">
+            <option *ngFor="let l of levelsDTO" [selected]="findmistake.level===l" [ngValue]="l.id"> {{l.name}} </option>
+          </select>
+        </td>
+          
+          <td>
+            <button (click)=update(findmistake)>Save</button>
+          </td>
+          <td>
+            <button (click)="delete(findmistake)">Delete</button>
+          </td>
+        </tr> <!--fine ciclo for each-->
+      </table>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+  </div>
+</div>
