@@ -39,10 +39,10 @@
             <input class="form-control" style="width: 100%;" [(ngModel)]="c.description">
           </td>
           <td>
-            <button (click)=update(category) type="button" class="btn btn-success btn-block mr-3">Save</button>
+            <button (click)="update(c)" type="button" class="btn btn-success btn-block mr-3">Save</button>
           </td>
           <td>
-            <button (click)="delete(category)" type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
+            <button (click)="delete(c)" type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
           </td>
         </tr>
       </table>
