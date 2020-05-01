@@ -34,7 +34,7 @@
         </td>
         <td class="text-right btn-toolbar justify-content-between"  style="width: auto">
           <button class="btn btn-warning btn-sm mr-3" (click)="update(playlist)">Save</button>
-          <button class="btn btn-warning btn-sm mr-3" (click)="gamePlaylist(playlist)">Save</button>
+          <button class="btn btn-info btn-sm mr-3" data-toggle="modal" data-target="#gamePlaylistModal" (click)="gamePlaylist(playlist)">Detail</button>
           <button class="btn btn-danger btn-sm mr-3" (click)="delete(playlist)">Delete</button>
         </td>
       </tr>
@@ -53,8 +53,8 @@
            </button>
         </div>
         <div class="modal-body">
-          <div class="offset-md-1 col-md-10 table-responsive">
-            <table class='table table-striped' style="table-layout: auto !important;">
+          <div class="col-md-12 table-responsive">
+            <table class='table table-striped' style="table-layout: auto !important;" #gameList>
               <tr class="text-center">
                 <th>
                   Solution
@@ -62,27 +62,23 @@
                 <th>
                   Game
                 </th>
-                <!-- <th>
+                <th>
                   Present
-                </th> -->
+                </th>
               </tr>
               <tr *ngFor="let game of _gamesArray">
-                <td>
-                  <input class= "form-control-sm" style="width: 100%;" type="text" [(ngModel)]="game.solution">
+                <td class="text-center">{{game.get("solution")}}</td>
+                <td class="text-center">{{game.get("name")}}</td>
+                <td class='text-center'>
+                  <input type="checkbox" class="selection_cb" [attr.data-id]="game.get('id')" [attr.data-type-game]="game.get('typeGame')" [checked]="game.get('checked') == 'true'"> 
                 </td>
-                <td>
-                  <input class= "form-control-sm" style="width: 100%;" [(ngModel)]="game.name">
-                </td>
-                <!-- <td>
-                  <input class= "form-control-sm" style="width: 100%;" [(ngModel)]="game.che">
-                </td> -->
               </tr>
             </table>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updatePlaylist(_gamesArray[0].get('idPlaylist'))">Save</button>
         </div>
       </div>
     </div>

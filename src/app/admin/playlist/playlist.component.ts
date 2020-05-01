@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { PlaylistDTO } from 'src/dto/playlistdto';
 import { PlaylistService } from 'src/service/playlist.service';
 import { GamePlaylistService } from 'src/service/gameplaylist.service';
@@ -11,8 +11,9 @@ import { GamePlaylistService } from 'src/service/gameplaylist.service';
 export class PlaylistComponent implements OnInit {
 
   playlistDTO: PlaylistDTO[];
-  _gamesArray: Array<any> = [];
+  _gamesArray: Array<any>;
   playlisttoinsert: PlaylistDTO = new PlaylistDTO();
+  @ViewChild('gameList') gamelist;
 
   constructor(private service: PlaylistService, private gpService: GamePlaylistService) { }
 
@@ -37,18 +38,36 @@ export class PlaylistComponent implements OnInit {
   }
 
   gamePlaylist(playlist: PlaylistDTO){
-    // ("#gamePlaylistModal").modal('show')
+    this._gamesArray = [];
     this.gpService.findByPlaylist(playlist.id).subscribe(obj =>{
-      for (var rk in obj){
+      obj.forEach(rk => {
         let map = new Map<string, any>();
-        map.set("id", Number(obj.id));
-        map.set("solution", obj.solution);
-        map.set("typeGame", obj.typeGame);
-        map.set("name", obj.name);
-        map.set("checked", Boolean(obj.checked));
+        map.set("id", parseInt(rk.id));
+        map.set("solution", rk.solution);
+        map.set("typeGame", rk.typeGame);
+        map.set("name", rk.name);
+        map.set("checked", rk.checked);
+        map.set("idPlaylist", playlist.id )
         this._gamesArray.push(map);
-      }
+      });
     })
+  console.log(this._gamesArray)
+  }
+
+  updatePlaylist(playlist_id: number){
+    console.log(playlist_id)
+    let gameList: Array<any> = new Array<any>();
+    let checkboxes: Array<any> = Array.from(this.gamelist.nativeElement.querySelectorAll('.selection_cb'))
+    for (let checkbox of checkboxes){
+      let list = {}
+      if (checkbox.checked){
+        list["id"] = checkbox.dataset.id.toString()
+        list["typeGame"] = checkbox.dataset.typeGame
+        gameList.push(list)
+      }
+    }
+    console.log(gameList)
+    this.gpService.updatePlaylist(playlist_id, gameList).subscribe(() => this.getPlaylist());
   }
 
   clear(){
