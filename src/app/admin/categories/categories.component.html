@@ -1,22 +1,17 @@
 <div class="container">
 
-<br>
-<h1 class="text-center"> Categories </h1>
-<br>
-<br>
+    <br>
+    <h1 class="text-center"> Categories </h1>
+    <br>
+    <br>
 
     <div class="col-12 table-responsive">
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr class="text-center">
           
-            <th>
-              Title
-            </th>
-            <th>
-              Description
-            </th>
-           
+            <th><abbr title="required">* </abbr>Title</th>
+            <th><abbr title="required">* </abbr>Description</th>
             <th colspan="2"> Action </th>
            
            </tr>
@@ -24,10 +19,10 @@
 
         <tr>
           <td>
-            <input class="form-control" style="width: 100%;" placeholder="Title" [(ngModel)]="categorytoinsert.title">
+            <input [required]="true" class="form-control" style="width: 100%;" placeholder="Title" [(ngModel)]="categorytoinsert.title">
           </td>
           <td>
-            <input class="form-control" style="width: 100%;" placeholder="Description" [(ngModel)]="categorytoinsert.description">
+            <input [required]="true" class="form-control" style="width: 100%;" placeholder="Description" [(ngModel)]="categorytoinsert.description">
           </td>
           <td>
             <button (click)=insert(categorytoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>

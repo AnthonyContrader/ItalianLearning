@@ -1,49 +1,45 @@
+<!-- @author Enzo Tasca -->
 <div class="row">
 
-
-
-<!-- div class="col-12" [innerHTML]="html"></div -->
-
-<div class="alert alert-danger" role="alert">
-  This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span></button>
-</div>
-
-  
   <div class="col-12 table-responsive">
+
+    <br>
+    <h1 class="text-center mt-5"> Guess Pictures </h1>
+    <br>
+    <br>
+
     <table class="table table-striped">
       <thead class="thead-dark">
         <tr class="text-center">
-          <th>Solution</th>
-          <th>Image</th>
-          <th>Category</th>
-          <th>Level</th>
+          <th><abbr title="required">* </abbr>Solution</th>
+          <th><abbr title="required">* </abbr>Image</th>
+          <th><abbr title="required">* </abbr>Category</th>
+          <th><abbr title="required">* </abbr>Level</th>
           <th colspan="2">Action</th>
         </tr>
       </thead>
 
       <tr>
           <td>
-            <input class="form-control" placeholder="solution" required [(ngModel)]="guesspicturetoinsert.solution">
+            <input [required]="true" class="form-control" placeholder="solution" [(ngModel)]="guesspicturetoinsert.solution">
           </td>
 
           <td>
             <div class="custom-file">
-              <input accept="image/*" (change)="handleInputChange($event)" type="file" class="custom-file-input" id="validatedCustomFile">
+              <input [required]="true" accept="image/*" (change)="handleInputChange($event, true)" type="file" class="custom-file-input" id="validatedCustomFile">
               <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
             </div>
           </td>
 
           <td>
-            <select class="form-control" placeholder="category" [(ngModel)]="guesspicturetoinsert.category">
+            <select [required]="true" class="form-control" placeholder="category" [(ngModel)]="guesspicturetoinsert.category">
               <option selected disabled [value]="">Choose one...</option>
               <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
             </select>
           </td>
 
           <td>
-            <select class="form-control" required placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
+            <select [required]="true" class="form-control" placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
               <option selected disabled [value]="">Choose one...</option>
               <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
             </select>
@@ -59,10 +55,10 @@
 
       <tr *ngFor="let g of guesspicturesDTO">
         <td>
-          <input class="form-control" [(ngModel)]="g.solution">
+          <input [required]="true" class="form-control" [(ngModel)]="g.solution">
         </td>
           <td class="text-center">
-            <button type="button" (click)="imageModal(g.image)" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">Change Image</button>
+            <button type="button" (click)="imageModal(g.image,g.id)" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">Change Image</button>
             <input type="hidden" [(ngModel)]="g.image" value="g.image">
           </td>
         <td>
@@ -79,7 +75,7 @@
           <button class="btn btn-success btn-block" (click)=update(g)>Save</button>
         </td>
         <td>
-          <button class="btn btn-danger btn-block" (click)="delete(g)">Delete</button>
+          <button style="background-color: #c52121 !important;" class="btn btn-danger btn-block" (click)="delete(g)">Delete</button>
         </td>
       </tr>
     </table>
@@ -98,7 +94,7 @@
           </div>
           <div class="modal-footer">
             <div class="custom-file">
-              <input (change)="handleUpdateChange($event)" type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile" required>
+              <input (change)="handleInputChange($event, false)" type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile" required>
               <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
