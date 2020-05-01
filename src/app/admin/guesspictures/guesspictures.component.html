@@ -1,85 +1,89 @@
-<div class="container">
-  <div class="row mt-5">
+<div class="row">
 
-    <div class="col-md-12">
-      <table class="table table-striped">
-        <tr>
-          <th>
-            Solution
-          </th>
-          <th>
-            Image
-          </th>
-          <th>
-            Category
-          </th>
-          <th>
-            Level
-          </th>
-          <th>
-            Edit
-          </th>
-          <th>
-            Delete
-          </th>
+
+
+<!-- div class="col-12" [innerHTML]="html"></div -->
+
+<div class="alert alert-danger" role="alert">
+  This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+</div>
+
+  
+  <div class="col-12 table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr class="text-center">
+          <th>Solution</th>
+          <th>Image</th>
+          <th>Category</th>
+          <th>Level</th>
+          <th colspan="2">Action</th>
         </tr>
-        <tr>
+      </thead>
+
+      <tr>
           <td>
-            <input placeholder="solution" required [(ngModel)]="guesspicturetoinsert.solution">
+            <input class="form-control" placeholder="solution" required [(ngModel)]="guesspicturetoinsert.solution">
           </td>
 
           <td>
-            <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" />
+            <div class="custom-file">
+              <input accept="image/*" (change)="handleInputChange($event)" type="file" class="custom-file-input" id="validatedCustomFile">
+              <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+            </div>
           </td>
 
           <td>
-            <select placeholder="category" [(ngModel)]="guesspicturetoinsert.category">
+            <select class="form-control" placeholder="category" [(ngModel)]="guesspicturetoinsert.category">
               <option selected disabled [value]="">Choose one...</option>
               <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
             </select>
           </td>
+
           <td>
-            <select placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
+            <select class="form-control" required placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
               <option selected disabled [value]="">Choose one...</option>
               <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
             </select>
           </td>
+
           <td>
-            <button class="btn btn-primary btn" (click)="insert(guesspicturetoinsert)">Insert</button>
+            <button type="submit" class="btn btn-primary btn-block" (click)="insert(guesspicturetoinsert)">Insert</button>
           </td>
           <td>
-            <button class="btn btn-primary btn" (click)="clear()">Clear</button>
+            <button class="btn btn-secondary btn-block" (click)="clear()">Clear</button>
           </td>
-        </tr>
-        <tr *ngFor="let g of guesspicturesDTO">
-          <td>
-            <input [(ngModel)]="g.solution">
-          </td>
-          <td>
+      </tr>
+
+      <tr *ngFor="let g of guesspicturesDTO">
+        <td>
+          <input class="form-control" [(ngModel)]="g.solution">
+        </td>
+          <td class="text-center">
             <button type="button" (click)="imageModal(g.image)" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">Change Image</button>
             <input type="hidden" [(ngModel)]="g.image" value="g.image">
           </td>
-          <td>
-            <select [(ngModel)]="g.category.id">
-              <option [ngValue]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
-            </select>
-          </td>
-          <td>
-            <select [(ngModel)]="g.level.id">
-              <option [ngValue]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
-            </select>
-          </td>
-          <td>
-            <button (click)=update(g)>Save</button>
-          </td>
-          <td>
-            <button (click)="delete(g)">Delete</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="col-md-1">
-            
+        <td>
+          <select class="form-control" [(ngModel)]="g.category.id">
+            <option [ngValue]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-control" [(ngModel)]="g.level.id">
+            <option [ngValue]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
+          </select>
+        </td>
+        <td>
+          <button class="btn btn-success btn-block" (click)=update(g)>Save</button>
+        </td>
+        <td>
+          <button class="btn btn-danger btn-block" (click)="delete(g)">Delete</button>
+        </td>
+      </tr>
+    </table>
+
     <!-- Modal -->
     <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -89,11 +93,14 @@
               <span aria-hidden="true">&times;</span>
              </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body text-center">
             <img style="max-width: 100%;" src="{{b64}}">
           </div>
           <div class="modal-footer">
-            <input name="imageUrlUpdate" type="file" accept="image/*" (change)="handleUpdateChange($event)" />
+            <div class="custom-file">
+              <input (change)="handleUpdateChange($event)" type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile" required>
+              <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+            </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -102,3 +109,6 @@
 
   </div>
 </div>
+
+
+

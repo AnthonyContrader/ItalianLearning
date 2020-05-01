@@ -36,6 +36,7 @@ export class CategoriesComponent implements OnInit {
 
   insert(category: CategoryDTO) {
     this.service.insert(category).subscribe(() => this.getCategories());
+    this.clear();
   }
 
   clear(){
