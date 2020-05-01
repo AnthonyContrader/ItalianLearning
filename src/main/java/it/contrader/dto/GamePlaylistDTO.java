@@ -21,7 +21,7 @@ public class GamePlaylistDTO {
 	
 	private Long id;
 	
-	private String TypeGame;
+	private String typeGame;
 	
 	private Long idGame;
 	
