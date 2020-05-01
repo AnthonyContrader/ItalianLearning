@@ -6,6 +6,8 @@ import { CategoryService } from 'src/service/category.service';
 import { LevelService } from 'src/service/level.service';
 import { LevelDTO } from 'src/dto/leveldto';
 
+//created by Gabriella Brunetto
+
 @Component({
   selector: 'app-findawords',
   templateUrl: './findawords.component.html',
