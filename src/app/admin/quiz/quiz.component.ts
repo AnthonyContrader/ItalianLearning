@@ -42,11 +42,13 @@ export class QuizComponent implements OnInit {
   }
   update(quiz: QuizDTO) {
     this.service.update(quiz).subscribe(() => this.getQuiz());
+    
     //aggiorna i dati e restituisce la lista aggiornata
   }
   insert(quiz: QuizDTO){
     console.log(quiz);
     this.service.insert(quiz).subscribe(() => this.getQuiz());
+    this.clear();
   }
   clear(){
     this.quiztoinsert = new QuizDTO();

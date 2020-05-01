@@ -2,8 +2,7 @@
 <div class="container">
 
   <br>
-  <h1 class="text-center"> Quiz </h1>
-  <br>
+  <h1 class="text-center mt-5"> Quiz </h1>
   <br>
   <br>
   
@@ -46,10 +45,10 @@
             </select>
           </td>
           <td>
-            <button (click)=insert(quiztoinsert) type="button" class="btn btn-primary mr-3">Insert</button>
+            <button (click)=insert(quiztoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>
           </td>
           <td>
-            <button (click)="clear()" type="button" class="btn btn-secondary mr-3">Clear</button>
+            <button (click)="clear()" type="button" class="btn btn-secondary btn-block mr-3">Clear</button>
           </td>
         </tr>
         <tr *ngFor="let quiz of quizDTO">
@@ -73,13 +72,12 @@
             </select>
           </td>
           <td>
-            <button (click)=update(quiz) type="button" class="btn btn-success mr-3">Save</button>
+            <button (click)=update(quiz) type="button" class="btn btn-success btn-block mr-3">Save</button>
           </td>
           <td>
-            <button (click)="delete(quiz)" type="button" class="btn btn-danger mr-3"style="background-color: #c52121 !important;">Delete</button>
+            <button (click)="delete(quiz)" type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
           </td>
-                    
         </tr>
       </table>  
-     
+  
     
