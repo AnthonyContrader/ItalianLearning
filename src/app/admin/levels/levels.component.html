@@ -2,22 +2,24 @@
 <div class="container">
 
 <br>
-<h1 class="text-center mt-5"> Level </h1>
+<h1 class="text-center mt-5"> Levels </h1>
 <br>
 <br>
     
-      <div class="col-12 table responsive">
+      <div class="col-12 table-responsive">
         <table class="table table-striped">
           <thead class="thead-dark">
             <tr class="text-center">
 
             <th>
+              <abbr title="required">*</abbr>
               Name
             </th>
             <th>
               Description
             </th>
             <th>
+              <abbr title="required">*</abbr>
               Score
             </th>
             <th colspan="2"> Action </th>
@@ -26,13 +28,13 @@
         </thead>  
           <tr>
            <td>
-            <input class="form-control" style="width: 100%;" placeholder="Name" [(ngModel)]="leveltoinsert.name">
+            <input class="form-control" [required]="true" style="width: 100%;" placeholder="Name" [(ngModel)]="leveltoinsert.name">
           </td>
           <td>
             <input class="form-control" style="width: 100%;" placeholder="Definition" [(ngModel)]="leveltoinsert.description">
           </td>
           <td>
-            <input class="form-control" style="width: 100%;" type="number" placeholder="Score" [(ngModel)]="leveltoinsert.score">
+            <input class="form-control" [required]="true" style="width: 100%;" type="number" placeholder="Score" [(ngModel)]="leveltoinsert.score">
           </td>
           <td >
             <button (click)=insert(leveltoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>

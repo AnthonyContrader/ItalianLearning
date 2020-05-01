@@ -5,14 +5,14 @@
   <br>
   <br>
     
-     <div class="col-12 table responsive">
+     <div class="col-12 table-responsive">
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr class="text-center">
               
-            <th>Username</th>
-            <th>Password</th>
-            <th>Usertype</th>
+            <th><abbr title="required">*</abbr>Username</th>
+            <th><abbr title="required">*</abbr>Password</th>
+            <th><abbr title="required">*</abbr>Usertype</th>
 
             <th colspan="2"> Action </th>
 
@@ -20,13 +20,13 @@
        </thead> 
           <tr>
            <td>
-             <input class="form-control" style="width: 100%" placeholder="username" [(ngModel)]="usertoinsert.username">
+             <input class="form-control" [required]="true" style="width: 100%" placeholder="username" [(ngModel)]="usertoinsert.username">
           </td>
           <td>
-            <input class="form-control" style="width: 100%" placeholder="password" [(ngModel)]="usertoinsert.password">
+            <input class="form-control" [required]="true" style="width: 100%" placeholder="password" [(ngModel)]="usertoinsert.password">
           </td>
           <td>
-            <select class="form-control" style="width: 100%" placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
+            <select class="form-control" [required]="true" style="width: 100%" placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
               <option value="ADMIN">ADMIN</option>
               <option value="USER">USER</option>
             </select>
