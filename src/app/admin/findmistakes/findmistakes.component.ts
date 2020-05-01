@@ -1,8 +1,13 @@
+//Created By Alessandro Alfieri
 import { Component, OnInit } from '@angular/core';
 import { FindMistakeDTO } from 'src/dto/findmistakedto';
 import { FindMistakeService } from 'src/service/findmistake.service';
 import { CategoriesComponent } from '../categories/categories.component';
 import { LevelsComponent } from '../levels/levels.component';
+import { CategoryDTO } from 'src/dto/categorydto';
+import { LevelDTO } from 'src/dto/leveldto';
+import { CategoryService } from 'src/service/category.service';
+import { LevelService } from 'src/service/level.service';
 
 @Component({
   selector: 'app-findmistakes',
@@ -13,8 +18,10 @@ export class FindmistakesComponent implements OnInit {
 
   findmistakesDTO: FindMistakeDTO[];
   findmistaketoinsert: FindMistakeDTO = new FindMistakeDTO();
+  levelsDTO: LevelDTO[];
+  categoriesDTO: CategoryDTO[];
 
-  constructor(private service: FindMistakeService, private category: CategoriesComponent, private level: LevelsComponent) { }
+  constructor(private service: FindMistakeService, private categoryService: CategoryService, private levelService: LevelService) { }
 
   ngOnInit() {
     this.getFindMistakes();
@@ -22,8 +29,8 @@ export class FindmistakesComponent implements OnInit {
 
   getFindMistakes() {
     this.service.getAll().subscribe(findmistakes => this.findmistakesDTO = findmistakes);
-    this.level.getLevels();
-    this.category.getCategories();
+    this.categoryService.getAll().subscribe(categories => this.categoriesDTO = categories);
+    this.levelService.getAll().subscribe(levels => this.levelsDTO = levels);
   }
 
   delete(findmistake: FindMistakeDTO){

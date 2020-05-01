@@ -1,3 +1,4 @@
+//Created By Alessandro Alfieri
 import { Component, OnInit } from '@angular/core';
 import { HangmanDTO } from 'src/dto/hangmandto';
 import { HangmanService } from 'src/service/hangman.service';
