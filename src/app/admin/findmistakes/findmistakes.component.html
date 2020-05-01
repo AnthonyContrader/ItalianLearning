@@ -7,29 +7,35 @@
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr class="text-center">
-
         <th>
+          <abbr title="required">*</abbr>
           Solution
         </th>
         <th>
           Definition
         </th>
         <th>
+          <abbr title="required">*</abbr>
           Sentence
         </th>
         <th>
+          <abbr title="required">*</abbr>
           Option A
         </th>
         <th>
+          <abbr title="required">*</abbr>
           Option B
         </th>
         <th>
+          <abbr title="required">*</abbr>
           Option C
         </th>
         <th>
+          <abbr title="required">*</abbr>
           Level
         </th>
         <th>
+          <abbr title="required">*</abbr>
           Category
         </th>
 
@@ -39,7 +45,7 @@
     </thead>
     <tr>
       <td>
-        <input class="form-control" style="width: 100%;" placeholder="Solution"
+        <input class="form-control has-danger has error" [required]="true" style="width: 100%;" placeholder="Solution"
           [(ngModel)]="findmistaketoinsert.solution">
       </td>
       <td>
@@ -47,29 +53,29 @@
           [(ngModel)]="findmistaketoinsert.definition">
       </td>
       <td>
-        <input class="form-control" style="width: 100%;" placeholder="Sentence"
+        <input class="form-control" style="width: 100%;" [required]="true" placeholder="Sentence"
           [(ngModel)]="findmistaketoinsert.sentence">
       </td>
       <td>
-        <input class="form-control" style="width: 100%;" placeholder="Option A"
+        <input class="form-control" style="width: 100%;" [required]="true" placeholder="Option A"
           [(ngModel)]="findmistaketoinsert.optionA">
       </td>
       <td>
-        <input class="form-control" style="width: 100%;" placeholder="Option B"
+        <input class="form-control" style="width: 100%;" [required]="true" placeholder="Option B"
           [(ngModel)]="findmistaketoinsert.optionB">
       </td>
       <td>
-        <input class="form-control" style="width: 100%;" placeholder="Option C"
+        <input class="form-control" style="width: 100%;" [required]="true" placeholder="Option C"
           [(ngModel)]="findmistaketoinsert.optionC">
       </td>
       <td>
-        <select class="form-control" style="width: 100%;" placeholder="level" [(ngModel)]="findmistaketoinsert.level">
+        <select class="form-control" style="width: 100%;" [required]="true" placeholder="level" [(ngModel)]="findmistaketoinsert.level">
           <option [value]="">Choose one...</option>
           <option *ngFor="let level of levelsDTO" [ngValue]="level">{{level.name}}</option>
         </select>
       </td>
       <td>
-        <select class="form-control" style="width: 100%;" [(ngModel)]="findmistaketoinsert.category">
+        <select class="form-control" style="width: 100%;" [required]="true" [(ngModel)]="findmistaketoinsert.category">
           <option [value]="0">Choose one...</option>
           <option *ngFor="let category of categoriesDTO" [ngValue]="category">{{category.title}}</option>
         </select>
