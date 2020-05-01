@@ -1,92 +1,91 @@
 <div class="container">
-  <div class="row mt-5">
-    <div class="col-md-1">
+  <br>
+  <h1 class="text-center m-3">Find A Word</h1>
+  <div class="col-12 table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+       <tr class="text-center">
+          <th>
+          Solution
+          </th>
+          <th>
+          Definition
+          </th>
+          <th>
+          Sentence
+          </th>
+          <th>
+          Category
+          </th>
+          <th>
+          Level
+         </th>
+          <th colspan="2">
+         Action
+          </th>
+       </tr>
+      </thead>
+      <tr>
+        <td>
+          <input class="form-control" placeholder="Solution" [(ngModel)]="findawordtoinsert.solution">
+        </td>
+        <td>
+          <input class="form-control" placeholder="Definition" [(ngModel)]="findawordtoinsert.definition">
+        </td>
+        <td>
+          <input class="form-control" placeholder="Sentence" [(ngModel)]="findawordtoinsert.sentence">
+        </td>
+        <td>
+          <select class="form-control" placeholder="category" [(ngModel)]="findawordtoinsert.category">
+            <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
+          </select>
+        </td>
+        <td>
+          <select class="form-control" placeholder="level" [(ngModel)]="findawordtoinsert.level">
+            <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
+          </select>
+        </td>
+        
+        <td>
+          <button class="btn btn-primary mr-3 btn-block" type="button" (click)="insert(findawordtoinsert)">Insert</button>
+        </td>
+        <td>
+          <button class="btn btn-secondary mr-3 btn-block" type="button" (click)="clear()">Clear</button>
+        </td>
+      </tr>
+      <tr *ngFor="let findaword of findawordsDTO">
+        <td>
+          <input class="form-control" [(ngModel)]="findaword.solution">
+        </td>
+        <td>
+          <input class="form-control" [(ngModel)]="findaword.definition">
+        </td>
+        <td>
+          <input class="form-control" [(ngModel)]="findaword.sentence">
+        </td>
+        <td>
+          <select class="form-control" placeholder="category" [(ngModel)]="findaword.category.id">
+            <option *ngFor="let c of categoriesDTO" [ngValue]="c.id"> {{c.title}} </option>
+          </select>
+        </td>
+        <td>
+          <select class="form-control" placeholder="level" [(ngModel)]="findaword.level.id">
+            <option *ngFor="let l of levelsDTO" [ngValue]="l.id"> {{l.name}} </option>
+          </select>
+        </td>
+        <td>
+          <button (click)=update(findaword) type="button" class="btn btn-success mr-3 btn-block">Save</button>
+        </td>
+        <td>
+          <button (click)=delete(findaword) type="button" class="btn btn-danger mr-3 btn-block" style="background-color:#c52121 !important;">Delete</button>
+        </td>
+      </tr>
+    </table>
 
-    </div>
-    <div class="col-md-10">
-      <table class="table table-striped">
-        <tr>
-          <th>
-            Solution
-          </th>
-          <th>
-            Definition
-          </th>
-          <th>
-            Sentence
-          </th>
-          <th>
-            Level
-          </th>
-          <th>
-            Category
-          </th>
-          <th>
-            Edit
-          </th>
-          <th>
-            Delete
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <input placeholder="Solution" [(ngModel)]="findawordtoinsert.solution">
-          </td>
-          <td>
-            <input placeholder="Definition" [(ngModel)]="findawordtoinsert.definition">
-          </td>
-          <td>
-            <input placeholder="Sentence" [(ngModel)]="findawordtoinsert.sentence">
-          </td>
-          <td>
-            <select placeholder="category" [(ngModel)]="findawordtoinsert.category">
-              <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
-            </select>
-          </td>
-          <td>
-            <select placeholder="level" [(ngModel)]="findawordtoinsert.level">
-              <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
-            </select>
-          </td>
-          
-          <td>
-            <button class="btn btn-primary btn-lg" (click)="insert(findawordtoinsert)">Insert</button>
-          </td>
-          <td>
-            <button class="btn btn-primary btn-lg" (click)="clear()">Clear</button>
-          </td>
-        </tr>
-        <tr *ngFor="let findaword of findawordsDTO">
-          <td>
-            <input [(ngModel)]="findaword.solution">
-          </td>
-          <td>
-            <input [(ngModel)]="findaword.definition">
-          </td>
-          <td>
-            <input [(ngModel)]="findaword.sentence">
-          </td>
-          <td>
-            <select placeholder="category" [(ngModel)]="findaword.category.id">
-              <option *ngFor="let c of categoriesDTO" [ngValue]="c.id"> {{c.title}} </option>
-            </select>
-          </td>
-          <td>
-            <select placeholder="level" [(ngModel)]="findaword.level.id">
-              <option *ngFor="let l of levelsDTO" [ngValue]="l.id"> {{l.name}} </option>
-            </select>
-          </td>
-          <td>
-            <button (click)=update(findaword)>Save</button>
-          </td>
-          <td>
-            <button (click)="delete(findaword)">Delete</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="col-md-1">
-
-    </div>
   </div>
+    
+      
 </div>
+    
+
+    
