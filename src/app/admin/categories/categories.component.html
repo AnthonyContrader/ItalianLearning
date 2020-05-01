@@ -4,53 +4,50 @@
 <h1 class="text-center"> Categories </h1>
 <br>
 <br>
-<br>
 
     <div class="col-12 table-responsive">
       <table class="table table-striped">
         <thead class="thead-dark">
-          <tr>
+          <tr class="text-center">
+          
             <th>
               Title
             </th>
             <th>
               Description
             </th>
-            <th>
-              Edit
-            </th>
-            <th>
-              Delete
-            </th>
-          </tr>
+           
+            <th colspan="2"> Action </th>
+           
+           </tr>
         </thead>
 
         <tr>
           <td>
-            <input class="form-control" placeholder="Title" [(ngModel)]="categorytoinsert.title">
+            <input class="form-control" style="width: 100%;" placeholder="Title" [(ngModel)]="categorytoinsert.title">
           </td>
           <td>
-            <input class="form-control" placeholder="Description" [(ngModel)]="categorytoinsert.description">
+            <input class="form-control" style="width: 100%;" placeholder="Description" [(ngModel)]="categorytoinsert.description">
           </td>
           <td>
-            <button class="btn btn-primary mr-3" (click)="insert(categorytoinsert)">Insert</button>
+            <button (click)=insert(categorytoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>
           </td>
           <td>
-            <button class="btn btn-secondary mr-3" (click)="clear()">Clear</button>
+            <button (click)="clear()" type="button" class="btn btn-secondary btn-block mr-3">Clear</button>
           </td>
         </tr>
         <tr *ngFor="let c of categories">
           <td>
-            <input class="form-control" [(ngModel)]="c.title">
+            <input class="form-control" style="width: 100%;" [(ngModel)]="c.title">
           </td>
           <td>
-            <input class="form-control" [(ngModel)]="c.description">
+            <input class="form-control" style="width: 100%;" [(ngModel)]="c.description">
           </td>
           <td>
-            <button class="btn btn-warning mr-3" (click)="update(category)">Save</button>
+            <button (click)=update(category) type="button" class="btn btn-success btn-block mr-3">Save</button>
           </td>
           <td>
-            <button class="btn btn-danger mr-3" (click)="delete(category)">Delete</button>
+            <button (click)="delete(category)" type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
           </td>
         </tr>
       </table>

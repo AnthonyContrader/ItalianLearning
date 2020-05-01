@@ -65,6 +65,8 @@ export class OrganizesentencesComponent implements OnInit {
   insert(organizesentence: OrganizeSentenceDTO) {
     //inserisce i dati
     this.service.insert(organizesentence).subscribe(() => this.getOrganizeSentences());
+    //svuoto i campi
+    this.clear();
   }
 
   clear(){
