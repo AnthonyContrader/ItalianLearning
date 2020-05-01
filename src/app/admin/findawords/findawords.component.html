@@ -1,23 +1,30 @@
-<div class="container">
-  <br>
-  <h1 class="text-center m-3">Find A Word</h1>
+<div class="row">
   <div class="col-12 table-responsive">
+    <br>
+    <h1 class="text-center mt-5"> Find A Word </h1>
+    <br>
+    <br>
     <table class="table table-striped">
       <thead class="thead-dark">
        <tr class="text-center">
           <th>
+            <!--required dice ke è obbligatorio riempire il campo altrimenti non comunica non lo spring-->
+            <abbr title="required">*</abbr>
           Solution
           </th>
           <th>
           Definition
           </th>
           <th>
+            <abbr title="required">*</abbr>
           Sentence
           </th>
           <th>
+            <abbr title="required">*</abbr>
           Category
           </th>
           <th>
+            <abbr title="required">*</abbr>
           Level
          </th>
           <th colspan="2">
@@ -27,21 +34,21 @@
       </thead>
       <tr>
         <td>
-          <input class="form-control" placeholder="Solution" [(ngModel)]="findawordtoinsert.solution">
+          <input [required]="true" class="form-control" placeholder="Solution" [(ngModel)]="findawordtoinsert.solution">
         </td>
         <td>
           <input class="form-control" placeholder="Definition" [(ngModel)]="findawordtoinsert.definition">
         </td>
         <td>
-          <input class="form-control" placeholder="Sentence" [(ngModel)]="findawordtoinsert.sentence">
+          <input [required]="true" class="form-control" placeholder="Sentence" [(ngModel)]="findawordtoinsert.sentence">
         </td>
         <td>
-          <select class="form-control" placeholder="category" [(ngModel)]="findawordtoinsert.category">
+          <select [required]="true" class="form-control" placeholder="category" [(ngModel)]="findawordtoinsert.category">
             <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
           </select>
         </td>
         <td>
-          <select class="form-control" placeholder="level" [(ngModel)]="findawordtoinsert.level">
+          <select [required]="true" class="form-control" placeholder="level" [(ngModel)]="findawordtoinsert.level">
             <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
           </select>
         </td>
@@ -55,21 +62,21 @@
       </tr>
       <tr *ngFor="let findaword of findawordsDTO">
         <td>
-          <input class="form-control" [(ngModel)]="findaword.solution">
+          <input [required]="true" class="form-control" [(ngModel)]="findaword.solution">
         </td>
         <td>
           <input class="form-control" [(ngModel)]="findaword.definition">
         </td>
         <td>
-          <input class="form-control" [(ngModel)]="findaword.sentence">
+          <input [required]="true" class="form-control" [(ngModel)]="findaword.sentence">
         </td>
         <td>
-          <select class="form-control" placeholder="category" [(ngModel)]="findaword.category.id">
+          <select [required]="true" class="form-control" placeholder="category" [(ngModel)]="findaword.category.id">
             <option *ngFor="let c of categoriesDTO" [ngValue]="c.id"> {{c.title}} </option>
           </select>
         </td>
         <td>
-          <select class="form-control" placeholder="level" [(ngModel)]="findaword.level.id">
+          <select [required]="true" class="form-control" placeholder="level" [(ngModel)]="findaword.level.id">
             <option *ngFor="let l of levelsDTO" [ngValue]="l.id"> {{l.name}} </option>
           </select>
         </td>
