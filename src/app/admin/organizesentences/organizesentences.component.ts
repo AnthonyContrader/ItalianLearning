@@ -16,7 +16,7 @@ import { CategoryService } from 'src/service/category.service';
 })
 export class OrganizesentencesComponent implements OnInit {
 
-
+  //Oggetti hanno le variabili definiti qui e quelle definite ne costruttore
   organizesentencesDTO: OrganizeSentenceDTO[]; //array di OrganizeSentenceDTO
   organizesentencetoinsert: OrganizeSentenceDTO = new OrganizeSentenceDTO(); //definisco un singolo oggetto vuoto di tipo OrganizeSenteceDTO
 

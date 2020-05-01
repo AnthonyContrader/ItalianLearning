@@ -43,13 +43,13 @@
           <!--category-->
           <td>
             <select placeholder="category" [(ngModel)]="organizesentencetoinsert.category">
-              <option *ngFor="let c of categoriesDTO" [ngValue]="c.id"> {{c.title}} </option>
+              <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
             </select>
           </td>
           <!--level-->
           <td>
             <select placeholder="level" [(ngModel)]="organizesentencetoinsert.level">
-              <option *ngFor="let l of levelsDTO" [ngValue]="l.id"> {{l.name}} </option>
+              <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
             </select>
           </td>
           <!-- button di inserimento-->
