@@ -59,6 +59,7 @@ export class FindawordsComponent implements OnInit {
 
   insert(findaword: FindAWordDTO){
     this.service.insert(findaword).subscribe(()=> this.getFindAWord());
+    this.clear(); //cancella automaticamente il contenuto della cella una volta fatto l'insert
   }
 
   clear(){
