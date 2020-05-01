@@ -1,21 +1,27 @@
 <!--created by Anna Cecere-->
-<div class="container">
-
-<br>
-<h1 class="text-center mt-5"> Quiz </h1>
-<br>
-<br>
+<div class="row">
   
     <div class="col-12 table responsive">
+
+      <br>
+      <h1 class="text-center mt-5"> Quiz </h1>
+      <br>
+      <br>
+      
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr class="text-center">
             
-          <th> Solution </th>
-          <th> Definition </th>
-          <th> Sentence </th>
-          <th> Category </th>
-          <th> Level </th>
+          <th>
+            <abbr title="required">*</abbr> Solution </th>
+          <th>
+            <abbr title="required">*</abbr> Definition </th>
+          <th> 
+            <abbr title="required">*</abbr>Sentence </th>
+          <th>
+            <abbr title="required">*</abbr> Category </th>
+          <th> 
+            <abbr title="required">*</abbr> Level </th>
           
           <th colspan="2"> Action </th>
          
@@ -24,23 +30,23 @@
       </thead>
         <tr>
           <td>
-            <input class="form-control" style="width: 100%;" placeholder="solution" [(ngModel)]="quiztoinsert.solution">
+            <input class="form-control  has-danger has error" [required]="true" style="width: 100%;" placeholder="solution" [(ngModel)]="quiztoinsert.solution">
           </td>
           <td>
-            <input class="form-control" style="width: 100%;" placeholder="definition" [(ngModel)]="quiztoinsert.definition">
+            <input class="form-control has-danger has error" [required]="true" style="width: 100%;" placeholder="definition" [(ngModel)]="quiztoinsert.definition">
           </td>
           <td>
-            <input class="form-control" style="width: 100%;" placeholder="sentence" [(ngModel)]="quiztoinsert.sentence">
+            <input class="form-control has-danger has error" [required]="true" style="width: 100%;" placeholder="sentence" [(ngModel)]="quiztoinsert.sentence">
           </td>
           <td>
-            <select class="form-control" style="width: 100%;" placeholder="category" [(ngModel)]="quiztoinsert.category">
-              <option [value]="0">Choose one...</option>
+            <select class="form-control  has-danger has error" [required]="true" style="width: 100%;" placeholder="category" [(ngModel)]="quiztoinsert.category">
+              
               <option *ngFor="let category of categoriesDTO" [ngValue]="category">{{category.title}}</option>
             </select> 
           </td>
           <td>
-              <select class="form-control" style="width: 100%;" placeholder="level" [(ngModel)]="quiztoinsert.level">
-                <option [value]="0">Choose one...</option>
+              <select class="form-control has-danger has error" [required]="true" style="width: 100%;" placeholder="level" [(ngModel)]="quiztoinsert.level">
+                
               <option *ngFor="let level of levelsDTO" [ngValue]="level">{{level.name}}</option>
             </select>
           </td>

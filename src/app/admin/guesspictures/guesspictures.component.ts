@@ -26,9 +26,8 @@ export class GuesspicturesComponent implements OnInit {
   b64: string;
   b64toinsert: string;
   b64toupdate: string;
-
-  html: string;
-
+  idImageChange: number;
+  newImage: boolean = false;
 
   constructor(private service: GuessPictureService, private serviceCategory: CategoryService, private serviceLevel:LevelService) { }
 
@@ -55,62 +54,43 @@ export class GuesspicturesComponent implements OnInit {
   }
 
   update(guesspicture: GuessPictureDTO) {
-    if (this.b64toupdate != ''){
+    if (this.b64toupdate != '' && this.idImageChange == guesspicture.id){
       guesspicture.image = this.b64toupdate;
-      console.log(this.b64toupdate);
     }
-      
-    //console.log(guesspicture);
     this.service.update(guesspicture).subscribe(() => this.getGuessPictures());
+    this.b64toupdate = "";
+
   }
 
   insert(guesspicture: GuessPictureDTO) {
-
-    
-    /*if(guesspicture.solution == null){
-      this.html = '<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
-      '<strong>Holy guacamole!</strong> You should check in on some of those fields below.'+
-      '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-        '<span aria-hidden="true">&times;</span>'+
-      '</button>'+
-    '</div>';
-    }*/
-
     guesspicture.image = this.b64toinsert;
+    console.log(this.b64toinsert);
     this.service.insert(guesspicture).subscribe(() => this.getGuessPictures());
     this.clear();
+    this.b64toinsert = "";
   }
 
   clear(){
     this.guesspicturetoinsert = new GuessPictureDTO();
   }
 
-  imageModal(image: string){
+  imageModal(image: string, id){
     this.b64=image;
+    this.idImageChange = id;
   }
 
-  handleInputChange(e) {
+  handleInputChange(e,newImage: boolean) {
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
     var pattern = /image-*/;
     var reader = new FileReader();
-    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.onload = function(e){
+      let reader = e.target;
+      if (newImage === true)
+        this.b64toinsert = reader.result ;
+      else
+        this.b64toupdate = reader.result;
+    }.bind(this);
     reader.readAsDataURL(file);
-  }
-  _handleReaderLoaded(e) {
-    let reader = e.target;
-    this.b64toinsert = reader.result;
-  }
-
-  handleUpdateChange(e) {
-    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-    var pattern = /image-*/;
-    var reader = new FileReader();
-    reader.onload = this._handleUpdateLoaded.bind(this);
-    reader.readAsDataURL(file);
-  }
-  _handleUpdateLoaded(e) {
-    let reader = e.target;
-    this.b64toupdate = reader.result;
   }
 
 }
