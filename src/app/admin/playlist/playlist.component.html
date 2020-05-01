@@ -12,6 +12,7 @@
           <tr class="text-center">
             
             <th>
+              <abbr title="required">*</abbr>
               Name
             </th>
             <th>
@@ -24,24 +25,24 @@
       </thead>  
        <tr>
          <td >
-           <input class= "form-control-sm" style="width: 100%;" placeholder="Name" [(ngModel)]="playlisttoinsert.name">
+           <input class= "form-control" [required]=true style="width: 100%;" placeholder="Name" [(ngModel)]="playlisttoinsert.name">
         </td>
         <td>
-          <input class= "form-control-sm" style="width: 100%;" placeholder="Definition" [(ngModel)]="playlisttoinsert.description">
+          <input class= "form-control" style="width: 100%;" placeholder="Definition" [(ngModel)]="playlisttoinsert.description">
         </td>
-        <td colspan="2">
-          <button (click)=insert(playlisttoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>
-        </td>
-        <td colspan="2">  
-          <button (click)="clear()" type="button" class="btn btn-secondary btn-block mr-3">Clear</button>
+        <td colspan="3">
+          <div style="display: flex;">
+            <button (click)=insert(playlisttoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>
+            <button (click)="clear()" type="button" class="btn btn-secondary btn-block mt-0">Clear</button>
+          </div>
         </td>
       </tr>
       <tr *ngFor="let playlist of playlistDTO">
         <td>
-          <input class= "form-control-sm" style="width: 100%;" type="text" [(ngModel)]="playlist.name">
+          <input class= "form-control" style="width: 100%;" type="text" [(ngModel)]="playlist.name">
         </td>
         <td>
-          <input class= "form-control-sm" style="width: 100%;" [(ngModel)]="playlist.description">
+          <input class= "form-control" style="width: 100%;" [(ngModel)]="playlist.description">
         </td>
         <td>
           <button (click)="update(playlist)"type="button" class="btn btn-success btn-block mr-3">Save</button>
@@ -68,7 +69,7 @@
            </button>
         </div>
         <div class="modal-body">
-          <div class="col-md-12 table-responsive">
+          <div class="col-md-12 table-responsive" style="overflow-y: auto; max-height: 800px;">
             <table class='table table-striped' style="table-layout: auto !important;" #gameList>
               <tr class="text-center">
                 <th>

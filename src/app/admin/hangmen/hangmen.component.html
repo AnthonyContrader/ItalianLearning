@@ -11,18 +11,22 @@
   <tr class="text-center">
       
         <th>
+          <abbr title="required">*</abbr>
           Solution
         </th>
         <th>
           Definition
         </th>
         <th>
+          <abbr title="required">*</abbr>
           Sentence
         </th>
         <th>
+          <abbr title="required">*</abbr>
           Level
         </th>
         <th>
+          <abbr title="required">*</abbr>
           Category
         </th>
 
@@ -32,13 +36,13 @@
       </thead>
         <tr>
           <td>
-          <input class="form-control" style="width: 100%;" placeholder="Solution" [(ngModel)]="hangmantoinsert.solution">
+          <input class="form-control" [required]="true" style="width: 100%;" placeholder="Solution" [(ngModel)]="hangmantoinsert.solution">
         </td>
         <td>
           <input class="form-control" style="width: 100%;" placeholder="Definition" [(ngModel)]="hangmantoinsert.definition">
         </td>
         <td>
-          <input class="form-control" style="width: 100%;" placeholder="Sentence" [(ngModel)]="hangmantoinsert.sentence">
+          <input class="form-control" [required]="true" style="width: 100%;" placeholder="Sentence" [(ngModel)]="hangmantoinsert.sentence">
         </td>
         <td>
           <select class="form-control" style="width: 100%;" placeholder="level" [(ngModel)]="hangmantoinsert.level">
