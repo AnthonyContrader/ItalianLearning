@@ -14,6 +14,7 @@ import { CategoryService } from 'src/service/category.service';
   templateUrl: './organizesentences.component.html',
   styleUrls: ['./organizesentences.component.css']
 })
+//un oggetto di OrganizesentencesComponent e fatto dalle variabili(campi) definiti prima del costruttore + quelli definiti come parametri nel costruttore
 export class OrganizesentencesComponent implements OnInit {
 
   //Oggetti hanno le variabili definiti qui e quelle definite ne costruttore
@@ -23,9 +24,9 @@ export class OrganizesentencesComponent implements OnInit {
   levelsDTO: LevelDTO[];
   categoriesDTO: CategoryDTO[];
 
-  //creiamo una variabile service dentro al costruttore per poterla utilizzare con il nostro oggetto
+  //creiamo le variabili service, serviceCategory e serviceLevel dentro al costruttore per poterle utilizzare con il nostro oggetto   
   constructor(private service: OrganizeSentenceService, private serviceCategory: CategoryService, private serviceLevel: LevelService) { }
- //eseguito una volta che viene inizializzata la pagina
+ //eseguito una volta che viene inizializzata la pagina e ogni volta che viene caricata questa pagina
   ngOnInit() {
 
     this.getOrganizeSentences();//richiamo il metodo getOrganizeSentences su questo oggetto
@@ -34,8 +35,10 @@ export class OrganizesentencesComponent implements OnInit {
   }
 
   getOrganizeSentences(){
-    //service definito nel costruttore. get all e' observable quindi uso subscribe
-    //getAll observable con i dati e con i subscribe li vedo uno per uno i dati
+    //service e' definito nel costruttore. this.service.getAll mi restituisce un tipo Observable di array di OrganizeSentenceDTO 
+    //Poiche getAll mi restituisce dati di tipo observable uso  subscribe per vederli tutti 
+    //con subscribe passiamo il parametro organizesentences che conterra' i dati dell'observable i quali
+    //vengono salvati nella variabile organizesentencesDTO
     this.service.getAll().subscribe(organizesentences=> this.organizesentencesDTO= organizesentences);
 
     
