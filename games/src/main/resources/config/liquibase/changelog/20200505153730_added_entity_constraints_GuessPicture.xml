@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity GuessPicture.
+    -->
+    <changeSet id="20200505153730-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="categpry_id"
+                                 baseTableName="guess_picture"
+                                 constraintName="fk_guess_picture_categpry_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categpry"/>
+
+        <addForeignKeyConstraint baseColumnNames="level_id"
+                                 baseTableName="guess_picture"
+                                 constraintName="fk_guess_picture_level_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="level"/>
+
+    </changeSet>
+</databaseChangeLog>
