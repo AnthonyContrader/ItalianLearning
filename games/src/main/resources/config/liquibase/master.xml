@@ -16,7 +16,6 @@
     <include file="config/liquibase/changelog/20200505135639_added_entity_constraints_GamePlaylist.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200505153729_added_entity_constraints_Hangman.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200505154512_added_entity_constraints_FindMistake.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20200505135639_added_entity_constraints_GamePlaylist.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200505153910_added_entity_constraints_Quiz.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
