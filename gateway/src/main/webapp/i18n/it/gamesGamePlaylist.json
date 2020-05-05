@@ -1,0 +1,28 @@
+
+{
+    "gatewayApp": {
+        "gamesGamePlaylist" : {
+            "home": {
+                "title": "GamePlaylists",
+                "createLabel": "Genera un nuovo Game Playlist",
+                "createOrEditLabel": "Genera o modifica un Game Playlist"
+            },
+            "delete": {
+                "question": "Sei sicuro di volere eliminare Game Playlist {{ id }}?"
+            },
+            "detail": {
+                "title": "Game Playlist"
+            },
+            "idGame": "Id Game",
+            "typeGame": "Type Game",
+            "playlist": "Playlist"
+        }
+    },
+    "gamesApp": {
+        "gamesGamePlaylist" : {
+            "created": "&Egrave; stato generato un nuovo Game Playlist con identificatore { param }}",
+            "updated": "&Egrave; stato aggiornato Game Playlist identificato da {{ param }}",
+            "deleted": "&Egrave; stato eliminato Game Playlist con identificatore {{ param }}"
+        }
+    }
+}

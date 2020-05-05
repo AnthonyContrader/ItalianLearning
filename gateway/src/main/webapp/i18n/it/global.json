@@ -8,7 +8,10 @@
             "entities": {
                 "main": "Entità",
                 "userUser": "User",
-                "userUsers": "Users",
+                "gamesCategory": "Category",
+                "gamesLevel": "Level",
+                "gamesPlaylist": "Playlist",
+                "gamesGamePlaylist": "Game Playlist",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

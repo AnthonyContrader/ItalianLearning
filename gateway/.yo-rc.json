@@ -22,7 +22,7 @@
     "serviceDiscoveryType": "consul",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "d0a84cd2798703a8e2b1aedcb16a87f1c216c606",
+    "jwtSecretKey": "d4d4c8925f02afe4b9db1582d97558345443dd2f",
     "clientFramework": "angularX",
     "useSass": true,
     "clientPackageManager": "npm",

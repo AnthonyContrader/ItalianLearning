@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "gamePlaylist",
+            "otherEntityName": "gamePlaylist",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "playlist"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200505135257",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "playlist",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination",
+    "microserviceName": "games"
+}

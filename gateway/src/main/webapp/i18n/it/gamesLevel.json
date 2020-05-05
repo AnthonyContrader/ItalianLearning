@@ -1,0 +1,28 @@
+
+{
+    "gatewayApp": {
+        "gamesLevel" : {
+            "home": {
+                "title": "Levels",
+                "createLabel": "Genera un nuovo Level",
+                "createOrEditLabel": "Genera o modifica un Level"
+            },
+            "delete": {
+                "question": "Sei sicuro di volere eliminare Level {{ id }}?"
+            },
+            "detail": {
+                "title": "Level"
+            },
+            "name": "Name",
+            "description": "Description",
+            "score": "Score"
+        }
+    },
+    "gamesApp": {
+        "gamesLevel" : {
+            "created": "&Egrave; stato generato un nuovo Level con identificatore { param }}",
+            "updated": "&Egrave; stato aggiornato Level identificato da {{ param }}",
+            "deleted": "&Egrave; stato eliminato Level con identificatore {{ param }}"
+        }
+    }
+}

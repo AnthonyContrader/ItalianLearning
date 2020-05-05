@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-game-playlist-heading" jhiTranslate="gatewayApp.gamesGamePlaylist.home.createOrEditLabel">Create or edit a Game Playlist</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!gamePlaylist.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="gamePlaylist.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesGamePlaylist.idGame" for="field_idGame">Id Game</label>
+                    <input type="number" class="form-control" name="idGame" id="field_idGame"
+                        [(ngModel)]="gamePlaylist.idGame" required/>
+                    <div [hidden]="!(editForm.controls.idGame?.dirty && editForm.controls.idGame?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.idGame?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.idGame?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesGamePlaylist.typeGame" for="field_typeGame">Type Game</label>
+                    <input type="text" class="form-control" name="typeGame" id="field_typeGame"
+                        [(ngModel)]="gamePlaylist.typeGame" required/>
+                    <div [hidden]="!(editForm.controls.typeGame?.dirty && editForm.controls.typeGame?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.typeGame?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesGamePlaylist.playlist" for="field_playlist">Playlist</label>
+                    <select class="form-control" id="field_playlist" name="playlist" [(ngModel)]="gamePlaylist.playlistId"  required>
+                        <option *ngIf="!editForm.value.playlist" [ngValue]="null" selected></option>
+                        <option [ngValue]="playlistOption.id" *ngFor="let playlistOption of playlists; trackBy: trackPlaylistById">{{playlistOption.title}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.playlist?.dirty && editForm.controls.playlist?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.playlist?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
