@@ -1,0 +1,28 @@
+
+{
+    "gatewayApp": {
+        "userUsers" : {
+            "home": {
+                "title": "Users",
+                "createLabel": "Genera un nuovo Users",
+                "createOrEditLabel": "Genera o modifica un Users"
+            },
+            "delete": {
+                "question": "Sei sicuro di volere eliminare Users {{ id }}?"
+            },
+            "detail": {
+                "title": "Users"
+            },
+            "username": "Username",
+            "password": "Password",
+            "usertype": "Usertype"
+        }
+    },
+    "userApp": {
+        "userUsers" : {
+            "created": "&Egrave; stato generato un nuovo Users con identificatore { param }}",
+            "updated": "&Egrave; stato aggiornato Users identificato da {{ param }}",
+            "deleted": "&Egrave; stato eliminato Users con identificatore {{ param }}"
+        }
+    }
+}
