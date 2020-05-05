@@ -16,7 +16,7 @@
                 <dt><span jhiTranslate="gatewayApp.gamesGamePlaylist.playlist">Playlist</span></dt>
                 <dd>
                     <div *ngIf="gamePlaylist.playlistId">
-                        <a [routerLink]="['/playlist', gamePlaylist.playlistId, 'view']">{{gamePlaylist.playlistTitle}}</a>
+                        <a [routerLink]="['/playlist', gamePlaylist.playlistId, 'view']">{{gamePlaylist.playlistName}}</a>
                     </div>
                 </dd>
             </dl>
