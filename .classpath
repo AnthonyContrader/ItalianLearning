@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="gateway/src/main/java"/>
+	<classpathentry kind="src" path="gateway/src/test/java"/>
+	<classpathentry kind="src" path="gateway/target/generated-sources/annotations"/>
+	<classpathentry kind="src" path="user/src/main/java"/>
+	<classpathentry kind="src" path="user/src/test/java"/>
+	<classpathentry kind="lib" path="gateway/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="gateway/node_modules/generator-jhipster/generators/server/templates/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="gateway/node_modules/generator-jhipster/generators/server/templates/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="node_modules/generator-jhipster/generators/server/templates/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="node_modules/generator-jhipster/generators/server/templates/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="user/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="user/node_modules/generator-jhipster/generators/server/templates/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="user/node_modules/generator-jhipster/generators/server/templates/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="gateway/target/classes"/>
+</classpath>
