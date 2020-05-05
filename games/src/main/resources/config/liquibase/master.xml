@@ -10,8 +10,15 @@
     <include file="config/liquibase/changelog/20200505135257_added_entity_Playlist.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200505135639_added_entity_GamePlaylist.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200505153730_added_entity_GuessPicture.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505153729_added_entity_Hangman.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505154512_added_entity_FindMistake.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505153910_added_entity_Quiz.xml" relativeToChangelogFile="false"/>
+    
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200505135639_added_entity_constraints_GamePlaylist.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200505153730_added_entity_constraints_GuessPicture.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505153729_added_entity_constraints_Hangman.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505154512_added_entity_constraints_FindMistake.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200505153910_added_entity_constraints_Quiz.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
