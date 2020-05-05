@@ -40,7 +40,7 @@
                     <label class="form-control-label" jhiTranslate="gatewayApp.gamesGamePlaylist.playlist" for="field_playlist">Playlist</label>
                     <select class="form-control" id="field_playlist" name="playlist" [(ngModel)]="gamePlaylist.playlistId"  required>
                         <option *ngIf="!editForm.value.playlist" [ngValue]="null" selected></option>
-                        <option [ngValue]="playlistOption.id" *ngFor="let playlistOption of playlists; trackBy: trackPlaylistById">{{playlistOption.title}}</option>
+                        <option [ngValue]="playlistOption.id" *ngFor="let playlistOption of playlists; trackBy: trackPlaylistById">{{playlistOption.name}}</option>
                     </select>
                 </div>
                 <div [hidden]="!(editForm.controls.playlist?.dirty && editForm.controls.playlist?.invalid)">

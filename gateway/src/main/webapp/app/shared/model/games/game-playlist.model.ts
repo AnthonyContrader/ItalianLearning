@@ -2,7 +2,7 @@ export interface IGamePlaylist {
     id?: number;
     idGame?: number;
     typeGame?: string;
-    playlistTitle?: string;
+    playlistName?: string;
     playlistId?: number;
 }
 
@@ -11,7 +11,7 @@ export class GamePlaylist implements IGamePlaylist {
         public id?: number,
         public idGame?: number,
         public typeGame?: string,
-        public playlistTitle?: string,
+        public playlistName?: string,
         public playlistId?: number
     ) {}
 }
