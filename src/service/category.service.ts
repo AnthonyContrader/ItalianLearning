@@ -11,11 +11,11 @@ import { HttpClient } from '@angular/common/http';
     providedIn: 'root'
   })
 export class CategoryService extends AbstractService<CategoryDTO>{
-
+ 
   constructor(http: HttpClient) {
     super(http);
-    this.type = 'category';
+    this.type = 'categories';
+    this.micro = 'games';
   }
-
 }
   

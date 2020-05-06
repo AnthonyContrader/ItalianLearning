@@ -18,5 +18,7 @@ export class UserDTO {
 
    usertype: Usertype;
 
+   authorities: string[]=[""];
+
 }
 
