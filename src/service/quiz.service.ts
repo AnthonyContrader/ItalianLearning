@@ -10,7 +10,8 @@ import {QuizDTO} from 'src/dto/quizdto';
   
     constructor(http: HttpClient) {
       super(http);
-      this.type = 'quiz';
+      this.type = 'quizzes';
+      this.micro = 'games';
     }
   
   }
