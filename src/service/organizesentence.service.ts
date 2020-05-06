@@ -18,7 +18,8 @@ export class OrganizeSentenceService extends AbstractService<OrganizeSentenceDTO
       super(http);
       //indica il path quindi la view dove dobbiamo andare tramite il controller e quindi deve essere uguale a
       //quello tra parentesi tonde in @RequestMapping(/organizesentence) nel controller di OrganizeSentence in eclipse
-      this.type = 'organizesentence';  
+      this.type = 'organize-sentences';
+      this.micro = 'games';  
     }
   
   
