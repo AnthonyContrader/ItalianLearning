@@ -11,7 +11,8 @@ export class FindMistakeService extends AbstractService<FindMistakeDTO>{
 
     constructor(http: HttpClient){
         super(http);
-        this.type = 'findmistake';  
+        this.type = 'find-mistakes';
+        this.micro = 'games'; 
     }
 
 }

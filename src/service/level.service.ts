@@ -12,7 +12,8 @@ export class LevelService extends AbstractService<LevelDTO>{
 
     constructor(http: HttpClient){
         super(http);
-        this.type = 'level';  
+        this.type = 'levels';  
+        this.micro = 'games';
     }
 
 }

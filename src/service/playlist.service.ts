@@ -11,7 +11,8 @@ export class PlaylistService extends AbstractService<PlaylistDTO>{
 
     constructor(http: HttpClient){
         super(http);
-        this.type = 'playlist';  
+        this.type = 'playlists';
+        this.micro = 'games';  
     }
 
 }

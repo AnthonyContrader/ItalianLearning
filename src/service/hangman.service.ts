@@ -11,7 +11,8 @@ export class HangmanService extends AbstractService<HangmanDTO>{
 
     constructor(http: HttpClient){
         super(http);
-        this.type = 'hangman';  
+        this.type = 'hangmen';
+        this.micro = 'games';  
     }
 
 }

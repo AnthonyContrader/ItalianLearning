@@ -12,7 +12,8 @@ export class GamePlaylistService extends AbstractService<GamePlaylistDTO>{
 
     constructor(http: HttpClient){
         super(http);
-        this.type = 'gameplaylist';  
+        this.type = 'game-playlists'; 
+        this.micro = 'games';
     }
 
     findByPlaylist(id_playlist: number): Observable<any> {
