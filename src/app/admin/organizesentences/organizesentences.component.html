@@ -1,0 +1,100 @@
+<!--created by Torquato Di Maio-->
+<div class="row">
+    <div class="col-12 table-responsive">
+      <br>
+    <h1 class="text-center mt-5"> Organize Sentence </h1>
+    <br>
+    <br>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr class="text-center">
+            <th>
+              <abbr title="required">*</abbr>
+              Solution
+            </th>
+            <th>
+              <abbr title="required">*</abbr>
+              Sentence
+            </th>
+            <th>
+              Definition
+            </th>
+            <th>
+              <abbr title="required">*</abbr>
+              Category
+            </th>
+            
+            <th>
+              <abbr title="required">*</abbr>
+              Level
+            </th>
+            <th colspan="2">
+              Action
+            </th>
+
+          </tr>
+        </thead>
+        <tr>
+          <td>
+            <input class="form-control" [required]="true" placeholder="Solution" [(ngModel)]="organizesentencetoinsert.solution">
+          </td>
+          <td>
+            <input class="form-control" [required]="true" placeholder="Sentence" [(ngModel)]="organizesentencetoinsert.sentence">
+          </td>
+          <td>
+            <input class="form-control" placeholder="Definition" [(ngModel)]="organizesentencetoinsert.definition">
+          </td>
+          <!--category-->
+          <td>
+            <select class="form-control" [required]="true" placeholder="category" [(ngModel)]="organizesentencetoinsert.category">
+              <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
+            </select>
+          </td>
+          <!--level-->
+          <td>
+            <select class="form-control" [required]="true" placeholder="level" [(ngModel)]="organizesentencetoinsert.level">
+              <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
+            </select>
+          </td>
+          <!-- button di inserimento-->
+          <td>
+            <button (click)="insert(organizesentencetoinsert)" class="btn btn-primary mr-3 btn-block">Insert</button>
+          </td>
+          <!--button clear-->
+          <td>
+            <button (click)="clear()" class="btn btn-secondary mr-3 btn-block">Clear</button>
+          </td>
+        </tr>
+        <!-- ciclo for each per vedere tutti i giochi di organizesentence-->
+        <tr *ngFor="let organizesentence of organizesentencesDTO">
+          <td>
+            <input class="form-control"  [(ngModel)]="organizesentence.solution">
+          </td>
+          <td>
+            <input class="form-control"  [(ngModel)]="organizesentence.sentence">
+          </td>
+          <td>
+            <input class="form-control" [(ngModel)]="organizesentence.definition">
+          </td>
+        <td>
+          <select class="form-control" [required]="true" [(ngModel)]="organizesentence.category.id">
+            <option *ngFor="let c of categoriesDTO" [selected]="organizesentence.category===c" [ngValue]="c.id"> {{c.title}} </option>
+          </select>
+        </td>
+        <td>
+          <select class="form-control"  [(ngModel)]="organizesentence.level.id">
+            <option *ngFor="let l of levelsDTO" [selected]="organizesentence.level===l" [ngValue]="l.id"> {{l.name}} </option>
+          </select>
+        </td>
+          
+          <td>
+            <button (click)=update(organizesentence) type="button" class="btn btn-success mr-3 btn-block">Save</button>
+          </td>
+          <td>
+            <button (click)="delete(organizesentence)"  type="button" class="btn btn-danger mr-3 btn-block"style="background-color: #c52121 !important;">Delete</button>
+          </td>
+        </tr> <!--fine ciclo for each-->
+      </table>
+  
+  </div>
+</div>

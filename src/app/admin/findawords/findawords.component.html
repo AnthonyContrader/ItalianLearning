@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-12 table-responsive">
+    <br>
+    <h1 class="text-center mt-5"> Find A Word </h1>
+    <br>
+    <br>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+       <tr class="text-center">
+          <th>
+            <!--required dice ke è obbligatorio riempire il campo altrimenti non comunica non lo spring-->
+            <abbr title="required">*</abbr>
+          Solution
+          </th>
+          <th>
+          Definition
+          </th>
+          <th>
+            <abbr title="required">*</abbr>
+          Sentence
+          </th>
+          <th>
+            <abbr title="required">*</abbr>
+          Category
+          </th>
+          <th>
+            <abbr title="required">*</abbr>
+          Level
+         </th>
+          <th colspan="2">
+         Action
+          </th>
+       </tr>
+      </thead>
+      <tr>
+        <td>
+          <input [required]="true" class="form-control" placeholder="Solution" [(ngModel)]="findawordtoinsert.solution">
+        </td>
+        <td>
+          <input class="form-control" placeholder="Definition" [(ngModel)]="findawordtoinsert.definition">
+        </td>
+        <td>
+          <input [required]="true" class="form-control" placeholder="Sentence" [(ngModel)]="findawordtoinsert.sentence">
+        </td>
+        <td>
+          <select [required]="true" class="form-control" placeholder="category" [(ngModel)]="findawordtoinsert.category">
+            <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
+          </select>
+        </td>
+        <td>
+          <select [required]="true" class="form-control" placeholder="level" [(ngModel)]="findawordtoinsert.level">
+            <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
+          </select>
+        </td>
+        
+        <td>
+          <button class="btn btn-primary mr-3 btn-block" type="button" (click)="insert(findawordtoinsert)">Insert</button>
+        </td>
+        <td>
+          <button class="btn btn-secondary mr-3 btn-block" type="button" (click)="clear()">Clear</button>
+        </td>
+      </tr>
+      <tr *ngFor="let findaword of findawordsDTO">
+        <td>
+          <input [required]="true" class="form-control" [(ngModel)]="findaword.solution">
+        </td>
+        <td>
+          <input class="form-control" [(ngModel)]="findaword.definition">
+        </td>
+        <td>
+          <input [required]="true" class="form-control" [(ngModel)]="findaword.sentence">
+        </td>
+        <td>
+          <select [required]="true" class="form-control" placeholder="category" [(ngModel)]="findaword.category.id">
+            <option *ngFor="let c of categoriesDTO" [ngValue]="c.id"> {{c.title}} </option>
+          </select>
+        </td>
+        <td>
+          <select [required]="true" class="form-control" placeholder="level" [(ngModel)]="findaword.level.id">
+            <option *ngFor="let l of levelsDTO" [ngValue]="l.id"> {{l.name}} </option>
+          </select>
+        </td>
+        <td>
+          <button (click)=update(findaword) type="button" class="btn btn-success mr-3 btn-block">Save</button>
+        </td>
+        <td>
+          <button (click)=delete(findaword) type="button" class="btn btn-danger mr-3 btn-block" style="background-color:#c52121 !important;">Delete</button>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+    
+      
+</div>
+    
+
+    

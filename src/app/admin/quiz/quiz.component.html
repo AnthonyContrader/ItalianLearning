@@ -1,0 +1,89 @@
+<!--created by Anna Cecere-->
+<div class="row">
+  
+    <div class="col-12 table-responsive">
+
+      <br>
+      <h1 class="text-center mt-5"> Quiz </h1>
+      <br>
+      <br>
+      
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr class="text-center">
+            
+          <th>
+            <abbr title="required">*</abbr> Solution </th>
+          <th>
+            <abbr title="required">*</abbr> Definition </th>
+          <th> 
+            <abbr title="required">*</abbr>Sentence </th>
+          <th>
+            <abbr title="required">*</abbr> Category </th>
+          <th> 
+            <abbr title="required">*</abbr> Level </th>
+          
+          <th colspan="2"> Action </th>
+         
+          
+        </tr>
+      </thead>
+        <tr>
+          <td>
+            <input class="form-control  has-danger has error" [required]="true" style="width: 100%;" placeholder="solution" [(ngModel)]="quiztoinsert.solution">
+          </td>
+          <td>
+            <input class="form-control has-danger has error" [required]="true" style="width: 100%;" placeholder="definition" [(ngModel)]="quiztoinsert.definition">
+          </td>
+          <td>
+            <input class="form-control has-danger has error" [required]="true" style="width: 100%;" placeholder="sentence" [(ngModel)]="quiztoinsert.sentence">
+          </td>
+          <td>
+            <select class="form-control  has-danger has error" [required]="true" style="width: 100%;" placeholder="category" [(ngModel)]="quiztoinsert.category">
+              
+              <option *ngFor="let category of categoriesDTO" [ngValue]="category">{{category.title}}</option>
+            </select> 
+          </td>
+          <td>
+              <select class="form-control has-danger has error" [required]="true" style="width: 100%;" placeholder="level" [(ngModel)]="quiztoinsert.level">
+                
+              <option *ngFor="let level of levelsDTO" [ngValue]="level">{{level.name}}</option>
+            </select>
+          </td>
+          <td>
+            <button (click)=insert(quiztoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>
+          </td>
+          <td>
+            <button (click)="clear()" type="button" class="btn btn-secondary btn-block mr-3">Clear</button>
+          </td>
+        </tr>
+        <tr *ngFor="let quiz of quizDTO">
+          <td>
+            <input class="form-control" style="width: 100%;" [(ngModel)]="quiz.solution">
+          </td>
+          <td>
+            <input class="form-control" style="width: 100%;" [(ngModel)]="quiz.definition">
+          </td>
+          <td>
+            <input class="form-control" style="width: 100%;" [(ngModel)]="quiz.sentence">
+          </td>
+          <td>
+            <select class="form-control" style="width: 100%;" [(ngModel)]="quiz.category.id">
+              <option class="form-control" style="width: 100%;" [ngValue]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
+            </select>
+          </td>
+          <td>
+            <select class="form-control" style="width: 100%;" [(ngModel)]="quiz.level.id">
+              <option [ngValue]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
+            </select>
+          </td>
+          <td>
+            <button (click)=update(quiz) type="button" class="btn btn-success btn-block mr-3">Save</button>
+          </td>
+          <td>
+            <button (click)="delete(quiz)" type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
+          </td>
+        </tr>
+      </table>  
+  
+    

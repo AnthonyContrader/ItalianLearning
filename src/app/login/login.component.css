@@ -1,0 +1,55 @@
+/*
+form{
+    margin-top:270px;
+    width: 55%;
+    padding: 10px;
+    border-radius:0;
+    border-color: rgb(2, 119, 252);
+}
+
+img{
+    position: inherit;
+    width:50%;
+    margin: 12%;
+}
+
+input, input:hover, input::selection, input:checked, input:focus{
+    border: 0;
+    background-color: rgb(93, 91, 235);
+    border-radius: 0;
+    color: white;
+    border-bottom: 1px solid rgb(125, 159, 197);
+    margin: 0px; 
+}
+
+.container-fluid{
+    background-color: rgb(146, 189, 238);
+    height: 100vh;
+}
+input::placeholder{
+    color: white;
+}
+.form-control{
+border: none;
+background-color: rgb(91, 158, 235);
+color: white;
+border-bottom: 1px solid white;
+}
+
+.login{
+border: none;
+background-color: rgb(91, 158, 235);
+color: white;
+border: 1px solid white;
+border-radius: 2px;
+padding-top: 10px;
+padding-right: auto;
+padding-bottom: 10px;
+padding-left: auto;
+}
+
+p{
+font-size: 14px;
+color: white;
+}
+*/
