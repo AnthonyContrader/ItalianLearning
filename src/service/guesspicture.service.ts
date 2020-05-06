@@ -14,7 +14,8 @@ export class GuessPictureService extends AbstractService<GuessPictureDTO>{
 
     constructor(http: HttpClient){
         super(http);
-        this.type = 'guesspicture';  
+        this.type = 'guess-pictures';  
+        this.micro = 'games';
     }
 
 }
