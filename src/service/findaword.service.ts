@@ -10,7 +10,9 @@ import { HttpClient } from '@angular/common/http';
   
     constructor(http: HttpClient) {
       super(http);
-      this.type = 'findaword';
+      this.type = 'find-a-words';
+      this.micro= 'games';
+
     }
   
   }
