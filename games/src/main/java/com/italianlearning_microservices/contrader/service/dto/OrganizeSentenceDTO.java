@@ -19,13 +19,13 @@ public class OrganizeSentenceDTO implements Serializable {
     @NotNull
     private String sentence;
 
-    private Long categoryId;
-
-    private String categoryTitle;
-
     private Long levelId;
 
     private String levelName;
+
+    private Long categoryId;
+
+    private String categoryTitle;
 
     public Long getId() {
         return id;
@@ -59,22 +59,6 @@ public class OrganizeSentenceDTO implements Serializable {
         this.sentence = sentence;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getCategoryTitle() {
-        return categoryTitle;
-    }
-
-    public void setCategoryTitle(String categoryTitle) {
-        this.categoryTitle = categoryTitle;
-    }
-
     public Long getLevelId() {
         return levelId;
     }
@@ -89,6 +73,22 @@ public class OrganizeSentenceDTO implements Serializable {
 
     public void setLevelName(String levelName) {
         this.levelName = levelName;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryTitle() {
+        return categoryTitle;
+    }
+
+    public void setCategoryTitle(String categoryTitle) {
+        this.categoryTitle = categoryTitle;
     }
 
     @Override
@@ -119,10 +119,10 @@ public class OrganizeSentenceDTO implements Serializable {
             ", solution='" + getSolution() + "'" +
             ", definition='" + getDefinition() + "'" +
             ", sentence='" + getSentence() + "'" +
-            ", category=" + getCategoryId() +
-            ", category='" + getCategoryTitle() + "'" +
             ", level=" + getLevelId() +
             ", level='" + getLevelName() + "'" +
+            ", category=" + getCategoryId() +
+            ", category='" + getCategoryTitle() + "'" +
             "}";
     }
 }

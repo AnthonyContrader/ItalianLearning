@@ -32,14 +32,15 @@ public class OrganizeSentence implements Serializable {
     @Column(name = "sentence", nullable = false)
     private String sentence;
 
-    @ManyToOne
-    @JsonIgnoreProperties("")
-    private Category category;
-
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("")
     private Level level;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties("")
+    private Category category;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -89,19 +90,6 @@ public class OrganizeSentence implements Serializable {
         this.sentence = sentence;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public OrganizeSentence category(Category category) {
-        this.category = category;
-        return this;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     public Level getLevel() {
         return level;
     }
@@ -113,6 +101,19 @@ public class OrganizeSentence implements Serializable {
 
     public void setLevel(Level level) {
         this.level = level;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public OrganizeSentence category(Category category) {
+        this.category = category;
+        return this;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

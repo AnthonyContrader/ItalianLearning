@@ -33,11 +33,11 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="categpry_id" type="bigint">
+            <column name="level_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 
-            <column name="level_id" type="bigint">
+            <column name="category_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 

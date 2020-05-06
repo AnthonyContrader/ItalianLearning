@@ -4,6 +4,7 @@ import com.italianlearning_microservices.contrader.GamesApp;
 
 import com.italianlearning_microservices.contrader.domain.OrganizeSentence;
 import com.italianlearning_microservices.contrader.domain.Level;
+import com.italianlearning_microservices.contrader.domain.Category;
 import com.italianlearning_microservices.contrader.repository.OrganizeSentenceRepository;
 import com.italianlearning_microservices.contrader.service.OrganizeSentenceService;
 import com.italianlearning_microservices.contrader.service.dto.OrganizeSentenceDTO;
@@ -106,6 +107,11 @@ public class OrganizeSentenceResourceIntTest {
         em.persist(level);
         em.flush();
         organizeSentence.setLevel(level);
+        // Add required entity
+        Category category = CategoryResourceIntTest.createEntity(em);
+        em.persist(category);
+        em.flush();
+        organizeSentence.setCategory(category);
         return organizeSentence;
     }
 

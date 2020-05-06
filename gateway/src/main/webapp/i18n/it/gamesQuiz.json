@@ -1,0 +1,30 @@
+
+{
+    "gatewayApp": {
+        "gamesQuiz" : {
+            "home": {
+                "title": "Quizzes",
+                "createLabel": "Genera un nuovo Quiz",
+                "createOrEditLabel": "Genera o modifica un Quiz"
+            },
+            "delete": {
+                "question": "Sei sicuro di volere eliminare Quiz {{ id }}?"
+            },
+            "detail": {
+                "title": "Quiz"
+            },
+            "solution": "Solution",
+            "definition": "Definition",
+            "sentence": "Sentence",
+            "category": "Category",
+            "level": "Level"
+        }
+    },
+    "gamesApp": {
+        "gamesQuiz" : {
+            "created": "&Egrave; stato generato un nuovo Quiz con identificatore { param }}",
+            "updated": "&Egrave; stato aggiornato Quiz identificato da {{ param }}",
+            "deleted": "&Egrave; stato eliminato Quiz con identificatore {{ param }}"
+        }
+    }
+}

@@ -20,13 +20,13 @@ public class GuessPictureDTO implements Serializable {
     private byte[] image;
     private String imageContentType;
 
-    private Long categpryId;
-
-    private String categpryTitle;
-
     private Long levelId;
 
     private String levelName;
+
+    private Long categoryId;
+
+    private String categoryTitle;
 
     public Long getId() {
         return id;
@@ -60,22 +60,6 @@ public class GuessPictureDTO implements Serializable {
         this.imageContentType = imageContentType;
     }
 
-    public Long getCategpryId() {
-        return categpryId;
-    }
-
-    public void setCategpryId(Long categpryId) {
-        this.categpryId = categpryId;
-    }
-
-    public String getCategpryTitle() {
-        return categpryTitle;
-    }
-
-    public void setCategpryTitle(String categpryTitle) {
-        this.categpryTitle = categpryTitle;
-    }
-
     public Long getLevelId() {
         return levelId;
     }
@@ -90,6 +74,22 @@ public class GuessPictureDTO implements Serializable {
 
     public void setLevelName(String levelName) {
         this.levelName = levelName;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryTitle() {
+        return categoryTitle;
+    }
+
+    public void setCategoryTitle(String categoryTitle) {
+        this.categoryTitle = categoryTitle;
     }
 
     @Override
@@ -119,10 +119,10 @@ public class GuessPictureDTO implements Serializable {
             "id=" + getId() +
             ", solution='" + getSolution() + "'" +
             ", image='" + getImage() + "'" +
-            ", categpry=" + getCategpryId() +
-            ", categpry='" + getCategpryTitle() + "'" +
             ", level=" + getLevelId() +
             ", level='" + getLevelName() + "'" +
+            ", category=" + getCategoryId() +
+            ", category='" + getCategoryTitle() + "'" +
             "}";
     }
 }

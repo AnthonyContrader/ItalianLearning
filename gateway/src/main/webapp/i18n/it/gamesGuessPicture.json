@@ -1,0 +1,29 @@
+
+{
+    "gatewayApp": {
+        "gamesGuessPicture" : {
+            "home": {
+                "title": "GuessPictures",
+                "createLabel": "Genera un nuovo Guess Picture",
+                "createOrEditLabel": "Genera o modifica un Guess Picture"
+            },
+            "delete": {
+                "question": "Sei sicuro di volere eliminare Guess Picture {{ id }}?"
+            },
+            "detail": {
+                "title": "Guess Picture"
+            },
+            "solution": "Solution",
+            "image": "Image",
+            "level": "Level",
+            "category": "Category"
+        }
+    },
+    "gamesApp": {
+        "gamesGuessPicture" : {
+            "created": "&Egrave; stato generato un nuovo Guess Picture con identificatore { param }}",
+            "updated": "&Egrave; stato aggiornato Guess Picture identificato da {{ param }}",
+            "deleted": "&Egrave; stato eliminato Guess Picture con identificatore {{ param }}"
+        }
+    }
+}

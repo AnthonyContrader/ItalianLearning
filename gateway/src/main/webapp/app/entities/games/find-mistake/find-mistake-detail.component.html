@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="findMistake">
+            <h2><span jhiTranslate="gatewayApp.gamesFindMistake.detail.title">Find Mistake</span> {{findMistake.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gatewayApp.gamesFindMistake.solution">Solution</span></dt>
+                <dd>
+                    <span>{{findMistake.solution}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesFindMistake.definition">Definition</span></dt>
+                <dd>
+                    <span>{{findMistake.definition}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesFindMistake.sentence">Sentence</span></dt>
+                <dd>
+                    <span>{{findMistake.sentence}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesFindMistake.optionA">Option A</span></dt>
+                <dd>
+                    <span>{{findMistake.optionA}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesFindMistake.optionB">Option B</span></dt>
+                <dd>
+                    <span>{{findMistake.optionB}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesFindMistake.optionC">Option C</span></dt>
+                <dd>
+                    <span>{{findMistake.optionC}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesFindMistake.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="findMistake.categoryId">
+                        <a [routerLink]="['/category', findMistake.categoryId, 'view']">{{findMistake.categoryTitle}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesFindMistake.level">Level</span></dt>
+                <dd>
+                    <div *ngIf="findMistake.levelId">
+                        <a [routerLink]="['/level', findMistake.levelId, 'view']">{{findMistake.levelName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/find-mistake', findMistake.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+
+{
+    "gatewayApp": {
+        "gamesHangman" : {
+            "home": {
+                "title": "Hangmen",
+                "createLabel": "Genera un nuovo Hangman",
+                "createOrEditLabel": "Genera o modifica un Hangman"
+            },
+            "delete": {
+                "question": "Sei sicuro di volere eliminare Hangman {{ id }}?"
+            },
+            "detail": {
+                "title": "Hangman"
+            },
+            "solution": "Solution",
+            "definition": "Definition",
+            "sentence": "Sentence",
+            "category": "Category",
+            "level": "Level"
+        }
+    },
+    "gamesApp": {
+        "gamesHangman" : {
+            "created": "&Egrave; stato generato un nuovo Hangman con identificatore { param }}",
+            "updated": "&Egrave; stato aggiornato Hangman identificato da {{ param }}",
+            "deleted": "&Egrave; stato eliminato Hangman con identificatore {{ param }}"
+        }
+    }
+}

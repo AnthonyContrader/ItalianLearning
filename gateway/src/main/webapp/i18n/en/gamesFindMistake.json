@@ -1,0 +1,33 @@
+
+{
+    "gatewayApp": {
+        "gamesFindMistake" : {
+            "home": {
+                "title": "Find Mistakes",
+                "createLabel": "Create a new Find Mistake",
+                "createOrEditLabel": "Create or edit a Find Mistake"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Find Mistake {{ id }}?"
+            },
+            "detail": {
+                "title": "Find Mistake"
+            },
+            "solution": "Solution",
+            "definition": "Definition",
+            "sentence": "Sentence",
+            "optionA": "Option A",
+            "optionB": "Option B",
+            "optionC": "Option C",
+            "category": "Category",
+            "level": "Level"
+        }
+    },
+    "gamesApp": {
+        "gamesFindMistake" : {
+            "created": "A new Find Mistake is created with identifier {{ param }}",
+            "updated": "A Find Mistake is updated with identifier {{ param }}",
+            "deleted": "A Find Mistake is deleted with identifier {{ param }}"
+        }
+    }
+}

@@ -1,7 +1,44 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "findAWord",
+            "otherEntityName": "findAWord",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "level"
+        },
+        {
+            "relationshipName": "findMistake",
+            "otherEntityName": "findMistake",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "level"
+        },
+        {
+            "relationshipName": "guessPicture",
+            "otherEntityName": "guessPicture",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "level"
+        },
+        {
+            "relationshipName": "hangman",
+            "otherEntityName": "hangman",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "level"
+        },
+        {
+            "relationshipName": "organizeSentence",
+            "otherEntityName": "organizeSentence",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "level"
+        },
+        {
+            "relationshipName": "quiz",
+            "otherEntityName": "quiz",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "level"
+        }
+    ],
     "fields": [
         {
             "fieldName": "name",

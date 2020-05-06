@@ -8,17 +8,17 @@
     -->
     <changeSet id="20200505153728-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="category_id"
-                                 baseTableName="organize_sentence"
-                                 constraintName="fk_organize_sentence_category_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="categories"/>
-
         <addForeignKeyConstraint baseColumnNames="level_id"
                                  baseTableName="organize_sentence"
                                  constraintName="fk_organize_sentence_level_id"
                                  referencedColumnNames="id"
                                  referencedTableName="level"/>
+
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="organize_sentence"
+                                 constraintName="fk_organize_sentence_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categories"/>
 
     </changeSet>
 </databaseChangeLog>

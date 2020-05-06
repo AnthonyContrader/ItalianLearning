@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-guess-picture-heading" jhiTranslate="gatewayApp.gamesGuessPicture.home.createOrEditLabel">Create or edit a Guess Picture</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!guessPicture.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="guessPicture.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesGuessPicture.solution" for="field_solution">Solution</label>
+                    <input type="text" class="form-control" name="solution" id="field_solution"
+                        [(ngModel)]="guessPicture.solution" required/>
+                    <div [hidden]="!(editForm.controls.solution?.dirty && editForm.controls.solution?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.solution?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesGuessPicture.image" for="field_image">Image</label>
+                    <div>
+                        <img [src]="'data:' + guessPicture.imageContentType + ';base64,' + guessPicture.image" style="max-height: 100px;" *ngIf="guessPicture.image" alt="guessPicture image"/>
+                        <div *ngIf="guessPicture.image" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{guessPicture.imageContentType}}, {{byteSize(guessPicture.image)}}</span>
+                            <button type="button" (click)="clearInputImage('image', 'imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image" (change)="setFileData($event, guessPicture, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image" id="field_image"
+                        [(ngModel)]="guessPicture.image" required/>
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                        [(ngModel)]="guessPicture.imageContentType" />
+                    <div [hidden]="!(editForm.controls.image?.dirty && editForm.controls.image?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.image?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesGuessPicture.level" for="field_level">Level</label>
+                    <select class="form-control" id="field_level" name="level" [(ngModel)]="guessPicture.levelId"  required>
+                        <option *ngIf="!editForm.value.level" [ngValue]="null" selected></option>
+                        <option [ngValue]="levelOption.id" *ngFor="let levelOption of levels; trackBy: trackLevelById">{{levelOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.level?.dirty && editForm.controls.level?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.level?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesGuessPicture.category" for="field_category">Category</label>
+                    <select class="form-control" id="field_category" name="category" [(ngModel)]="guessPicture.categoryId"  required>
+                        <option *ngIf="!editForm.value.category" [ngValue]="null" selected></option>
+                        <option [ngValue]="categoryOption.id" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.title}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.category?.dirty && editForm.controls.category?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.category?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

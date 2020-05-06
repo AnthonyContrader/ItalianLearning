@@ -3,13 +3,6 @@
     "clientRootFolder": "",
     "relationships": [
         {
-            "relationshipName": "category",
-            "otherEntityName": "category",
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": [],
-            "otherEntityField": "title"
-        },
-        {
             "relationshipName": "level",
             "otherEntityName": "level",
             "relationshipType": "many-to-one",
@@ -17,6 +10,15 @@
                 "required"
             ],
             "otherEntityField": "name"
+        },
+        {
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "title"
         }
     ],
     "fields": [

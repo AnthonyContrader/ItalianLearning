@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="guessPicture">
+            <h2><span jhiTranslate="gatewayApp.gamesGuessPicture.detail.title">Guess Picture</span> {{guessPicture.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gatewayApp.gamesGuessPicture.solution">Solution</span></dt>
+                <dd>
+                    <span>{{guessPicture.solution}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesGuessPicture.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="guessPicture.image">
+                        <a (click)="openFile(guessPicture.imageContentType, guessPicture.image)">
+                            <img [src]="'data:' + guessPicture.imageContentType + ';base64,' + guessPicture.image" style="max-width: 100%;" alt="guessPicture image"/>
+                        </a>
+                        {{guessPicture.imageContentType}}, {{byteSize(guessPicture.image)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesGuessPicture.level">Level</span></dt>
+                <dd>
+                    <div *ngIf="guessPicture.levelId">
+                        <a [routerLink]="['/level', guessPicture.levelId, 'view']">{{guessPicture.levelName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesGuessPicture.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="guessPicture.categoryId">
+                        <a [routerLink]="['/category', guessPicture.categoryId, 'view']">{{guessPicture.categoryTitle}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/guess-picture', guessPicture.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

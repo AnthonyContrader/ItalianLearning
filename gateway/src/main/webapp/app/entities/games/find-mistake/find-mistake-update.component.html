@@ -1,0 +1,110 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-find-mistake-heading" jhiTranslate="gatewayApp.gamesFindMistake.home.createOrEditLabel">Create or edit a Find Mistake</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!findMistake.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="findMistake.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesFindMistake.solution" for="field_solution">Solution</label>
+                    <input type="text" class="form-control" name="solution" id="field_solution"
+                        [(ngModel)]="findMistake.solution" required/>
+                    <div [hidden]="!(editForm.controls.solution?.dirty && editForm.controls.solution?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.solution?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesFindMistake.definition" for="field_definition">Definition</label>
+                    <input type="text" class="form-control" name="definition" id="field_definition"
+                        [(ngModel)]="findMistake.definition" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesFindMistake.sentence" for="field_sentence">Sentence</label>
+                    <input type="text" class="form-control" name="sentence" id="field_sentence"
+                        [(ngModel)]="findMistake.sentence" required/>
+                    <div [hidden]="!(editForm.controls.sentence?.dirty && editForm.controls.sentence?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.sentence?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesFindMistake.optionA" for="field_optionA">Option A</label>
+                    <input type="text" class="form-control" name="optionA" id="field_optionA"
+                        [(ngModel)]="findMistake.optionA" required/>
+                    <div [hidden]="!(editForm.controls.optionA?.dirty && editForm.controls.optionA?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.optionA?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesFindMistake.optionB" for="field_optionB">Option B</label>
+                    <input type="text" class="form-control" name="optionB" id="field_optionB"
+                        [(ngModel)]="findMistake.optionB" required/>
+                    <div [hidden]="!(editForm.controls.optionB?.dirty && editForm.controls.optionB?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.optionB?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesFindMistake.optionC" for="field_optionC">Option C</label>
+                    <input type="text" class="form-control" name="optionC" id="field_optionC"
+                        [(ngModel)]="findMistake.optionC" required/>
+                    <div [hidden]="!(editForm.controls.optionC?.dirty && editForm.controls.optionC?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.optionC?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesFindMistake.category" for="field_category">Category</label>
+                    <select class="form-control" id="field_category" name="category" [(ngModel)]="findMistake.categoryId"  required>
+                        <option *ngIf="!editForm.value.category" [ngValue]="null" selected></option>
+                        <option [ngValue]="categoryOption.id" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.title}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.category?.dirty && editForm.controls.category?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.category?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesFindMistake.level" for="field_level">Level</label>
+                    <select class="form-control" id="field_level" name="level" [(ngModel)]="findMistake.levelId"  required>
+                        <option *ngIf="!editForm.value.level" [ngValue]="null" selected></option>
+                        <option [ngValue]="levelOption.id" *ngFor="let levelOption of levels; trackBy: trackLevelById">{{levelOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.level?.dirty && editForm.controls.level?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.level?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

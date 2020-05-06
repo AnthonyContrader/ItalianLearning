@@ -1,0 +1,30 @@
+
+{
+    "gatewayApp": {
+        "gamesFindAWord" : {
+            "home": {
+                "title": "FindAWords",
+                "createLabel": "Genera un nuovo Find A Word",
+                "createOrEditLabel": "Genera o modifica un Find A Word"
+            },
+            "delete": {
+                "question": "Sei sicuro di volere eliminare Find A Word {{ id }}?"
+            },
+            "detail": {
+                "title": "Find A Word"
+            },
+            "solution": "Solution",
+            "definition": "Definition",
+            "sentence": "Sentence",
+            "category": "Category",
+            "level": "Level"
+        }
+    },
+    "gamesApp": {
+        "gamesFindAWord" : {
+            "created": "&Egrave; stato generato un nuovo Find A Word con identificatore { param }}",
+            "updated": "&Egrave; stato aggiornato Find A Word identificato da {{ param }}",
+            "deleted": "&Egrave; stato eliminato Find A Word con identificatore {{ param }}"
+        }
+    }
+}

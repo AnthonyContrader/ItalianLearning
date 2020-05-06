@@ -12,6 +12,12 @@
                 "gamesLevel": "Level",
                 "gamesPlaylist": "Playlist",
                 "gamesGamePlaylist": "Game Playlist",
+                "gamesFindAWord": "Find A Word",
+                "gamesFindMistake": "Find Mistake",
+                "gamesGuessPicture": "Guess Picture",
+                "gamesHangman": "Hangman",
+                "gamesOrganizeSentence": "Organize Sentence",
+                "gamesQuiz": "Quiz",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -1,0 +1,30 @@
+
+{
+    "gatewayApp": {
+        "gamesOrganizeSentence" : {
+            "home": {
+                "title": "OrganizeSentences",
+                "createLabel": "Genera un nuovo Organize Sentence",
+                "createOrEditLabel": "Genera o modifica un Organize Sentence"
+            },
+            "delete": {
+                "question": "Sei sicuro di volere eliminare Organize Sentence {{ id }}?"
+            },
+            "detail": {
+                "title": "Organize Sentence"
+            },
+            "solution": "Solution",
+            "definition": "Definition",
+            "sentence": "Sentence",
+            "level": "Level",
+            "category": "Category"
+        }
+    },
+    "gamesApp": {
+        "gamesOrganizeSentence" : {
+            "created": "&Egrave; stato generato un nuovo Organize Sentence con identificatore { param }}",
+            "updated": "&Egrave; stato aggiornato Organize Sentence identificato da {{ param }}",
+            "deleted": "&Egrave; stato eliminato Organize Sentence con identificatore {{ param }}"
+        }
+    }
+}

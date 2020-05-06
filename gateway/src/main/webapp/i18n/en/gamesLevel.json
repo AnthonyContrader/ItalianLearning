@@ -15,7 +15,13 @@
             },
             "name": "Name",
             "description": "Description",
-            "score": "Score"
+            "score": "Score",
+            "findAWord": "Find A Word",
+            "findMistake": "Find Mistake",
+            "guessPicture": "Guess Picture",
+            "hangman": "Hangman",
+            "organizeSentence": "Organize Sentence",
+            "quiz": "Quiz"
         }
     },
     "gamesApp": {

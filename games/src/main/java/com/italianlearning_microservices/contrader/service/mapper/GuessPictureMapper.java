@@ -8,17 +8,17 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity GuessPicture and its DTO GuessPictureDTO.
  */
-@Mapper(componentModel = "spring", uses = {CategpryMapper.class, LevelMapper.class})
+@Mapper(componentModel = "spring", uses = {LevelMapper.class, CategoryMapper.class})
 public interface GuessPictureMapper extends EntityMapper<GuessPictureDTO, GuessPicture> {
 
-    @Mapping(source = "categpry.id", target = "categpryId")
-    @Mapping(source = "categpry.title", target = "categpryTitle")
     @Mapping(source = "level.id", target = "levelId")
     @Mapping(source = "level.name", target = "levelName")
+    @Mapping(source = "category.id", target = "categoryId")
+    @Mapping(source = "category.title", target = "categoryTitle")
     GuessPictureDTO toDto(GuessPicture guessPicture);
 
-    @Mapping(source = "categpryId", target = "categpry")
     @Mapping(source = "levelId", target = "level")
+    @Mapping(source = "categoryId", target = "category")
     GuessPicture toEntity(GuessPictureDTO guessPictureDTO);
 
     default GuessPicture fromId(Long id) {

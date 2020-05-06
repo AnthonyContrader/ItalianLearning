@@ -12,6 +12,13 @@ import org.mapstruct.*;
 public interface LevelMapper extends EntityMapper<LevelDTO, Level> {
 
 
+    @Mapping(target = "findAWords", ignore = true)
+    @Mapping(target = "findMistakes", ignore = true)
+    @Mapping(target = "guessPictures", ignore = true)
+    @Mapping(target = "hangmen", ignore = true)
+    @Mapping(target = "organizeSentences", ignore = true)
+    @Mapping(target = "quizzes", ignore = true)
+    Level toEntity(LevelDTO levelDTO);
 
     default Level fromId(Long id) {
         if (id == null) {

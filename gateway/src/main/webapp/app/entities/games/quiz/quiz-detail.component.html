@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="quiz">
+            <h2><span jhiTranslate="gatewayApp.gamesQuiz.detail.title">Quiz</span> {{quiz.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gatewayApp.gamesQuiz.solution">Solution</span></dt>
+                <dd>
+                    <span>{{quiz.solution}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesQuiz.definition">Definition</span></dt>
+                <dd>
+                    <span>{{quiz.definition}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesQuiz.sentence">Sentence</span></dt>
+                <dd>
+                    <span>{{quiz.sentence}}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesQuiz.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="quiz.categoryId">
+                        <a [routerLink]="['/category', quiz.categoryId, 'view']">{{quiz.categoryTitle}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesQuiz.level">Level</span></dt>
+                <dd>
+                    <div *ngIf="quiz.levelId">
+                        <a [routerLink]="['/level', quiz.levelId, 'view']">{{quiz.levelName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/quiz', quiz.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

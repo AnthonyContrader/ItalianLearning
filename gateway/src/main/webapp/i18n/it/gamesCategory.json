@@ -14,7 +14,13 @@
                 "title": "Category"
             },
             "title": "Title",
-            "description": "Description"
+            "description": "Description",
+            "findAWord": "Find A Word",
+            "findMistake": "Find Mistake",
+            "guessPicture": "Guess Picture",
+            "hangman": "Hangman",
+            "organizeSentence": "Organize Sentence",
+            "quiz": "Quiz"
         }
     },
     "gamesApp": {
