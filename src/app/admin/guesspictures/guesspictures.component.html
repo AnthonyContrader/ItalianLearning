@@ -1,0 +1,110 @@
+<!-- @author Enzo Tasca -->
+<div class="row">
+
+  <div class="col-12 table-responsive">
+
+    <br>
+    <h1 class="text-center mt-5"> Guess Pictures </h1>
+    <br>
+    <br>
+
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr class="text-center">
+          <th><abbr title="required">* </abbr>Solution</th>
+          <th><abbr title="required">* </abbr>Image</th>
+          <th><abbr title="required">* </abbr>Category</th>
+          <th><abbr title="required">* </abbr>Level</th>
+          <th colspan="2">Action</th>
+        </tr>
+      </thead>
+
+      <tr>
+          <td>
+            <input [required]="true" class="form-control" placeholder="solution" [(ngModel)]="guesspicturetoinsert.solution">
+          </td>
+
+          <td>
+            <div class="custom-file">
+              <input [required]="true" accept="image/*" (change)="handleInputChange($event, true)" type="file" class="custom-file-input" id="validatedCustomFile">
+              <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+            </div>
+          </td>
+
+          <td>
+            <select [required]="true" class="form-control" placeholder="category" [(ngModel)]="guesspicturetoinsert.category">
+              <option selected disabled [value]="">Choose one...</option>
+              <option *ngFor="let c of categoriesDTO" [ngValue]="c"> {{c.title}} </option>
+            </select>
+          </td>
+
+          <td>
+            <select [required]="true" class="form-control" placeholder="level" [(ngModel)]="guesspicturetoinsert.level">
+              <option selected disabled [value]="">Choose one...</option>
+              <option *ngFor="let l of levelsDTO" [ngValue]="l"> {{l.name}} </option>
+            </select>
+          </td>
+
+          <td>
+            <button type="submit" class="btn btn-primary btn-block" (click)="insert(guesspicturetoinsert)">Insert</button>
+          </td>
+          <td>
+            <button class="btn btn-secondary btn-block" (click)="clear()">Clear</button>
+          </td>
+      </tr>
+
+      <tr *ngFor="let g of guesspicturesDTO">
+        <td>
+          <input [required]="true" class="form-control" [(ngModel)]="g.solution">
+        </td>
+          <td class="text-center">
+            <button type="button" (click)="imageModal(g.image,g.id)" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">Change Image</button>
+            <input type="hidden" [(ngModel)]="g.image" value="g.image">
+          </td>
+        <td>
+          <select class="form-control" [(ngModel)]="g.category.id">
+            <option [ngValue]="category.id" *ngFor="let category of categoriesDTO">{{category.title}}</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-control" [(ngModel)]="g.level.id">
+            <option [ngValue]="level.id" *ngFor="let level of levelsDTO">{{level.name}}</option>
+          </select>
+        </td>
+        <td>
+          <button class="btn btn-success btn-block" (click)=update(g)>Save</button>
+        </td>
+        <td>
+          <button style="background-color: #c52121 !important;" class="btn btn-danger btn-block" (click)="delete(g)">Delete</button>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body text-center">
+            <img style="max-width: 100%;" src="{{b64}}">
+          </div>
+          <div class="modal-footer">
+            <div class="custom-file">
+              <input (change)="handleInputChange($event, false)" type="file" accept="image/*" class="custom-file-input" id="validatedCustomFile" required>
+              <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+            </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+

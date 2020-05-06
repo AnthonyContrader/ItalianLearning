@@ -1,0 +1,53 @@
+<!-- @author Enzo Tasca -->
+
+<div class="container">
+
+  <br>
+  <h1 class="text-center mt-5"> Categories </h1>
+  <br>
+  <br>
+
+    <div class="col-12 table-responsive">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr class="text-center">
+          
+            <th><abbr title="required">* </abbr>Title</th>
+            <th><abbr title="required">* </abbr>Description</th>
+            <th colspan="2"> Action </th>
+           
+           </tr>
+        </thead>
+
+        <tr>
+          <td>
+            <input [required]="true" class="form-control" style="width: 100%;" placeholder="Title" [(ngModel)]="categorytoinsert.title">
+          </td>
+          <td>
+            <input [required]="true" class="form-control" style="width: 100%;" placeholder="Description" [(ngModel)]="categorytoinsert.description">
+          </td>
+          <td>
+            <button (click)=insert(categorytoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>
+          </td>
+          <td>
+            <button (click)="clear()" type="button" class="btn btn-secondary btn-block mr-3">Clear</button>
+          </td>
+        </tr>
+        <tr *ngFor="let c of categories">
+          <td>
+            <input class="form-control" style="width: 100%;" [(ngModel)]="c.title">
+          </td>
+          <td>
+            <input class="form-control" style="width: 100%;" [(ngModel)]="c.description">
+          </td>
+          <td>
+            <button (click)="update(c)" type="button" class="btn btn-success btn-block mr-3">Save</button>
+          </td>
+          <td>
+            <button (click)="delete(c)" type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+</div>
