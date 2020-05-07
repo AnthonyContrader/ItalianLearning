@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GuessPictureDTO } from 'src/dto/guesspicturedto';
 import { LevelDTO } from 'src/dto/leveldto';
 import { CategoryDTO } from 'src/dto/categorydto';
@@ -12,8 +12,7 @@ import { LevelService } from 'src/service/level.service';
 
 @Component({
   selector: 'app-guesspictures',
-  templateUrl: './guesspictures.component.html',
-  styleUrls: ['./guesspictures.component.css']
+  templateUrl: './guesspictures.component.html'
 })
 export class GuesspicturesComponent implements OnInit {
 
@@ -28,6 +27,8 @@ export class GuesspicturesComponent implements OnInit {
   b64toupdate: string;
   idImageChange: number;
   newImage: boolean = false;
+  @ViewChild('newGuessPictureForm') guessPictureForm;
+  @ViewChild('modalTitle') modalTitle;
 
   constructor(private service: GuessPictureService, private serviceCategory: CategoryService, private serviceLevel:LevelService) { }
 
@@ -74,9 +75,8 @@ export class GuesspicturesComponent implements OnInit {
     this.guesspicturetoinsert = new GuessPictureDTO();
   }
 
-  imageModal(image: string, id){
+  imageModal(image: string){
     this.b64=image;
-    this.idImageChange = id;
   }
 
   handleInputChange(e,newImage: boolean) {
@@ -91,6 +91,16 @@ export class GuesspicturesComponent implements OnInit {
         this.b64toupdate = reader.result;
     }.bind(this);
     reader.readAsDataURL(file);
+  }
+
+  editGuessPicture(guessPicture: GuessPictureDTO){
+    this.guessPictureForm.reset()
+    if(guessPicture != null){
+      this.service.read(guessPicture.id).subscribe(hangman => this.guesspicturetoinsert = hangman);
+      this.modalTitle.nativeElement.textContent = 'Edit Guess Picture ' + guessPicture.id
+    }
+    else
+      this.modalTitle.nativeElement.textContent = 'New Guess Picture'
   }
 
 }

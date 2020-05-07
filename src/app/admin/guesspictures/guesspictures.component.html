@@ -4,7 +4,9 @@
   <div class="col-md-8 offset-md-2 mt-5">
     <div class="row">
       <div class="col-sm-9 text-left"><h1 class="text-left "> Guess Picture </h1></div>
-      <div class="col-sm-3 text-right align-self-center"><button class="btn btn-primary mr-3"><i class="fas fa-plus"></i> Insert</button></div>
+      <div class="col-sm-3 text-right align-self-center">
+        <button (click)="editGuessPicture(); newGuessPictureForm.reset()" class="btn btn-primary mr-3" data-toggle="modal" data-target="#newGuessPicture"><i class="fas fa-plus"></i> Insert</button>
+      </div>
     </div>
   </div>
     
@@ -26,16 +28,79 @@
 
       <tr *ngFor="let g of guesspicturesDTO">
         <td>{{g.solution}}</td>
-        <td>open</td>
+        <td class="td-compact"><button class="btn btn-info btn-sm mr-3" data-toggle="modal" data-target="#imageModal" (click)="imageModal(g.image)"><i class="fas fa-image"></i> Open Image</button></td>
         <td>{{g.levelName}}</td>
         <td>
           {{g.categoryTitle}}
         </td>
         <td class="td-compact">
-          <button class="btn btn-info btn-sm mr-3" (click)="update(g)"><i class="fas fa-edit"></i> Edit</button>
+          <button class="btn btn-info btn-sm mr-3" (click)="editGuessPicture(g); newGuessPictureForm.reset()" data-toggle="modal" data-target="#newGuessPicture"><i class="fas fa-edit"></i> Edit</button>
           <button class="btn btn-danger btn-sm" (click)="delete(g)"
             style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>        
         </td>
       </tr>
     </table>
+
+    <!-- Modal Image -->
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body text-center">
+            <img style="max-width: 100%;" src="{{b64}}">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newGuessPicture" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" #modalTitle></div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #newGuessPictureForm="ngForm" (ngSubmit)="onSubmit()">
+        <input type="hidden" id="id" name="id" [(ngModel)]="guesspicturetoinsert.id">
+        <div class="modal-body">
+          <div class="form-group">
+            <input class="form-control" type="text" id="solution" name="solution" required placeholder="Solution" [(ngModel)]="guesspicturetoinsert.solution">
+          </div>
+          <div class="form-group">
+            <div class="custom-file">
+              <input accept="image/*" type="file" class="custom-file-input" id="image" name="image" required [(ngModel)]="guesspicturetoinsert.image">
+              <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+              {{guesspicturetoinsert.image | json}}
+            </div>
+          </div>
+          <div class="form-group">
+            <select class="form-control" placeholder="Category" required id="categoryId" name="categoryId" [(ngModel)]="guesspicturetoinsert.categoryId">
+              <option *ngFor="let category of categoriesDTO" [value]="category.id">{{category.title}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select class="form-control" prompt="Level" required id="levelId" name="levelId" [(ngModel)]="guesspicturetoinsert.levelId">
+              <option *ngFor="let level of levelsDTO" [value]="level.id">{{level.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="!newGuessPictureForm.form.valid" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CategoryDTO } from 'src/dto/categorydto';
 import { CategoryService } from 'src/service/category.service';
 
@@ -13,8 +13,10 @@ import { CategoryService } from 'src/service/category.service';
 })
 export class CategoriesComponent implements OnInit {
 
-  categories: CategoryDTO[];
+  categoriesDTO: CategoryDTO[];
   categorytoinsert: CategoryDTO = new CategoryDTO();
+  @ViewChild('newCategoryForm') categoryForm;
+  @ViewChild('modalTitle') modalTitle;
 
   constructor(private service: CategoryService) { }
 
@@ -23,7 +25,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   getCategories() {
-    this.service.getAll().subscribe(categories => this.categories = categories);
+    this.service.getAll().subscribe(categories => this.categoriesDTO = categories);
   }
 
   delete(category: CategoryDTO) {
@@ -41,6 +43,16 @@ export class CategoriesComponent implements OnInit {
 
   clear(){
     this.categorytoinsert = new CategoryDTO();
+  }
+
+  editCategory(category: CategoryDTO){
+    this.categoryForm.reset()
+    if(category != null){
+      this.service.read(category.id).subscribe(category => this.categorytoinsert = category);
+      this.modalTitle.nativeElement.textContent = 'Edit Category ' + category.id
+    }
+    else
+      this.modalTitle.nativeElement.textContent = 'New Category'
   }
 
 }
