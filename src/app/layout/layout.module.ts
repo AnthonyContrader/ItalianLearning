@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
-import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 
 /**
@@ -14,7 +13,7 @@ import { RouterModule } from '@angular/router';
  * @see AdminLayoutComponent
  */
 @NgModule({
-  declarations: [AdminLayoutComponent, HeaderComponent],
+  declarations: [AdminLayoutComponent],
   imports: [
     CommonModule,
     RouterModule

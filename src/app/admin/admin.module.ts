@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UsersComponent } from './users/users.component';
-import { WorkInProgressComponent } from './work-in-progress/work-in-progress.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { FindawordsComponent } from './findawords/findawords.component';
@@ -25,7 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
  * @see AdminRoutingModule
  */
 @NgModule({
-  declarations: [AdminDashboardComponent, UsersComponent, WorkInProgressComponent, QuizComponent, PlaylistComponent, FindawordsComponent, FindmistakesComponent, CategoriesComponent, OrganizesentencesComponent, HangmenComponent, GuesspicturesComponent, LevelsComponent],
+  declarations: [AdminDashboardComponent, UsersComponent, QuizComponent, PlaylistComponent, FindawordsComponent, FindmistakesComponent, CategoriesComponent, OrganizesentencesComponent, HangmenComponent, GuesspicturesComponent, LevelsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
