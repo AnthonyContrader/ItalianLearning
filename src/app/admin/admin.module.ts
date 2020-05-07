@@ -13,7 +13,6 @@ import { OrganizesentencesComponent } from './organizesentences/organizesentence
 import { HangmenComponent } from './hangmen/hangmen.component';
 import { GuesspicturesComponent } from './guesspictures/guesspictures.component';
 import { LevelsComponent } from './levels/levels.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 /**
  * Modulo dell'admin, qui vengono dichiarate le component che utilizza 
@@ -28,7 +27,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ReactiveFormsModule,
     FormsModule
   ]
 })
