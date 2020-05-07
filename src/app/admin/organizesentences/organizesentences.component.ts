@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrganizeSentenceDTO } from 'src/dto/organizesentencedto';
 import { OrganizeSentenceService } from 'src/service/organizesentence.service';
 import { LevelDTO } from 'src/dto/leveldto';
 import { CategoryDTO } from 'src/dto/categorydto';
 import { LevelService } from 'src/service/level.service';
 import { CategoryService } from 'src/service/category.service';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 /*
 * created by Torquato Di Maio
@@ -22,7 +23,12 @@ export class OrganizesentencesComponent implements OnInit {
   organizesentencetoinsert: OrganizeSentenceDTO = new OrganizeSentenceDTO(); //definisco un singolo oggetto vuoto di tipo OrganizeSenteceDTO
 
   levelsDTO: LevelDTO[];
+  levelDTO: LevelDTO;
   categoriesDTO: CategoryDTO[];
+  categoryDTO: CategoryDTO;
+
+  @ViewChild('newOrganizeSentenceForm') organizeSentenceForm;
+  @ViewChild('modalTitle') modalTitle;
 
   //creiamo le variabili service, serviceCategory e serviceLevel dentro al costruttore per poterle utilizzare con il nostro oggetto   
   constructor(private service: OrganizeSentenceService, private serviceCategory: CategoryService, private serviceLevel: LevelService) { }
@@ -52,6 +58,15 @@ export class OrganizesentencesComponent implements OnInit {
     this.serviceCategory.getAll().subscribe(category => this.categoriesDTO = category);
   }
 
+  editOrganizeSentence(organizesentence: OrganizeSentenceDTO){
+    this.organizeSentenceForm.reset()
+    if(organizesentence != null){
+      this.service.read(organizesentence.id).subscribe(organizesentence => this.organizesentencetoinsert = organizesentence);
+      this.modalTitle.nativeElement.textContent = 'Edit OrganizeSentence ' + organizesentence.id
+    }
+    else
+      this.modalTitle.nativeElement.textContent = 'New OrganizeSentence'
+  }
   delete(organizesentence: OrganizeSentenceDTO){
     //noi andiamo a chiamare la delete con l'id 
     //da this.service.delete(organizesentence.id) otteniamo sempre un observable. 
@@ -76,5 +91,9 @@ export class OrganizesentencesComponent implements OnInit {
     //pulisce i campi
     this.organizesentencetoinsert = new OrganizeSentenceDTO();
   }
+
+  submitted = false;
+  
+  onSubmit() { this.submitted = true; }
 
 }
