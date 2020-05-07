@@ -1,3 +1,8 @@
 button{
     background-color: rgb(26, 204, 248);
 }/* You can add global styles to this file, and also import other style files */
+
+.td-compact{
+    width: 1px;
+    white-space: nowrap;
+}
