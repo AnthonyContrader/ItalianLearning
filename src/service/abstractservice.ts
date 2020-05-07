@@ -23,7 +23,6 @@ export abstract class AbstractService<DTO> implements Service<DTO> {
     }
     auth() {
         this.user = JSON.parse(localStorage.getItem('currentUser'));
-        console.log("stampa user: "+localStorage.getItem('currentUser'))
         if(this.user) {
             return 'Bearer ' + this.user.authorities;
         } else {

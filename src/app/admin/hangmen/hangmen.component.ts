@@ -16,7 +16,9 @@ export class HangmenComponent implements OnInit {
 
   hangmenDTO: HangmanDTO[];
   levelsDTO: LevelDTO[];
+  levelDTO: LevelDTO;
   categoriesDTO: CategoryDTO[];
+  categoryDTO: CategoryDTO;
   hangmantoinsert: HangmanDTO = new HangmanDTO();
 
   constructor(private service: HangmanService, private categoryService: CategoryService, private levelService: LevelService) { }
@@ -27,8 +29,6 @@ export class HangmenComponent implements OnInit {
 
   getHangmen() {
     this.service.getAll().subscribe(hangmen => this.hangmenDTO = hangmen);
-    this.categoryService.getAll().subscribe(categories => this.categoriesDTO = categories);
-    this.levelService.getAll().subscribe(levels => this.levelsDTO = levels);
   }
 
   delete(hangman: HangmanDTO){

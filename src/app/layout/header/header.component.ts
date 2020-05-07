@@ -12,6 +12,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+    if (this.user == null){
+      window.location.href = '/login';
+    }
+  }
+
+  logout(){
+    localStorage.removeItem('currentUser');
+    window.location.href = '/login';
   }
 
 }
