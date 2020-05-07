@@ -27,35 +27,6 @@
 
         </tr>
       </thead>
-      <!-- <tr>
-          <td>
-          <input class="form-control" [required]="true" style="width: 100%;" placeholder="Solution" [(ngModel)]="hangmantoinsert.solution">
-        </td>
-        <td>
-          <input class="form-control" style="width: 100%;" placeholder="Definition" [(ngModel)]="hangmantoinsert.definition">
-        </td>
-        <td>
-          <input class="form-control" [required]="true" style="width: 100%;" placeholder="Sentence" [(ngModel)]="hangmantoinsert.sentence">
-        </td>
-        <td>
-          <select class="form-control" style="width: 100%;" placeholder="level" [(ngModel)]="hangmantoinsert.levelId">
-            <option [value]="">Choose one...</option>
-            <option *ngFor="let level of levelsDTO" [value]="level.id">{{level.name}}</option>
-          </select>
-        </td>
-        <td>
-          <select class="form-control" style="width: 100%;" [(ngModel)]="hangmantoinsert.categoryId">
-            <option [value]="0">Choose one...</option>
-            <option *ngFor="let category of categoriesDTO" [value]="category.id">{{category.title}}</option>
-          </select>
-        </td>
-        <td>
-          <button (click)=insert(hangmantoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>
-        </td>
-        <td>
-          <button (click)="clear()" type="button" class="btn btn-secondary btn-block mr-3">Clear</button>
-        </td>
-      </tr> -->
       <tr *ngFor="let hangman of hangmenDTO">
         <td>{{hangman.solution}}</td>
         <td>{{hangman.definition}}</td>
@@ -72,7 +43,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="newHangman" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div #newModal class="modal fade" id="newHangman" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -82,7 +53,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form #newHangmanForm="ngForm" (ngSubmit)="onSubmit()">
+      <form #newHangmanForm="ngForm" (ngSubmit)="onSubmit(hangmantoinsert)">
         <input type="hidden" id="id" name="id" [(ngModel)]="hangmantoinsert.id">
         <div class="modal-body">
           <div class="form-group">
@@ -106,8 +77,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" [disabled]="!newHangmanForm.form.valid" type="submit">Save</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="this.hangmanForm.reset()">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!newHangmanForm.form.valid" type="submit">Save</button>
         </div>
       </form>
     </div>

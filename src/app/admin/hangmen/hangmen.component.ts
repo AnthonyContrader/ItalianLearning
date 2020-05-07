@@ -15,7 +15,6 @@ import { CategoryDTO } from 'src/dto/categorydto';
 export class HangmenComponent implements OnInit {
 
   hangmenDTO: HangmanDTO[];
-  hangmanDTO: HangmanDTO;
   levelsDTO: LevelDTO[];
   levelDTO: LevelDTO;
   categoriesDTO: CategoryDTO[];
@@ -23,7 +22,8 @@ export class HangmenComponent implements OnInit {
   hangmantoinsert: HangmanDTO = new HangmanDTO();
   @ViewChild('newHangmanForm') hangmanForm;
   @ViewChild('modalTitle') modalTitle;
-
+  @ViewChild('newModal') newModal;
+  
   constructor(private service: HangmanService, private categoryService: CategoryService, private levelService: LevelService) { }
 
   ngOnInit() {
@@ -62,7 +62,10 @@ export class HangmenComponent implements OnInit {
     this.hangmantoinsert = new HangmanDTO();
   }
 
-  submitted = false;
-
-  onSubmit() { this.submitted = true; }
+  onSubmit(hangman: HangmanDTO) {
+    if (hangman.id != null)
+      this.update(hangman)
+    else
+      this.insert(hangman)
+  }
 }
