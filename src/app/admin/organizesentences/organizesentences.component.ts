@@ -94,6 +94,11 @@ export class OrganizesentencesComponent implements OnInit {
 
   submitted = false;
   
-  onSubmit() { this.submitted = true; }
+  onSubmit(organizesentence: OrganizeSentenceDTO) {
+    if (organizesentence.id != null)
+      this.update(organizesentence)
+    else
+      this.insert(organizesentence)
+  }
 
 }

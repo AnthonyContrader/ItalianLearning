@@ -53,7 +53,8 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal che viene eseguita dai button che hanno i tag: data-toggle="modal" e data-target="#newOrganizeSentence"
+in quanto l'id della modal sara' id="newOrganizeSentence"-->
 <div class="modal fade" id="newOrganizeSentence" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -64,7 +65,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form #newOrganizeSentenceForm="ngForm" (ngSubmit)="onSubmit()">
+      <form #newOrganizeSentenceForm="ngForm" (ngSubmit)="onSubmit(organizesentencetoinsert)">
         <input type="hidden" id="id" name="id" [(ngModel)]="organizesentencetoinsert.id">
         <div class="modal-body">
           <div class="form-group">
