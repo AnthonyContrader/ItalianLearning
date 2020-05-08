@@ -6,7 +6,8 @@
         <h1>Quiz</h1>
       </div>
       <div class="col-sm-3 text-right align-self-center">
-        <button type="button" class="btn btn-primary btn-md mr-3" (click)="editQuiz(); newQuizForm.reset()" data-toggle="modal" data-target="#newQuiz">
+        <button type="button" class="btn btn-primary btn-md mr-3" (click)="editQuiz(); newQuizForm.reset()"
+          data-toggle="modal" data-target="#newQuiz">
           <i class="fas fa-plus"></i> Insert</button>
       </div>
     </div>
@@ -19,6 +20,7 @@
     <table class="table table-striped table-bordered" data-pagination=true>
       <thead class="thead-dark">
         <tr class="text-center">
+
           <th>Solution</th>
           <th>Definition</th>
           <th>Sentence</th>
@@ -28,15 +30,17 @@
 
         </tr>
       </thead>
-      <tr *ngFor="let quiz of quizDTO">
+      <tr *ngFor="let quiz of quizzesDTO">
         <td>{{quiz.solution}}</td>
         <td>{{quiz.definition}}</td>
         <td>{{quiz.sentence}}</td>
         <td>{{quiz.categoryTitle}}</td>
         <td>{{quiz.levelName}}</td>
         <td class="td-compact">
-          <button class="btn btn-info btn-sm mr-3" (click)="editQuiz(quiz)" data-toggle="modal" data-target="#newQuiz"><i class="fas fa-edit"></i> Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="delete(quiz)" style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>
+          <button class="btn btn-info btn-sm mr-3" (click)="editQuiz(quiz)" data-toggle="modal"
+            data-target="#newQuiz"><i class="fas fa-edit"></i> Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="delete(quiz)" style="background-color: #c52121 !important;"><i
+              class="fas fa-trash"></i> Delete</button>
         </td>
       </tr>
     </table>
@@ -58,28 +62,39 @@
         <input type="hidden" id="id" name="id" [(ngModel)]="quiztoinsert.id">
         <div class="modal-body">
           <div class="form-group">
-            <input class="form-control" type="text" id="solution" name="solution" required placeholder="Solution" [(ngModel)]="quiztoinsert.solution">
+            <input class="form-control" type="text" id="solution" name="solution" required placeholder="Solution"
+              [(ngModel)]="quiztoinsert.solution">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" id="definition" name="definition" placeholder="Definition" [(ngModel)]="quiztoinsert.definition">
+            <input class="form-control" type="text" id="definition" name="definition" placeholder="Definition"
+              [(ngModel)]="quiztoinsert.definition">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" id="sentence" name="sentence" required placeholder="Sentence" [(ngModel)]="quiztoinsert.sentence">
+            <input class="form-control" type="text" id="sentence" name="sentence" required placeholder="Sentence"
+              [(ngModel)]="quiztoinsert.sentence">
           </div>
           <div class="form-group">
-            <select class="form-control" placeholder="Category" required id="categoryId" name="categoryId" [(ngModel)]="quiztoinsert.categoryId">
+            <select class="form-control" placeholder="Category" required id="categoryId" name="categoryId"
+              [(ngModel)]="quiztoinsert.categoryId">
               <option *ngFor="let category of categoriesDTO" [value]="category.id">{{category.title}}</option>
             </select>
           </div>
           <div class="form-group">
-            <select class="form-control" prompt="Level" required id="levelId" name="levelId" [(ngModel)]="quiztoinsert.levelId">
+            <select class="form-control" prompt="Level" required id="levelId" name="levelId"
+              [(ngModel)]="quiztoinsert.levelId">
               <option *ngFor="let level of levelsDTO" [value]="level.id">{{level.name}}</option>
             </select>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="this.quizForm.reset()">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!newQuizForm.form.valid" type="submit">Save</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="!newQuizForm.form.valid" type="submit">Save</button>
+         <!--
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"
+            (click)="this.quizForm.reset()">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!newQuizForm.form.valid"
+            <type="submit">Save</button>
+            -->
         </div>
       </form>
     </div>
