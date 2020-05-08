@@ -24,6 +24,7 @@ export class FindawordsComponent implements OnInit {
   findawordtoinsert: FindAWordDTO = new FindAWordDTO(); //prendiamo un singolo oggetto vuoto
   @ViewChild('newFindAWordForm') findawordForm;
   @ViewChild('modalTitle') modalTitle; // formato per gestire la vista
+  @ViewChild('closeModal') closeModal;
 
   //creiamo variabile service dentro il costruttore x poterla utilizzare con il nostro oggetto
   constructor(private service: FindAWordService, private serviceCategory: CategoryService, private serviceLevel:LevelService) { }
@@ -58,7 +59,7 @@ export class FindawordsComponent implements OnInit {
   di nome appunto getfindaword*/ 
   }
 
-  editHangman(findaword: FindAWordDTO){
+  editFindAWord(findaword: FindAWordDTO){
     this.findawordForm.reset()
     if(findaword != null){
       this.service.read(findaword.id).subscribe(findaword => this.findawordtoinsert = findaword);
@@ -83,6 +84,13 @@ export class FindawordsComponent implements OnInit {
   }
   submitted = false;
 
-  onSubmit() { this.submitted = true; }
+  onSubmit(findaword: FindAWordDTO) {
+    if (findaword.id != null)
+      this.update(findaword)
+    else
+      this.insert(findaword)
+      
+      this.closeModal.nativeElement.click()
+  }
 
 }

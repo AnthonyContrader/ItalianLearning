@@ -29,6 +29,7 @@ export class OrganizesentencesComponent implements OnInit {
 
   @ViewChild('newOrganizeSentenceForm') organizeSentenceForm;
   @ViewChild('modalTitle') modalTitle;
+  @ViewChild('closeModal') closeModal;
 
   //creiamo le variabili service, serviceCategory e serviceLevel dentro al costruttore per poterle utilizzare con il nostro oggetto   
   constructor(private service: OrganizeSentenceService, private serviceCategory: CategoryService, private serviceLevel: LevelService) { }
@@ -99,6 +100,8 @@ export class OrganizesentencesComponent implements OnInit {
       this.update(organizesentence)
     else
       this.insert(organizesentence)
+
+    this.closeModal.nativeElement.click()
   }
 
 }
