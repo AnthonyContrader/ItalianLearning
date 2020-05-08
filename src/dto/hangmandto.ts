@@ -15,4 +15,7 @@ export class HangmanDTO{
     category: CategoryDTO;
 
     level: LevelDTO;
+
+    categoryTitle: string;
+    levelName: string;
 }

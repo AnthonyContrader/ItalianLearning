@@ -19,7 +19,9 @@ export class OrganizeSentenceDTO{
 	
 	category: CategoryDTO;
 	
-	level: LevelDTO;
-
-
+    level: LevelDTO;
+    
+    categoryTitle: string;
+    levelName: string;
+    
 }

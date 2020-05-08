@@ -23,4 +23,7 @@ export class FindMistakeDTO{
     category: CategoryDTO;
 
     level: LevelDTO;
+
+    categoryTitle: string;
+    levelName: string;
 }

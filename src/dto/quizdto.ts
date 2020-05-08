@@ -11,5 +11,7 @@ export class QuizDTO{
     definition: string;
     sentence: string;
     category: CategoryDTO; 
-	level: LevelDTO; 
+    level: LevelDTO; 
+    categoryTitle: string;
+    levelName: string;
 }

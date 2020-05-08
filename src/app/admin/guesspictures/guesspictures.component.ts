@@ -23,12 +23,10 @@ export class GuesspicturesComponent implements OnInit {
   categoriesDTO: CategoryDTO[];
 
   b64: string;
-  b64toinsert: string;
-  b64toupdate: string;
-  idImageChange: number;
-  newImage: boolean = false;
+  b64toinsert: string = null;
   @ViewChild('newGuessPictureForm') guessPictureForm;
   @ViewChild('modalTitle') modalTitle;
+  @ViewChild('closeModal') closeModal;
 
   constructor(private service: GuessPictureService, private serviceCategory: CategoryService, private serviceLevel:LevelService) { }
 
@@ -55,20 +53,14 @@ export class GuesspicturesComponent implements OnInit {
   }
 
   update(guesspicture: GuessPictureDTO) {
-    if (this.b64toupdate != '' && this.idImageChange == guesspicture.id){
-      guesspicture.image = this.b64toupdate;
-    }
     this.service.update(guesspicture).subscribe(() => this.getGuessPictures());
-    this.b64toupdate = "";
-
   }
 
   insert(guesspicture: GuessPictureDTO) {
-    guesspicture.image = this.b64toinsert;
-    console.log(this.b64toinsert);
+    console.log(guesspicture);
+
     this.service.insert(guesspicture).subscribe(() => this.getGuessPictures());
     this.clear();
-    this.b64toinsert = "";
   }
 
   clear(){
@@ -76,19 +68,17 @@ export class GuesspicturesComponent implements OnInit {
   }
 
   imageModal(image: string){
-    this.b64=image;
+    this.b64= "data:image/jpeg;base64," +image;
   }
 
-  handleInputChange(e,newImage: boolean) {
+  handleInputImage(e) {
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-    var pattern = /image-*/;
     var reader = new FileReader();
     reader.onload = function(e){
       let reader = e.target;
-      if (newImage === true)
-        this.b64toinsert = reader.result ;
-      else
-        this.b64toupdate = reader.result;
+      this.b64toinsert = reader.result ;
+      this.b64toinsert = this.b64toinsert.split(",",2)
+      console.log(this.b64toinsert)
     }.bind(this);
     reader.readAsDataURL(file);
   }
@@ -96,11 +86,36 @@ export class GuesspicturesComponent implements OnInit {
   editGuessPicture(guessPicture: GuessPictureDTO){
     this.guessPictureForm.reset()
     if(guessPicture != null){
-      this.service.read(guessPicture.id).subscribe(hangman => this.guesspicturetoinsert = hangman);
+      this.service.read(guessPicture.id).subscribe(guessPicture => this.guesspicturetoinsert = guessPicture);
       this.modalTitle.nativeElement.textContent = 'Edit Guess Picture ' + guessPicture.id
     }
     else
       this.modalTitle.nativeElement.textContent = 'New Guess Picture'
+  }
+
+  onSubmit(g: GuessPictureDTO) {
+    if(this.b64toinsert != null){
+      g.image = this.b64toinsert[1];
+      g.imageContentType = this.b64toinsert[0];
+    }
+
+    if (g.id != null)
+      this.update(g)
+    else
+      this.insert(g)
+
+    this.closeModal.nativeElement.click()
+  }
+
+  validation(g: GuessPictureDTO){
+
+    if(g.id == null && this.guessPictureForm.form.valid && this.b64toinsert != null)
+      return true;
+
+    if(this.guessPictureForm.form.valid && g.id != null)
+      return true;
+    
+    return false;
   }
 
 }

@@ -10,7 +10,11 @@ export class GuessPictureDTO{
 	
     id: number;
     solution: string;
-	image: string;
+    image: string;
+    
+    categoryTitle: string;
+    levelName: string;
+    imageContentType: string;
 	
 	category: CategoryDTO;
     level: LevelDTO;

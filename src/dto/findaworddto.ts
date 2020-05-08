@@ -18,6 +18,9 @@ export class FindAWordDTO{
     
     sentence: string ;
 
+    categoryTitle: string;
+    levelName: string;
+
 }
 
 
