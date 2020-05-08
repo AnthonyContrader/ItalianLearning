@@ -9,7 +9,7 @@ import { UserDTO } from 'src/dto/userdto';
 })
 export class UsersComponent implements OnInit {
 
-  users: UserDTO[];
+  usersDTO: UserDTO[];
   usertoinsert: UserDTO = new UserDTO();
 
   constructor(private service: UserService) { }
@@ -19,7 +19,11 @@ export class UsersComponent implements OnInit {
   }
 
   getUsers() {
-    this.service.getAll().subscribe(users => this.users = users);
+    this.service.getAll().subscribe(users => this.usersDTO = users);
+    
+    //this.service.getAll().subscribe(users => console.log(users));
+
+    //console.log();
   }
 
   delete(user: UserDTO) {

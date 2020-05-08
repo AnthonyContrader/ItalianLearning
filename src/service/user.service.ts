@@ -5,15 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { LoginDTO } from 'src/dto/logindto';
 import { Observable } from 'rxjs';
 
-/**
- * I service sono decorati da @Injectable. 
- * Qui trovate, oltre ai metodi ereditati dall'Abstract,
- *  il metodo per il login (in mirror con il backend).
- * 
- * @author Vittorio Valent
- * 
- * @see AbstractService
- */
 @Injectable({
   providedIn: 'root'
 })
@@ -22,8 +13,8 @@ export class UserService extends AbstractService<UserDTO>{
   constructor(http: HttpClient) {
     super(http);
     this.type = 'users';
-    this.micro = 'user';
   }
+
   auth() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     console.log("stampa user: " + localStorage.getItem('currentUser'))
@@ -44,4 +35,45 @@ export class UserService extends AbstractService<UserDTO>{
         headers: { Authorization: this.auth() }
       });
   }
+
+  read(id: number): Observable<UserDTO> {
+    return this.http.get<UserDTO>('http://localhost:' + this.port + '/api/' + this.type + '/' + id, {
+        headers: {
+          Authorization: this.auth()
+        }
+    });
+  }
+
+  getAll(): Observable<UserDTO[]> {
+    return this.http.get<UserDTO[]>('http://localhost:' + this.port + '/api/' + this.type,  {
+        headers: {
+          Authorization: this.auth()
+        }
+    });
+  } 
+
+  delete(id: number): Observable<any> {
+    return this.http.delete('http://localhost:' + this.port + '/api/' + this.type + '/' + id, {
+        headers: {
+          Authorization: this.auth()
+        }
+    });
+  }
+
+  insert(dto: UserDTO): Observable<any> {
+    return this.http.post('http://localhost:' + this.port + '/api/' + this.type, dto, {
+        headers: {
+          Authorization: this.auth()
+        }
+    });
+  }
+
+  update(dto: UserDTO): Observable<UserDTO> {
+    return this.http.put<UserDTO>('http://localhost:' + this.port + '/api/' + this.type, dto, {
+        headers: {
+          Authorization: this.auth()
+        }
+    });
+  }
+
 }
