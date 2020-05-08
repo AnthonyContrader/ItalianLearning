@@ -1,5 +1,5 @@
 //Created By Alessandro Alfieri
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LevelDTO } from 'src/dto/leveldto';
 import { LevelService } from 'src/service/level.service';
 
@@ -12,6 +12,9 @@ export class LevelsComponent implements OnInit {
 
   levelsDTO: LevelDTO[];
   leveltoinsert: LevelDTO = new LevelDTO();
+  @ViewChild('newLevelForm') levelForm;
+  @ViewChild('modalTitle') modalTitle;
+  @ViewChild('closeModal') closeModal;
   
   constructor(private service: LevelService) { }
 
@@ -38,5 +41,26 @@ export class LevelsComponent implements OnInit {
   clear(){
     this.leveltoinsert = new LevelDTO;
   }
+  submitted = false;
+
+  editLevel(level: LevelDTO){
+    this.levelForm.reset()
+    if(level != null){
+      this.service.read(level.id).subscribe(level => this.leveltoinsert = level);
+      this.modalTitle.nativeElement.textContent = 'Edit Level ' + level.id
+    }
+    else
+      this.modalTitle.nativeElement.textContent = 'New Level'
+  }
+
+  onSubmit(level: LevelDTO) {
+    if (level.id != null)
+      this.update(level)
+    else
+      this.insert(level)
+      
+      this.closeModal.nativeElement.click()
+  }
+
 
 }

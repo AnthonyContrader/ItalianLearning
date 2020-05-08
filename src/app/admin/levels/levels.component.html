@@ -1,4 +1,81 @@
-<!-- Created By Alessandro Alfieri -->  
+<div class="row">
+  
+  <div class="col-md-8 offset-md-2 mt-5">
+    <div class="row">
+      <div class="col-sm-9 text-left"><h1 class="text-left "> Level </h1></div>
+      <div class="col-sm-3 text-right align-self-center">
+        <button (click)="editLevel(); newLevelForm.reset()" class="btn btn-primary mr-3" data-toggle="modal" data-target="#newLevel"><i class="fas fa-plus"></i> Insert</button>
+      </div>
+    </div>
+  </div>
+    
+  <div class="col-12"> <hr> </div>
+
+  <div class="col-8 offset-2 table-responsive">
+    <br>
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr class="text-center">
+          <th>Name</th>
+          <th>Description</th>
+          <th>Score</th>
+          <th colspan="2"> Action </th>
+        </tr>
+      </thead>
+
+      <tr *ngFor="let c of levelsDTO">
+        <td>{{c.name}}</td>
+        <td>{{c.description}}</td>
+        <td>{{c.score}}</td>
+        <td class="td-compact">
+          <button class="btn btn-info btn-sm mr-3" (click)="editLevel(c)" data-toggle="modal" data-target="#newLevel"><i class="fas fa-edit"></i> Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="delete(c)"
+            style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>  
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newLevel" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" #modalTitle></div>
+        <button type="button" #closeModal class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #newLevelForm="ngForm" (ngSubmit)="onSubmit(leveltoinsert)">
+        <input type="hidden" id="id" name="id" [(ngModel)]="leveltoinsert.id">
+        <div class="modal-body">
+          <div class="form-group">
+            <input class="form-control" type="text" id="name" name="name" required placeholder="Name" [(ngModel)]="leveltoinsert.name">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="description" name="description" placeholder="Description" [(ngModel)]="leveltoinsert.description"></textarea>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="score" name="score" placeholder="Score" [(ngModel)]="leveltoinsert.score"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="!newLevelForm.form.valid" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!--   
 <div class="container">
 
 <br>
@@ -60,4 +137,4 @@
               <button (click)="delete(quiz)" type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
             </td>
           </tr>
-        </table> 
+        </table> Created By Alessandro Alfieri -->
