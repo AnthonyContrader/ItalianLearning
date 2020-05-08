@@ -20,7 +20,7 @@ export class QuizComponent implements OnInit {
   quiztoinsert: QuizDTO = new QuizDTO();
   @ViewChild('newQuizForm') quizForm;
   @ViewChild('modalTitle') modalTitle;
-  @ViewChild('newModal') newModal;
+  @ViewChild('closeModal') closeModal;
 
   constructor(private service: QuizService, private serviceCategory: CategoryService, private serviceLevel: LevelService) { }
 
@@ -57,12 +57,11 @@ export class QuizComponent implements OnInit {
 
     //aggiorna i dati e restituisce la lista aggiornata
   }
-  insert(quiz: QuizDTO) {
-    console.log(quiz);
+  insert(quiz: QuizDTO){
     this.service.insert(quiz).subscribe(() => this.getQuizzes());
-    this.clear();
   }
-  clear() {
+  
+  clear(){
     this.quiztoinsert = new QuizDTO();
   }
   onSubmit(quiz: QuizDTO) {
@@ -70,6 +69,8 @@ export class QuizComponent implements OnInit {
       this.update(quiz)
     else
       this.insert(quiz)
+  
+    this.closeModal.nativeElement.click()
   }
 
 }

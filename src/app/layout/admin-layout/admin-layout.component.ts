@@ -11,7 +11,8 @@ export class AdminLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUserData'));
-    if (this.user == null){
+    let auth = JSON.parse(localStorage.getItem('currentUser'));
+    if (auth == null){
       window.location.href = '/login';
     }
   }
@@ -19,6 +20,10 @@ export class AdminLayoutComponent implements OnInit {
   logout(){
     localStorage.removeItem('currentUser');
     window.location.href = '/login';
+  }
+
+  delete(){
+    alert('delete');
   }
 
 }
