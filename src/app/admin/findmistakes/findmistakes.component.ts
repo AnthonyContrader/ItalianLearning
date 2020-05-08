@@ -1,5 +1,5 @@
 //Created By Alessandro Alfieri
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FindMistakeDTO } from 'src/dto/findmistakedto';
 import { FindMistakeService } from 'src/service/findmistake.service';
 import { CategoriesComponent } from '../categories/categories.component';
@@ -19,7 +19,12 @@ export class FindmistakesComponent implements OnInit {
   findmistakesDTO: FindMistakeDTO[];
   findmistaketoinsert: FindMistakeDTO = new FindMistakeDTO();
   levelsDTO: LevelDTO[];
+  levelDTO: LevelDTO;
   categoriesDTO: CategoryDTO[];
+  categoryDTO: CategoryDTO;
+  @ViewChild('newFindMistakeForm') findMistakeForm;
+  @ViewChild('modalTitle') modalTitle;
+  @ViewChild('closeModal') closeModal;
 
   constructor(private service: FindMistakeService, private categoryService: CategoryService, private levelService: LevelService) { }
 
@@ -36,6 +41,16 @@ export class FindmistakesComponent implements OnInit {
   delete(findmistake: FindMistakeDTO){
     this.service.delete(findmistake.id).subscribe(() => this.getFindMistakes());
   }
+  editFindMistake(findmistake: FindMistakeDTO){
+    this.findMistakeForm.reset()
+    if(findmistake != null){
+      this.service.read(findmistake.id).subscribe(findMistake => this.findmistaketoinsert = findmistake);
+      this.modalTitle.nativeElement.textContent = 'Edit FindMistake ' + findmistake.id
+    }
+    else
+      this.modalTitle.nativeElement.textContent = 'New FindMistake'
+  }
+
 
   update(findmistake: FindMistakeDTO){
     this.service.update(findmistake).subscribe(() => this.getFindMistakes());
@@ -47,6 +62,14 @@ export class FindmistakesComponent implements OnInit {
 
   clear(){
     this.findmistaketoinsert = new FindMistakeDTO();
+  }
+  onSubmit(findMistake: FindMistakeDTO) {
+    if (findMistake.id != null)
+      this.update(findMistake)
+    else
+      this.insert(findMistake)
+    
+    this.closeModal.nativeElement.click()
   }
 
 }
