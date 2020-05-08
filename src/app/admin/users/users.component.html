@@ -24,7 +24,6 @@
           <th> Action </th>
         </tr>
       </thead>
-
       <tr *ngFor="let u of usersDTO">
         <td>{{u.login}}</td>
         <td>{{u.email}}</td>
@@ -32,17 +31,12 @@
         <td>{{u.lastName}}</td>
         <td>{{u.authorities}}</td>
         <td class="td-compact">
-          <button class="btn btn-info btn-sm mr-3" (click)="editCategory(c)" data-toggle="modal" data-target="#newCategory"><i class="fas fa-edit"></i> Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="delete(c)"
+          <button class="btn btn-info btn-sm mr-3" (click)="editUser(u)" data-toggle="modal" data-target="#newUser"><i class="fas fa-edit"></i> Edit</button>
+          <button class="btn btn-info btn-sm mr-3" (click)="activation(u)" data-toggle="modal" data-target="#activationUser"><i class="fas fa-edit"></i> Activation</button>
+          <button class="btn btn-info btn-sm mr-3" (click)="view(u)" data-toggle="modal" data-target="#viewUser"><i class="fas fa-edit"></i> View </button>
+          <button class="btn btn-danger btn-sm" (click)="delete(u)"
             style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>  
         </td>
-
-        
-        <!--td class="td-compact">
-          <button class="btn btn-info btn-sm mr-3" (click)="editUser(c)" data-toggle="modal" data-target="#newUser"><i class="fas fa-edit"></i> Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="delete(c)"
-            style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>  
-        </td-->
       </tr>
     </table>
   </div>
@@ -58,88 +52,33 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <!--form #newUserForm="ngForm" (ngSubmit)="onSubmit(usertoinsert)">
+      <form #newUserForm="ngForm" (ngSubmit)="onSubmit(usertoinsert)">
         <input type="hidden" id="id" name="id" [(ngModel)]="usertoinsert.id">
         <div class="modal-body">
           <div class="form-group">
-            <input class="form-control" type="text" id="title" name="title" required placeholder="Title" [(ngModel)]="usertoinsert.title">
+            <input class="form-control" type="text" id="username" name="username" required placeholder="Username" [(ngModel)]="usertoinsert.login">
           </div>
           <div class="form-group">
-            <textarea class="form-control" id="description" name="description" placeholder="Description" [(ngModel)]="usertoinsert.description"></textarea>
+            <input class="form-control" type="text" id="name" name="name" required placeholder="Name" [(ngModel)]="usertoinsert.firstName">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" id="surname" name="surname" required placeholder="Surname" [(ngModel)]="usertoinsert.lastName">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" id="email" name="email" required placeholder="Email" [(ngModel)]="usertoinsert.email">
+          </div>
+          <div class="form-group">
+            <select class="form-control" placeholder="Type User" required id="typeUser" name="typeUser" [(ngModel)]="usertoinsert.admin">
+              <option [value]="usertoinsert.admin">ROLE_USER</option>
+              <option [value]="usertoinsert.admin">ROLE_ADMIN</option>
+            </select>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" [disabled]="!newUserForm.form.valid" type="submit">Save</button>
         </div>
-      </form -->
+      </form>
     </div>
   </div>
 </div>
-
-
-
-
-
-<!--div class="container">
-
-  <br>
-  <h1 class="text-center mt-5"> User </h1>
-  <br>
-  <br>
-    
-     <div class="col-12 table-responsive">
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <tr class="text-center">
-              
-            <th><abbr title="required">*</abbr>Username</th>
-            <th><abbr title="required">*</abbr>Password</th>
-            <th><abbr title="required">*</abbr>Usertype</th>
-
-            <th colspan="2"> Action </th>
-
-          </tr>
-       </thead> 
-          <tr>
-           <td>
-             <input class="form-control" [required]="true" style="width: 100%" placeholder="username" [(ngModel)]="usertoinsert.username">
-          </td>
-          <td>
-            <input class="form-control" [required]="true" style="width: 100%" placeholder="password" [(ngModel)]="usertoinsert.password">
-          </td>
-          <td>
-            <select class="form-control" [required]="true" style="width: 100%" placeholder="usertype" [(ngModel)]="usertoinsert.usertype">
-              <option value="ADMIN">ADMIN</option>
-              <option value="USER">USER</option>
-            </select>
-          </td>
-          <td>
-            <button (click)=insert(usertoinsert) type="button" class="btn btn-primary btn-block mr-3 ">Insert</button>
-          </td>
-          <td>
-            <button (click)="clear()" type="button" class="btn btn-secondary btn-block mr-3">Clear</button>
-          </td>
-        </tr>
-        <tr *ngFor="let user of users">
-          <td>
-            <input class="form-control" style="width: 100%;" [(ngModel)]="user.username">
-          </td>
-          <td>
-            <input class="form-control" style="width: 100%;" [(ngModel)]="user.password">
-          </td>
-          <td>
-            <select class="form-control" style="width: 100%;" [(ngModel)]="user.usertype">
-              <option [selected]="user.usertype===ADMIN" value="ADMIN">ADMIN</option>
-              <option [selected]="user.usertype===USER" value="USER">USER</option>
-            </select>
-          </td>
-          <td>
-            <button (click)=update(user) type="button" class="btn btn-success btn-block mr-3">Save</button>
-          </td>
-          <td>
-            <button (click)="delete(user)" type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
-          </td>
-        </tr>
-      </table -->
-    

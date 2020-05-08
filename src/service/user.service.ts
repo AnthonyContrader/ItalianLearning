@@ -36,8 +36,8 @@ export class UserService extends AbstractService<UserDTO>{
       });
   }
 
-  read(id: number): Observable<UserDTO> {
-    return this.http.get<UserDTO>('http://localhost:' + this.port + '/api/' + this.type + '/' + id, {
+  readUser(login: string): Observable<UserDTO> {
+    return this.http.get<UserDTO>('http://localhost:' + this.port + '/api/' + this.type + '/' + login, {
         headers: {
           Authorization: this.auth()
         }
@@ -52,8 +52,8 @@ export class UserService extends AbstractService<UserDTO>{
     });
   } 
 
-  delete(id: number): Observable<any> {
-    return this.http.delete('http://localhost:' + this.port + '/api/' + this.type + '/' + id, {
+  deleteUser(login: string): Observable<any> {
+    return this.http.delete('http://localhost:' + this.port + '/api/' + this.type + '/' + login, {
         headers: {
           Authorization: this.auth()
         }
