@@ -73,7 +73,7 @@
         <td>{{findaword.levelName}} </td>
 
         <td class="td-compact">
-          <button class="btn btn-info btn-sm mr-3" (click)=update(findaword)><i class="fas fa-edit"></i>Edit</button>
+          <button class="btn btn-info btn-sm mr-3" (click)=editFindAWord(findaword) data-toggle="modal" data-target="#newFindAWord"><i class="fas fa-edit"></i>Edit</button>
           <button (click)=delete(findaword) class="btn btn-danger btn-sm" style="background-color:#c52121 !important;"><i class="fas fa-trash"></i>Delete</button>
         </td>
 
@@ -92,11 +92,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <div class="modal-title" #modalTitle></div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" #closeModal class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form #newFindAWordForm="ngForm" (ngSubmit)="onSubmit()">
+      <form #newFindAWordForm="ngForm" (ngSubmit)="onSubmit(findawordtoinsert)">
         <input type="hidden" id="id" name="id" [(ngModel)]="findawordtoinsert.id">
         <div class="modal-body">
           <div class="form-group">
