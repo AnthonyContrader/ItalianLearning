@@ -17,6 +17,7 @@ export class CategoriesComponent implements OnInit {
   categorytoinsert: CategoryDTO = new CategoryDTO();
   @ViewChild('newCategoryForm') categoryForm;
   @ViewChild('modalTitle') modalTitle;
+  @ViewChild('closeModal') closeModal;
 
   constructor(private service: CategoryService) { }
 
@@ -44,6 +45,7 @@ export class CategoriesComponent implements OnInit {
   clear(){
     this.categorytoinsert = new CategoryDTO();
   }
+  submitted = false;
 
   editCategory(category: CategoryDTO){
     this.categoryForm.reset()
@@ -54,5 +56,15 @@ export class CategoriesComponent implements OnInit {
     else
       this.modalTitle.nativeElement.textContent = 'New Category'
   }
+
+  onSubmit(category: CategoryDTO) {
+    if (category.id != null)
+      this.update(category)
+    else
+      this.insert(category)
+      
+      this.closeModal.nativeElement.click()
+  }
+
 
 }

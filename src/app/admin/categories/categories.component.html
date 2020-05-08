@@ -42,11 +42,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <div class="modal-title" #modalTitle></div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" #closeModal class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form #newCategoryForm="ngForm" (ngSubmit)="onSubmit()">
+      <form #newCategoryForm="ngForm" (ngSubmit)="onSubmit(categorytoinsert)">
         <input type="hidden" id="id" name="id" [(ngModel)]="categorytoinsert.id">
         <div class="modal-body">
           <div class="form-group">
