@@ -57,7 +57,7 @@
             <textarea class="form-control" id="description" name="description" placeholder="Description" [(ngModel)]="leveltoinsert.description"></textarea>
           </div>
           <div class="form-group">
-            <textarea class="form-control" id="score" name="score" placeholder="Score" [(ngModel)]="leveltoinsert.score"></textarea>
+            <input class="form-control" id="score" name="score" required placeholder="Score" type="number" min="1" [(ngModel)]="leveltoinsert.score">
           </div>
         </div>
         <div class="modal-footer">
