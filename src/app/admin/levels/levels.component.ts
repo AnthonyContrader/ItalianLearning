@@ -62,5 +62,12 @@ export class LevelsComponent implements OnInit {
       this.closeModal.nativeElement.click()
   }
 
+  validation(level: LevelDTO){
+    if (level.score > 0 && this.levelForm.form.valid){
+      return true;
+    }
+    return false;
+  }
+
 
 }
