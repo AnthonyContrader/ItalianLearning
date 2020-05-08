@@ -7,6 +7,7 @@ import { LevelService } from 'src/service/level.service';
 import { LevelDTO } from 'src/dto/leveldto';
 import { CategoryDTO } from 'src/dto/categorydto';
 
+
 @Component({
   selector: 'app-hangmen',
   templateUrl: './hangmen.component.html',
@@ -22,7 +23,7 @@ export class HangmenComponent implements OnInit {
   hangmantoinsert: HangmanDTO = new HangmanDTO();
   @ViewChild('newHangmanForm') hangmanForm;
   @ViewChild('modalTitle') modalTitle;
-  @ViewChild('newModal') newModal;
+  @ViewChild('closeModal') closeModal;
   
   constructor(private service: HangmanService, private categoryService: CategoryService, private levelService: LevelService) { }
 
@@ -67,5 +68,7 @@ export class HangmenComponent implements OnInit {
       this.update(hangman)
     else
       this.insert(hangman)
+    
+    this.closeModal.nativeElement.click()
   }
 }

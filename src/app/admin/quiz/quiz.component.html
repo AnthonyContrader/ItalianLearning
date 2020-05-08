@@ -28,7 +28,7 @@
 
         </tr>
       </thead>
-      <tr *ngFor="let quiz of quizDTO">
+      <tr *ngFor="let quiz of quizzesDTO">
         <td>{{quiz.solution}}</td>
         <td>{{quiz.definition}}</td>
         <td>{{quiz.sentence}}</td>
@@ -44,7 +44,7 @@
 </div>
 
 <!-- Modal -->
-<div #newModal class="modal fade" id="newQuiz" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="newQuiz" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
