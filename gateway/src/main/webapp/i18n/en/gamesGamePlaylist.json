@@ -13,8 +13,8 @@
             "detail": {
                 "title": "Game Playlist"
             },
-            "idGame": "Id Game",
             "typeGame": "Type Game",
+            "idGame": "Id Game",
             "playlist": "Playlist"
         }
     },

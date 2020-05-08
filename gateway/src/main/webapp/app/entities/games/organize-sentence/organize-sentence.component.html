@@ -18,8 +18,8 @@
             <th jhiSortBy="solution"><span jhiTranslate="gatewayApp.gamesOrganizeSentence.solution">Solution</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="definition"><span jhiTranslate="gatewayApp.gamesOrganizeSentence.definition">Definition</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="sentence"><span jhiTranslate="gatewayApp.gamesOrganizeSentence.sentence">Sentence</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="levelName"><span jhiTranslate="gatewayApp.gamesOrganizeSentence.level">Level</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="categoryTitle"><span jhiTranslate="gatewayApp.gamesOrganizeSentence.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="levelName"><span jhiTranslate="gatewayApp.gamesOrganizeSentence.level">Level</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -30,13 +30,13 @@
                 <td>{{organizeSentence.definition}}</td>
                 <td>{{organizeSentence.sentence}}</td>
                 <td>
-                    <div *ngIf="organizeSentence.levelId">
-                        <a [routerLink]="['../level', organizeSentence.levelId , 'view' ]" >{{organizeSentence.levelName}}</a>
+                    <div *ngIf="organizeSentence.categoryId">
+                        <a [routerLink]="['../category', organizeSentence.categoryId , 'view' ]" >{{organizeSentence.categoryTitle}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="organizeSentence.categoryId">
-                        <a [routerLink]="['../category', organizeSentence.categoryId , 'view' ]" >{{organizeSentence.categoryTitle}}</a>
+                    <div *ngIf="organizeSentence.levelId">
+                        <a [routerLink]="['../level', organizeSentence.levelId , 'view' ]" >{{organizeSentence.levelName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

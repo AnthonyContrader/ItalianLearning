@@ -4,6 +4,7 @@ import com.italianlearning_microservices.contrader.GamesApp;
 
 import com.italianlearning_microservices.contrader.domain.Quiz;
 import com.italianlearning_microservices.contrader.domain.Category;
+import com.italianlearning_microservices.contrader.domain.Level;
 import com.italianlearning_microservices.contrader.repository.QuizRepository;
 import com.italianlearning_microservices.contrader.service.QuizService;
 import com.italianlearning_microservices.contrader.service.dto.QuizDTO;
@@ -106,6 +107,11 @@ public class QuizResourceIntTest {
         em.persist(category);
         em.flush();
         quiz.setCategory(category);
+        // Add required entity
+        Level level = LevelResourceIntTest.createEntity(em);
+        em.persist(level);
+        em.flush();
+        quiz.setLevel(level);
         return quiz;
     }
 

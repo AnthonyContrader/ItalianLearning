@@ -3,15 +3,6 @@
     "clientRootFolder": "",
     "relationships": [
         {
-            "relationshipName": "level",
-            "otherEntityName": "level",
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": [
-                "required"
-            ],
-            "otherEntityField": "name"
-        },
-        {
             "relationshipName": "category",
             "otherEntityName": "category",
             "relationshipType": "many-to-one",
@@ -19,6 +10,15 @@
                 "required"
             ],
             "otherEntityField": "title"
+        },
+        {
+            "relationshipName": "level",
+            "otherEntityName": "level",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "name"
         }
     ],
     "fields": [
@@ -41,7 +41,7 @@
             ]
         }
     ],
-    "changelogDate": "20200505153728",
+    "changelogDate": "20200507083338",
     "dto": "mapstruct",
     "searchEngine": false,
     "service": "serviceImpl",

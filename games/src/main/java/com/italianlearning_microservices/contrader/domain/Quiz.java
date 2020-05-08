@@ -37,7 +37,8 @@ public class Quiz implements Serializable {
     @JsonIgnoreProperties("")
     private Category category;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("")
     private Level level;
 

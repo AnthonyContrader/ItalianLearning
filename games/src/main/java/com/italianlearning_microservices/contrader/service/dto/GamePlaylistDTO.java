@@ -12,10 +12,10 @@ public class GamePlaylistDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private Integer idGame;
+    private String typeGame;
 
     @NotNull
-    private String typeGame;
+    private Integer idGame;
 
     private Long playlistId;
 
@@ -29,20 +29,20 @@ public class GamePlaylistDTO implements Serializable {
         this.id = id;
     }
 
-    public Integer getIdGame() {
-        return idGame;
-    }
-
-    public void setIdGame(Integer idGame) {
-        this.idGame = idGame;
-    }
-
     public String getTypeGame() {
         return typeGame;
     }
 
     public void setTypeGame(String typeGame) {
         this.typeGame = typeGame;
+    }
+
+    public Integer getIdGame() {
+        return idGame;
+    }
+
+    public void setIdGame(Integer idGame) {
+        this.idGame = idGame;
     }
 
     public Long getPlaylistId() {
@@ -86,8 +86,8 @@ public class GamePlaylistDTO implements Serializable {
     public String toString() {
         return "GamePlaylistDTO{" +
             "id=" + getId() +
-            ", idGame=" + getIdGame() +
             ", typeGame='" + getTypeGame() + "'" +
+            ", idGame=" + getIdGame() +
             ", playlist=" + getPlaylistId() +
             ", playlist='" + getPlaylistName() + "'" +
             "}";

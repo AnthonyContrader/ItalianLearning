@@ -17,8 +17,8 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="solution"><span jhiTranslate="gatewayApp.gamesGuessPicture.solution">Solution</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="image"><span jhiTranslate="gatewayApp.gamesGuessPicture.image">Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="levelName"><span jhiTranslate="gatewayApp.gamesGuessPicture.level">Level</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="categoryTitle"><span jhiTranslate="gatewayApp.gamesGuessPicture.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="levelName"><span jhiTranslate="gatewayApp.gamesGuessPicture.level">Level</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -33,13 +33,13 @@
                     <span *ngIf="guessPicture.image">{{guessPicture.imageContentType}}, {{byteSize(guessPicture.image)}}</span>
                 </td>
                 <td>
-                    <div *ngIf="guessPicture.levelId">
-                        <a [routerLink]="['../level', guessPicture.levelId , 'view' ]" >{{guessPicture.levelName}}</a>
+                    <div *ngIf="guessPicture.categoryId">
+                        <a [routerLink]="['../category', guessPicture.categoryId , 'view' ]" >{{guessPicture.categoryTitle}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="guessPicture.categoryId">
-                        <a [routerLink]="['../category', guessPicture.categoryId , 'view' ]" >{{guessPicture.categoryTitle}}</a>
+                    <div *ngIf="guessPicture.levelId">
+                        <a [routerLink]="['../level', guessPicture.levelId , 'view' ]" >{{guessPicture.levelName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

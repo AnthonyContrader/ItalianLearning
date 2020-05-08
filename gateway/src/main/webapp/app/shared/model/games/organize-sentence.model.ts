@@ -3,10 +3,10 @@ export interface IOrganizeSentence {
     solution?: string;
     definition?: string;
     sentence?: string;
-    levelName?: string;
-    levelId?: number;
     categoryTitle?: string;
     categoryId?: number;
+    levelName?: string;
+    levelId?: number;
 }
 
 export class OrganizeSentence implements IOrganizeSentence {
@@ -15,9 +15,9 @@ export class OrganizeSentence implements IOrganizeSentence {
         public solution?: string,
         public definition?: string,
         public sentence?: string,
-        public levelName?: string,
-        public levelId?: number,
         public categoryTitle?: string,
-        public categoryId?: number
+        public categoryId?: number,
+        public levelName?: string,
+        public levelId?: number
     ) {}
 }

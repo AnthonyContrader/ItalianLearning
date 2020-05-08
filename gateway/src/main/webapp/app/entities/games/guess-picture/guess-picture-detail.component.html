@@ -18,16 +18,16 @@
                         {{guessPicture.imageContentType}}, {{byteSize(guessPicture.image)}}
                     </div>
                 </dd>
-                <dt><span jhiTranslate="gatewayApp.gamesGuessPicture.level">Level</span></dt>
-                <dd>
-                    <div *ngIf="guessPicture.levelId">
-                        <a [routerLink]="['/level', guessPicture.levelId, 'view']">{{guessPicture.levelName}}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="gatewayApp.gamesGuessPicture.category">Category</span></dt>
                 <dd>
                     <div *ngIf="guessPicture.categoryId">
                         <a [routerLink]="['/category', guessPicture.categoryId, 'view']">{{guessPicture.categoryTitle}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesGuessPicture.level">Level</span></dt>
+                <dd>
+                    <div *ngIf="guessPicture.levelId">
+                        <a [routerLink]="['/level', guessPicture.levelId, 'view']">{{guessPicture.levelName}}</a>
                     </div>
                 </dd>
             </dl>

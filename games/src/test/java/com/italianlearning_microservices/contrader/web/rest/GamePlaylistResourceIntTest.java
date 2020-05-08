@@ -43,11 +43,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = GamesApp.class)
 public class GamePlaylistResourceIntTest {
 
-    private static final Integer DEFAULT_ID_GAME = 1;
-    private static final Integer UPDATED_ID_GAME = 2;
-
     private static final String DEFAULT_TYPE_GAME = "AAAAAAAAAA";
     private static final String UPDATED_TYPE_GAME = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_ID_GAME = 1;
+    private static final Integer UPDATED_ID_GAME = 2;
 
     @Autowired
     private GamePlaylistRepository gamePlaylistRepository;
@@ -95,8 +95,8 @@ public class GamePlaylistResourceIntTest {
      */
     public static GamePlaylist createEntity(EntityManager em) {
         GamePlaylist gamePlaylist = new GamePlaylist()
-            .idGame(DEFAULT_ID_GAME)
-            .typeGame(DEFAULT_TYPE_GAME);
+            .typeGame(DEFAULT_TYPE_GAME)
+            .idGame(DEFAULT_ID_GAME);
         // Add required entity
         Playlist playlist = PlaylistResourceIntTest.createEntity(em);
         em.persist(playlist);
@@ -126,8 +126,8 @@ public class GamePlaylistResourceIntTest {
         List<GamePlaylist> gamePlaylistList = gamePlaylistRepository.findAll();
         assertThat(gamePlaylistList).hasSize(databaseSizeBeforeCreate + 1);
         GamePlaylist testGamePlaylist = gamePlaylistList.get(gamePlaylistList.size() - 1);
-        assertThat(testGamePlaylist.getIdGame()).isEqualTo(DEFAULT_ID_GAME);
         assertThat(testGamePlaylist.getTypeGame()).isEqualTo(DEFAULT_TYPE_GAME);
+        assertThat(testGamePlaylist.getIdGame()).isEqualTo(DEFAULT_ID_GAME);
     }
 
     @Test
@@ -152,10 +152,10 @@ public class GamePlaylistResourceIntTest {
 
     @Test
     @Transactional
-    public void checkIdGameIsRequired() throws Exception {
+    public void checkTypeGameIsRequired() throws Exception {
         int databaseSizeBeforeTest = gamePlaylistRepository.findAll().size();
         // set the field null
-        gamePlaylist.setIdGame(null);
+        gamePlaylist.setTypeGame(null);
 
         // Create the GamePlaylist, which fails.
         GamePlaylistDTO gamePlaylistDTO = gamePlaylistMapper.toDto(gamePlaylist);
@@ -171,10 +171,10 @@ public class GamePlaylistResourceIntTest {
 
     @Test
     @Transactional
-    public void checkTypeGameIsRequired() throws Exception {
+    public void checkIdGameIsRequired() throws Exception {
         int databaseSizeBeforeTest = gamePlaylistRepository.findAll().size();
         // set the field null
-        gamePlaylist.setTypeGame(null);
+        gamePlaylist.setIdGame(null);
 
         // Create the GamePlaylist, which fails.
         GamePlaylistDTO gamePlaylistDTO = gamePlaylistMapper.toDto(gamePlaylist);
@@ -199,8 +199,8 @@ public class GamePlaylistResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(gamePlaylist.getId().intValue())))
-            .andExpect(jsonPath("$.[*].idGame").value(hasItem(DEFAULT_ID_GAME)))
-            .andExpect(jsonPath("$.[*].typeGame").value(hasItem(DEFAULT_TYPE_GAME.toString())));
+            .andExpect(jsonPath("$.[*].typeGame").value(hasItem(DEFAULT_TYPE_GAME.toString())))
+            .andExpect(jsonPath("$.[*].idGame").value(hasItem(DEFAULT_ID_GAME)));
     }
     
 
@@ -215,8 +215,8 @@ public class GamePlaylistResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(gamePlaylist.getId().intValue()))
-            .andExpect(jsonPath("$.idGame").value(DEFAULT_ID_GAME))
-            .andExpect(jsonPath("$.typeGame").value(DEFAULT_TYPE_GAME.toString()));
+            .andExpect(jsonPath("$.typeGame").value(DEFAULT_TYPE_GAME.toString()))
+            .andExpect(jsonPath("$.idGame").value(DEFAULT_ID_GAME));
     }
     @Test
     @Transactional
@@ -239,8 +239,8 @@ public class GamePlaylistResourceIntTest {
         // Disconnect from session so that the updates on updatedGamePlaylist are not directly saved in db
         em.detach(updatedGamePlaylist);
         updatedGamePlaylist
-            .idGame(UPDATED_ID_GAME)
-            .typeGame(UPDATED_TYPE_GAME);
+            .typeGame(UPDATED_TYPE_GAME)
+            .idGame(UPDATED_ID_GAME);
         GamePlaylistDTO gamePlaylistDTO = gamePlaylistMapper.toDto(updatedGamePlaylist);
 
         restGamePlaylistMockMvc.perform(put("/api/game-playlists")
@@ -252,8 +252,8 @@ public class GamePlaylistResourceIntTest {
         List<GamePlaylist> gamePlaylistList = gamePlaylistRepository.findAll();
         assertThat(gamePlaylistList).hasSize(databaseSizeBeforeUpdate);
         GamePlaylist testGamePlaylist = gamePlaylistList.get(gamePlaylistList.size() - 1);
-        assertThat(testGamePlaylist.getIdGame()).isEqualTo(UPDATED_ID_GAME);
         assertThat(testGamePlaylist.getTypeGame()).isEqualTo(UPDATED_TYPE_GAME);
+        assertThat(testGamePlaylist.getIdGame()).isEqualTo(UPDATED_ID_GAME);
     }
 
     @Test

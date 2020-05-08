@@ -6,10 +6,10 @@ import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { IGuessPicture } from 'app/shared/model/games/guess-picture.model';
 import { GuessPictureService } from './guess-picture.service';
-import { ILevel } from 'app/shared/model/games/level.model';
-import { LevelService } from 'app/entities/games/level';
 import { ICategory } from 'app/shared/model/games/category.model';
 import { CategoryService } from 'app/entities/games/category';
+import { ILevel } from 'app/shared/model/games/level.model';
+import { LevelService } from 'app/entities/games/level';
 
 @Component({
     selector: 'jhi-guess-picture-update',
@@ -19,16 +19,16 @@ export class GuessPictureUpdateComponent implements OnInit {
     private _guessPicture: IGuessPicture;
     isSaving: boolean;
 
-    levels: ILevel[];
-
     categories: ICategory[];
+
+    levels: ILevel[];
 
     constructor(
         private dataUtils: JhiDataUtils,
         private jhiAlertService: JhiAlertService,
         private guessPictureService: GuessPictureService,
-        private levelService: LevelService,
         private categoryService: CategoryService,
+        private levelService: LevelService,
         private elementRef: ElementRef,
         private activatedRoute: ActivatedRoute
     ) {}
@@ -38,15 +38,15 @@ export class GuessPictureUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ guessPicture }) => {
             this.guessPicture = guessPicture;
         });
-        this.levelService.query().subscribe(
-            (res: HttpResponse<ILevel[]>) => {
-                this.levels = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
         this.categoryService.query().subscribe(
             (res: HttpResponse<ICategory[]>) => {
                 this.categories = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        this.levelService.query().subscribe(
+            (res: HttpResponse<ILevel[]>) => {
+                this.levels = res.body;
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -98,11 +98,11 @@ export class GuessPictureUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackLevelById(index: number, item: ILevel) {
+    trackCategoryById(index: number, item: ICategory) {
         return item.id;
     }
 
-    trackCategoryById(index: number, item: ICategory) {
+    trackLevelById(index: number, item: ILevel) {
         return item.id;
     }
     get guessPicture() {

@@ -1,13 +1,10 @@
 package com.italianlearning_microservices.contrader.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -29,9 +26,6 @@ public class Playlist implements Serializable {
 
     @Column(name = "description")
     private String description;
-
-    @OneToMany(mappedBy = "playlist")
-    private Set<GamePlaylist> gamePlaylists = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -66,31 +60,6 @@ public class Playlist implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Set<GamePlaylist> getGamePlaylists() {
-        return gamePlaylists;
-    }
-
-    public Playlist gamePlaylists(Set<GamePlaylist> gamePlaylists) {
-        this.gamePlaylists = gamePlaylists;
-        return this;
-    }
-
-    public Playlist addGamePlaylist(GamePlaylist gamePlaylist) {
-        this.gamePlaylists.add(gamePlaylist);
-        gamePlaylist.setPlaylist(this);
-        return this;
-    }
-
-    public Playlist removeGamePlaylist(GamePlaylist gamePlaylist) {
-        this.gamePlaylists.remove(gamePlaylist);
-        gamePlaylist.setPlaylist(null);
-        return this;
-    }
-
-    public void setGamePlaylists(Set<GamePlaylist> gamePlaylists) {
-        this.gamePlaylists = gamePlaylists;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

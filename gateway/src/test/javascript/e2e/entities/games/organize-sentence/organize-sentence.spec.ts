@@ -38,8 +38,8 @@ describe('OrganizeSentence e2e test', () => {
         expect(await organizeSentenceUpdatePage.getDefinitionInput()).toMatch('definition');
         await organizeSentenceUpdatePage.setSentenceInput('sentence');
         expect(await organizeSentenceUpdatePage.getSentenceInput()).toMatch('sentence');
-        await organizeSentenceUpdatePage.levelSelectLastOption();
         await organizeSentenceUpdatePage.categorySelectLastOption();
+        await organizeSentenceUpdatePage.levelSelectLastOption();
         await organizeSentenceUpdatePage.save();
         expect(await organizeSentenceUpdatePage.getSaveButton().isPresent()).toBeFalsy();
     });*/

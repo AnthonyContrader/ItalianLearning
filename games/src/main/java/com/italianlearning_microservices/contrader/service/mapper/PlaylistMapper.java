@@ -12,8 +12,6 @@ import org.mapstruct.*;
 public interface PlaylistMapper extends EntityMapper<PlaylistDTO, Playlist> {
 
 
-    @Mapping(target = "gamePlaylists", ignore = true)
-    Playlist toEntity(PlaylistDTO playlistDTO);
 
     default Playlist fromId(Long id) {
         if (id == null) {

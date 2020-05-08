@@ -22,12 +22,12 @@ public class GamePlaylist implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "id_game", nullable = false)
-    private Integer idGame;
-
-    @NotNull
     @Column(name = "type_game", nullable = false)
     private String typeGame;
+
+    @NotNull
+    @Column(name = "id_game", nullable = false)
+    private Integer idGame;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -43,19 +43,6 @@ public class GamePlaylist implements Serializable {
         this.id = id;
     }
 
-    public Integer getIdGame() {
-        return idGame;
-    }
-
-    public GamePlaylist idGame(Integer idGame) {
-        this.idGame = idGame;
-        return this;
-    }
-
-    public void setIdGame(Integer idGame) {
-        this.idGame = idGame;
-    }
-
     public String getTypeGame() {
         return typeGame;
     }
@@ -67,6 +54,19 @@ public class GamePlaylist implements Serializable {
 
     public void setTypeGame(String typeGame) {
         this.typeGame = typeGame;
+    }
+
+    public Integer getIdGame() {
+        return idGame;
+    }
+
+    public GamePlaylist idGame(Integer idGame) {
+        this.idGame = idGame;
+        return this;
+    }
+
+    public void setIdGame(Integer idGame) {
+        this.idGame = idGame;
     }
 
     public Playlist getPlaylist() {
@@ -107,8 +107,8 @@ public class GamePlaylist implements Serializable {
     public String toString() {
         return "GamePlaylist{" +
             "id=" + getId() +
-            ", idGame=" + getIdGame() +
             ", typeGame='" + getTypeGame() + "'" +
+            ", idGame=" + getIdGame() +
             "}";
     }
 }

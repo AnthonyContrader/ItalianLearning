@@ -36,12 +36,12 @@ public class GuessPicture implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("")
-    private Level level;
+    private Category category;
 
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("")
-    private Category category;
+    private Level level;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -91,19 +91,6 @@ public class GuessPicture implements Serializable {
         this.imageContentType = imageContentType;
     }
 
-    public Level getLevel() {
-        return level;
-    }
-
-    public GuessPicture level(Level level) {
-        this.level = level;
-        return this;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
-    }
-
     public Category getCategory() {
         return category;
     }
@@ -115,6 +102,19 @@ public class GuessPicture implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public GuessPicture level(Level level) {
+        this.level = level;
+        return this;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

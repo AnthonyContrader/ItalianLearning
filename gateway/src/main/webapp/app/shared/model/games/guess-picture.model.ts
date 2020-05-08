@@ -3,10 +3,10 @@ export interface IGuessPicture {
     solution?: string;
     imageContentType?: string;
     image?: any;
-    levelName?: string;
-    levelId?: number;
     categoryTitle?: string;
     categoryId?: number;
+    levelName?: string;
+    levelId?: number;
 }
 
 export class GuessPicture implements IGuessPicture {
@@ -15,9 +15,9 @@ export class GuessPicture implements IGuessPicture {
         public solution?: string,
         public imageContentType?: string,
         public image?: any,
-        public levelName?: string,
-        public levelId?: number,
         public categoryTitle?: string,
-        public categoryId?: number
+        public categoryId?: number,
+        public levelName?: string,
+        public levelId?: number
     ) {}
 }

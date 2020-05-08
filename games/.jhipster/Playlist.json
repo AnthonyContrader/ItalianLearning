@@ -1,14 +1,7 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipName": "gamePlaylist",
-            "otherEntityName": "gamePlaylist",
-            "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "playlist"
-        }
-    ],
+    "relationships": [],
     "fields": [
         {
             "fieldName": "name",
@@ -22,7 +15,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20200505135257",
+    "changelogDate": "20200507082003",
     "dto": "mapstruct",
     "searchEngine": false,
     "service": "serviceImpl",

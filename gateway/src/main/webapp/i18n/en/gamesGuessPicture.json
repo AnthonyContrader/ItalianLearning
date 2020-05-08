@@ -15,8 +15,8 @@
             },
             "solution": "Solution",
             "image": "Image",
-            "level": "Level",
-            "category": "Category"
+            "category": "Category",
+            "level": "Level"
         }
     },
     "gamesApp": {

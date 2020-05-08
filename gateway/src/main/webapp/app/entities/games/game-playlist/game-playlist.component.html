@@ -15,8 +15,8 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="idGame"><span jhiTranslate="gatewayApp.gamesGamePlaylist.idGame">Id Game</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="typeGame"><span jhiTranslate="gatewayApp.gamesGamePlaylist.typeGame">Type Game</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="idGame"><span jhiTranslate="gatewayApp.gamesGamePlaylist.idGame">Id Game</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="playlistName"><span jhiTranslate="gatewayApp.gamesGamePlaylist.playlist">Playlist</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -24,8 +24,8 @@
             <tbody>
             <tr *ngFor="let gamePlaylist of gamePlaylists ;trackBy: trackId">
                 <td><a [routerLink]="['/game-playlist', gamePlaylist.id, 'view' ]">{{gamePlaylist.id}}</a></td>
-                <td>{{gamePlaylist.idGame}}</td>
                 <td>{{gamePlaylist.typeGame}}</td>
+                <td>{{gamePlaylist.idGame}}</td>
                 <td>
                     <div *ngIf="gamePlaylist.playlistId">
                         <a [routerLink]="['../playlist', gamePlaylist.playlistId , 'view' ]" >{{gamePlaylist.playlistName}}</a>

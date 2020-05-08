@@ -16,8 +16,8 @@
             "solution": "Solution",
             "definition": "Definition",
             "sentence": "Sentence",
-            "level": "Level",
-            "category": "Category"
+            "category": "Category",
+            "level": "Level"
         }
     },
     "gamesApp": {

@@ -3,8 +3,8 @@ package com.italianlearning_microservices.contrader.web.rest;
 import com.italianlearning_microservices.contrader.GamesApp;
 
 import com.italianlearning_microservices.contrader.domain.GuessPicture;
-import com.italianlearning_microservices.contrader.domain.Level;
 import com.italianlearning_microservices.contrader.domain.Category;
+import com.italianlearning_microservices.contrader.domain.Level;
 import com.italianlearning_microservices.contrader.repository.GuessPictureRepository;
 import com.italianlearning_microservices.contrader.service.GuessPictureService;
 import com.italianlearning_microservices.contrader.service.dto.GuessPictureDTO;
@@ -103,15 +103,15 @@ public class GuessPictureResourceIntTest {
             .image(DEFAULT_IMAGE)
             .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE);
         // Add required entity
-        Level level = LevelResourceIntTest.createEntity(em);
-        em.persist(level);
-        em.flush();
-        guessPicture.setLevel(level);
-        // Add required entity
         Category category = CategoryResourceIntTest.createEntity(em);
         em.persist(category);
         em.flush();
         guessPicture.setCategory(category);
+        // Add required entity
+        Level level = LevelResourceIntTest.createEntity(em);
+        em.persist(level);
+        em.flush();
+        guessPicture.setLevel(level);
         return guessPicture;
     }
 

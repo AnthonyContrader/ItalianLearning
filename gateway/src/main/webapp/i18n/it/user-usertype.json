@@ -1,9 +1,0 @@
-{
-    "gatewayApp": {
-        "Usertype" : {
-            "null": "",
-            "ADMIN": "ADMIN",
-            "USER": "USER"
-        }
-    }
-}

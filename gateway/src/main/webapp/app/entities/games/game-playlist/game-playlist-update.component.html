@@ -10,6 +10,17 @@
                         [(ngModel)]="gamePlaylist.id" readonly />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesGamePlaylist.typeGame" for="field_typeGame">Type Game</label>
+                    <input type="text" class="form-control" name="typeGame" id="field_typeGame"
+                        [(ngModel)]="gamePlaylist.typeGame" required/>
+                    <div [hidden]="!(editForm.controls.typeGame?.dirty && editForm.controls.typeGame?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.typeGame?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gatewayApp.gamesGamePlaylist.idGame" for="field_idGame">Id Game</label>
                     <input type="number" class="form-control" name="idGame" id="field_idGame"
                         [(ngModel)]="gamePlaylist.idGame" required/>
@@ -21,17 +32,6 @@
                         <small class="form-text text-danger"
                             [hidden]="!editForm.controls.idGame?.errors?.number" jhiTranslate="entity.validation.number">
                             This field should be a number.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gatewayApp.gamesGamePlaylist.typeGame" for="field_typeGame">Type Game</label>
-                    <input type="text" class="form-control" name="typeGame" id="field_typeGame"
-                        [(ngModel)]="gamePlaylist.typeGame" required/>
-                    <div [hidden]="!(editForm.controls.typeGame?.dirty && editForm.controls.typeGame?.invalid)">
-                        <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.typeGame?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
                         </small>
                     </div>
                 </div>

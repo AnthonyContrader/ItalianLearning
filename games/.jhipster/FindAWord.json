@@ -41,7 +41,7 @@
             ]
         }
     ],
-    "changelogDate": "20200505153730",
+    "changelogDate": "20200507083545",
     "dto": "mapstruct",
     "searchEngine": false,
     "service": "serviceImpl",

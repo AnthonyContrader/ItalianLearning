@@ -32,10 +32,10 @@ describe('GamePlaylist e2e test', () => {
 
     /* it('should create and save GamePlaylists', async () => {
         await gamePlaylistComponentsPage.clickOnCreateButton();
-        await gamePlaylistUpdatePage.setIdGameInput('5');
-        expect(await gamePlaylistUpdatePage.getIdGameInput()).toMatch('5');
         await gamePlaylistUpdatePage.setTypeGameInput('typeGame');
         expect(await gamePlaylistUpdatePage.getTypeGameInput()).toMatch('typeGame');
+        await gamePlaylistUpdatePage.setIdGameInput('5');
+        expect(await gamePlaylistUpdatePage.getIdGameInput()).toMatch('5');
         await gamePlaylistUpdatePage.playlistSelectLastOption();
         await gamePlaylistUpdatePage.save();
         expect(await gamePlaylistUpdatePage.getSaveButton().isPresent()).toBeFalsy();

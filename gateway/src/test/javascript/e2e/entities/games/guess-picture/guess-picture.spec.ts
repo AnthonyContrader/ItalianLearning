@@ -38,8 +38,8 @@ describe('GuessPicture e2e test', () => {
         await guessPictureUpdatePage.setSolutionInput('solution');
         expect(await guessPictureUpdatePage.getSolutionInput()).toMatch('solution');
         await guessPictureUpdatePage.setImageInput(absolutePath);
-        await guessPictureUpdatePage.levelSelectLastOption();
         await guessPictureUpdatePage.categorySelectLastOption();
+        await guessPictureUpdatePage.levelSelectLastOption();
         await guessPictureUpdatePage.save();
         expect(await guessPictureUpdatePage.getSaveButton().isPresent()).toBeFalsy();
     });*/

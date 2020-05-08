@@ -14,21 +14,21 @@
     ],
     "fields": [
         {
-            "fieldName": "idGame",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "typeGame",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "idGame",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
-    "changelogDate": "20200505135639",
+    "changelogDate": "20200507082224",
     "dto": "mapstruct",
     "searchEngine": false,
     "service": "serviceImpl",

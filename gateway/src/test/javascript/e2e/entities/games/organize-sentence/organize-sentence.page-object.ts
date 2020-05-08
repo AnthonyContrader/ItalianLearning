@@ -20,8 +20,8 @@ export class OrganizeSentenceUpdatePage {
     solutionInput = element(by.id('field_solution'));
     definitionInput = element(by.id('field_definition'));
     sentenceInput = element(by.id('field_sentence'));
-    levelSelect = element(by.id('field_level'));
     categorySelect = element(by.id('field_category'));
+    levelSelect = element(by.id('field_level'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -51,25 +51,6 @@ export class OrganizeSentenceUpdatePage {
         return this.sentenceInput.getAttribute('value');
     }
 
-    async levelSelectLastOption() {
-        await this.levelSelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
-    }
-
-    async levelSelectOption(option) {
-        await this.levelSelect.sendKeys(option);
-    }
-
-    getLevelSelect(): ElementFinder {
-        return this.levelSelect;
-    }
-
-    async getLevelSelectedOption() {
-        return this.levelSelect.element(by.css('option:checked')).getText();
-    }
-
     async categorySelectLastOption() {
         await this.categorySelect
             .all(by.tagName('option'))
@@ -87,6 +68,25 @@ export class OrganizeSentenceUpdatePage {
 
     async getCategorySelectedOption() {
         return this.categorySelect.element(by.css('option:checked')).getText();
+    }
+
+    async levelSelectLastOption() {
+        await this.levelSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async levelSelectOption(option) {
+        await this.levelSelect.sendKeys(option);
+    }
+
+    getLevelSelect(): ElementFinder {
+        return this.levelSelect;
+    }
+
+    async getLevelSelectedOption() {
+        return this.levelSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

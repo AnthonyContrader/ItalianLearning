@@ -17,16 +17,16 @@
                 <dd>
                     <span>{{organizeSentence.sentence}}</span>
                 </dd>
-                <dt><span jhiTranslate="gatewayApp.gamesOrganizeSentence.level">Level</span></dt>
-                <dd>
-                    <div *ngIf="organizeSentence.levelId">
-                        <a [routerLink]="['/level', organizeSentence.levelId, 'view']">{{organizeSentence.levelName}}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="gatewayApp.gamesOrganizeSentence.category">Category</span></dt>
                 <dd>
                     <div *ngIf="organizeSentence.categoryId">
                         <a [routerLink]="['/category', organizeSentence.categoryId, 'view']">{{organizeSentence.categoryTitle}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.gamesOrganizeSentence.level">Level</span></dt>
+                <dd>
+                    <div *ngIf="organizeSentence.levelId">
+                        <a [routerLink]="['/level', organizeSentence.levelId, 'view']">{{organizeSentence.levelName}}</a>
                     </div>
                 </dd>
             </dl>

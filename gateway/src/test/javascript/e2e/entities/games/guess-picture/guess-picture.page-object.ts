@@ -19,8 +19,8 @@ export class GuessPictureUpdatePage {
     cancelButton = element(by.id('cancel-save'));
     solutionInput = element(by.id('field_solution'));
     imageInput = element(by.id('file_image'));
-    levelSelect = element(by.id('field_level'));
     categorySelect = element(by.id('field_category'));
+    levelSelect = element(by.id('field_level'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
@@ -42,25 +42,6 @@ export class GuessPictureUpdatePage {
         return this.imageInput.getAttribute('value');
     }
 
-    async levelSelectLastOption() {
-        await this.levelSelect
-            .all(by.tagName('option'))
-            .last()
-            .click();
-    }
-
-    async levelSelectOption(option) {
-        await this.levelSelect.sendKeys(option);
-    }
-
-    getLevelSelect(): ElementFinder {
-        return this.levelSelect;
-    }
-
-    async getLevelSelectedOption() {
-        return this.levelSelect.element(by.css('option:checked')).getText();
-    }
-
     async categorySelectLastOption() {
         await this.categorySelect
             .all(by.tagName('option'))
@@ -78,6 +59,25 @@ export class GuessPictureUpdatePage {
 
     async getCategorySelectedOption() {
         return this.categorySelect.element(by.css('option:checked')).getText();
+    }
+
+    async levelSelectLastOption() {
+        await this.levelSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    async levelSelectOption(option) {
+        await this.levelSelect.sendKeys(option);
+    }
+
+    getLevelSelect(): ElementFinder {
+        return this.levelSelect;
+    }
+
+    async getLevelSelectedOption() {
+        return this.levelSelect.element(by.css('option:checked')).getText();
     }
 
     async save() {

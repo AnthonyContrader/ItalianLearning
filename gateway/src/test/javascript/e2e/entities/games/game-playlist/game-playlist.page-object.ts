@@ -17,20 +17,12 @@ export class GamePlaylistUpdatePage {
     pageTitle = element(by.id('jhi-game-playlist-heading'));
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
-    idGameInput = element(by.id('field_idGame'));
     typeGameInput = element(by.id('field_typeGame'));
+    idGameInput = element(by.id('field_idGame'));
     playlistSelect = element(by.id('field_playlist'));
 
     async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
-    }
-
-    async setIdGameInput(idGame) {
-        await this.idGameInput.sendKeys(idGame);
-    }
-
-    async getIdGameInput() {
-        return this.idGameInput.getAttribute('value');
     }
 
     async setTypeGameInput(typeGame) {
@@ -39,6 +31,14 @@ export class GamePlaylistUpdatePage {
 
     async getTypeGameInput() {
         return this.typeGameInput.getAttribute('value');
+    }
+
+    async setIdGameInput(idGame) {
+        await this.idGameInput.sendKeys(idGame);
+    }
+
+    async getIdGameInput() {
+        return this.idGameInput.getAttribute('value');
     }
 
     async playlistSelectLastOption() {

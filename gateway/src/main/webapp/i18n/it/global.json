@@ -7,17 +7,16 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entità",
-                "userUser": "User",
                 "gamesCategory": "Category",
                 "gamesLevel": "Level",
                 "gamesPlaylist": "Playlist",
                 "gamesGamePlaylist": "Game Playlist",
-                "gamesFindAWord": "Find A Word",
-                "gamesFindMistake": "Find Mistake",
                 "gamesGuessPicture": "Guess Picture",
                 "gamesHangman": "Hangman",
-                "gamesOrganizeSentence": "Organize Sentence",
+                "gamesFindMistake": "Find Mistake",
                 "gamesQuiz": "Quiz",
+                "gamesOrganizeSentence": "Organize Sentence",
+                "gamesFindAWord": "Find A Word",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
