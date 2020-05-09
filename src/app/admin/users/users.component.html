@@ -40,7 +40,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Edit User -->
 <div class="modal fade" id="newUser" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -50,7 +50,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form #newUserForm="ngForm" (ngSubmit)="onSubmit(usertoinsert)">
+      <form #newUserForm="ngForm" (ngSubmit)="onSubmit(usertoinsert, userType)">
         <input type="hidden" id="id" name="id" [(ngModel)]="usertoinsert.id">
         <div class="modal-body">
           <div class="form-group">
@@ -66,9 +66,9 @@
             <input class="form-control" type="text" id="email" name="email" required placeholder="Email" [(ngModel)]="usertoinsert.email">
           </div>
           <div class="form-group">
-            <select class="form-control" placeholder="Type User" required id="typeUser" name="typeUser" [(ngModel)]="usertoinsert.admin">
-              <option [value]="usertoinsert.admin">ROLE_USER</option>
-              <option [value]="usertoinsert.admin">ROLE_ADMIN</option>
+            <select class="form-control" required id="userType" name="userType" [(ngModel)]="userType">
+              <option value="ROLE_USER">ROLE_USER</option>
+              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
             </select>
           </div>
         </div>
@@ -81,7 +81,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal View -->
 <div class="modal fade" id="viewUser" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -140,7 +140,7 @@
               <td>{{ userview.authorities }}</td>
             </tr>
             <tr>
-              <td><strong>Activeted</strong></td>
+              <td><strong>Activated</strong></td>
               <td>{{ userview.activated }}</td>
             </tr>
           </table>
@@ -148,7 +148,7 @@
       </div>
       <div class="modal-footer">
 
-        <button class="btn btn-info btn mr-3" (click)="editUser(userview)" data-dismiss="modal" data-toggle="modal" data-target="#newUser"><i class="fas fa-edit"></i> Edit</button>
+        <button class="btn btn-info btn mr-3" (click)="editUser(userview); typeUser=null;" data-dismiss="modal" data-toggle="modal" data-target="#newUser"><i class="fas fa-edit"></i> Edit</button>
         <button class="btn btn-info btn mr-3" (click)="activation(userview)" #activationButton data-toggle="modal" data-target="#activationUser"></button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 

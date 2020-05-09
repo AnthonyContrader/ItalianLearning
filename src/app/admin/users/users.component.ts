@@ -12,6 +12,7 @@ export class UsersComponent implements OnInit {
   usersDTO: UserDTO[];
   usertoinsert: UserDTO = new UserDTO();
   userview: UserDTO = new UserDTO();
+  userType: string;
   @ViewChild('newUserForm') userForm;
   @ViewChild('modalTitle') modalTitle;
   @ViewChild('closeModal') closeModal;
@@ -56,6 +57,7 @@ export class UsersComponent implements OnInit {
 
   insertUser(){
     this.usertoinsert = new UserDTO();
+    this.userType = null;
   }
 
   view(user : UserDTO){
@@ -69,8 +71,9 @@ export class UsersComponent implements OnInit {
     this.activationButton.nativeElement.textContent = user.activated ? 'Deactivate' : 'Activated';
   }
 
-  onSubmit(user: UserDTO) {
-    console.log(user);
+  onSubmit(user: UserDTO, userType : string ) {
+    //console.log(user);
+    console.log(userType);
     /*
     if (user.id != null)
       this.update(user)
