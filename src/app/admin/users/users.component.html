@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-sm-9 text-left"><h1 class="text-left "> User </h1></div>
       <div class="col-sm-3 text-right align-self-center">
-        <button (click)="editUser(); newUserForm.reset()" class="btn btn-primary mr-3" data-toggle="modal" data-target="#newUser"><i class="fas fa-plus"></i> Insert</button>
+        <button (click)="insertUser(); newUserForm.reset();" class="btn btn-primary mr-3" data-toggle="modal" data-target="#newUser"><i class="fas fa-plus"></i> Insert</button>
       </div>
     </div>
   </div>
@@ -31,8 +31,6 @@
         <td>{{u.lastName}}</td>
         <td>{{u.authorities}}</td>
         <td class="td-compact">
-          <button class="btn btn-info btn-sm mr-3" (click)="editUser(u)" data-toggle="modal" data-target="#newUser"><i class="fas fa-edit"></i> Edit</button>
-          <button class="btn btn-info btn-sm mr-3" (click)="activation(u)" data-toggle="modal" data-target="#activationUser"><i class="fas fa-edit"></i> Activation</button>
           <button class="btn btn-info btn-sm mr-3" (click)="view(u)" data-toggle="modal" data-target="#viewUser"><i class="fas fa-edit"></i> View </button>
           <button class="btn btn-danger btn-sm" (click)="delete(u)"
             style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>  
@@ -42,7 +40,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Edit User -->
 <div class="modal fade" id="newUser" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -52,7 +50,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form #newUserForm="ngForm" (ngSubmit)="onSubmit(usertoinsert)">
+      <form #newUserForm="ngForm" (ngSubmit)="update(usertoinsert, userType)">
         <input type="hidden" id="id" name="id" [(ngModel)]="usertoinsert.id">
         <div class="modal-body">
           <div class="form-group">
@@ -65,12 +63,12 @@
             <input class="form-control" type="text" id="surname" name="surname" required placeholder="Surname" [(ngModel)]="usertoinsert.lastName">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" id="email" name="email" required placeholder="Email" [(ngModel)]="usertoinsert.email">
+            <input class="form-control" type="email" id="email" name="email" required placeholder="Email"  email="true" [(ngModel)]="usertoinsert.email">
           </div>
           <div class="form-group">
-            <select class="form-control" placeholder="Type User" required id="typeUser" name="typeUser" [(ngModel)]="usertoinsert.admin">
-              <option [value]="usertoinsert.admin">ROLE_USER</option>
-              <option [value]="usertoinsert.admin">ROLE_ADMIN</option>
+            <select class="form-control" required id="userType" name="userType" [(ngModel)]="userType">
+              <option value="ROLE_USER">ROLE_USER</option>
+              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
             </select>
           </div>
         </div>
@@ -82,3 +80,124 @@
     </div>
   </div>
 </div>
+
+<!-- Modal View -->
+<div class="modal fade" id="viewUser" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">View User : {{userview.login}}</div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="row">
+        <div class="text-right col-4">
+          <i class="fas fa-user-circle p-3" style="color: gray; font-size: 130px;"></i>
+        </div>
+        <div class="text-left col-8 align-self-center">
+          <h3>{{userview.firstName}} {{userview.lastName}}</h3>
+        </div>
+      </div>
+
+      <div class="conteiner">
+        <div class="col-12 conteiner table-responsive">
+          <table class="table table-striped">
+            <tr>
+              <td><strong>Username</strong></td>
+              <td>{{ userview.login }}</td>
+            </tr>
+            <!--tr>
+              <td><strong>Name</strong></td>
+              <td>{{ userview.firstName }}</td>
+            </tr>
+              <tr>
+              <td><strong>Surneme</strong></td>
+              <td>{{ userview.lastName }}</td>
+            </tr -->
+            <tr>
+              <td><strong>Email</strong></td>
+              <td>{{ userview.email }}</td>
+            </tr>
+            <tr>
+              <td><strong>Created By</strong></td>
+              <td>{{ userview.createdBy }}</td>
+            </tr>
+            <tr>
+              <td><strong>Registered Date</strong></td>
+              <td>{{ userview.createdDate }}</td>
+            </tr>
+            <tr>
+              <td><strong>Last Modified Date</strong></td>
+              <td>{{ userview.lastModifiedDate }}</td>
+            </tr>
+            <tr>
+              <td><strong>Last Modified By</strong></td>
+              <td>{{ userview.lastModifiedBy }}</td>
+            </tr>
+            <tr>
+              <td><strong>User Type</strong></td>
+              <td>{{ userview.authorities }}</td>
+            </tr>
+            <tr>
+              <td><strong>Activated</strong></td>
+              <td>{{ userview.activated }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+        <button class="btn btn-info btn mr-3" (click)="editUser(userview); typeUser=null;" data-dismiss="modal" data-toggle="modal" data-target="#newUser"><i class="fas fa-edit"></i> Edit</button>
+        <button class="btn btn-info btn mr-3" (click)="activation(userview)" #activationButton data-toggle="modal" data-target="#activationUser"></button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="newLogin" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" #modalTitle></div>
+        <button type="button" #closeModal class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #newLoginForm="ngForm" (ngSubmit)="editLogin(logintoinsert)">
+        <input type="hidden" id="id" name="id" [(ngModel)]="logintoinsert.id">
+        <div class="modal-body">
+          <div class="form-group">
+            <input class="form-control" type="text" id="username" name="username" required placeholder="Username"
+              [(ngModel)]="logintoinsert.login">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" id="name" name="name" required placeholder="Name"
+              [(ngModel)]="logintoinsert.firstName">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" id="surname" name="surname" required placeholder="Surname"
+              [(ngModel)]="logintoinsert.lastName">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" id="email" name="email" required placeholder="Email"
+              [(ngModel)]="logintoinsert.email">
+          </div>
+
+          <div class="form-group">
+            <input class="form-control" type="password" minlength="6" name="password" required placeholder="Password"
+              [(ngModel)]="logintoinsert.password">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" minlength="6" id="password2" name="confermaPassword" required
+              placeholder="Conferma Password" [(ngModel)]="logintoinsert.ConfermaPassword">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="!newLoginForm.form.valid" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>

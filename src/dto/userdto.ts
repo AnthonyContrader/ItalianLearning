@@ -12,6 +12,8 @@ export class UserDTO {
    langKey: string;
    lastModifiedBy: string;
    lastModifiedDate: string;
-
+   password: string;
+   confermaPassword: string;
+   
    authorities: string [];
 }

@@ -22,6 +22,9 @@ export class PlaylistComponent implements OnInit {
   _gamesArray: Array<any>;
   playlisttoinsert: PlaylistDTO = new PlaylistDTO();
   @ViewChild('gameList') gamelist;
+  @ViewChild('newPlaylistForm') playlistForm;
+  @ViewChild('modalTitle') modalTitle;
+  @ViewChild('closeModal') closeModal;
 
   constructor(private service: PlaylistService, private gpService: GamePlaylistService, private fawService: FindAWordService, private fmService: FindMistakeService, private gupService: GuessPictureService, private hService: HangmanService, private osService: OrganizeSentenceService, private qService: QuizService) { }
 
@@ -146,6 +149,26 @@ export class PlaylistComponent implements OnInit {
 
   clear() {
     this.playlisttoinsert = new PlaylistDTO;
+  }
+  submitted = false;
+
+  editPlaylist(playlist: PlaylistDTO){
+    this.playlistForm.reset()
+    if(playlist != null){
+      this.service.read(playlist.id).subscribe(playlist => this.playlisttoinsert = playlist);
+      this.modalTitle.nativeElement.textContent = 'Edit Playlist ' + playlist.id
+    }
+    else
+      this.modalTitle.nativeElement.textContent = 'New Playlist'
+  }
+
+  onSubmit(playlist: PlaylistDTO) {
+    if (playlist.id != null)
+      this.update(playlist)
+    else
+      this.insert(playlist)
+      
+      this.closeModal.nativeElement.click()
   }
 
 }

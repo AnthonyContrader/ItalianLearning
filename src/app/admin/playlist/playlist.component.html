@@ -1,4 +1,76 @@
-<!-- Created By Alessandro Alfieri -->
+<div class="row">
+  
+  <div class="col-md-8 offset-md-2 mt-5">
+    <div class="row">
+      <div class="col-sm-9 text-left"><h1 class="text-left "> Playlist </h1></div>
+      <div class="col-sm-3 text-right align-self-center">
+        <button (click)="editPlaylist(); newPlaylistForm.reset()" class="btn btn-primary mr-3" data-toggle="modal" data-target="#newPlaylist"><i class="fas fa-plus"></i> Insert</button>
+      </div>
+    </div>
+  </div>
+    
+  <div class="col-12"> <hr> </div>
+
+  <div class="col-8 offset-2 table-responsive">
+    <br>
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr class="text-center">
+          <th>Name</th>
+          <th>Description</th>
+          <th colspan="2"> Action </th>
+        </tr>
+      </thead>
+
+      <tr *ngFor="let c of playlistDTO">
+        <td>{{c.name}}</td>
+        <td>{{c.description}}</td>
+        <td class="td-compact">
+          <button (click)="editPlaylist(c)" class="btn btn-info btn-sm mr-3" data-toggle="modal" data-target="#newPlaylist"><i class="fas fa-edit"></i> Edit</button>
+          <button (click)="gamePlaylist(c)" class="btn btn-info btn-sm mr-3" data-toggle="modal" data-target="#gamePlaylistModal"><i class="fas fa-info-circle"></i> Detail</button>
+          <button class="btn btn-danger btn-sm" (click)="delete(c)" style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>  
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newPlaylist" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" #modalTitle>Giochi nella Playlist</div>
+        <button type="button" #closeModal class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #newPlaylistForm="ngForm" (ngSubmit)="onSubmit(playlisttoinsert)">
+        <input type="hidden" id="id" name="id" [(ngModel)]="playlisttoinsert.id">
+        <div class="modal-body">
+          <div class="form-group">
+            <input class="form-control" type="text" id="name" name="name" required placeholder="Name" [(ngModel)]="playlisttoinsert.name">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="description" name="description" placeholder="Description" [(ngModel)]="playlisttoinsert.description"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="!newPlaylistForm.form.valid" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!--
 <div class="container">
 
 <br>
@@ -54,11 +126,12 @@
           <button (click)="delete(playlist)"type="button" class="btn btn-danger btn-block mr-3"style="background-color: #c52121 !important;">Delete</button>
         </td>
       </tr>
-    </table>
+    </table> 
 
     
-  </div>
-  <!-- Modal -->
+  </div>-->
+  
+  <!-- Modal 
   <div class="modal fade" id="gamePlaylistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -99,4 +172,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
