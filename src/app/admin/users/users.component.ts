@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
   usertoinsert: UserDTO = new UserDTO();
   userview: UserDTO = new UserDTO();
   userType: string;
+  @ViewChild('addUserForm') addUserForm;
   @ViewChild('newUserForm') userForm;
   @ViewChild('modalTitle') modalTitle;
   @ViewChild('closeModal') closeModal;
@@ -41,22 +42,14 @@ export class UsersComponent implements OnInit {
   }
 
   insert(user: UserDTO, userType: string) {
-    
-    user.authorities = userType == "ROLE_ADMIN" ? ["ROLE_ADMIN", "ROLE_USER"] : ["ROLE_USER"];
-    this.serviceAccount.insert(user).subscribe(()=> this.getUsers())
-   
-    //Non serve piu perche ho modificato userService.java linea 104
-    /*
+        
     this.serviceAccount.insert(user).subscribe(() => {
       this.service.readUser(user.login).subscribe(u => {
-        u.activated = true;
         u.authorities = userType == "ROLE_ADMIN" ? ["ROLE_ADMIN", "ROLE_USER"] : ["ROLE_USER"];
-        //u.createdBy = JSON.parse(localStorage.getItem('currentUserData')).login;
         this.service.update(u).subscribe(()=> this.getUsers());
       });
     });
-    */
-   
+    
     this.closeModalInsert.nativeElement.click()
   }
 
@@ -88,6 +81,10 @@ export class UsersComponent implements OnInit {
     user.activated = !user.activated;
     this.service.update(user).subscribe(() => this.getUsers());
     this.activationButton.nativeElement.textContent = user.activated ? 'Deactivate' : 'Activated';
+  }
+
+  validation(){
+    return (this.addUserForm.form.value.confermaPassword == this.addUserForm.form.value.password && this.addUserForm.form.valid) ? true : false;
   }
 
 }

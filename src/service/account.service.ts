@@ -17,6 +17,8 @@ import { Observable } from 'rxjs';
     insert(dto: UserDTO): Observable<any> {
       return this.http.post('http://localhost:' + this.port + '/' + this.type + '/insert', dto);
     }
+
+    
   }
 
 

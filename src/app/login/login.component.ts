@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit {
   usertoinsert: UserDTO = new UserDTO();
   userType: string;
   
-  @ViewChild('newLoginForm') userForm;
-  @ViewChild('modalTitle') modalTitle;
+  @ViewChild('registerForm') registerForm;
   @ViewChild('closeModal') closeModal;
   @ViewChild('activationButton') activationButton;
 
@@ -53,6 +52,10 @@ export class LoginComponent implements OnInit {
 
   home(){
     this.router.navigate(['/login']);
+  }
+
+  validation(){
+    return (this.registerForm.form.value.confermaPassword == this.registerForm.form.value.password && this.registerForm.form.valid) ? true : false;
   }
  
 }

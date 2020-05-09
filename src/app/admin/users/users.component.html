@@ -192,8 +192,8 @@
               [(ngModel)]="usertoinsert.password">
           </div>
           <div class="form-group">
-            <input class="form-control" type="password" minlength="6" name="confermaPassword" required
-              placeholder="Conferma Password" [(ngModel)]="usertoinsert.ConfermaPassword">
+            <input class="form-control" type="password" minlength="6" name="confermaPassword" required placeholder="Conferma Password"
+              [(ngModel)]="usertoinsert.passwordConferm">
           </div>
           <div class="form-group">
             <select class="form-control" required name="userType" [(ngModel)]="userType">
@@ -204,7 +204,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" [disabled]="!addUserForm.form.valid" type="submit">Save</button>
+          <button type="button" class="btn btn-primary" [disabled]="!validation()" type="submit">Save</button>
         </div>
       </form>
     </div>

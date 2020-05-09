@@ -51,7 +51,7 @@
               [(ngModel)]="usertoinsert.lastName">
           </div>
           <div class="form-group">
-            <input class="form-control" type="email" id="email"email="true" name="email" required placeholder="Email"
+            <input class="form-control" type="email" id="email" email="true" name="email" required placeholder="Email"
               [(ngModel)]="usertoinsert.email">
           </div>
 
@@ -59,14 +59,14 @@
             <input class="form-control" type="password" minlength="6" name="password" required placeholder="Password"
               [(ngModel)]="usertoinsert.password">
           </div>
-          <!--div class="form-group">
+          <div class="form-group">
             <input class="form-control" type="password" minlength="6" id="password2" name="confermaPassword" required
-              placeholder="Conferma Password" [(ngModel)]="usertoinsert.ConfermaPassword">
-          </div -->
+              [(ngModel)]="usertoinsert.passwordConferm" placeholder="Conferma Password">
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" [disabled]="!registerForm.form.valid" type="submit">Save</button>
+          <button type="button" class="btn btn-primary" [disabled]="!validation()" type="submit">Save</button>
         </div>
       </form>
     </div>
