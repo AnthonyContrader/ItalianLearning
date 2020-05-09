@@ -6,8 +6,7 @@ import { UserDTO } from 'src/dto/userdto';
 
 @Component({
   selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  templateUrl: './users.component.html'
 })
 export class UsersComponent implements OnInit {
 
@@ -43,10 +42,12 @@ export class UsersComponent implements OnInit {
   }
 
   insert(user: UserDTO, userType: string) {
-    user.authorities = userType == "ROLE_ADMIN" ? ["ROLE_ADMIN", "ROLE_USER"] : ["ROLE_USER"];
     this.serviceAccount.insert(user).subscribe(() => this.getUsers());
+    user.authorities = userType == "ROLE_ADMIN" ? ["ROLE_ADMIN", "ROLE_USER"] : ["ROLE_USER"];
+    user.activated = true;
+    this.service.update(user).subscribe(() => this.getUsers());
     this.closeModalInsert.nativeElement.click()
-
+    console.log(JSON.parse(localStorage.getItem('currentUserData')));
   }
 
   clear(){
