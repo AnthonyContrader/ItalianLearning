@@ -27,8 +27,8 @@
         <td>{{c.description}}</td>
         <td class="td-compact">
           <button (click)="editPlaylist(c)" class="btn btn-info btn-sm mr-3" data-toggle="modal" data-target="#newPlaylist"><i class="fas fa-edit"></i> Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="delete(c)"
-            style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>  
+          <button (click)="gamePlaylist(c)" class="btn btn-info btn-sm mr-3" data-toggle="modal" data-target="#gamePlaylistModal"><i class="fas fa-info-circle"></i> Detail</button>
+          <button class="btn btn-danger btn-sm" (click)="delete(c)" style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>  
         </td>
       </tr>
     </table>
@@ -40,7 +40,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="modal-title" #modalTitle></div>
+        <div class="modal-title" #modalTitle>Giochi nella Playlist</div>
         <button type="button" #closeModal class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
