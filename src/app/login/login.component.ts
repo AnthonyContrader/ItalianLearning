@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginDTO } from 'src/dto/logindto';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/service/user.service';
@@ -13,6 +13,12 @@ import { UserDTO } from 'src/dto/userdto';
 export class LoginComponent implements OnInit {
 
   loginDTO: LoginDTO;
+  logintoinsert: UserDTO = new UserDTO();
+  
+  @ViewChild('newLoginForm') userForm;
+  @ViewChild('modalTitle') modalTitle;
+  @ViewChild('closeModal') closeModal;
+
 
   constructor(private service: UserService, private router: Router) { }
 
@@ -35,4 +41,19 @@ export class LoginComponent implements OnInit {
       });
     });
   }
+  editLogin(login: UserDTO){
+    this.userForm.reset()
+    if(login != null){
+      this.service.readUser(login.login).subscribe(login => this.logintoinsert = login);
+      this.modalTitle.nativeElement.textContent = 'Edit Login ' + login.id
+    }
+    else if(login.password == login.confermaPassword)
+      this.modalTitle.nativeElement.textContent = 'New Login'
+      
+  }
+   
+ /*
+  onSubmit(login: UserDTO) {
+    console.log(login);
+    */
 }
