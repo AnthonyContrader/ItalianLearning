@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { UserService } from 'src/service/user.service';
 import { Router } from '@angular/router';
 import { UserDTO } from 'src/dto/userdto';
+import { ConvertActionBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
+import { AccountService } from 'src/service/accountservice.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +16,15 @@ export class LoginComponent implements OnInit {
 
   loginDTO: LoginDTO;
   logintoinsert: UserDTO = new UserDTO();
+  userType: string;
   
   @ViewChild('newLoginForm') userForm;
   @ViewChild('modalTitle') modalTitle;
   @ViewChild('closeModal') closeModal;
+  @ViewChild('activationButton') activationButton;
 
 
-  constructor(private service: UserService, private router: Router) { }
+  constructor(private service: UserService, private router: Router, private serviceAccount: AccountService) { }
 
   ngOnInit() {
   }
@@ -42,16 +46,33 @@ export class LoginComponent implements OnInit {
     });
   }
   editLogin(login: UserDTO){
+
     this.userForm.reset()
+   /* localStorage.setItem('currentUser','admin')*/
     if(login != null){
-      this.service.readUser(login.login).subscribe(login => this.logintoinsert = login);
+      this.service.insert2(login).subscribe(login => this.logintoinsert = login);
       this.modalTitle.nativeElement.textContent = 'Edit Login ' + login.id
     }
-    else if(login.password == login.confermaPassword)
+    else 
       this.modalTitle.nativeElement.textContent = 'New Login'
-      
+     /* localStorage.removeItem('currentUser')*/
+    }
+
+  insertLogin(){
+    this.logintoinsert = new UserDTO();
+    this.userType = null;
+    
   }
-   
+  activation(login : UserDTO){
+    login.activated = !login.activated;
+    this.service.update(login).subscribe(() => this.home());
+    this.activationButton.nativeElement.textContent = login.activated ? 'Deactivate' : 'Activated';
+ 
+  }
+  home(){
+    this.router.navigate(['/login']);
+  }
+ 
  /*
   onSubmit(login: UserDTO) {
     console.log(login);
