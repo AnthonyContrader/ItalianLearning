@@ -9,13 +9,13 @@ import { AccountService } from 'src/service/accountservice.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
+
 export class LoginComponent implements OnInit {
 
   loginDTO: LoginDTO;
-  logintoinsert: UserDTO = new UserDTO();
+  usertoinsert: UserDTO = new UserDTO();
   userType: string;
   
   @ViewChild('newLoginForm') userForm;
@@ -24,17 +24,17 @@ export class LoginComponent implements OnInit {
   @ViewChild('activationButton') activationButton;
 
 
-  constructor(private service: UserService, private router: Router, private serviceAccount: AccountService) { }
+  constructor(private router: Router, private serviceAccount: AccountService, private serviceUser: UserService) { }
 
   ngOnInit() {
   }
 
   login(f: NgForm): void {
     this.loginDTO = new LoginDTO(f.value.username, f.value.password);
-    this.service.login(this.loginDTO).subscribe((response: any) => {
+    this.serviceUser.login(this.loginDTO).subscribe((response: any) => {
       localStorage.setItem('currentUser', JSON.stringify({ authorities: response.id_token }));
 
-      this.service.getUserLogged(this.loginDTO.username).subscribe((response: UserDTO) => {
+      this.serviceUser.getUserLogged(this.loginDTO.username).subscribe((response: UserDTO) => {
         localStorage.setItem('currentUserData', JSON.stringify(response));
 
         if (response.authorities.includes('ROLE_ADMIN')) {
@@ -45,36 +45,14 @@ export class LoginComponent implements OnInit {
       });
     });
   }
-  editLogin(login: UserDTO){
 
-    this.userForm.reset()
-   /* localStorage.setItem('currentUser','admin')*/
-    if(login != null){
-      this.service.insert2(login).subscribe(login => this.logintoinsert = login);
-      this.modalTitle.nativeElement.textContent = 'Edit Login ' + login.id
-    }
-    else 
-      this.modalTitle.nativeElement.textContent = 'New Login'
-     /* localStorage.removeItem('currentUser')*/
-    }
+  register(u: UserDTO){
+    this.serviceAccount.insert(u).subscribe();
+    this.closeModal.nativeElement.click()
+  }
 
-  insertLogin(){
-    this.logintoinsert = new UserDTO();
-    this.userType = null;
-    
-  }
-  activation(login : UserDTO){
-    login.activated = !login.activated;
-    this.service.update(login).subscribe(() => this.home());
-    this.activationButton.nativeElement.textContent = login.activated ? 'Deactivate' : 'Activated';
- 
-  }
   home(){
     this.router.navigate(['/login']);
   }
  
- /*
-  onSubmit(login: UserDTO) {
-    console.log(login);
-    */
 }

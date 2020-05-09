@@ -24,19 +24,6 @@ export class UserService extends AbstractService<UserDTO>{
       return '';
     }
   } 
-  auth2(response: UserDTO) {
-   
-  
-   /* localStorage.setItem('currentUser', JSON.stringify({ authorities: response.id_token }));*/
-     JSON.parse(localStorage.setItem('currentUser',JSON.stringify(response));
-    console.log("stampa user: " + localStorage.setItem('currentUser'))
-    if (this.user) {
-      return 'Bearer ' + this.user.authorities;
-    } else {
-      return '';
-    }
-  } 
-
 
   login(loginDTO: LoginDTO): Observable<UserDTO> {
     return this.http.post<any>('http://localhost:8080/api/authenticate', loginDTO)
@@ -80,10 +67,6 @@ export class UserService extends AbstractService<UserDTO>{
         }
     });
   }
-  insert2(dto: UserDTO): Observable<any> {
-    return this.http.post('http://localhost:' + this.port + '/api/'+ 'account/', dto,
-      
-    )}
 
   update(dto: UserDTO): Observable<UserDTO> {
     return this.http.put<UserDTO>('http://localhost:' + this.port + '/api/' + this.type, dto, {

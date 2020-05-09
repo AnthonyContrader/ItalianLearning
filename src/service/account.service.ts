@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
   })export class AccountService extends AbstractService<UserDTO>{
   
-    constructor(http: HttpClient private ServiceAccount: AccountService) {
+    constructor(http: HttpClient) {
       super(http);
       this.type = 'accounts';
       this.micro = '';
