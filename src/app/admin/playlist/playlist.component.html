@@ -26,7 +26,7 @@
         <td>{{c.name}}</td>
         <td>{{c.description}}</td>
         <td class="td-compact">
-          <button class="btn btn-info btn-sm mr-3" (click)="editPlaylist(c)" data-toggle="modal" data-target="#newPLaylist"><i class="fas fa-edit"></i> Edit</button>
+          <button (click)="editPlaylist(c)" class="btn btn-info btn-sm mr-3" data-toggle="modal" data-target="#newPlaylist"><i class="fas fa-edit"></i> Edit</button>
           <button class="btn btn-danger btn-sm" (click)="delete(c)"
             style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>  
         </td>

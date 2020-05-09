@@ -31,8 +31,6 @@
         <td>{{u.lastName}}</td>
         <td>{{u.authorities}}</td>
         <td class="td-compact">
-          <button class="btn btn-info btn-sm mr-3" (click)="editUser(u)" data-toggle="modal" data-target="#newUser"><i class="fas fa-edit"></i> Edit</button>
-          <button class="btn btn-info btn-sm mr-3" (click)="activation(u)" data-toggle="modal" data-target="#activationUser"><i class="fas fa-edit"></i> Activation</button>
           <button class="btn btn-info btn-sm mr-3" (click)="view(u)" data-toggle="modal" data-target="#viewUser"><i class="fas fa-edit"></i> View </button>
           <button class="btn btn-danger btn-sm" (click)="delete(u)"
             style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>  
@@ -79,6 +77,84 @@
           <button type="button" class="btn btn-primary" [disabled]="!newUserForm.form.valid" type="submit">Save</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="viewUser" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">View User : {{userview.login}}</div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="row">
+        <div class="text-right col-4">
+          <i class="fas fa-user-circle p-3" style="color: gray; font-size: 130px;"></i>
+        </div>
+        <div class="text-left col-8 align-self-center">
+          <h3>{{userview.firstName}} {{userview.lastName}}</h3>
+        </div>
+      </div>
+
+      <div class="conteiner">
+        <div class="col-12 conteiner table-responsive">
+          <table class="table table-striped">
+            <tr>
+              <td><strong>Username</strong></td>
+              <td>{{ userview.login }}</td>
+            </tr>
+            <!--tr>
+              <td><strong>Name</strong></td>
+              <td>{{ userview.firstName }}</td>
+            </tr>
+              <tr>
+              <td><strong>Surneme</strong></td>
+              <td>{{ userview.lastName }}</td>
+            </tr -->
+            <tr>
+              <td><strong>Email</strong></td>
+              <td>{{ userview.email }}</td>
+            </tr>
+            <tr>
+              <td><strong>Created By</strong></td>
+              <td>{{ userview.createdBy }}</td>
+            </tr>
+            <tr>
+              <td><strong>Registered Date</strong></td>
+              <td>{{ userview.createdDate }}</td>
+            </tr>
+            <tr>
+              <td><strong>Last Modified Date</strong></td>
+              <td>{{ userview.lastModifiedDate }}</td>
+            </tr>
+            <tr>
+              <td><strong>Last Modified By</strong></td>
+              <td>{{ userview.lastModifiedBy }}</td>
+            </tr>
+            <tr>
+              <td><strong>User Type</strong></td>
+              <td>{{ userview.authorities }}</td>
+            </tr>
+            <tr>
+              <td><strong>Activeted</strong></td>
+              <td>{{ userview.activated }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer row">
+        <div class="text-left col-6">
+          <button class="btn btn-info btn mr-3" (click)="editUser(u)" data-toggle="modal" data-target="#newUser"><i class="fas fa-edit"></i> Edit</button>
+          <button class="btn btn-info btn mr-3" (click)="activation(u)" data-toggle="modal" data-target="#activationUser"><i class="fas fa-edit"></i> Activation</button>
+        </div>
+        <div class="text-right col-6">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

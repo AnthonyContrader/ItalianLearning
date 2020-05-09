@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/service/user.service';
 import { UserDTO } from 'src/dto/userdto';
-import { serializePath } from '@angular/router/src/url_tree';
 
 @Component({
   selector: 'app-users',
@@ -12,6 +11,7 @@ export class UsersComponent implements OnInit {
 
   usersDTO: UserDTO[];
   usertoinsert: UserDTO = new UserDTO();
+  userview: UserDTO = new UserDTO();
   @ViewChild('newUserForm') userForm;
   @ViewChild('modalTitle') modalTitle;
   @ViewChild('closeModal') closeModal;
@@ -50,6 +50,10 @@ export class UsersComponent implements OnInit {
     }
     else
       this.modalTitle.nativeElement.textContent = 'New User'
+  }
+
+  view(user : UserDTO){
+    this.service.readUser(user.login).subscribe(user => this.userview = user);
   }
 
   onSubmit(user: UserDTO) {
