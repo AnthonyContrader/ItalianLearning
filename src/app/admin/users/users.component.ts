@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/service/user.service';
+import { AccountService } from 'src/service/accountservice.service';
+
 import { UserDTO } from 'src/dto/userdto';
 
 @Component({
@@ -16,10 +18,11 @@ export class UsersComponent implements OnInit {
   @ViewChild('newUserForm') userForm;
   @ViewChild('modalTitle') modalTitle;
   @ViewChild('closeModal') closeModal;
+  @ViewChild('closeModalInsert') closeModalInsert;
   @ViewChild('activationButton') activationButton;
 
 
-  constructor(private service: UserService) { }
+  constructor(private service: UserService, private serviceAccount: AccountService) { }
 
   ngOnInit() {
     this.getUsers();
@@ -34,12 +37,16 @@ export class UsersComponent implements OnInit {
   }
 
   update(user: UserDTO, userType : string) {
-    user.authorities = userType == "ROLE_ADMIN" ? ["ROLE_ADMIN", "ROLE_USER"] : ["ROLE_USER"]
+    user.authorities = userType == "ROLE_ADMIN" ? ["ROLE_ADMIN", "ROLE_USER"] : ["ROLE_USER"];
     this.service.update(user).subscribe(() => this.getUsers());
+    this.closeModal.nativeElement.click()
   }
 
-  insert(user: UserDTO) {
-    this.service.insert(user).subscribe(() => this.getUsers());
+  insert(user: UserDTO, userType: string) {
+    user.authorities = userType == "ROLE_ADMIN" ? ["ROLE_ADMIN", "ROLE_USER"] : ["ROLE_USER"];
+    this.serviceAccount.insert(user).subscribe(() => this.getUsers());
+    this.closeModalInsert.nativeElement.click()
+
   }
 
   clear(){
