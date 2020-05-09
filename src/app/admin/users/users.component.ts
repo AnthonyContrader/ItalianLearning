@@ -33,7 +33,8 @@ export class UsersComponent implements OnInit {
     this.service.deleteUser(user.login).subscribe(() => this.getUsers());
   }
 
-  update(user: UserDTO) {
+  update(user: UserDTO, userType : string) {
+    user.authorities = userType == "ROLE_ADMIN" ? ["ROLE_ADMIN", "ROLE_USER"] : ["ROLE_USER"]
     this.service.update(user).subscribe(() => this.getUsers());
   }
 
@@ -71,15 +72,4 @@ export class UsersComponent implements OnInit {
     this.activationButton.nativeElement.textContent = user.activated ? 'Deactivate' : 'Activated';
   }
 
-  onSubmit(user: UserDTO, userType : string ) {
-    //console.log(user);
-    console.log(userType);
-    /*
-    if (user.id != null)
-      this.update(user)
-    else
-      this.insert(user)
-      
-      this.closeModal.nativeElement.click()*/
-  }
 }
