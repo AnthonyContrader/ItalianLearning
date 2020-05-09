@@ -15,6 +15,8 @@ export class UsersComponent implements OnInit {
   @ViewChild('newUserForm') userForm;
   @ViewChild('modalTitle') modalTitle;
   @ViewChild('closeModal') closeModal;
+  @ViewChild('activationButton') activationButton;
+
 
   constructor(private service: UserService) { }
 
@@ -46,14 +48,25 @@ export class UsersComponent implements OnInit {
     this.userForm.reset()
     if(user != null){
       this.service.readUser(user.login).subscribe(user => this.usertoinsert = user);
-      this.modalTitle.nativeElement.textContent = 'Edit User ' + user.id
+      this.modalTitle.nativeElement.textContent = 'Edit User ' + user.id;
     }
     else
-      this.modalTitle.nativeElement.textContent = 'New User'
+      this.modalTitle.nativeElement.textContent = 'New User';
+  }
+
+  insertUser(){
+    this.usertoinsert = new UserDTO();
   }
 
   view(user : UserDTO){
     this.service.readUser(user.login).subscribe(user => this.userview = user);
+    this.activationButton.nativeElement.textContent = user.activated ? 'Deactivate' : 'Activated';
+  }
+
+  activation(user : UserDTO){
+    user.activated = !user.activated;
+    this.service.update(user).subscribe(() => this.getUsers());
+    this.activationButton.nativeElement.textContent = user.activated ? 'Deactivate' : 'Activated';
   }
 
   onSubmit(user: UserDTO) {
