@@ -1,8 +1,15 @@
 //Created By Alessandro Alfieri
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlaylistDTO } from 'src/dto/playlistdto';
 import { PlaylistService } from 'src/service/playlist.service';
 import { GamePlaylistService } from 'src/service/gameplaylist.service';
+import { Utils } from '../util/utils';
+import { FindAWordService } from 'src/service/findaword.service';
+import { FindMistakeService } from 'src/service/findmistake.service';
+import { GuessPictureService } from 'src/service/guesspicture.service';
+import { HangmanService } from 'src/service/hangman.service';
+import { OrganizeSentenceService } from 'src/service/organizesentence.service';
+import { QuizService } from 'src/service/quiz.service';
 
 @Component({
   selector: 'app-playlist',
@@ -16,7 +23,7 @@ export class PlaylistComponent implements OnInit {
   playlisttoinsert: PlaylistDTO = new PlaylistDTO();
   @ViewChild('gameList') gamelist;
 
-  constructor(private service: PlaylistService, private gpService: GamePlaylistService) { }
+  constructor(private service: PlaylistService, private gpService: GamePlaylistService, private fawService: FindAWordService, private fmService: FindMistakeService, private gupService: GuessPictureService, private hService: HangmanService, private osService: OrganizeSentenceService, private qService: QuizService) { }
 
   ngOnInit() {
     this.getPlaylist();
@@ -26,42 +33,108 @@ export class PlaylistComponent implements OnInit {
     this.service.getAll().subscribe(playlist => this.playlistDTO = playlist)
   }
 
-  delete(playlist: PlaylistDTO){
+  delete(playlist: PlaylistDTO) {
     this.service.delete(playlist.id).subscribe(() => this.getPlaylist());
   }
 
-  update(playlist: PlaylistDTO){
+  update(playlist: PlaylistDTO) {
     this.service.update(playlist).subscribe(() => this.getPlaylist());
   }
 
-  insert(playlist: PlaylistDTO){
+  insert(playlist: PlaylistDTO) {
     this.service.insert(playlist).subscribe(() => this.getPlaylist());
   }
 
-  gamePlaylist(playlist: PlaylistDTO){
-    this._gamesArray = [];
-    this.gpService.findByPlaylist(playlist.id).subscribe(obj =>{
+  gamePlaylist(playlist: PlaylistDTO) {
+
+    let list = new Map<String, any>();
+    this._gamesArray = new Array();
+    this.fawService.getAll().subscribe(obj => {
       obj.forEach(rk => {
-        let map = new Map<string, any>();
-        map.set("id", parseInt(rk.id));
-        map.set("solution", rk.solution);
-        map.set("typeGame", rk.typeGame);
-        map.set("name", rk.name);
-        map.set("checked", rk.checked);
-        map.set("idPlaylist", playlist.id )
-        this._gamesArray.push(map);
+        list = new Map<String, any>();
+        list.set("id", rk.id);
+        list.set("solution", rk.solution);
+        list.set("typeGame", rk.typeGame);
+        list.set("name", 'Find A Word');
+        this.gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
+        list.set("idPlaylist", playlist.id);
+        this._gamesArray.push(list);
       });
-    })
-  console.log(this._gamesArray)
+    });
+    this.fmService.getAll().subscribe(obj => {
+      obj.forEach(rk => {
+        list = new Map<String, any>();
+        list.set("id", rk.id);
+        list.set("solution", rk.solution);
+        list.set("typeGame", rk.typeGame);
+        list.set("name", 'Find Mistake');
+        this.gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
+        list.set("idPlaylist", playlist.id);
+        this._gamesArray.push(list);
+      });
+    });
+    this.gupService.getAll().subscribe(obj => {
+      obj.forEach(rk => {
+        list = new Map<String, any>();
+        list.set("id", rk.id);
+        list.set("solution", rk.solution);
+        list.set("typeGame", rk.typeGame);
+        list.set("name", 'Guess Picture');
+        this.gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
+        list.set("idPlaylist", playlist.id);
+        this._gamesArray.push(list);
+      });
+    });
+    this.hService.getAll().subscribe(obj => {
+      obj.forEach(rk => {
+        list = new Map<String, any>();
+        list.set("id", rk.id);
+        list.set("solution", rk.solution);
+        list.set("typeGame", rk.typeGame);
+        list.set("name", 'Hangman');
+        this.gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
+        list.set("idPlaylist", playlist.id);
+        this._gamesArray.push(list);
+      });
+    });
+    this.osService.getAll().subscribe(obj => {
+      obj.forEach(rk => {
+        list = new Map<String, any>();
+        list.set("id", rk.id);
+        list.set("solution", rk.solution);
+        list.set("typeGame", rk.typeGame);
+        list.set("name", 'Organize Sentence');
+        this. gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
+        list.set("idPlaylist", playlist.id);
+        this._gamesArray.push(list);
+      });
+    });
+    this.qService.getAll().subscribe(obj => {
+      obj.forEach(rk => {
+        list = new Map<String, any>();
+        list.set("id", rk.id);
+        list.set("solution", rk.solution);
+        list.set("typeGame", rk.typeGame);
+        list.set("name", 'Quiz');
+        this.gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
+        list.set("idPlaylist", playlist.id);
+        this._gamesArray.push(list);
+      });
+    });
+
+
+
+    console.log(this._gamesArray)
+    return this._gamesArray
   }
 
-  updatePlaylist(playlist_id: number){
+  updatePlaylist(playlist_id: number) {
     console.log(playlist_id)
     let gameList: Array<any> = new Array<any>();
     let checkboxes: Array<any> = Array.from(this.gamelist.nativeElement.querySelectorAll('.selection_cb'))
-    for (let checkbox of checkboxes){
+    for (let checkbox of checkboxes) {
       let list = {}
-      if (checkbox.checked){
+      if (checkbox.checked) {
         list["id"] = checkbox.dataset.id.toString()
         list["typeGame"] = checkbox.dataset.typeGame
         gameList.push(list)
@@ -71,7 +144,7 @@ export class PlaylistComponent implements OnInit {
     this.gpService.updatePlaylist(playlist_id, gameList).subscribe(() => this.getPlaylist());
   }
 
-  clear(){
+  clear() {
     this.playlisttoinsert = new PlaylistDTO;
   }
 

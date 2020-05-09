@@ -22,8 +22,4 @@ export class AdminLayoutComponent implements OnInit {
     window.location.href = '/login';
   }
 
-  delete(){
-    alert('delete');
-  }
-
 }
