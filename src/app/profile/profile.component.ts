@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserDTO } from 'src/dto/userdto';
 import { AccountService } from 'src/service/account.service';
 import { ChangePasswordDTO } from 'src/dto/changepassworddto';
@@ -12,6 +12,9 @@ import { ChangePasswordDTO } from 'src/dto/changepassworddto';
 
     user: UserDTO = new UserDTO;
     passwordtoinsert: ChangePasswordDTO = new ChangePasswordDTO;
+    passwordConferm: string;
+    @ViewChild('passwordForm') passwordForm;
+    @ViewChild('closeModal') closeModal;
 
     constructor( private service : AccountService) {}
   
@@ -24,7 +27,13 @@ import { ChangePasswordDTO } from 'src/dto/changepassworddto';
     }
 
     changePassword(newPassword : ChangePasswordDTO){
+      console.log(newPassword);
       this.service.changePassword(newPassword);
+      this.closeModal.nativeElement.click();
+    }
+
+    validation(){
+      return (this.passwordForm.form.value.confirmPassword == this.passwordForm.form.value.password && this.passwordForm.form.valid) ? true : false;
     }
   
    
