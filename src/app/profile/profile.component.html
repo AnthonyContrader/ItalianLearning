@@ -1,0 +1,91 @@
+<div class="row">
+  
+  <div class="col-md-8 offset-md-2 mt-5">
+    <div class="row">
+      <div class="col-sm-9 text-left"><h1 class="text-left "> {{user.firstName}}  {{user.lastName}} </h1></div>
+      <div class="col-sm-3 text-right align-self-center">
+        <button (click)="passwordForm.reset()" class="btn btn-primary mr-3" data-toggle="modal" data-target="#password"><i class="fas fa-lock"></i> Change Password</button>
+      </div>
+    </div>
+  </div>
+    
+  <div class="col-12"> <hr> </div>
+
+  <div class="col-6 offset-3 table-responsive">
+    <div class="conteiner">
+        <div class="col-12 conteiner table-responsive">
+          <table class="table table-striped">
+            <tr>
+              <td><strong>Username</strong></td>
+              <td>{{ user.login }}</td>
+            </tr>
+            <tr>
+              <td><strong>Name</strong></td>
+              <td>{{ user.firstName }}</td>
+            </tr>
+              <tr>
+              <td><strong>Surneme</strong></td>
+              <td>{{ user.lastName }}</td>
+            </tr>
+            <tr>
+              <td><strong>Email</strong></td>
+              <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+              <td><strong>Created By</strong></td>
+              <td>{{ user.createdBy }}</td>
+            </tr>
+            <tr>
+              <td><strong>Registered Date</strong></td>
+              <td>{{ user.createdDate }}</td>
+            </tr>
+            <tr>
+              <td><strong>Last Modified Date</strong></td>
+              <td>{{ user.lastModifiedDate }}</td>
+            </tr>
+            <tr>
+              <td><strong>Last Modified By</strong></td>
+              <td>{{ user.lastModifiedBy }}</td>
+            </tr>
+            <tr>
+              <td><strong>User Type</strong></td>
+              <td>{{ user.authorities }}</td>
+            </tr>
+            <tr>
+              <td><strong>Activated</strong></td>
+              <td>{{ user.activated }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+  </div>
+   
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="password" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" #modalTitle></div>
+        <button type="button" #closeModal class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #passwordForm="ngForm" (ngSubmit)="onSubmit(categorytoinsert)">
+        <div class="modal-body">
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="!newCategoryForm.form.valid" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+

@@ -12,6 +12,7 @@ import { QuizComponent } from './quiz/quiz.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { LevelsComponent } from './levels/levels.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 /**
  * Modulo di routing dell'admin. Qui ci sono i percorsi che un admin può seguire:
@@ -28,6 +29,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
 const routes: Routes = [
   { path: 'admin-dashboard', component: AdminLayoutComponent, children:[
     { path: '', component: AdminDashboardComponent},
+    { path: 'profile', component: ProfileComponent},
     { path: 'users', component: UsersComponent},
     { path: 'categories', component: CategoriesComponent},
     { path: 'levels', component: LevelsComponent},
