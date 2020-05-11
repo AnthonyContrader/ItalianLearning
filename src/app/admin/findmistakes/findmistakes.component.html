@@ -20,7 +20,7 @@
       <thead class="thead-dark">
         <tr class="text-center">
           <th>Solution</th>
-          <th>Definition/th>
+          <th>Definition</th>
           <th>Sentence </th>
           <th>OptionA</th>
           <th>OptionB</th>
@@ -37,17 +37,17 @@
         <td>{{findmistake.solution}}</td>
         <td>{{findmistake.definition}}</td>
         <td>{{findmistake.sentence}}</td>
-        <td>{{findmistake.OptionA}}</td>
-        <td>{{findmistake.OptionB}}</td>
-        <td>{{findmistake.OptionC}}</td>
+        <td>{{findmistake.optionA}}</td>
+        <td>{{findmistake.optionB}}</td>
+        <td>{{findmistake.optionC}}</td>
         <td>{{findmistake.categoryTitle}}</td>
         <td>{{findmistake.levelName}}</td>
 
         <td class="td-compact">
           <button class="btn btn-info btn-sm mr-3" (click)="editFindMistake(findmistake)" data-toggle="modal"
             data-target="#newFindMistake"><i class="fas fa-edit"></i> Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="delete(findmistake)" style="background-color: #c52121 !important;"><i
-              class="fas fa-trash"></i> Delete</button>
+          <button class="btn btn-danger btn-sm" (click)="delete(findmistake)"
+            style="background-color: #c52121 !important;"><i class="fas fa-trash"></i> Delete</button>
         </td>
       </tr>
     </table>
@@ -79,18 +79,18 @@
             <input class="form-control" type="text" id="sentence" name="sentence" required placeholder="Sentence"
               [(ngModel)]="findmistaketoinsert.sentence">
           </div>
-          <div class="form-group"></div>
-          <input class="form-control" type="text" id="option A" name="option A" required placeholder="option A"
-            [(ngModel)]="findmistaketoinsert.optionA">
-
-          <div class="form-group"></div>
-          <input class="form-control" type="text" id="option B" name="option B" required placeholder="option B"
-            [(ngModel)]="findmistaketoinsert.optionB">
-
-          <div class="form-group"></div>
-          <input class="form-control" type="text" id="option C" name="option C" required placeholder="option C"
+          <div class="form-group">
+            <input class="form-control" type="text" id="option A" name="option A" required placeholder="option A"
+              [(ngModel)]="findmistaketoinsert.optionA">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" id="option B" name="option B" required placeholder="option B"
+              [(ngModel)]="findmistaketoinsert.optionB">
+          </div>
+          <div class="form-group">
+           <input class="form-control" type="text" id="option C" name="option C" required placeholder="option C"
             [(ngModel)]="findmistaketoinsert.optionC">
-
+          </div>  
           <div class="form-group">
             <select class="form-control" placeholder="Category" required id="categoryId" name="categoryId"
               [(ngModel)]="findmistaketoinsert.categoryId">

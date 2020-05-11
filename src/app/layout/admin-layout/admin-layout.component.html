@@ -34,17 +34,18 @@
       </li>
     </ul>
 
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto ">
       <li class="nav-item dropdown ">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user" style="margin-right: 15px"></i>{{user.firstName}}</a>
           <div class="dropdown-menu dropdown-menu-right mr-15" dropdown dropdown-append-to-body>
+            <a class="dropdown-item" [routerLink]="['/admin-dashboard/profile']"><i class="fas fa-user" style="margin-right: 15px"></i>Profile</a>
             <a class="dropdown-item" (click)="logout()"><i class="fas fa-sign-out-alt" style="margin-right: 15px"></i>Logout</a>
           </div>
       </li>
-      </ul>
-    </div>
+    </ul>
+    
   </div>
+
 </nav>
 
 <div style="margin-top: 75px !important;" class="col-md-12">

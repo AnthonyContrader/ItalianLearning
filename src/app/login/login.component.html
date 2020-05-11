@@ -17,8 +17,8 @@
         <button style="background-color: #073569fa !important;" type="submit" (click)="login(f)"
           class="btn m-1 text-light"><i class="fas fa-sign-in-alt" style="margin-right: 5px"></i>Login</button>
 
-        <button style="background-color: #073569fa !important;" type="submit" (click)="editLogin(); newLoginForm.reset()"
-          class="btn btn-primary m-1 text-light" data-toggle="modal" data-target="#newLogin">
+        <button style="background-color: #073569fa !important;" type="submit" (click)="registerForm.reset()"
+          class="btn btn-primary m-1 text-light" data-toggle="modal" data-target="#register">
           <i class="fas fa-user-plus" style="margin-right: 5px"></i>Sign Up</button>
       </div>
 
@@ -27,7 +27,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="newLogin" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -36,38 +36,37 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form #newLoginForm="ngForm" (ngSubmit)="editLogin(logintoinsert)">
-        <input type="hidden" id="id" name="id" [(ngModel)]="logintoinsert.id">
+      <form #registerForm="ngForm" (ngSubmit)="register(usertoinsert)">
         <div class="modal-body">
           <div class="form-group">
             <input class="form-control" type="text" id="username" name="username" required placeholder="Username"
-              [(ngModel)]="logintoinsert.login">
+              [(ngModel)]="usertoinsert.login">
           </div>
           <div class="form-group">
             <input class="form-control" type="text" id="name" name="name" required placeholder="Name"
-              [(ngModel)]="logintoinsert.firstName">
+              [(ngModel)]="usertoinsert.firstName">
           </div>
           <div class="form-group">
             <input class="form-control" type="text" id="surname" name="surname" required placeholder="Surname"
-              [(ngModel)]="logintoinsert.lastName">
+              [(ngModel)]="usertoinsert.lastName">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" id="email" name="email" required placeholder="Email"
-              [(ngModel)]="logintoinsert.email">
+            <input class="form-control" type="email" id="email" email="true" name="email" required placeholder="Email"
+              [(ngModel)]="usertoinsert.email">
           </div>
 
           <div class="form-group">
             <input class="form-control" type="password" minlength="6" name="password" required placeholder="Password"
-              [(ngModel)]="logintoinsert.password">
+              [(ngModel)]="usertoinsert.password">
           </div>
           <div class="form-group">
             <input class="form-control" type="password" minlength="6" id="password2" name="confermaPassword" required
-              placeholder="Conferma Password" [(ngModel)]="logintoinsert.ConfermaPassword">
+              [(ngModel)]="usertoinsert.passwordConferm" placeholder="Conferma Password">
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" [disabled]="!newLoginForm.form.valid" type="submit">Save</button>
+          <button type="button" class="btn btn-primary" [disabled]="!validation()" type="submit">Save</button>
         </div>
       </form>
     </div>

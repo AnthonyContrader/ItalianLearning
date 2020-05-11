@@ -4,33 +4,35 @@ import { NgForm } from '@angular/forms';
 import { UserService } from 'src/service/user.service';
 import { Router } from '@angular/router';
 import { UserDTO } from 'src/dto/userdto';
+import { AccountService } from 'src/service/accountservice.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
+
 export class LoginComponent implements OnInit {
 
   loginDTO: LoginDTO;
-  logintoinsert: UserDTO = new UserDTO();
+  usertoinsert: UserDTO = new UserDTO();
+  userType: string;
   
-  @ViewChild('newLoginForm') userForm;
-  @ViewChild('modalTitle') modalTitle;
+  @ViewChild('registerForm') registerForm;
   @ViewChild('closeModal') closeModal;
+  @ViewChild('activationButton') activationButton;
 
 
-  constructor(private service: UserService, private router: Router) { }
+  constructor(private router: Router, private serviceAccount: AccountService, private serviceUser: UserService) { }
 
   ngOnInit() {
   }
 
   login(f: NgForm): void {
     this.loginDTO = new LoginDTO(f.value.username, f.value.password);
-    this.service.login(this.loginDTO).subscribe((response: any) => {
+    this.serviceUser.login(this.loginDTO).subscribe((response: any) => {
       localStorage.setItem('currentUser', JSON.stringify({ authorities: response.id_token }));
 
-      this.service.getUserLogged(this.loginDTO.username).subscribe((response: UserDTO) => {
+      this.serviceUser.getUserLogged(this.loginDTO.username).subscribe((response: UserDTO) => {
         localStorage.setItem('currentUserData', JSON.stringify(response));
 
         if (response.authorities.includes('ROLE_ADMIN')) {
@@ -41,19 +43,18 @@ export class LoginComponent implements OnInit {
       });
     });
   }
-  editLogin(login: UserDTO){
-    this.userForm.reset()
-    if(login != null){
-      this.service.readUser(login.login).subscribe(login => this.logintoinsert = login);
-      this.modalTitle.nativeElement.textContent = 'Edit Login ' + login.id
-    }
-    else if(login.password == login.confermaPassword)
-      this.modalTitle.nativeElement.textContent = 'New Login'
-      
+
+  register(u: UserDTO){
+    this.serviceAccount.insert(u).subscribe();
+    this.closeModal.nativeElement.click()
   }
-   
- /*
-  onSubmit(login: UserDTO) {
-    console.log(login);
-    */
+
+  home(){
+    this.router.navigate(['/login']);
+  }
+
+  validation(){
+    return (this.registerForm.form.value.confermaPassword == this.registerForm.form.value.password && this.registerForm.form.valid) ? true : false;
+  }
+ 
 }

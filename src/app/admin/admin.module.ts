@@ -13,6 +13,7 @@ import { OrganizesentencesComponent } from './organizesentences/organizesentence
 import { HangmenComponent } from './hangmen/hangmen.component';
 import { GuesspicturesComponent } from './guesspictures/guesspictures.component';
 import { LevelsComponent } from './levels/levels.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 /**
  * Modulo dell'admin, qui vengono dichiarate le component che utilizza 
@@ -23,7 +24,20 @@ import { LevelsComponent } from './levels/levels.component';
  * @see AdminRoutingModule
  */
 @NgModule({
-  declarations: [AdminDashboardComponent, UsersComponent, QuizComponent, PlaylistComponent, FindawordsComponent, FindmistakesComponent, CategoriesComponent, OrganizesentencesComponent, HangmenComponent, GuesspicturesComponent, LevelsComponent],
+  declarations: [
+    AdminDashboardComponent, 
+    UsersComponent,
+    QuizComponent,
+    PlaylistComponent,
+    FindawordsComponent,
+    FindmistakesComponent,
+    CategoriesComponent,
+    OrganizesentencesComponent,
+    HangmenComponent,
+    GuesspicturesComponent,
+    LevelsComponent,
+    ProfileComponent
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,

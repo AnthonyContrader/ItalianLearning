@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-sm-9 text-left"><h1 class="text-left "> User </h1></div>
       <div class="col-sm-3 text-right align-self-center">
-        <button (click)="insertUser(); newUserForm.reset();" class="btn btn-primary mr-3" data-toggle="modal" data-target="#newUser"><i class="fas fa-plus"></i> Insert</button>
+        <button (click)="insertUser(); addUserForm.reset();" class="btn btn-primary mr-3" data-toggle="modal" data-target="#addUser"><i class="fas fa-plus"></i> Insert</button>
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
 </div>
 
 <!-- Modal Edit User -->
-<div class="modal fade" id="newUser" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" tabindex="-1" id="newUser" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,22 +51,22 @@
         </button>
       </div>
       <form #newUserForm="ngForm" (ngSubmit)="update(usertoinsert, userType)">
-        <input type="hidden" id="id" name="id" [(ngModel)]="usertoinsert.id">
+        <input type="hidden" name="id" [(ngModel)]="usertoinsert.id">
         <div class="modal-body">
           <div class="form-group">
-            <input class="form-control" type="text" id="username" name="username" required placeholder="Username" [(ngModel)]="usertoinsert.login">
+            <input class="form-control" type="text" name="username" required placeholder="Username" [(ngModel)]="usertoinsert.login">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" id="name" name="name" required placeholder="Name" [(ngModel)]="usertoinsert.firstName">
+            <input class="form-control" type="text" name="name" required placeholder="Name" [(ngModel)]="usertoinsert.firstName">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" id="surname" name="surname" required placeholder="Surname" [(ngModel)]="usertoinsert.lastName">
+            <input class="form-control" type="text" name="surname" required placeholder="Surname" [(ngModel)]="usertoinsert.lastName">
           </div>
           <div class="form-group">
-            <input class="form-control" type="email" id="email" name="email" required placeholder="Email"  email="true" [(ngModel)]="usertoinsert.email">
+            <input class="form-control" type="email" name="email" required placeholder="Email"  email="true" [(ngModel)]="usertoinsert.email">
           </div>
           <div class="form-group">
-            <select class="form-control" required id="userType" name="userType" [(ngModel)]="userType">
+            <select class="form-control" required name="userType" [(ngModel)]="userType">
               <option value="ROLE_USER">ROLE_USER</option>
               <option value="ROLE_ADMIN">ROLE_ADMIN</option>
             </select>
@@ -82,7 +82,7 @@
 </div>
 
 <!-- Modal View -->
-<div class="modal fade" id="viewUser" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="viewUser" class="modal fade"tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -107,14 +107,14 @@
               <td><strong>Username</strong></td>
               <td>{{ userview.login }}</td>
             </tr>
-            <!--tr>
+            <tr>
               <td><strong>Name</strong></td>
               <td>{{ userview.firstName }}</td>
             </tr>
               <tr>
               <td><strong>Surneme</strong></td>
               <td>{{ userview.lastName }}</td>
-            </tr -->
+            </tr>
             <tr>
               <td><strong>Email</strong></td>
               <td>{{ userview.email }}</td>
@@ -156,48 +156,57 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="newLogin" tabindex="-1" role="dialog" aria-hidden="true">
+
+<!-- modeal insert user-->
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <div class="modal-title" #modalTitle></div>
-        <button type="button" #closeModal class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" #closeModalInsert class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form #newLoginForm="ngForm" (ngSubmit)="editLogin(logintoinsert)">
-        <input type="hidden" id="id" name="id" [(ngModel)]="logintoinsert.id">
+      <form #addUserForm="ngForm" (ngSubmit)="insert(usertoinsert, userType)">
+        <input type="hidden" name="id" [(ngModel)]="usertoinsert.id">
         <div class="modal-body">
           <div class="form-group">
-            <input class="form-control" type="text" id="username" name="username" required placeholder="Username"
-              [(ngModel)]="logintoinsert.login">
+            <input class="form-control" type="text" name="username" required placeholder="Username"
+              [(ngModel)]="usertoinsert.login">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" id="name" name="name" required placeholder="Name"
-              [(ngModel)]="logintoinsert.firstName">
+            <input class="form-control" type="text" name="name" required placeholder="Name"
+              [(ngModel)]="usertoinsert.firstName">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" id="surname" name="surname" required placeholder="Surname"
-              [(ngModel)]="logintoinsert.lastName">
+            <input class="form-control" type="text" name="surname" required placeholder="Surname"
+              [(ngModel)]="usertoinsert.lastName">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" id="email" name="email" required placeholder="Email"
-              [(ngModel)]="logintoinsert.email">
+            <input class="form-control" email="true" type="email" name="email" required placeholder="Email"
+              [(ngModel)]="usertoinsert.email">
           </div>
 
           <div class="form-group">
             <input class="form-control" type="password" minlength="6" name="password" required placeholder="Password"
-              [(ngModel)]="logintoinsert.password">
+              [(ngModel)]="usertoinsert.password">
           </div>
           <div class="form-group">
-            <input class="form-control" type="password" minlength="6" id="password2" name="confermaPassword" required
-              placeholder="Conferma Password" [(ngModel)]="logintoinsert.ConfermaPassword">
+            <input class="form-control" type="password" minlength="6" name="confermaPassword" required placeholder="Conferma Password"
+              [(ngModel)]="usertoinsert.passwordConferm">
+          </div>
+          <div class="form-group">
+            <select class="form-control" required name="userType" [(ngModel)]="userType">
+              <option value="ROLE_USER">ROLE_USER</option>
+              <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+            </select>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" [disabled]="!newLoginForm.form.valid" type="submit">Save</button>
+          <button type="button" class="btn btn-primary" [disabled]="!validation()" type="submit">Save</button>
         </div>
       </form>
     </div>
   </div>
+</div>
