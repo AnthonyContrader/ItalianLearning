@@ -4,7 +4,7 @@ import {CategoryDTO} from './categorydto'
 
 export class FindMistakeDTO{
 
-    typeGame: "FindMistake";
+    static typeGame: string = "FindMistake";
 
     id: number;
 

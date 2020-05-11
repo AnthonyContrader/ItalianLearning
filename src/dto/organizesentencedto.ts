@@ -7,7 +7,7 @@ import {LevelDTO} from './leveldto';
 */
 
 export class OrganizeSentenceDTO{
-    typeGame : "OrganizeSentence";
+    static typeGame: string = "OrganizeSentence";
 
     id: number; //tipo numerico
 	

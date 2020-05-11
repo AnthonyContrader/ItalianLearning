@@ -5,9 +5,12 @@ export class GamePlaylistDTO{
 
     id: number;
 
-    id_game: number;
+    idGame: number;
 
-    type_game: string;
+    typeGame: string;
     
     playlist: PlaylistDTO;
+
+    playlistId: number;
+    playlistName: string;
 }

@@ -4,7 +4,7 @@ import {LevelDTO} from "./leveldto";
 
 export class FindAWordDTO{
 
-    typeGame : "FindAWord";
+    static typeGame: string = "FindAWord";
 	
     id: number;
     

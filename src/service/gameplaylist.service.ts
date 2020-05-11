@@ -16,12 +16,12 @@ export class GamePlaylistService extends AbstractService<GamePlaylistDTO>{
         this.micro = 'games';
     }
 
-    findByPlaylist(id_playlist: number): Observable<any> {
-        return this.http.get('http://localhost:' + this.port + '/' + this.type + '/getbyplaylist/' + id_playlist);
-    }
-
-    updatePlaylist(id_playlist: number, list: Array<Map<string,string>>): Observable<any>{
-        return this.http.post('http://localhost:' + this.port + '/' + this.type + '/updateplaylist/' + id_playlist, list);
+    deleteByPlaylist(id_playlist: number): Observable<any>{
+        return this.http.delete('http://localhost:' + this.port + '/' + this.micro + '/api/' + this.type + '/deleteAllByPlaylist/' + id_playlist, {
+            headers: {
+              Authorization: this.auth()
+            }
+        });
     }
 
     findGameInPlaylist(id_playlist: number, id_game: number, typeGame: string): Observable<any> {

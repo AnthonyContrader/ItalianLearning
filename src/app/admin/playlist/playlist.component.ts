@@ -3,13 +3,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlaylistDTO } from 'src/dto/playlistdto';
 import { PlaylistService } from 'src/service/playlist.service';
 import { GamePlaylistService } from 'src/service/gameplaylist.service';
-import { Utils } from '../util/utils';
 import { FindAWordService } from 'src/service/findaword.service';
 import { FindMistakeService } from 'src/service/findmistake.service';
 import { GuessPictureService } from 'src/service/guesspicture.service';
 import { HangmanService } from 'src/service/hangman.service';
 import { OrganizeSentenceService } from 'src/service/organizesentence.service';
 import { QuizService } from 'src/service/quiz.service';
+import { GamePlaylistDTO } from 'src/dto/gameplaylistdto';
+import { FindMistakeDTO } from 'src/dto/findmistakedto';
+import { FindAWordDTO } from 'src/dto/findaworddto';
+import { GuessPictureDTO } from 'src/dto/guesspicturedto';
+import { HangmanDTO } from 'src/dto/hangmandto';
+import { OrganizeSentenceDTO } from 'src/dto/organizesentencedto';
+import { QuizDTO } from 'src/dto/quizdto';
+import { map, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-playlist',
@@ -19,6 +26,9 @@ import { QuizService } from 'src/service/quiz.service';
 export class PlaylistComponent implements OnInit {
 
   playlistDTO: PlaylistDTO[];
+  gamePlaylistDTO: GamePlaylistDTO[];
+  playListDTO: PlaylistDTO;
+  gamePlaylisttoinsert: GamePlaylistDTO;
   _gamesArray: Array<any>;
   playlisttoinsert: PlaylistDTO = new PlaylistDTO();
   @ViewChild('gameList') gamelist;
@@ -34,6 +44,7 @@ export class PlaylistComponent implements OnInit {
 
   getPlaylist() {
     this.service.getAll().subscribe(playlist => this.playlistDTO = playlist)
+    this.gpService.getAll().subscribe(gamePlaylist => this.gamePlaylistDTO = gamePlaylist);
   }
 
   delete(playlist: PlaylistDTO) {
@@ -45,11 +56,12 @@ export class PlaylistComponent implements OnInit {
   }
 
   insert(playlist: PlaylistDTO) {
+    console.log(playlist);
     this.service.insert(playlist).subscribe(() => this.getPlaylist());
   }
 
   gamePlaylist(playlist: PlaylistDTO) {
-
+    this.playListDTO = playlist;
     let list = new Map<String, any>();
     this._gamesArray = new Array();
     this.fawService.getAll().subscribe(obj => {
@@ -57,9 +69,9 @@ export class PlaylistComponent implements OnInit {
         list = new Map<String, any>();
         list.set("id", rk.id);
         list.set("solution", rk.solution);
-        list.set("typeGame", rk.typeGame);
+        list.set("typeGame", FindAWordDTO.typeGame);
         list.set("name", 'Find A Word');
-        this.gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
+        list.set("checked", this.getCheckedGame(playlist.id, rk.id, FindAWordDTO.typeGame));
         list.set("idPlaylist", playlist.id);
         this._gamesArray.push(list);
       });
@@ -69,9 +81,8 @@ export class PlaylistComponent implements OnInit {
         list = new Map<String, any>();
         list.set("id", rk.id);
         list.set("solution", rk.solution);
-        list.set("typeGame", rk.typeGame);
+        list.set("typeGame", FindMistakeDTO.typeGame);
         list.set("name", 'Find Mistake');
-        this.gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
         list.set("idPlaylist", playlist.id);
         this._gamesArray.push(list);
       });
@@ -81,9 +92,8 @@ export class PlaylistComponent implements OnInit {
         list = new Map<String, any>();
         list.set("id", rk.id);
         list.set("solution", rk.solution);
-        list.set("typeGame", rk.typeGame);
+        list.set("typeGame", GuessPictureDTO.typeGame);
         list.set("name", 'Guess Picture');
-        this.gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
         list.set("idPlaylist", playlist.id);
         this._gamesArray.push(list);
       });
@@ -93,9 +103,8 @@ export class PlaylistComponent implements OnInit {
         list = new Map<String, any>();
         list.set("id", rk.id);
         list.set("solution", rk.solution);
-        list.set("typeGame", rk.typeGame);
+        list.set("typeGame", HangmanDTO.typeGame);
         list.set("name", 'Hangman');
-        this.gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
         list.set("idPlaylist", playlist.id);
         this._gamesArray.push(list);
       });
@@ -105,9 +114,8 @@ export class PlaylistComponent implements OnInit {
         list = new Map<String, any>();
         list.set("id", rk.id);
         list.set("solution", rk.solution);
-        list.set("typeGame", rk.typeGame);
+        list.set("typeGame", OrganizeSentenceDTO.typeGame);
         list.set("name", 'Organize Sentence');
-        this. gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
         list.set("idPlaylist", playlist.id);
         this._gamesArray.push(list);
       });
@@ -117,9 +125,8 @@ export class PlaylistComponent implements OnInit {
         list = new Map<String, any>();
         list.set("id", rk.id);
         list.set("solution", rk.solution);
-        list.set("typeGame", rk.typeGame);
+        list.set("typeGame", QuizDTO.typeGame);
         list.set("name", 'Quiz');
-        this.gpService.findGameInPlaylist(playlist.id, rk.id, rk.typeGame).subscribe(checked => list.set("checked", checked));
         list.set("idPlaylist", playlist.id);
         this._gamesArray.push(list);
       });
@@ -127,24 +134,34 @@ export class PlaylistComponent implements OnInit {
 
 
 
-    console.log(this._gamesArray)
+    // console.log(this._gamesArray)
     return this._gamesArray
   }
 
+  getCheckedGame(playlist_id: number, game_id: number, typeGame: string){
+    return this.gamePlaylistDTO.filter(value => value.idGame == game_id && value.playlistId == playlist_id && value.typeGame == typeGame).length > 0
+  }
+
   updatePlaylist(playlist_id: number) {
-    console.log(playlist_id)
+    
+    this.gamePlaylisttoinsert = new GamePlaylistDTO();
     let gameList: Array<any> = new Array<any>();
     let checkboxes: Array<any> = Array.from(this.gamelist.nativeElement.querySelectorAll('.selection_cb'))
+    console.log(checkboxes)
+    this.gpService.deleteByPlaylist(playlist_id).subscribe(() => this.getPlaylist());
     for (let checkbox of checkboxes) {
-      let list = {}
+      // let list = {}
       if (checkbox.checked) {
-        list["id"] = checkbox.dataset.id.toString()
-        list["typeGame"] = checkbox.dataset.typeGame
-        gameList.push(list)
+        this.gamePlaylisttoinsert.playlistId = JSON.parse(checkbox.dataset.playlist).id;
+        // this.gamePlaylisttoinsert.playlistName = JSON.parse(checkbox.dataset.playlist).name;
+        this.gamePlaylisttoinsert.idGame = checkbox.dataset.id ;
+        this.gamePlaylisttoinsert.typeGame = checkbox.dataset.typeGame;
+        this.gpService.insert(this.gamePlaylisttoinsert).subscribe(() => null);;
+        console.log(this.gamePlaylisttoinsert);
       }
     }
-    console.log(gameList)
-    this.gpService.updatePlaylist(playlist_id, gameList).subscribe(() => this.getPlaylist());
+    
+    
   }
 
   clear() {

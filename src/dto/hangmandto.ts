@@ -4,7 +4,7 @@ import {CategoryDTO} from './categorydto'
 
 export class HangmanDTO{
     
-    typeGame: "Hangman";
+    static typeGame: string = "Hangman";
     
     id: number;
 

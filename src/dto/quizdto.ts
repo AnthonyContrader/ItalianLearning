@@ -4,7 +4,7 @@ import {LevelDTO} from './leveldto';
 /*created by Anna Cecere */
 
 export class QuizDTO{
-    typeGame: "Quiz";
+    static typeGame: string = "Quiz";
 
     id:number;
     solution: string;

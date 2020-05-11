@@ -6,7 +6,7 @@ import {LevelDTO} from './leveldto';
  */
 
 export class GuessPictureDTO{
-    typeGame: "GuessPicture";
+    static typeGame: string = "GuessPicture";
 	
     id: number;
     solution: string;
