@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { UserService } from 'src/service/user.service';
 import { Router } from '@angular/router';
 import { UserDTO } from 'src/dto/userdto';
-import { AccountService } from 'src/service/accountservice.service';
+import { AccountService } from 'src/service/account.service';
 
 @Component({
   selector: 'app-login',

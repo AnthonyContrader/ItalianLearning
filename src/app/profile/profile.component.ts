@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDTO } from 'src/dto/userdto';
-import { AccountService } from 'src/service/accountservice.service';
+import { AccountService } from 'src/service/account.service';
+import { ChangePasswordDTO } from 'src/dto/changepassworddto';
 
 @Component({
     selector: 'app-profile',
@@ -10,6 +11,7 @@ import { AccountService } from 'src/service/accountservice.service';
   export class ProfileComponent implements OnInit {
 
     user: UserDTO = new UserDTO;
+    passwordtoinsert: ChangePasswordDTO = new ChangePasswordDTO;
 
     constructor( private service : AccountService) {}
   
@@ -19,6 +21,10 @@ import { AccountService } from 'src/service/accountservice.service';
       if (auth == null){
         window.location.href = '/login';
       }
+    }
+
+    changePassword(newPassword : ChangePasswordDTO){
+      this.service.changePassword(newPassword);
     }
   
    

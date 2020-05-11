@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/service/user.service';
-import { AccountService } from 'src/service/accountservice.service';
+import { AccountService } from 'src/service/account.service';
 
 import { UserDTO } from 'src/dto/userdto';
 
