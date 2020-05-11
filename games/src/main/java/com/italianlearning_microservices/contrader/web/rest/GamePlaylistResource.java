@@ -111,6 +111,13 @@ public class GamePlaylistResource {
         return ResponseUtil.wrapOrNotFound(gamePlaylistDTO);
     }
 
+    @GetMapping("/game-playlists/findByGame")
+    @Timed
+    public boolean getGamePlaylist(@RequestParam("idPlaylist") Long idPlaylist, @RequestParam("idGame") Integer idGame, @RequestParam("typeGame") String typeGame) {
+        log.debug("REST request to get Playlist : {}", idPlaylist, idGame, typeGame);
+        return gamePlaylistService.findByIdPlaylistAndIdGameAndTypeGame(idPlaylist, idGame, typeGame);
+    }
+
     /**
      * DELETE  /game-playlists/:id : delete the "id" gamePlaylist.
      *
@@ -122,6 +129,14 @@ public class GamePlaylistResource {
     public ResponseEntity<Void> deleteGamePlaylist(@PathVariable Long id) {
         log.debug("REST request to delete GamePlaylist : {}", id);
         gamePlaylistService.delete(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    @DeleteMapping("/game-playlists/deleteAllByPlaylist/{id}")
+    @Timed
+    public ResponseEntity<Void> deleteAllByPlaylist(@PathVariable Long id) {
+        log.debug("REST request to delete GamePlaylist : {}", id);
+        gamePlaylistService.deleteAllByPlaylist(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

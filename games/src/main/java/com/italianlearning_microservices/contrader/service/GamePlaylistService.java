@@ -28,6 +28,8 @@ public interface GamePlaylistService {
      */
     Page<GamePlaylistDTO> findAll(Pageable pageable);
 
+    boolean findByIdPlaylistAndIdGameAndTypeGame(Long idPlaylist, Integer idGame, String typeGame);
+
 
     /**
      * Get the "id" gamePlaylist.
@@ -43,4 +45,6 @@ public interface GamePlaylistService {
      * @param id the id of the entity
      */
     void delete(Long id);
+
+    void deleteAllByPlaylist(Long idPlaylist);
 }
